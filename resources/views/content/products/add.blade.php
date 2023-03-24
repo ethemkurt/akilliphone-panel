@@ -104,7 +104,6 @@
                             </div>
 
                             <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Submit" />
-                            {{-- <button type="submit" class="btn btn-warning" name="submit" value="Submit">Submit</button> --}}
                         </form>
                     </div>
                     <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"
