@@ -1,0 +1,49 @@
+{
+    "data": [
+        {
+            "responsive_id": "",
+            "id": 1,
+            "email": "john.doe@gmail.com",
+            "oldPrice": 0,
+            "currentPrice": 0,
+            "requestDate": "2019-01-01 00:00:00",
+            "seenDate": "2019-01-01 00:00:00"
+        },
+        {
+            "responsive_id": "",
+            "id": 2,
+            "email": "john.doe@gmail.com",
+            "oldPrice": 0,
+            "currentPrice": 0,
+            "requestDate": "2019-01-01 00:00:00",
+            "seenDate": "2019-01-01 00:00:00"
+        },
+        {
+            "responsive_id": "",
+            "id": 3,
+            "email": "john.doe@gmail.com",
+            "oldPrice": 0,
+            "currentPrice": 0,
+            "requestDate": "2019-01-01 00:00:00",
+            "seenDate": "2019-01-01 00:00:00"
+        },
+        {
+            "responsive_id": "",
+            "id": 4,
+            "email": "john.doe@gmail.com",
+            "oldPrice": 0,
+            "currentPrice": 0,
+            "requestDate": "2019-01-01 00:00:00",
+            "seenDate": "2019-01-01 00:00:00"
+        },
+        {
+            "responsive_id": "",
+            "id": 5,
+            "email": "john.doe@gmail.com",
+            "oldPrice": 0,
+            "currentPrice": 0,
+            "requestDate": "2019-01-01 00:00:00",
+            "seenDate": "2019-01-01 00:00:00"
+        }
+    ]
+}

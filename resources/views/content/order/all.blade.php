@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset('fonts/font-awesome/font-awesome.min.css') }}" />
 @endsection
 
 @section('page-style')
@@ -34,55 +35,142 @@
             <form class="dt_adv_search" method="POST">
               <div class="row g-1 mb-md-1">
                 <div class="col-md-4">
-                  <label class="form-label">Name:</label>
-                  <input
-                    type="text"
-                    class="form-control dt-input dt-full-name"
-                    data-column="1"
-                    placeholder="Alaric Beslier"
-                    data-column-index="0"
-                  />
+                    <a href="#">
+                    <button class="btn btn-primary">
+                            <i data-feather="save"></i>
+                            <span class="align-middle">Yeni Sipariş</span>
+                        </button>
+                    </a>
                 </div>
+              </div>
+              <div class="row g-1 mb-md-1">
                 <div class="col-md-4">
-                  <label class="form-label">Email:</label>
+                @php
+                    $orderStatus = [
+                        [
+                            "name" => "Beklemede",
+                            "value" => "pending"
+                        ],
+                        [
+                            "name" => "Onaylandı",
+                            "value" => "approved"
+                        ],
+                        [
+                            "name" => "Hazırlanıyor",
+                            "value" => "preparing"
+                        ],
+                        [
+                            "name" => "Kargoda",
+                            "value" => "shipping"
+                        ],
+                        [
+                            "name" => "Teslim Edildi",
+                            "value" => "delivered"
+                        ],
+                        [
+                            "name" => "İptal Edildi",
+                            "value" => "canceled"
+                        ],
+                        [
+                            "name" => "İade Edildi",
+                            "value" => "returned"
+                        ]
+                    ]
+                @endphp
+                <x-inputs.select-input :items="$orderStatus" label="Sipariş Durumu" name="order_status" />
+              </div>
+                <div class="col-md-4">
+                  {{-- <label class="form-label">Email:</label>
                   <input
                     type="text"
                     class="form-control dt-input"
                     data-column="2"
                     placeholder="demo@example.com"
                     data-column-index="1"
-                  />
+                  /> --}}
+                  @php
+                      $paymentType = [
+                        [
+                            "name" => "Kredi Kartı",
+                            "value" => "credit_card"
+                        ],
+                        [
+                            "name" => "Havale",
+                            "value" => "transfer"
+                        ],
+                        [
+                            "name" => "Nakit",
+                            "value" => "cash"
+                        ],
+                      ]
+                  @endphp
+                    <x-inputs.select-input :items="$paymentType" label="Ödeme Tipi" name="payment_type" />
                 </div>
+
                 <div class="col-md-4">
-                  <label class="form-label">Post:</label>
-                  <input
-                    type="text"
-                    class="form-control dt-input"
-                    data-column="3"
-                    placeholder="Web designer"
-                    data-column-index="2"
-                  />
+                  @php
+                      $memberType = [
+                        [
+                            "name" => "Müşteri",
+                            "value" => "customer"
+                        ],
+                        [
+                            "name" => "Bayi",
+                            "value" => "dealer"
+                        ],
+                        [
+                            "name" => "Üye",
+                            "value" => "member"
+                        ],
+                      ]
+                  @endphp
+                    <x-inputs.select-input :items="$memberType" label="Üye Tipi" name="member_type" />
                 </div>
               </div>
-              <div class="row g-1">
+              <div class="row g-1 mb-md-1">
                 <div class="col-md-4">
-                  <label class="form-label">City:</label>
-                  <input
-                    type="text"
-                    class="form-control dt-input"
-                    data-column="4"
-                    placeholder="Balky"
-                    data-column-index="3"
-                  />
+                  @php
+                      $marketPlaces = [
+                        [
+                            "name" => "Akıllıphone (519 Sipariş)",
+                            "value" => "akilliphone"
+                        ],
+                        [
+                            "name" => "Amazon (519 Sipariş)",
+                            "value" => "amazon"
+                        ],
+                        [
+                            "name" => "Çiçeksepeti (519 Sipariş)",
+                            "value" => "ciceksepeti"
+                        ],
+                        [
+                            "name" => "Epttavm (519 Sipariş)",
+                            "value" => "epttavm"
+                        ],
+                        [
+                            "name" => "Hepsiburada (519 Sipariş)",
+                            "value" => "hepsiburada"
+                        ],
+                        [
+                            "name" => "N11 (519 Sipariş)",
+                            "value" => "n11"
+                        ],
+                        [
+                            "name" => "Trendyol (519 Sipariş)",
+                            "value" => "trendyol"
+                        ]
+                      ]
+                  @endphp
+                    <x-inputs.select-input :items="$marketPlaces" label="Market Yeri" name="market_place" />
                 </div>
                 <div class="col-md-4">
-                  <label class="form-label">Date:</label>
+                  <label class="form-label">Zaman Aralığı</label>
                   <div class="mb-0">
                     <input
                       type="text"
                       class="form-control dt-date flatpickr-range dt-input"
                       data-column="5"
-                      placeholder="StartDate to EndDate"
+                      placeholder="Başlangıç - Bitiş"
                       data-column-index="4"
                       name="dt_date"
                     />
@@ -103,14 +191,37 @@
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <label class="form-label">Salary:</label>
-                  <input
-                    type="text"
-                    class="form-control dt-input"
-                    data-column="6"
-                    placeholder="10000"
-                    data-column-index="5"
-                  />
+                  @php
+                      $orderType = [
+                        [
+                            "name" => "Tümü",
+                            "value" => "all"
+                        ],
+                        [
+                            "name" => "İndirimli Sepetler",
+                            "value" => "discounted_baskets"
+                        ],
+                        [
+                            "name" => "Dropshipping",
+                            "value" => "dropshipping"
+                        ],
+                      ]
+                  @endphp
+                    <x-inputs.select-input :items="$orderType" label="Sipariş Tipi" name="order_type" />
+                </div>
+              </div>
+              <div class="row g-1">
+                <div class="col-md-3">
+                    <x-inputs.text-input label="Ada Göre Ara" placeholder="Ada Göre Ara" name="search_name" />
+                </div>
+                <div class="col-md-3">
+                    <x-inputs.text-input label="Sipariş No'ya Göre Ara" placeholder="Sipariş No'ya Göre Ara" name="search_order_no" />
+                </div>
+                <div class="col-md-3">
+                    <x-inputs.text-input label="Fatura No'ya Göre Ara" placeholder="Fatura No'ya Göre Ara" name="search_receipt_no" />
+                </div>
+                <div class="col-md-3">
+                    <x-inputs.text-input label="Ürün Koduna Göre Ara" placeholder="Ürün Koduna Göre Ara" name="search_product_code" />
                 </div>
               </div>
             </form>
@@ -121,13 +232,17 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Post</th>
-                  <th>City</th>
-                  <th>Date</th>
-                  <th>Salary</th>
-                  <th>Actions</th>
+                  <th></th>
+                  <th>Tümünü Seç</th>
+                  <th>Sıra No</th>
+                  <th>Sipariş No</th>
+                  <th>Ad Soyad</th>
+                  <th>Tarih</th>
+                  <th>Ödeme Tipi</th>
+                  <th>Tutar</th>
+                  <th>Kargo Firması</th>
+                  <th>Sipariş Durumu</th>
+                  <th>İşlemler</th>
                 </tr>
               </thead>
             </table>

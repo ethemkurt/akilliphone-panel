@@ -1,0 +1,25 @@
+{
+    "data": [
+        {
+            "responsive_id": "",
+            "id": 1,
+            "logo": "https://cdn.akilliphone.com/8004/200x200/2018-01/15/brandlogo1516005657-1.png",
+            "name": "Samsung",
+            "status": 1
+        },
+        {
+            "responsive_id": "",
+            "id": 2,
+            "logo": "https://cdn.akilliphone.com/8004/200x200/2018-07/10/brandlogo1531223027-1.jpg",
+            "name": "Nokia",
+            "status": 1
+        },
+        {
+            "responsive_id": "",
+            "id": 3,
+            "logo": "https://cdn.akilliphone.com/8004/200x200/2018-07/10/brandlogo1531223082-1.png",
+            "name": "Apple",
+            "status": 1
+        }
+    ]
+}

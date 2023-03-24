@@ -1,0 +1,70 @@
+{
+    "data": [
+        {
+            "responsive_id": "",
+            "id": 1,
+            "name": "Kestane",
+            "code": "#bd7d2f"
+        },
+        {
+            "responsive_id": "",
+            "id": 2,
+            "name": "Kahverengi",
+            "code": "#a67c52"
+        },
+        {
+            "responsive_id": "",
+            "id": 3,
+            "name": "Nar",
+            "code": "#eb3373"
+        },
+        {
+            "responsive_id": "",
+            "id": 4,
+            "name": "Turuncu",
+            "code": "#f15a24"
+        },
+        {
+            "responsive_id": "",
+            "id": 5,
+            "name": "Sarı",
+            "code": "#f7d358"
+        },
+        {
+            "responsive_id": "",
+            "id": 6,
+            "name": "Yeşil",
+            "code": "#7dbb00"
+        },
+        {
+            "responsive_id": "",
+            "id": 7,
+            "name": "Mavi",
+            "code": "#00a0e9"
+        },
+        {
+            "responsive_id": "",
+            "id": 8,
+            "name": "Mor",
+            "code": "#7e3f98"
+        },
+        {
+            "responsive_id": "",
+            "id": 9,
+            "name": "Gri",
+            "code": "#5f5f5f"
+        },
+        {
+            "responsive_id": "",
+            "id": 10,
+            "name": "Beyaz",
+            "code": "#ffffff"
+        },
+        {
+            "responsive_id": "",
+            "id": 11,
+            "name": "Siyah",
+            "code": "#000000"
+        }
+    ]
+}

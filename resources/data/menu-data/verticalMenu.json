@@ -1,12 +1,12 @@
 {
     "menu": [
         {
-            "navheader": "",
+            "navheader": "Akıllıphone Panel",
             "slug": ""
         },
         {
             "url": "home",
-            "name": "Dashboard",
+            "name": "Anasayfa",
             "icon": "home",
             "slug": "home"
         },
@@ -20,14 +20,68 @@
             "slug": "",
             "submenu": [
                 {
-                    "url": "product/list",
-                    "name": "Listele",
+                    "url": "products/index",
+                    "name": "Ürün Listesi",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "product/add",
-                    "name": "Ekle",
+                    "url": "brands/index",
+                    "name": "Marka Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "categories/index",
+                    "name": "Kategori Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "attributes/index",
+                    "name": "Özellik Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "color-sets/index",
+                    "name": "Renk Setleri",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "taxes/index",
+                    "name": "Vergi Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "products/units/index",
+                    "name": "Ürün Birimleri",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "products/reviews/index",
+                    "name": "Ürün Yorumları",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "products/questions/index",
+                    "name": "Ürün Soruları",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "products/price-warning-requests",
+                    "name": "Fiyat Uyarı İstekleri",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "products/stock-warning-requests",
+                    "name": "Stok Uyarı İstekleri",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 }
@@ -44,40 +98,11 @@
             "slug": "home"
         },
         {
-            "navheader": "KAMPANYA YÖNETİMİ",
+            "navheader": "KULLANICI YÖNETİMİ",
             "slug": ""
         },
         {
-            "name": "Slayt",
-            "icon": "file",
-            "slug": "",
-            "submenu": [
-                {
-                    "url": "campaign/list",
-                    "name": "Listele",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "campaign/add",
-                    "name": "Ekle",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "campaign/edit",
-                    "name": "Edit",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                }
-            ]
-        },
-        {
-            "navheader": "ÜYE YÖNETİMİ",
-            "slug": ""
-        },
-        {
-            "name": "Üyeler",
+            "name": "Kullanıcılar",
             "icon": "users",
             "slug": "",
             "submenu": [
@@ -88,18 +113,92 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "users/add",
-                    "name": "Ekle",
+                    "url": "users/permissions",
+                    "name": "Yetkiler",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "users/edit",
-                    "name": "Edit",
+                    "url": "users/roles",
+                    "name": "Roller",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 }
             ]
+        },
+        {
+            "navheader": "KARGO YÖNETİMİ",
+            "slug": ""
+        },
+        {
+            "name": "Kargo",
+            "icon": "truck",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "shipping",
+                    "name": "Kargo Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "shipping/zones",
+                    "name": "Kargo Bölgeleri",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "shipping/settings",
+                    "name": "Desiye Ayarları",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                }
+            ]
+        },
+        {
+            "navheader": "KAMPANYA YÖNETİMİ",
+            "slug": ""
+        },
+        {
+            "name": "Kampanyalar",
+            "icon": "file",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "campaign",
+                    "name": "Ürün Kampanya Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "campaign/mass-email",
+                    "name": "Toplu E-Posta Gönderimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "campaign/giftcards",
+                    "name": "Hediye Kartı Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "campaign/slides",
+                    "name": "Slayt Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                }
+            ]
+        },
+        {
+            "navheader": "İÇERİK YÖNETİMİ",
+            "slug": ""
+        },
+        {
+            "url": "content",
+            "name": "İçerik Yönetimi",
+            "icon": "book",
+            "slug": "home"
         },
         {
             "navheader": "BAYİ YÖNETİMİ",
@@ -109,22 +208,67 @@
             "name": "Bayiler",
             "icon": "users",
             "slug": "",
+            "url": "dealers"
+        },
+        {
+            "navheader": "ÖDEME YÖNETİMİ",
+            "slug": ""
+        },
+        {
+            "name": "Ödeme",
+            "icon": "credit-card",
+            "slug": "",
             "submenu": [
                 {
-                    "url": "dealer/list",
-                    "name": "Listele",
+                    "url": "virtual-pos",
+                    "name": "Sanal Pos Yönetimi",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "dealer/add",
-                    "name": "Ekle",
+                    "url": "mobile-payment",
+                    "name": "Mobil Ödeme Yönetimi",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "dealer/edit",
-                    "name": "Edit",
+                    "url": "eft-settings",
+                    "name": "EFT Ayarları",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "payment-settings",
+                    "name": "Ödeme Ayarları",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                }
+            ]
+        },
+        {
+            "navheader": "ENTEGRE YÖNETİMİ",
+            "slug": ""
+        },
+        {
+            "name": "Entegrasyon",
+            "icon": "package",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "integration/providers",
+                    "name": "Tedarikçi Firmalar",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "integration/xml",
+                    "name": "XML Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "integration/marketplace",
+                    "name": "Pazaryeri Yönetimi",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 }

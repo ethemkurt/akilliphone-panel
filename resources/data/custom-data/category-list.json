@@ -1,0 +1,39 @@
+{
+    "data": [
+        {
+            "responsive_id": "",
+            "id": 1,
+            "logo": "https://cdn.akilliphone.com/8004/45x45/2022-02/24/brandlogo1645711203-1.png",
+            "name": "Aksesuarlar",
+            "status": 1
+        },
+        {
+            "responsive_id": "",
+            "id": 2,
+            "logo": "https://cdn.akilliphone.com/8004/45x45/2022-02/24/brandlogo1645711220-1.png",
+            "name": "Diğer Ürünler",
+            "status": 1
+        },
+        {
+            "responsive_id": "",
+            "id": 3,
+            "logo": "https://cdn.akilliphone.com/8004/45x45/2022-03/13/brandlogo1647164534-1.png",
+            "name": "Ev & Yaşam",
+            "status": 1
+        },
+        {
+            "responsive_id": "",
+            "id": 4,
+            "logo": "https://cdn.akilliphone.com/8004/45x45/2022-02/24/brandlogo1645711210-1.png",
+            "name": "Kulaklık",
+            "status": 1
+        },
+        {
+            "responsive_id": "",
+            "id": 5,
+            "logo": "https://cdn.akilliphone.com/8004/45x45/2022-02/24/brandlogo1645711130-1.png",
+            "name": "Şarj Aletleri",
+            "status": 1
+        }
+    ]
+}

@@ -25,7 +25,7 @@ function filterColumn(i, val) {
 // Datepicker for advanced filter
 var separator = ' - ',
   rangePickr = $('.flatpickr-range'),
-  dateFormat = 'MM/DD/YYYY';
+  dateFormat = 'DD/MM/YYYY';
 var options = {
   autoUpdateInput: false,
   autoApply: true,
@@ -40,7 +40,7 @@ var options = {
 if (rangePickr.length) {
   rangePickr.flatpickr({
     mode: 'range',
-    dateFormat: 'm/d/Y',
+    dateFormat: 'd/m/Y',
     onClose: function (selectedDates, dateStr, instance) {
       var startDate = '',
         endDate = new Date();

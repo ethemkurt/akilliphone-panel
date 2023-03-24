@@ -23,6 +23,58 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-12">
+                            <div class="mb-md-1">
+                                @php
+                                    $options = [
+                                        [
+                                            'name' => 'Tümü',
+                                            'value' => 'all',
+                                        ],
+                                        [
+                                            'name' => 'Stokta Olanlar',
+                                            'value' => 'stock',
+                                        ],
+                                        [
+                                            'name' => 'Biten Stok',
+                                            'value' => 'nostock',
+                                        ],
+                                        [
+                                            'name' => 'Azalan Stok',
+                                            'value' => 'less_stock',
+                                        ],
+                                        [
+                                            'name' => 'Fiyatı 0 TL',
+                                            'value' => 'no_price',
+                                        ],
+                                        [
+                                            'name' => 'Kategorisiz',
+                                            'value' => 'no_category',
+                                        ],
+                                        [
+                                            'name' => 'Markasız',
+                                            'value' => 'no_brand',
+                                        ],
+                                        [
+                                            'name' => 'Varyantsız',
+                                            'value' => 'no_variant',
+                                        ],
+                                        [
+                                            'name' => 'Son 24 Saatte Harekete Giren Ürünler',
+                                            'value' => 'last_24',
+                                        ],
+                                        [
+                                            'name' => 'Son 24 Saatte Tükenen Ürünler',
+                                            'value' => 'last_24_nostock',
+                                        ],
+                                        [
+                                            'name' => 'Pasif Ürünler',
+                                            'value' => 'passive',
+                                        ],
+                                    ];
+                                @endphp
+                                <x-inputs.select-input name="options" label="Seçenekler" :items="$options" />
+                            </div>
+
                             <button type="button" class="btn btn-success waves-effect waves-light mt-lg-0 mt-1">Net Hesaptan Ürünleri Çek</button>
                             <button type="button" class="btn btn-warning waves-effect waves-light mt-lg-0 mt-1">Kopyala</button>
                             <button type="button" class="btn btn-danger waves-effect waves-light mt-lg-0 mt-1">Sil</button>

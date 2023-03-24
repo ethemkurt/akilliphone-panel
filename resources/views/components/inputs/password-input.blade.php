@@ -1,5 +1,4 @@
-<div class="mb-1">
-    <label class="form-label" for="{{ $name }}">{{ $label }}</label>
+<label class="form-label" for="{{ $name }}">{{ $label }}</label>
     <input
       type="password"
       id="{{ $name }}"
@@ -7,4 +6,3 @@
       class="form-control"
       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
     />
-  </div>

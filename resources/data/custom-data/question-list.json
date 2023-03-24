@@ -1,0 +1,40 @@
+{
+    "data": [
+        {
+            "responsive_id": "",
+            "id": 1,
+            "fullname": "John Doe",
+            "product": {
+                "name": "Product 1",
+                "url": "http://example.com/product-1"
+            },
+            "question": "Question 1",
+            "answer": "Answer 1",
+            "date": "2017-01-01 00:00:00"
+        },
+        {
+            "responsive_id": "",
+            "id": 2,
+            "fullname": "John Doe",
+            "product": {
+                "name": "Product 2",
+                "url": "http://example.com/product-2"
+            },
+            "question": "Question 2",
+            "answer": "Answer 2",
+            "date": "2017-01-01 00:00:00"
+        },
+        {
+            "responsive_id": "",
+            "id": 3,
+            "fullname": "John Doe",
+            "product": {
+                "name": "Product 3",
+                "url": "http://example.com/product-3"
+            },
+            "question": "Question 3",
+            "answer": "Answer 3",
+            "date": "2017-01-01 00:00:00"
+        }
+    ]
+}

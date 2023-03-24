@@ -1,0 +1,29 @@
+{
+    "data": [
+        {
+            "responsive_id": "",
+            "id": 1,
+            "name": "Adet"
+        },
+        {
+            "responsive_id": "",
+            "id": 2,
+            "name": "cm"
+        },
+        {
+            "responsive_id": "",
+            "id": 3,
+            "name": "Düzine"
+        },
+        {
+            "responsive_id": "",
+            "id": 4,
+            "name": "gram"
+        },
+        {
+            "responsive_id": "",
+            "id":5,
+            "name": "kg"
+        }
+    ]
+}
