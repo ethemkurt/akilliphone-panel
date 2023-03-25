@@ -543,7 +543,7 @@
                                         $tabs = [
                                             [
                                                 "href" => "hepsiburada",
-                                                "title" => "HepsiBurada"
+                                                "title" => "Hepsiburada"
                                             ],
                                             [
                                                 "href" => "amazon",
@@ -651,32 +651,12 @@
                                         </form>
                                     </div>
                                     <div class="tab-pane active" id="hepsiburada" role="tabpanel" aria-labelledby="seo-report-tab" aria-expanded="false">
-                                        <form>
+                                        <form action="#" class="invoice-repeater">
                                             <div class="mb-1">
                                                 <x-inputs.file-input label="Ürün Resmi" name="file_input" />
                                             </div>
                                             <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label=Ürün Adı"
-                                                    placeholder="GaN Lite Quick Charger" />
-                                            </div>
-                                            <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label=Ürün Alt Başlık"
-                                                    placeholder="GaN Lite Quick Charger" />
-                                            </div>
-                                            <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label="Fiyatı"
-                                                    placeholder="GaN Lite Quick Charger" />
-                                            </div>
-                                            <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label="Sabit Fiyatı"
-                                                    placeholder="GaN Lite Quick Charger" />
-                                            </div>
-                                            <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label="İndirim Etiket Tutarı"
-                                                    placeholder="GaN Lite Quick Charger" />
-                                            </div>
-                                            <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label="Birleşme Rengi"
+                                                <x-inputs.text-input name="product_name" label="HB Komisyon %"
                                                     placeholder="GaN Lite Quick Charger" />
                                             </div>
                                             <div class="mb-1">
@@ -692,40 +672,97 @@
                                                     ],
                                                 ];
                                                 @endphp
-                                                <x-inputs.select-input :items="$answer" label="Çoklu İsimler Seçeneğe Dönüşsün" name="" />
+                                                <x-inputs.select-input :items="$answer" label="HB'de Yayınlansın" name="" />
                                             </div>
                                             <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label="Komisyon %"
+                                                <x-inputs.text-input name="product_name" label="Hepsiburada Fiyatı"
                                                     placeholder="GaN Lite Quick Charger" />
                                             </div>
-                                            <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label="OEM"
-                                                    placeholder="GaN Lite Quick Charger" />
+                                            <div class="col-12 my-2">
+                                                <h4>Akıllıphone HB Mağazası</h4>
                                             </div>
                                             <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label="Kritik Stok Adedi"
-                                                    placeholder="GaN Lite Quick Charger" />
+                                                <div data-repeater-list="invoice">
+                                                    <div data-repeater-item>
+                                                      <div class="row d-flex align-items-end">
+                                                        <div class="col-md-3 col-12">
+                                                            <x-inputs.text-input name="product_name" label="Barkodu"
+                                                                placeholder="" />
+                                                        </div>
+                                                        <div class="col-md-3 col-12">
+                                                            <x-inputs.text-input name="product_name" label="Üretici Ürün Kodu"
+                                                                placeholder="" />
+                                                        </div>
+                                                        <div class="col-md-3 col-12">
+                                                            <x-inputs.text-input name="product_name" label="Hb Ürün Kodu"
+                                                                placeholder="" />
+                                                        </div>
+                                                        <div class="col-md-2 col-12">
+                                                            <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
+                                                              <i data-feather="x"></i>
+                                                            </button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                    <div class="col-12 my-1">
+                                                      <button class="btn btn-icon btn-info" type="button" data-repeater-create>
+                                                        <i data-feather="plus" class="me-25"></i>
+                                                        <span>Yeni Ekle</span>
+                                                      </button>
+                                                    </div>
+                                               </div>
+                                               <div class="col-12 my-1">
+                                                    <button class="btn btn-icon btn-primary" type="button">
+                                                        Akıllıphone HB Mağazası Hb'de Durdur
+                                                    </button>
+                                                    <button class="btn btn-icon btn-warning" type="button">
+                                                        Akıllıphone HB Mağazası Hb'de Yenile
+                                                    </button>
+                                              </div>
+                                              <div class="col-12 my-2">
+                                                <h4>Baseus HB Mağazası</h4>
                                             </div>
                                             <div class="mb-1">
-                                                @php
-                                                $answer = [
-                                                    [
-                                                        "name" => "Evet",
-                                                        "value" => "2"
-                                                    ],
-                                                    [
-                                                        "name" => "Hayır",
-                                                        "value" => "0"
-                                                    ],
-                                                ];
-                                                @endphp
-                                                <x-inputs.select-input :items="$answer" label="N11'de Yayınlansın" name="" />
-                                            </div>
-                                            <div class="mb-1">
-                                                <x-inputs.text-input name="product_name" label="N11 Katalog ID"
-                                                    placeholder="GaN Lite Quick Charger" />
-                                            </div>
-                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Kaydet" />
+                                                <div data-repeater-list="invoice">
+                                                    <div data-repeater-item>
+                                                      <div class="row d-flex align-items-end">
+                                                        <div class="col-md-3 col-12">
+                                                            <x-inputs.text-input name="product_name" label="Barkodu"
+                                                                placeholder="" />
+                                                        </div>
+                                                        <div class="col-md-3 col-12">
+                                                            <x-inputs.text-input name="product_name" label="Üretici Ürün Kodu"
+                                                                placeholder="" />
+                                                        </div>
+                                                        <div class="col-md-3 col-12">
+                                                            <x-inputs.text-input name="product_name" label="Hb Ürün Kodu"
+                                                                placeholder="" />
+                                                        </div>
+                                                        <div class="col-md-2 col-12">
+                                                            <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
+                                                              <i data-feather="x"></i>
+                                                            </button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                    <div class="col-12 my-1">
+                                                      <button class="btn btn-icon btn-info" type="button" data-repeater-create>
+                                                        <i data-feather="plus" class="me-25"></i>
+                                                        <span>Yeni Ekle</span>
+                                                      </button>
+                                                    </div>
+                                               </div>
+                                               <div class="col-12 my-1">
+                                                    <button class="btn btn-icon btn-primary" type="button">
+                                                    Baseus HB Mağazası Hb'de Durdur
+                                                    </button>
+                                                    <button class="btn btn-icon btn-warning" type="button">
+                                                        Baseus HB Mağazası Hb'de Yenile
+                                                    </button>
+                                              </div>
+                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Hepsiburada Bilgilerini Kaydet" />
                                         </form>
                                     </div>
                                 </div>
