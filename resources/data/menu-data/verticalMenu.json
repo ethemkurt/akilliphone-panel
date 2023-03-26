@@ -62,13 +62,13 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "products/reviews/index",
+                    "url": "products/reviews",
                     "name": "Ürün Yorumları",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "products/questions/index",
+                    "url": "products/questions",
                     "name": "Ürün Soruları",
                     "icon": "circle",
                     "slug": "collapsed-menu"
@@ -101,13 +101,13 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "users/permissions",
+                    "url": "permissions/index",
                     "name": "Yetkiler",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "users/roles",
+                    "url": "roles/index",
                     "name": "Roller",
                     "icon": "circle",
                     "slug": "collapsed-menu"
@@ -124,25 +124,7 @@
             "slug": "",
             "submenu": [
                 {
-                    "url": "campaign",
-                    "name": "Ürün Kampanya Yönetimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "campaign/mass-email",
-                    "name": "Toplu E-Posta Gönderimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "campaign/giftcards",
-                    "name": "Hediye Kartı Yönetimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "campaign/slides",
+                    "url": "campaign/index",
                     "name": "Slayt Yönetimi",
                     "icon": "circle",
                     "slug": "collapsed-menu"
@@ -157,7 +139,7 @@
             "name": "Bayiler",
             "icon": "users",
             "slug": "",
-            "url": "dealers"
+            "url": "dealers/index"
         },
         {
             "navheader": "AYARLAR",

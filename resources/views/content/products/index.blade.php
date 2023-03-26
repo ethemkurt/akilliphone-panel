@@ -91,12 +91,13 @@
                             <th></th>
                             <th></th>
                             <th>id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Date</th>
-                            <th>Salary</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Stok Kodu</th>
+                            <th>Ürün</th>
+                            <th>Kategori</th>
+                            <th>Stok</th>
+                            <th>Fiyat</th>
+                            <th>Bayi</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                     </table>
@@ -126,5 +127,5 @@
 @endsection
 @section('page-script')
     {{-- Page js files --}}
-    <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/tables/products/product-table.js')) }}"></script>
 @endsection

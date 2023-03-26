@@ -1,7 +1,7 @@
 
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Renk Setleri')
+@section('title', 'Ürün Özellik Değerleri')
 
 @section('vendor-style')
     {{-- vendor css files --}}
@@ -27,9 +27,8 @@
                             <th></th>
                             <th></th>
                             <th>id</th>
-                            <th>Renk Adı</th>
-                            <th>Renk Kodu</th>
-                            <th>Renk Grubu</th>
+                            <th>Adı</th>
+                            <th>Anahtar Kelimeler</th>
                             <th>İşlemler</th>
                         </tr>
                         </thead>
