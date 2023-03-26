@@ -554,7 +554,7 @@
                                                 "title" => "Trendyol"
                                             ],
                                             [
-                                                "href" => "ciceksepet",
+                                                "href" => "ciceksepeti",
                                                 "title" => "ÇiçekSepeti"
                                             ],
                                             [
@@ -572,7 +572,7 @@
                                     @endforeach
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="n11" role="tabpanel" aria-labelledby="seo-report-tab" aria-expanded="false">
+                                    <div class="tab-pane active" id="n11" role="tabpanel" aria-labelledby="n11-tab" aria-expanded="true">
                                         <form>
                                             <div class="mb-1">
                                                 <x-inputs.file-input label="N11 Ürün Resmi" name="file_input" />
@@ -647,10 +647,10 @@
                                                 <x-inputs.text-input name="product_name" label="N11 Katalog ID"
                                                     placeholder="GaN Lite Quick Charger" />
                                             </div>
-                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Kaydet" />
+                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Bilgieri Kaydet" />
                                         </form>
                                     </div>
-                                    <div class="tab-pane active" id="hepsiburada" role="tabpanel" aria-labelledby="seo-report-tab" aria-expanded="false">
+                                    <div class="tab-pane" id="hepsiburada" role="tabpanel" aria-labelledby="hepsiburada-tab" aria-expanded="false">
                                         <form action="#" class="invoice-repeater">
                                             <div class="mb-1">
                                                 <x-inputs.file-input label="Ürün Resmi" name="file_input" />
@@ -762,7 +762,247 @@
                                                         Baseus HB Mağazası Hb'de Yenile
                                                     </button>
                                               </div>
-                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Hepsiburada Bilgilerini Kaydet" />
+                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Bilgileri Kaydet" />
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="amazon" role="tabpanel" aria-labelledby="amazon-tab" aria-expanded="false">
+                                        <form action="#">
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Amazon Ürün Adı"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Amazon Komisyon %"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                @php
+                                                $answer = [
+                                                    [
+                                                        "name" => "Evet",
+                                                        "value" => "2"
+                                                    ],
+                                                    [
+                                                        "name" => "Hayır",
+                                                        "value" => "0"
+                                                    ],
+                                                ];
+                                                @endphp
+                                                <x-inputs.select-input :items="$answer" label="Amazon'da Yayınlansın" name="" />
+                                            </div>
+                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Bilgileri Kaydet" />
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="trendyol" role="tabpanel" aria-labelledby="trendyol-tab" aria-expanded="false">
+                                        <form>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Trendyol Ürün Adı"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Trendyol Komisyon %"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Trendyol Fiyatı"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Trendyol İndirim Etiket Tutarı"
+                                                    placeholder="Trendyol ürün sayfasında görünecek indirim tutarı" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Ürünün Trendyol Id'si"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Rekabet için Minimum Fiyat"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                @php
+                                                $answer = [
+                                                    [
+                                                        "name" => "Evet",
+                                                        "value" => "1"
+                                                    ],
+                                                    [
+                                                        "name" => "Hayır",
+                                                        "value" => "0"
+                                                    ],
+                                                ];
+                                                @endphp
+                                                <x-inputs.select-input :items="$answer" label="Trendyol'da Yayınlansın" name="" />
+                                            </div>
+                                            <div class="mb-1">
+                                                @php
+                                                $answer = [
+                                                    [
+                                                        "name" => "MARKA",
+                                                        "value" => "1"
+                                                    ],
+                                                    [
+                                                        "name" => "MARKA",
+                                                        "value" => "0"
+                                                    ],
+                                                ];
+                                                @endphp
+                                                <x-inputs.select-input :items="$answer" label="Trendyol Marka" name="" />
+                                            </div>
+                                            <div class="mb-1">
+                                                @php
+                                                $answer = [
+                                                    [
+                                                        "name" => "Kategori",
+                                                        "value" => "1"
+                                                    ],
+                                                    [
+                                                        "name" => "Kategori",
+                                                        "value" => "0"
+                                                    ],
+                                                ];
+                                                @endphp
+                                                <x-inputs.select-input :items="$answer" label="Trendyol Kategorisi" name="" />
+                                            </div>
+                                            <hr>
+                                            <div class="col-12 my-2">
+                                                <h4>Akıllıphone Trendyol Mağazası</h4>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <div class="col-md-4 col-12"><button class="btn btn-danger w-100">Durdur</button></div>
+                                                <div class="col-md-4 col-12"><button class="btn btn-success w-100">Yayınla</button></div>
+                                                <div class="col-md-4 col-12"><button class="btn btn-warning w-100">Güncelle</button></div>
+                                            </div>
+                                            <hr class="my-2">
+                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Bilgieri Kaydet" />
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="ciceksepeti" role="tabpanel" aria-labelledby="ciceksepeti-tab" aria-expanded="false">
+                                        <form>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Çiçeksepeti Ürün Adı"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Çiçeksepeti Komisyon %"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Çiçeksepeti Fiyatı"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Çiçeksepeti İndirim Etiket Tutarı"
+                                                    placeholder="Trendyol ürün sayfasında görünecek indirim tutarı" />
+                                            </div>
+                                            <div class="mb-1">
+                                                @php
+                                                $answer = [
+                                                    [
+                                                        "name" => "Evet",
+                                                        "value" => "1"
+                                                    ],
+                                                    [
+                                                        "name" => "Hayır",
+                                                        "value" => "0"
+                                                    ],
+                                                ];
+                                                @endphp
+                                                <x-inputs.select-input :items="$answer" label="Çiçeksepetin'de Yayınlansın" name="" />
+                                            </div>
+                                            <hr>
+                                            <div class="mb-1">
+                                                @php
+                                                $answer = [
+                                                    [
+                                                        "name" => "Kategori",
+                                                        "value" => "1"
+                                                    ],
+                                                    [
+                                                        "name" => "Kategori",
+                                                        "value" => "0"
+                                                    ],
+                                                ];
+                                                @endphp
+                                                <x-inputs.select-input :items="$answer" label="Çiçeksepeti Kategorisi" name="" />
+                                            </div>
+                                            <hr>
+                                            <div class="row mb-1">
+                                                <div class="col-md-4 col-12"><button class="btn btn-primary w-100">Kaydet</button></div>
+                                                <div class="col-md-4 col-12"><button class="btn btn-success w-100">Yayınla</button></div>
+                                                <div class="col-md-4 col-12"><button class="btn btn-warning w-100">Güncelle</button></div>
+                                            </div>
+                                            <hr class="my-2">
+                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Bilgieri Kaydet" />
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="pazarama" role="tabpanel" aria-labelledby="pazarama-tab" aria-expanded="false">
+                                        <form>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Gördüm Aldım Ürün Adı"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Gördüm Aldım Komisyon %"
+                                                    placeholder="GaN Lite Quick Charger" />
+                                            </div>
+                                            <div class="mb-1">
+                                                <x-inputs.text-input name="product_name" label="Gördüm Aldım İndirim Etiket Tutarı"
+                                                    placeholder="Trendyol ürün sayfasında görünecek indirim tutarı" />
+                                            </div>
+                                            <div class="mb-1">
+                                                @php
+                                                $answer = [
+                                                    [
+                                                        "name" => "Evet",
+                                                        "value" => "1"
+                                                    ],
+                                                    [
+                                                        "name" => "Hayır",
+                                                        "value" => "0"
+                                                    ],
+                                                ];
+                                                @endphp
+                                                <x-inputs.select-input :items="$answer" label="Gördüm Aldım'da Yayınlansın" name="" />
+                                            </div>
+                                            <div class="mb-1">
+                                                @php
+                                                $answer = [
+                                                    [
+                                                        "name" => "Evet",
+                                                        "value" => "1"
+                                                    ],
+                                                    [
+                                                        "name" => "Hayır",
+                                                        "value" => "0"
+                                                    ],
+                                                ];
+                                                @endphp
+                                                <x-inputs.select-input :items="$answer" label="Gördüm Aldım Marka Seçimi" name="" />
+                                            </div>
+                                            <hr>
+                                            <div class="mb-1">
+                                                @php
+                                                $answer = [
+                                                    [
+                                                        "name" => "Kategori",
+                                                        "value" => "1"
+                                                    ],
+                                                    [
+                                                        "name" => "Kategori",
+                                                        "value" => "0"
+                                                    ],
+                                                ];
+                                                @endphp
+                                                <x-inputs.select-input :items="$answer" label="Gördüm Aldım Kategorisi" name="" />
+                                            </div>
+                                            <hr>
+                                            <div class="row mb-1">
+                                                <div class="col-md-4 col-12"><button class="btn btn-primary w-100">Kaydet</button></div>
+                                                <div class="col-md-4 col-12"><button class="btn btn-success w-100">Yayınla</button></div>
+                                            </div>
+                                            <hr class="my-2">
+                                            <x-button type="submit" buttonType="primary" value="Submit" name="submit" label="Bilgileri Kaydet" />
                                         </form>
                                     </div>
                                 </div>

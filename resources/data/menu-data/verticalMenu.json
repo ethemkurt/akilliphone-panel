@@ -44,7 +44,7 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "color-sets/index",
+                    "url": "colors-sets/index",
                     "name": "Renk Setleri",
                     "icon": "circle",
                     "slug": "collapsed-menu"
@@ -56,7 +56,7 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "products/units/index",
+                    "url": "units/index",
                     "name": "Ürün Birimleri",
                     "icon": "circle",
                     "slug": "collapsed-menu"
@@ -70,18 +70,6 @@
                 {
                     "url": "products/questions/index",
                     "name": "Ürün Soruları",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "products/price-warning-requests",
-                    "name": "Fiyat Uyarı İstekleri",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "products/stock-warning-requests",
-                    "name": "Stok Uyarı İstekleri",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 }
@@ -127,35 +115,6 @@
             ]
         },
         {
-            "navheader": "KARGO YÖNETİMİ",
-            "slug": ""
-        },
-        {
-            "name": "Kargo",
-            "icon": "truck",
-            "slug": "",
-            "submenu": [
-                {
-                    "url": "shipping",
-                    "name": "Kargo Yönetimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "shipping/zones",
-                    "name": "Kargo Bölgeleri",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "shipping/settings",
-                    "name": "Desiye Ayarları",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                }
-            ]
-        },
-        {
             "navheader": "KAMPANYA YÖNETİMİ",
             "slug": ""
         },
@@ -191,16 +150,6 @@
             ]
         },
         {
-            "navheader": "İÇERİK YÖNETİMİ",
-            "slug": ""
-        },
-        {
-            "url": "content",
-            "name": "İçerik Yönetimi",
-            "icon": "book",
-            "slug": "home"
-        },
-        {
             "navheader": "BAYİ YÖNETİMİ",
             "slug": ""
         },
@@ -209,70 +158,6 @@
             "icon": "users",
             "slug": "",
             "url": "dealers"
-        },
-        {
-            "navheader": "ÖDEME YÖNETİMİ",
-            "slug": ""
-        },
-        {
-            "name": "Ödeme",
-            "icon": "credit-card",
-            "slug": "",
-            "submenu": [
-                {
-                    "url": "virtual-pos",
-                    "name": "Sanal Pos Yönetimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "mobile-payment",
-                    "name": "Mobil Ödeme Yönetimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "eft-settings",
-                    "name": "EFT Ayarları",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "payment-settings",
-                    "name": "Ödeme Ayarları",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                }
-            ]
-        },
-        {
-            "navheader": "ENTEGRE YÖNETİMİ",
-            "slug": ""
-        },
-        {
-            "name": "Entegrasyon",
-            "icon": "package",
-            "slug": "",
-            "submenu": [
-                {
-                    "url": "integration/providers",
-                    "name": "Tedarikçi Firmalar",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "integration/xml",
-                    "name": "XML Yönetimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "integration/marketplace",
-                    "name": "Pazaryeri Yönetimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                }
-            ]
         },
         {
             "navheader": "AYARLAR",
