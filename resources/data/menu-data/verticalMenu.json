@@ -157,25 +157,13 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "",
+                    "url": "settings/seo",
                     "name": "Seo Ayarları",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "",
-                    "name": "Kullanıcı Listesi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "",
-                    "name": "Kullanıcı Rolleri",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "",
+                    "url": "settings/notification",
                     "name": "Push Notification",
                     "icon": "circle",
                     "slug": "collapsed-menu"
