@@ -250,16 +250,59 @@
                       <div class="valid-feedback">Looks good!</div>
                       <div class="invalid-feedback">Tema seçiniz.</div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
                   </form>
             </div>
             <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
-              <p>
-                Pudding candy canes sugar plum cookie chocolate cake powder croissant. Carrot cake tiramisu danish candy
-                cake muffin croissant tart dessert. Tiramisu caramels candy canes chocolate cake sweet roll liquorice
-                icing cupcake.Bear claw chocolate chocolate cake jelly-o pudding lemon drops sweet roll sweet candy.
-                Chocolate sweet chocolate bar candy chocolate bar chupa chups gummi bears lemon drops.
-              </p>
+                <form class="needs-validation" novalidate>
+                    <div class="mb-1">
+                        <label class="form-label" for="select-theme">Dil Seçeneği</label>
+                        <select class="form-select" id="select-theme" required>
+                          <option value="tr">Türkçe</option>
+                          <option value="en">İngilizce</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Dil seçiniz.</div>
+                      </div>
+
+                    <div class="mb-1">
+                        <label class="form-label" for="select-theme">Para Birimi</label>
+                        <select class="form-select" id="select-theme" required>
+                          <option value="tl">TL</option>
+                          <option value="usd">USD</option>
+                          <option value="eur">EUR</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Tema seçiniz.</div>
+                      </div>
+                    <div class="mb-1">
+                      <label class="form-label" for="company-name">Sabit Kur</label>
+                      <input
+                        type="text"
+                        id="company-name"
+                        class="form-control"
+                        aria-label="Name"
+                        aria-describedby="company-name"
+                        required
+                      />
+                      <div class="valid-feedback">Looks good!</div>
+                      <div class="invalid-feedback">Sabir kur giriniz.</div>
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label" for="company-name">Ziyaretçi Fiyat Katsayısı</label>
+                        <input
+                          type="text"
+                          id="company-official-name"
+                          class="form-control"
+                          aria-label="Name"
+                          aria-describedby="company-official-name"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                      </div>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                  </form>
             </div>
             <div class="tab-pane" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab" aria-expanded="false">
               <p>

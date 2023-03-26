@@ -139,7 +139,7 @@
             "name": "Bayiler",
             "icon": "users",
             "slug": "",
-            "url": "dealers/index"
+            "url": "dealer/list"
         },
         {
             "navheader": "AYARLAR",
