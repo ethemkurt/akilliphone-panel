@@ -22,19 +22,19 @@
               <a class="nav-link active" id="home-tab" data-bs-toggle="pill" href="#home" aria-expanded="true">Genel Ayarlar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-bs-toggle="pill" href="#profile" aria-expanded="false">Bölgesel Ayarlar</a>
+              <a class="nav-link" id="localeSettings-tab" data-bs-toggle="pill" href="#localeSettings" aria-expanded="false">Bölgesel Ayarlar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="about-tab" data-bs-toggle="pill" href="#about" aria-expanded="false">Kargo Genel</a>
+              <a class="nav-link" id="cargo-tab" data-bs-toggle="pill" href="#cargo" aria-expanded="false">Kargo Genel</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="about-tab" data-bs-toggle="pill" href="#about" aria-expanded="false">Ups Kargo</a>
+                <a class="nav-link" id="ups-tab" data-bs-toggle="pill" href="#ups" aria-expanded="false">Ups Kargo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="about-tab" data-bs-toggle="pill" href="#about" aria-expanded="false">Yurtiçi Kargo</a>
+                <a class="nav-link" id="yurtici-tab" data-bs-toggle="pill" href="#yurtici" aria-expanded="false">Yurtiçi Kargo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="about-tab" data-bs-toggle="pill" href="#about" aria-expanded="false">Yango</a>
+                <a class="nav-link" id="yango-tab" data-bs-toggle="pill" href="#yango" aria-expanded="false">Yango</a>
               </li>
           </ul>
 
@@ -253,7 +253,7 @@
                     <button type="submit" class="btn btn-primary">Güncelle</button>
                   </form>
             </div>
-            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
+            <div class="tab-pane" id="localeSettings" role="tabpanel" aria-labelledby="localeSettings-tab" aria-expanded="false">
                 <form class="needs-validation" novalidate>
                     <div class="mb-1">
                         <label class="form-label" for="select-theme">Dil Seçeneği</label>
@@ -304,29 +304,307 @@
                     <button type="submit" class="btn btn-primary">Güncelle</button>
                   </form>
             </div>
-            <div class="tab-pane" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab" aria-expanded="false">
-              <p>
-                Cake croissant lemon drops gummi bears carrot cake biscuit cupcake croissant. Macaroon lemon drops
-                muffin jelly sugar plum chocolate cupcake danish icing. Soufflé tootsie roll lemon drops sweet roll cake
-                icing cookie halvah cupcake.Chupa chups pie jelly pie tootsie roll dragée cookie caramels sugar plum.
-                Jelly oat cake wafer pie cupcake chupa chups jelly-o gingerbread.
-              </p>
+            <div class="tab-pane" id="cargo" role="tabpanel" aria-labelledby="cargo-tab" aria-expanded="false">
+              <form class="needs-validation" novalidate>
+                <div class="mb-1">
+                    <label class="form-label" for="select-theme">Ürün Sayfasında Kargoya Verilme Uyarısı</label>
+                    <select class="form-select" id="select-theme" required>
+                      <option value="1">Evet</option>
+                      <option value="0">Hayır</option>
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Dil seçiniz.</div>
+                  </div>
+                <div class="mb-1">
+                    <label class="form-label" for="company-name">Sabit Kargo Ücreti</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Kapıda Ödeme Kargo (Düşük Sepet) </label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Kapıda Ödeme Kargo (Yüksek Sepet) </label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Kapıda Ödeme Kargo İndirim Barajı</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Ücretsiz Kargo Sınırı</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Ücretsiz Kargo Sınırı (Pazartesi)</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Ücretsiz Kargo Sınırı (Salı)</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Ücretsiz Kargo Sınırı (Çarşamba)</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Ücretsiz Kargo Sınırı (Perşembe)</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Ücretsiz Kargo Sınırı (Cuma)</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Ücretsiz Kargo Sınırı (Cumartesi)</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="company-name">Ücretsiz Kargo Sınırı (Pazar)</label>
+                    <input
+                      type="text"
+                      id="company-official-name"
+                      class="form-control"
+                      aria-label="Name"
+                      aria-describedby="company-official-name"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                  </div>
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+              </form>
             </div>
-            <div class="tab-pane" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab" aria-expanded="false">
-              <p>
-                Chocolate croissant cupcake croissant jelly donut. Cheesecake toffee apple pie chocolate bar biscuit
-                tart croissant. Lemon drops danish cookie. Oat cake macaroon icing tart lollipop cookie sweet bear claw.
-                Toffee jelly-o pastry cake dessert chocolate bar jelly beans fruitcake. Dragée sweet fruitcake dragée
-                biscuit halvah wafer gingerbread dessert. Gummies fruitcake brownie gummies tart pudding.
-              </p>
+            <div class="tab-pane" id="ups" role="tabpanel" aria-labelledby="ups-tab" aria-expanded="false">
+              <form class="needs-validation" novalidate>
+                <div class="mb-1">
+                  <label class="form-label" for="company-name">Sabit Kargo Ücreti</label>
+                  <input
+                    type="text"
+                    id="company-official-name"
+                    class="form-control"
+                    aria-label="Name"
+                    aria-describedby="company-official-name"
+                    required
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                </div>
+                <div class="mb-1">
+                  <label class="form-label" for="company-name">Kapıda Ödeme Kargo (Düşük Sepet) </label>
+                  <input
+                    type="text"
+                    id="company-official-name"
+                    class="form-control"
+                    aria-label="Name"
+                    aria-describedby="company-official-name"
+                    required
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                </div>
+                <div class="mb-1">
+                  <label class="form-label" for="company-name">Kapıda Ödeme Kargo (Yüksek Sepet) </label>
+                  <input
+                    type="text"
+                    id="company-official-name"
+                    class="form-control"
+                    aria-label="Name"
+                    aria-describedby="company-official-name"
+                    required
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+              </form>
             </div>
-            <div class="tab-pane" id="about" role="tabpanel" aria-labelledby="about-tab" aria-expanded="false">
-              <p>
-                Carrot cake dragée chocolate. Lemon drops ice cream wafer gummies dragée. Chocolate bar liquorice
-                cheesecake cookie chupa chups marshmallow oat cake biscuit. Dessert toffee fruitcake ice cream powder
-                tootsie roll cake.Chocolate bonbon chocolate chocolate cake halvah tootsie roll marshmallow. Brownie
-                chocolate toffee toffee jelly beans bonbon sesame snaps sugar plum candy canes.
-              </p>
+            <div class="tab-pane" id="yurtici" role="tabpanel" aria-labelledby="yurtici-tab" aria-expanded="false">
+              <form class="needs-validation" novalidate>
+                <div class="mb-1">
+                  <label class="form-label" for="company-name">Sabit Kargo Ücreti</label>
+                  <input
+                    type="text"
+                    id="company-official-name"
+                    class="form-control"
+                    aria-label="Name"
+                    aria-describedby="company-official-name"
+                    required
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                </div>
+                <div class="mb-1">
+                  <label class="form-label" for="company-name">Kapıda Ödeme Kargo (Düşük Sepet) </label>
+                  <input
+                    type="text"
+                    id="company-official-name"
+                    class="form-control"
+                    aria-label="Name"
+                    aria-describedby="company-official-name"
+                    required
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                </div>
+                <div class="mb-1">
+                  <label class="form-label" for="company-name">Kapıda Ödeme Kargo (Yüksek Sepet) </label>
+                  <input
+                    type="text"
+                    id="company-official-name"
+                    class="form-control"
+                    aria-label="Name"
+                    aria-describedby="company-official-name"
+                    required
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+              </form>
+            </div>
+            <div class="tab-pane" id="yango" role="tabpanel" aria-labelledby="yango-tab" aria-expanded="false">
+              <form class="needs-validation" novalidate>
+                <div class="mb-1">
+                  <label class="form-label" for="company-name">Sabit Kargo Ücreti</label>
+                  <input
+                    type="text"
+                    id="company-official-name"
+                    class="form-control"
+                    aria-label="Name"
+                    aria-describedby="company-official-name"
+                    required
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                </div>
+                <div class="mb-1">
+                  <label class="form-label" for="company-name">Kapıda Ödeme Kargo (Düşük Sepet) </label>
+                  <input
+                    type="text"
+                    id="company-official-name"
+                    class="form-control"
+                    aria-label="Name"
+                    aria-describedby="company-official-name"
+                    required
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                </div>
+                <div class="mb-1">
+                  <label class="form-label" for="company-name">Kapıda Ödeme Kargo (Yüksek Sepet) </label>
+                  <input
+                    type="text"
+                    id="company-official-name"
+                    class="form-control"
+                    aria-label="Name"
+                    aria-describedby="company-official-name"
+                    required
+                  />
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Ziyaretçi fiyat katsayısı giriniz.</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+              </form>
             </div>
           </div>
       </div>
