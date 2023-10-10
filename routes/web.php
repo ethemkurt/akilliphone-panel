@@ -39,7 +39,7 @@ Route::group(['prefix'=>'order','as'=>'order.', 'middleware' => ['check.token']]
 });
 Route::group(['prefix'=>'customer','as'=>'customer.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Customer::class, 'index'])->name('index');
-    Route::get('/detail/{orderId}', [Customer::class, 'detail'])->name('detail');
+    Route::get('/detail/{customerId}', [Customer::class, 'detail'])->name('detail');
     Route::get('/new', [Customer::class, 'new'])->name('new');
 });
 
