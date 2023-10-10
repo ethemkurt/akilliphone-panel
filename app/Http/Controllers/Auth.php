@@ -26,8 +26,8 @@ class Auth extends Controller
             \WebService::login($checkUser['user'], $checkUser['tokenData']);
             return redirect( route('home.index'));
         } else {
-            print_r($checkUser);
-            die('olmadı');
+            $request->session()->flash('flash-error', ['Kullanıcı bulunmadı. Lütfen daha sonra tekrar deneyiniz', 'Giriş Yapılamadı']);
+            return redirect()->back()->withInput();
         }
     }
 }

@@ -69,7 +69,7 @@
       }
     })
   </script>
-
+@include('webservice-js')
 </body>
 
 </html>
