@@ -15,7 +15,7 @@ use App\Http\Controllers\LanguageController;
 |
 */
 
-Route::get('/{module?}/{action?}', function (string $module = 'home',string $action = null) {
+Route::get('html/{module?}/{action?}', function (string $module = 'home',string $action = null) {
     if($action == null ) return view('content.'.$module);
 
     return view('content.'.$module.'.'.$action);
