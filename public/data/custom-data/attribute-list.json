@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "responsive_id": "",
+            "id": "1",
+            "title": "Renk"
+        },
+        {
+            "responsive_id": "",
+            "id": "2",
+            "title": "Beden"
+        },
+        {
+            "responsive_id": "",
+            "id": "3",
+            "title": "Numara"
+        },
+        {
+            "responsive_id": "",
+            "id": "4",
+            "title": "Malzeme"
+        }
+    ]
+}

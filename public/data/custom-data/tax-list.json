@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+            "responsive_id": "",
+            "id": 1,
+            "name": "KDV %8",
+            "percentage": 8
+        },
+        {
+            "responsive_id": "",
+            "id": 2,
+            "name": "KDV %18",
+            "percentage": 18
+        },
+        {
+            "responsive_id": "",
+            "id": 3,
+            "name": "KDV %1",
+            "percentage": 1
+        },
+        {
+            "responsive_id": "",
+            "id": 4,
+            "name": "KDV %0",
+            "percentage": 0
+        }
+    ]
+}

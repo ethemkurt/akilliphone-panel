@@ -1,0 +1,59 @@
+{
+    "data": [
+        {
+            "responsive_id": "",
+            "id": 1,
+            "fullname": "John Doe",
+            "product": {
+                "name": "İPhone 6Plus -İPhone 6s Plus Kırılmaz Cam Ekran Koruyucu-Tempered Cam",
+                "url": "https://akilliphone.com/incele/p-21065"
+            } ,
+            "rating": 5,
+            "review": "Ürünü aldım. Çok güzel. Çok hızlı kargolandı. Teşekkürler."
+        },
+        {
+            "responsive_id": "",
+            "id": 2,
+            "fullname": "John Doe",
+            "product": {
+                "name": "İPhone 6Plus -İPhone 6s Plus Kırılmaz Cam Ekran Koruyucu-Tempered Cam",
+                "url": "https://akilliphone.com/incele/p-21065"
+            } ,
+            "rating": 5,
+            "review": "Ürünü aldım. Çok güzel. Çok hızlı kargolandı. Teşekkürler."
+        },
+        {
+            "responsive_id": "",
+            "id": 3,
+            "fullname": "John Doe",
+            "product": {
+                "name": "İPhone 6Plus -İPhone 6s Plus Kırılmaz Cam Ekran Koruyucu-Tempered Cam",
+                "url": "https://akilliphone.com/incele/p-21065"
+            } ,
+            "rating": 5,
+            "review": "Ürünü aldım. Çok güzel. Çok hızlı kargolandı. Teşekkürler."
+        },
+        {
+            "responsive_id": "",
+            "id": 4,
+            "fullname": "John Doe",
+            "product": {
+                "name": "İPhone 6Plus -İPhone 6s Plus Kırılmaz Cam Ekran Koruyucu-Tempered Cam",
+                "url": "https://akilliphone.com/incele/p-21065"
+            } ,
+            "rating": 5,
+            "review": "Ürünü aldım. Çok güzel. Çok hızlı kargolandı. Teşekkürler."
+        },
+        {
+            "responsive_id": "",
+            "id": 5,
+            "fullname": "John Doe",
+            "product": {
+                "name": "İPhone 6Plus -İPhone 6s Plus Kırılmaz Cam Ekran Koruyucu-Tempered Cam",
+                "url": "https://akilliphone.com/incele/p-21065"
+            } ,
+            "rating": 5,
+            "review": "Ürünü aldım. Çok güzel. Çok hızlı kargolandı. Teşekkürler."
+        }
+    ]
+}
