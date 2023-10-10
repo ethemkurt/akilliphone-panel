@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth;
+use App\Http\Controllers\Home;
+use App\Http\Controllers\Order;
 
 
 /*
@@ -21,10 +23,16 @@ Route::get('html/{module?}/{action?}', function (string $module = 'home',string 
     return view('content.'.$module.'.'.$action);
 });
 */
-Route::get('/login', [Auth::class, 'login'])->name('login');
-Route::post('/check-user', [Auth::class, 'checkUser'])->name('check-user');
+Route::get('/login', [Auth::class, 'login'])->name('login')->middleware(['non.registered']);
+Route::post('/check-user', [Auth::class, 'checkUser'])->name('check-user')->middleware(['non.registered']);
+Route::get('/logout', [Auth::class, 'logout'])->name('logout');
 
-Route::group(['prefix'=>'profile','as'=>'profile.', 'middleware' => ['check.token']], function () {
-    Route::get('/', function (){ echo "sdeebene";})->name('index');
+Route::group(['prefix'=>'home','as'=>'home.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Home::class, 'index'])->name('index');
+});
+Route::group(['prefix'=>'order','as'=>'order.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Order::class, 'index'])->name('index');
+    Route::get('/detail/{orderId}', [Order::class, 'detail'])->name('detail');
+    Route::get('/new', [Order::class, 'new'])->name('new');
 });
 

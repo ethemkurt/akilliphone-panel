@@ -80,7 +80,7 @@
             "slug": ""
         },
         {
-            "url": "order/all",
+            "url": "order",
             "name": "Siparişler",
             "icon": "shopping-cart",
             "slug": "home"

@@ -22,26 +22,29 @@ class WebService
         ];
         try{
             $token = self::TOKEN($username, $password);
-            $tokenData = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
-
-            if($tokenData){
-                $tokenData = (array)$tokenData;
-                if(isset($tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'])){
-                    $userId = $tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-                    $user = self::getUser($userId, $token);
-                    if($user){
-                        $user['jwtToken'] = $token;
-                        $user['jwtExp'] = $tokenData['exp'];
-                        $result['tokenData'] = $tokenData;
-                        $result['user'] = $user;
-                        $result['token'] = $token;
+            if($token){
+                $tokenData = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
+                if($tokenData){
+                    $tokenData = (array)$tokenData;
+                    if(isset($tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'])){
+                        $userId = $tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+                        $user = self::getUser($userId, $token);
+                        if($user){
+                            $user['jwtToken'] = $token;
+                            $user['jwtExp'] = $tokenData['exp'];
+                            $result['tokenData'] = $tokenData;
+                            $result['user'] = $user;
+                            $result['token'] = $token;
+                        } else {
+                            $result['error'] = 'Kullanıcı Bilgisi alınamadı';
+                        }
                     } else {
-                        $result['error'] = 'Kullanıcı Bilgisi alınamadı';
+                        $result['error'] = 'Kullanıcı Idsi alınamadı';
                     }
                 } else {
-                    $result['error'] = 'Kullanıcı Idsi alınamadı';
+                    $result['error'] = 'Kullanıcı Tokenı hatalı';
                 }
-            } else {
+            }  else {
                 $result['error'] = 'Kullanıcı Tokenı alınamadı';
             }
         } catch (\Exception $ex){
@@ -75,6 +78,7 @@ class WebService
             'Authorization' => 'Bearer ' . request()->session()->get('token', null),
         ])->post(self::WEBSERVICE_URL.'login', ['username'=>$username, 'password'=>$password]);
         $responseData = json_decode($response->body(), true);
+
         if(isset($responseData['token'])){
             return $responseData['token'];
         }

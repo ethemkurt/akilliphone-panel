@@ -14,15 +14,19 @@ class Auth extends Controller
         $data = [];
         return view('Auth.login', $data);
     }
+    public function logout(Request $request ){
+        \WebService::logout();
+        return redirect( route('login'));
+    }
     public function checkUser(Request $request ){
-
         $email = $request->input('email');
         $password = $request->input('password');
         $checkUser = \WebService::checkUser( $email, $password);
         if($checkUser['user']){
             \WebService::login($checkUser['user'], $checkUser['tokenData']);
-            return redirect( route('profile.index'));
+            return redirect( route('home.index'));
         } else {
+            print_r($checkUser);
             die('olmadı');
         }
     }
