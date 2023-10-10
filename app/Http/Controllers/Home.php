@@ -14,4 +14,8 @@ class Home extends Controller
         $data = [];
         return view('Home.index', $data);
     }
+    public function notlogged(Request $request ){
+        $data = [];
+        return redirect(route('login'));
+    }
 }

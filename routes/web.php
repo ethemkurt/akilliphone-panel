@@ -23,6 +23,7 @@ Route::get('html/{module?}/{action?}', function (string $module = 'home',string 
     return view('content.'.$module.'.'.$action);
 });
 */
+Route::get('/', [Home::class, 'notlogged']);
 Route::get('/login', [Auth::class, 'login'])->name('login')->middleware(['non.registered']);
 Route::post('/check-user', [Auth::class, 'checkUser'])->name('check-user')->middleware(['non.registered']);
 Route::get('/logout', [Auth::class, 'logout'])->name('logout');
