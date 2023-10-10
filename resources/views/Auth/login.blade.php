@@ -33,17 +33,17 @@
                 <!-- Login -->
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="mb-1 pt-2">Welcome to {{config('variables.templateName')}}! 👋</h4>
+                        <h4 class="mb-1 pt-2">{{config('variables.templateName')}} 👋</h4>
                         <form id="formAuthentication" class="mb-3" action="{{route('check-user')}}" method="POST">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email or Username</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus value="yonetici@mailinator.com">
+                                <label for="email" class="form-label">Email Adresiniz</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email adresinizi giriniz" autofocus value="yonetici@mailinator.com">
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
-                                    <label class="form-label" for="password">Password</label>
+                                    <label class="form-label" for="password">Şifreniz</label>
                                     <a href="{{url('auth/forgot-password-basic')}}">
-                                        <small>Forgot Password?</small>
+                                        <small>Şifremi Unuttum?</small>
                                     </a>
                                 </div>
                                 <div class="input-group input-group-merge">
@@ -54,13 +54,11 @@
                             <div class="mb-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="remember-me">
-                                    <label class="form-check-label" for="remember-me">
-                                        Remember Me
-                                    </label>
+                                    <label class="form-check-label" for="remember-me">Beni Hatırla</label>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                <button class="btn btn-primary d-grid w-100" type="submit">Giriş Yap</button>
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             </div>
                         </form>
