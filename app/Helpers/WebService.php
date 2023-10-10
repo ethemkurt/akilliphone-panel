@@ -72,7 +72,21 @@ class WebService
         request()->session()->put('user', $user);
     }
 
-
+    public static function orders($page=1){
+        $page = min(1, (int)$page);
+        $response = self::GET('orders', ['page'=>$page]);
+        if($response['data'] && isset($response['data']['items'])){
+            return $response['data']['items'];
+        }
+        return [];
+    }
+    public static function order($orderId){
+        $response = self::GET('orders/'.$orderId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
     static private function TOKEN($username, $password){
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('token', null),
@@ -109,7 +123,6 @@ class WebService
         }
         return $result;
     }
-
     static function userToAuthUser($user){
         $authUser = new \App\Models\User();
 

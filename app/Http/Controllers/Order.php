@@ -11,11 +11,11 @@ class Order extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
-        $data = [];
+        $data['orders'] = \WebService::orders();
         return view('Orders.index', $data);
     }
     public function detail(Request $request, $orderId ){
-        $data = [];
+        $data['order'] = \WebService::order($orderId);
         return view('Orders.detail', $data);
     }
     public function new(Request $request ){
