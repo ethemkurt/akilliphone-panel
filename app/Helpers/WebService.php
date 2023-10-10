@@ -32,6 +32,7 @@ class WebService
                         if($user){
                             $user['jwtToken'] = $token;
                             $user['jwtExp'] = $tokenData['exp'];
+                            $user['fullName'] = $user['firstName'].' '.$user['lastName'];
                             $result['tokenData'] = $tokenData;
                             $result['user'] = $user;
                             $result['token'] = $token;

@@ -16,6 +16,7 @@ class Auth extends Controller
     }
     public function logout(Request $request ){
         \WebService::logout();
+        $request->session()->flash('flash-success', ['Çıkış işleminiz güvenli şekilde tamamlandı', 'Güle güle ']);
         return redirect( route('login'));
     }
     public function checkUser(Request $request ){
@@ -24,6 +25,7 @@ class Auth extends Controller
         $checkUser = \WebService::checkUser( $email, $password);
         if($checkUser['user']){
             \WebService::login($checkUser['user'], $checkUser['tokenData']);
+            $request->session()->flash('flash-success', ['', 'Hoşgeldin. '.$checkUser['user']['fullName']]);
             return redirect( route('home.index'));
         } else {
             $request->session()->flash('flash-error', ['Kullanıcı bulunmadı. Lütfen daha sonra tekrar deneyiniz', 'Giriş Yapılamadı']);

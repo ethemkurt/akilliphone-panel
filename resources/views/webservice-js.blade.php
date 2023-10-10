@@ -12,4 +12,15 @@
     }
     );
     @endif
+    @if($flash = session()->get('flash-success'))
+    toastr['success'](
+        '{{$flash[0]}}',
+        '{{$flash[1]}}',
+    {
+        closeButton: true,
+        tapToDismiss: false,
+        rtl: 0
+    }
+    );
+    @endif
 </script>

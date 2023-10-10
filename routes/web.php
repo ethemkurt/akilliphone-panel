@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\Order;
+use App\Http\Controllers\Customer;
 
 
 /*
@@ -35,5 +36,10 @@ Route::group(['prefix'=>'order','as'=>'order.', 'middleware' => ['check.token']]
     Route::get('/', [Order::class, 'index'])->name('index');
     Route::get('/detail/{orderId}', [Order::class, 'detail'])->name('detail');
     Route::get('/new', [Order::class, 'new'])->name('new');
+});
+Route::group(['prefix'=>'customer','as'=>'customer.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Customer::class, 'index'])->name('index');
+    Route::get('/detail/{orderId}', [Customer::class, 'detail'])->name('detail');
+    Route::get('/new', [Customer::class, 'new'])->name('new');
 });
 

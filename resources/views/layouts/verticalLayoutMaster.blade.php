@@ -60,9 +60,9 @@ data-asset-path="{{ asset('/')}}">
 
   {{-- include footer --}}
   @include('panels/footer')
-
   {{-- include default scripts --}}
   @include('panels/scripts')
+  @include('webservice-js')
 
   <script type="text/javascript">
     $(window).on('load', function() {

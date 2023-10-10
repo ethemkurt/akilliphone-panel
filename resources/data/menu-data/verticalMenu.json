@@ -95,7 +95,7 @@
             "slug": "",
             "submenu": [
                 {
-                    "url": "users/list",
+                    "url": "customer",
                     "name": "Listele",
                     "icon": "circle",
                     "slug": "collapsed-menu"
