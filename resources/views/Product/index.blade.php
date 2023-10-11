@@ -1,7 +1,7 @@
 
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Sipariş Listesi')
+@section('title', 'Ürün Listesi')
 
 @section('vendor-style')
   {{-- vendor css files --}}
@@ -38,7 +38,7 @@
                     <a href="#">
                     <a class="btn btn-primary" href="{{ route('order.new') }}">
                             <i data-feather="save"></i>
-                            <span class="align-middle">Yeni Sipariş</span>
+                            <span class="align-middle">Yeni Ürün</span>
                         </a>
                     </a>
                 </div>
