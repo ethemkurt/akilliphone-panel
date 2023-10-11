@@ -1,4 +1,68 @@
 <?php
+
+class OrderStatus extends \Enum{
+    const ODEMEBEKLIYOR = 1;// "Ödeme Bekleniyor",
+    const BEKLIYOR = 0;//> "Bekliyor",
+    const ONAYLANDI = 2;//> "Onaylandı",
+    const HAZIRLANIYOR = 4;//> "Sipariş Hazırlanıyor",
+    const ARASKARGOLANDI = 5;//> "ARAS Kargoya Verildi",
+    const MNGKARGOLANDI = 20;//=> "MNG Kargoya Verildi",
+    const SURATKARGOLANDI = 21;//=> "SÜRAT Kargoya Verildi",
+    const UPSKARGOLANDI = 22;//=> "UPS Kargoya Verildi",
+    const YURTICIKARGOLANDI = 23;//=> "YURTİÇİ Kargoya Verildi",
+    const YANGOKARGOLANDI = 31;//=> "YANGO'ya Verildi",
+    const TESLIM = 6;//> "Teslim Edildi",
+    const IPTAL = 7;//> "İptal Edildi",
+    const IADE = 11;//=> "İade Edildi",
+    const TEMIN = 12;//=> "Temin Ediliyor",
+    const ULASILAMIYOR = 13;//=> "Ulaşılamıyor",
+    const INCELENIYOR = 14;//=> "İnceleniyor",
+    const BASARISIZ = 15;//=> "Başarısız",
+    const EKSIKSIPARIS = 30;//=> "Eksik Sipariş",
+    const TELEFON = 16;//=> "Telefon",
+    const DEGISIM = 17;//=> "İade / Değişim",
+    const MAGAZA = 18;//=> "Mağaza Hazırlayacak",
+    const AVCILAR = 19;//=> "Avcılar Hazırlayacak"
+    static function colors($class=null){
+        return [];
+    }
+    static function color($const){
+        $items = self::colors();
+        if(isset($items[$const])){
+            return $items[$const];
+        }
+        return 'info';
+    }
+    static function __($const){
+        $items = [
+            self::ODEMEBEKLIYOR=>__('enum.ODEMEBEKLIYOR'),
+            self::BEKLIYOR=>__('enum.BEKLIYOR'),
+            self::ONAYLANDI=>__('enum.ONAYLANDI'),
+            self::HAZIRLANIYOR=>__('enum.HAZIRLANIYOR'),
+            self::ARASKARGOLANDI=>__('enum.ARASKARGOLANDI'),
+            self::MNGKARGOLANDI=>__('enum.MNGKARGOLANDI'),
+            self::SURATKARGOLANDI=>__('enum.SURATKARGOLANDI'),
+            self::UPSKARGOLANDI =>__('enum.UPSKARGOLANDI'),
+            self::YURTICIKARGOLANDI=>__('enum.YURTICIKARGOLANDI'),
+            self::YANGOKARGOLANDI=>__('enum.YANGOKARGOLANDI'),
+            self::TESLIM=>__('enum.TESLIM'),
+            self::IPTAL=>__('enum.IPTAL'),
+            self::IPTAL=>__('enum.IPTAL'),
+            self::IADE=>__('enum.IADE'),
+            self::TEMIN=>__('enum.TEMIN'),
+            self::ULASILAMIYOR=>__('enum.ULASILAMIYOR'),
+            self::INCELENIYOR=>__('enum.INCELENIYOR'),
+            self::BASARISIZ=>__('enum.BASARISIZ'),
+            self::EKSIKSIPARIS=>__('enum.EKSIKSIPARIS'),
+            self::TELEFON=>__('enum.TELEFON'),
+            self::MAGAZA=>__('enum.MAGAZA'),
+            self::DEGISIM=>__('enum.DEGISIM'),
+            self::AVCILAR=>__('enum.AVCILAR'),
+
+        ];
+        return isset($items[$const])?$items[$const]:$const;
+    }
+}
 class PaymentType extends \Enum{
     const KREDIKARTI = 1 ;
     const HAVALE = 2 ;
