@@ -15,9 +15,8 @@ $dt = isset($dataTable)?$dataTable:null;
     </div>
     @section('page-script')
         <script>
-            $(function () {
-            });
             $(document).ready(function(){
+
                 let args = {
                     searching: true,
                     columns               : [@foreach($dt->cols() as $key => $col){data: "{{$key}}"},@endforeach],
@@ -35,7 +34,6 @@ $dt = isset($dataTable)?$dataTable:null;
                                 console.log(d);
                             });
                         }
-
                     },
                     ajax_success : function(json){
                         return json.data;
@@ -45,13 +43,24 @@ $dt = isset($dataTable)?$dataTable:null;
                 };
                 createDataTable($('#{{ $dt->tableId() }}'), args);
                 function createDataTable(elem, args) {
-
                     if (elem.length) {
-                        elem.DataTable({
+                        table = elem.DataTable({
                             columns: args.columns,
                             processing: true,
                             serverSide: true,
-                            ajax: '{{$dt->url()}}',
+                            ajax: {
+                                url: '{{$dt->url()}}',
+                                data: function (d) {
+                                    d['where'] = {};
+                                    if($('.datatable-filter').length){
+                                        $('.datatable-filter').each(function(){
+                                            if (typeof $(this).attr('name') !== "undefined") {
+                                                d['where'][$(this).attr('name')] = $(this).val();
+                                            }
+                                        });
+                                    }
+                                }
+                            },
                             initComplete: function () {
 
                             },
@@ -121,12 +130,16 @@ $dt = isset($dataTable)?$dataTable:null;
                                     }
                                 }
                             ]
-
                         })
+                        $('.datatable-filter').on('change', function(){
+                            elem.DataTable().ajax.reload();
+                        });
                     }
                 }
-            })
+            });
         </script>
     @endsection
+@else
+    Data table oluşturulamadı
 @endif
 

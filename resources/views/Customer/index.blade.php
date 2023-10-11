@@ -87,7 +87,7 @@
                 <h4 class="card-title">Search & Filter</h4>
                 <div class="row">
                     <div class="col-md-4 user_role">
-                        <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
+                        <select name="userRole" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
                             <option value="">Kullanıcı Türü</option>
                             @foreach(Enum::list('UserRole') as $key=>$val)
                                 <option value="{{ $key }}">{{ $val }}</option>
@@ -95,7 +95,7 @@
                         </select>
                     </div>
                     <div class="col-md-4 user_plan">
-                        <select id="UserStatus" class="form-select text-capitalize mb-md-0 mb-2">
+                        <select name="hasDropshippingPermission" id="UserStatus" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
                             <option value="">Dropshipping</option>
                             @foreach(Enum::list('ActivePassive') as $key=>$val)
                                 <option value="{{ $key }}">{{ $val }}</option>
@@ -103,7 +103,7 @@
                         </select>
                     </div>
                     <div class="col-md-4 user_status">
-                        <select id="UserStatus" class="form-select text-capitalize mb-md-0 mb-2">
+                        <select name="active" id="UserStatus" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
                         <option value="">Durumu</option>
                         @foreach(Enum::list('ActivePassive') as $key=>$val)
                             <option value="{{ $key }}">{{ $val }}</option>
