@@ -78,6 +78,22 @@ class WebService{
         request()->session()->put('jwtToken', $user['jwtToken']);
         request()->session()->put('user', $user);
     }
+/* products */
+    public static function products($page=1){
+        $page = min(1, (int)$page);
+        $response = self::GET('products', ['page'=>$page]);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function product($productId){
+        $response = self::GET('orders/'.$orderId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
 /* orders */
     public static function orders($page=1){
         $page = min(1, (int)$page);

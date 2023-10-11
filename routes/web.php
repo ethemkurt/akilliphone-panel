@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\Order;
 use App\Http\Controllers\Customer;
+use App\Http\Controllers\Product;
 
 
 /*
@@ -43,6 +44,12 @@ Route::group(['prefix'=>'customer','as'=>'customer.', 'middleware' => ['check.to
     Route::get('/detail/{customerId}', [Customer::class, 'detail'])->name('detail');
     Route::get('/new', [Customer::class, 'new'])->name('new');
     Route::get('/data-table', [Customer::class, 'dataTable'])->name('data-table');
+});
+Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Product::class, 'index'])->name('index');
+    Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
+    Route::get('/new', [Product::class, 'new'])->name('new');
+    Route::get('/data-table', [Product::class, 'dataTable'])->name('data-table');
 });
 
 
