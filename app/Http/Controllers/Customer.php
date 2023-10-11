@@ -31,7 +31,6 @@ class Customer extends Controller
         $dataTable->setCols([
             'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
             'firstName'=>['title'=>'Adı', 'className'=>'', 'orderable'=>''],
-            'lastName'=>['title'=>'Soyadı', 'className'=>'', 'orderable'=>''],
             'email'=>['title'=>'Email', 'className'=>'', 'orderable'=>''],
             'phoneNumber'=>['title'=>'Telefonu', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>'']
@@ -65,6 +64,9 @@ class Customer extends Controller
         }
         $dataTable->setItems($items);
         return $dataTable->toJson();
+    }
+    private function _format_firstName($row){
+        return $row['firstName'].' '.$row['lastName'];
     }
     private function _format_phoneNumber($row){
         $row['phoneNumber'] = preg_replace("/[^0-9]/", "", $row['phoneNumber']);

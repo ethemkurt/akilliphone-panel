@@ -50,6 +50,9 @@ class Product extends Controller
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
+    private function _format_action($item){
+        return '';
+    }
     private function _format_name($item){
         $html = '';
         if($item['variants']){
@@ -65,7 +68,7 @@ class Product extends Controller
         return '<img src="https://cdn.akilliphone.com/8004/30x30/'.$item['featuredImage'].'">';
     }
     private function _format_status($item){
-        return '<span class="badge rounded-pill badge-light-'.\ActivePassive::color($item['status']).'" text-capitalized="">'.\ActivePassive::__($item['status']).'</span>';
+        return '<span class="badge bg-'.\ActivePassive::color($item['status']).' me-1">'.\ActivePassive::__($item['status']).'</span>';
     }
     private function dataTableParams(){
         $dataTable = new \AjaxDataTable();
@@ -78,6 +81,7 @@ class Product extends Controller
             'code'=>['title'=>'Kodu', 'className'=>'', 'orderable'=>''],
             'name'=>['title'=>'Ad', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durum', 'className'=>'', 'orderable'=>''],
+            'action'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
         return $dataTable;
     }
