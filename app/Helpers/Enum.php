@@ -1,14 +1,52 @@
 <?php
+/*
+ *
+        const KREDIKARTI = "1" ;
+        const HAVALE = "2" ;
+        const KAPIDANAKIT = "3" ;
+        const KAPIDAKREDIKARTI= "4" ;
+        const MOBIL = "5"  ;
+        const PAYPAL = "6" ;
+        const PARCALI = "7" ;
+        const BAKIYA = "8" ;
+        const ELDEN = "9" ;
+        const HESAPTAN = "10" ;
+        const N11 = "20" ;
+        const GG = "21" ;
+        const HB = "22" ;
+        const AMAZON = "23" ;
+        const HBBASEUS = "24" => ;
+        const N11BASEUS = "25" ;
+        const TRENDYOL = "26" ;
+        const GGBASEUS = "27" ;
+        const GORDUMALDIM = "28" ;
+        const CICEKSEPETI = "29" ;
+        const MOTOKURYE = "31" ;
+ */
 class PaymentType extends \Enum{
-    const COD=1;
-    const CC=2;
-    const BANKTRANSFER=5;
+    const KREDIKARTI = 1 ;
+    const HAVALE = 2 ;
+    const KAPIDANAKIT = 3 ;
+    const KAPIDAKREDIKARTI= 4 ;
+    const MOBIL = 5;
+    const PAYPAL = 6;
+    const PARCALI = 7;
+    const BAKIYE = 8;
+    const ELDEN = 9;
+    const HESAPTAN = 10;
+    const N11 = 20;
+    const GG = 21;
+    const HB = 22;
+    const AMAZON = 23;
+    const HBBASEUS = 24;
+    const N11BASEUS = 25;
+    const TRENDYOL = 26;
+    const GGBASEUS = 27;
+    const GORDUMALDIM = 28;
+    const CICEKSEPETI = 29;
+    const MOTOKURYE = 31;
     static function colors($class=null){
-        return[
-            self::COD=>'danger',
-            self::CC=>'warning',
-            self::BANKTRANSFER=>'info',
-        ];
+        return[];
     }
     static function color($const){
         $items = self::colors();
@@ -19,9 +57,27 @@ class PaymentType extends \Enum{
     }
     static function __($const){
         $items = [
-            self::COD=>__('enum.COD'),
-            self::CC=>__('enum.CC'),
-            self::BANKTRANSFER=>__('enum.BANKTRANSFER'),
+            self::KREDIKARTI=>__('enum.KREDIKARTI'),
+            self::HAVALE=>__('enum.HAVALE'),
+            self::KAPIDANAKIT=>__('enum.KAPIDANAKIT'),
+            self::KAPIDAKREDIKARTI=>__('enum.KAPIDAKREDIKARTI'),
+            self::MOBIL=>__('enum.MOBIL'),
+            self::PAYPAL=>__('enum.PAYPAL'),
+            self::PARCALI=>__('enum.PARCALI'),
+            self::BAKIYE =>__('enum.COD'),
+            self::ELDEN=>__('enum.ELDEN'),
+            self::HESAPTAN=>__('enum.HESAPTAN'),
+            self::N11=>__('enum.N11'),
+            self::GG=>__('enum.GG'),
+            self::HB=>__('enum.HB'),
+            self::AMAZON=>__('enum.AMAZON'),
+            self::HBBASEUS=>__('enum.HBBASEUS'),
+            self::N11BASEUS=>__('enum.N11BASEUS'),
+            self::TRENDYOL=>__('enum.TRENDYOL'),
+            self::GGBASEUS=>__('enum.GGBASEUS'),
+            self::GORDUMALDIM=>__('enum.GORDUMALDIM'),
+            self::CICEKSEPETI=>__('enum.CICEKSEPETI'),
+            self::MOTOKURYE=>__('enum.MOTOKURYE'),
         ];
         return isset($items[$const])?$items[$const]:$const;
     }
