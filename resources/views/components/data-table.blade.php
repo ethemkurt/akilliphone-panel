@@ -64,7 +64,7 @@ $dt = isset($dataTable)?$dataTable:null;
                             initComplete: function () {
 
                             },
-                            dom:
+                            /*dom:
                                 '<"d-flex justify-content-between align-items-center header-actions mx-2 row mt-75"' +
                                 '<"col-sm-12 col-lg-4 d-flex justify-content-center justify-content-lg-start" l>' +
                                 '<"col-sm-12 col-lg-8 ps-xl-75 ps-0"<"dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap"<"me-1"f>B>>' +
@@ -129,7 +129,7 @@ $dt = isset($dataTable)?$dataTable:null;
                                         $(node).removeClass('btn-secondary')
                                     }
                                 }
-                            ]
+                            ]*/
                         })
                         $('.datatable-filter').on('change', function(){
                             elem.DataTable().ajax.reload();

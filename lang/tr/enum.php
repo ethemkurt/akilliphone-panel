@@ -8,4 +8,5 @@ return [
     'ADMIN' => 'Yönetici',
     'BAYI' => 'Bayi',
     'UYE' => 'Üye',
+    'BANKTRANSFER' => 'Banka Havalesi/EFT',
 ];

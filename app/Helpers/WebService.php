@@ -82,8 +82,8 @@ class WebService{
     public static function orders($page=1){
         $page = min(1, (int)$page);
         $response = self::GET('orders', ['page'=>$page]);
-        if($response['data'] && isset($response['data']['items'])){
-            return $response['data']['items'];
+        if($response['data'] ){
+            return $response['data'];
         }
         return [];
     }

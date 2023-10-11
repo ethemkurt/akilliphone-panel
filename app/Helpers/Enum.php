@@ -1,4 +1,32 @@
 <?php
+class PaymentType extends \Enum{
+    const COD=1;
+    const CC=2;
+    const BANKTRANSFER=5;
+    static function colors($class=null){
+        return[
+            self::COD=>'danger',
+            self::CC=>'warning',
+            self::BANKTRANSFER=>'info',
+        ];
+    }
+    static function color($const){
+        $items = self::colors();
+        if(isset($items[$const])){
+            return $items[$const];
+        }
+        return '';
+    }
+    static function __($const){
+        $items = [
+            self::COD=>__('enum.COD'),
+            self::CC=>__('enum.CC'),
+            self::BANKTRANSFER=>__('enum.BANKTRANSFER'),
+        ];
+        return isset($items[$const])?$items[$const]:$const;
+    }
+
+}
 class UserRole extends \Enum{
     const ADMIN=1;
     const BAYI=2;
