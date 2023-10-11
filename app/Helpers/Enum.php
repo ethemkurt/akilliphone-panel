@@ -22,14 +22,14 @@ class PaymentType extends \Enum{
     const CICEKSEPETI = 29;
     const MOTOKURYE = 31;
     static function colors($class=null){
-        return[];
+        return [];
     }
     static function color($const){
         $items = self::colors();
         if(isset($items[$const])){
             return $items[$const];
         }
-        return '';
+        return 'info';
     }
     static function __($const){
         $items = [
