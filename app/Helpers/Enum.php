@@ -1,28 +1,4 @@
 <?php
-/*
- *
-        const KREDIKARTI = "1" ;
-        const HAVALE = "2" ;
-        const KAPIDANAKIT = "3" ;
-        const KAPIDAKREDIKARTI= "4" ;
-        const MOBIL = "5"  ;
-        const PAYPAL = "6" ;
-        const PARCALI = "7" ;
-        const BAKIYA = "8" ;
-        const ELDEN = "9" ;
-        const HESAPTAN = "10" ;
-        const N11 = "20" ;
-        const GG = "21" ;
-        const HB = "22" ;
-        const AMAZON = "23" ;
-        const HBBASEUS = "24" => ;
-        const N11BASEUS = "25" ;
-        const TRENDYOL = "26" ;
-        const GGBASEUS = "27" ;
-        const GORDUMALDIM = "28" ;
-        const CICEKSEPETI = "29" ;
-        const MOTOKURYE = "31" ;
- */
 class PaymentType extends \Enum{
     const KREDIKARTI = 1 ;
     const HAVALE = 2 ;
