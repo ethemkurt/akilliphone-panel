@@ -11,17 +11,32 @@ class Customer extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
-        $data['orders'] = \WebService::orders();
         $data['dataTable'] = $this->dataTableParams();
         return view('Customer.index', $data);
     }
-    public function detail(Request $request, $orderId ){
-        $data['order'] = \WebService::order($orderId);
+    public function detail(Request $request, $userrId ){
+        $data['user'] = \WebService::user($userrId);
         return view('Customer.detail', $data);
     }
     public function new(Request $request ){
         $data = [];
         return view('Customer.new', $data);
+    }
+    private function dataTableParams(){
+        $dataTable = new \AjaxDataTable();
+        $dataTable->setTableId('user-list');
+        $dataTable->setUrl(route('customer.data-table'));
+        $dataTable->setRecordsTotal(100);
+        $dataTable->setRecordsFiltered(90);
+        $dataTable->setCols([
+            'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
+            'firstName'=>['title'=>'Adı', 'className'=>'', 'orderable'=>''],
+            'lastName'=>['title'=>'Soyadı', 'className'=>'', 'orderable'=>''],
+            'email'=>['title'=>'Email', 'className'=>'', 'orderable'=>''],
+            'phoneNumber'=>['title'=>'Telefonu', 'className'=>'', 'orderable'=>''],
+            'status'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>'']
+        ]);
+        return $dataTable;
     }
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();
@@ -62,21 +77,5 @@ class Customer extends Controller
     }
     private function _format_status($row){
         return '<span class="badge rounded-pill badge-light-'.\ActivePassive::color($row['active']).'" text-capitalized="">'.\ActivePassive::__($row['active']).'</span>';
-    }
-    private function dataTableParams(){
-        $dataTable = new \AjaxDataTable();
-        $dataTable->setTableId('user-list');
-        $dataTable->setUrl(route('customer.data-table'));
-        $dataTable->setRecordsTotal(100);
-        $dataTable->setRecordsFiltered(90);
-        $dataTable->setCols([
-            'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
-            'firstName'=>['title'=>'Adı', 'className'=>'', 'orderable'=>''],
-            'lastName'=>['title'=>'Soyadı', 'className'=>'', 'orderable'=>''],
-            'email'=>['title'=>'Email', 'className'=>'', 'orderable'=>''],
-            'phoneNumber'=>['title'=>'Telefonu', 'className'=>'', 'orderable'=>''],
-            'status'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>'']
-        ]);
-        return $dataTable;
     }
 }

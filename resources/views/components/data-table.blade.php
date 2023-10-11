@@ -140,6 +140,6 @@ $dt = isset($dataTable)?$dataTable:null;
         </script>
     @endsection
 @else
-    Data table oluşturulamadı
+    <div class="p-3">Data table oluşturulamadı</div>
 @endif
 
