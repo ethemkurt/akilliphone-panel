@@ -20,7 +20,7 @@
             "slug": "",
             "submenu": [
                 {
-                    "url": "products/index",
+                    "url": "product",
                     "name": "Ürün Listesi",
                     "icon": "circle",
                     "slug": "collapsed-menu"

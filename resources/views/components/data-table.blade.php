@@ -61,6 +61,7 @@ $dt = isset($dataTable)?$dataTable:null;
                                     }
                                 }
                             },
+                            lengthMenu: [[25, 50, 100], [25, 50, 100]],
                             initComplete: function () {
 
                             },

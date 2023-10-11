@@ -79,9 +79,9 @@ class WebService{
         request()->session()->put('user', $user);
     }
 /* products */
-    public static function products($page=1){
-        $page = min(1, (int)$page);
-        $response = self::GET('products', ['page'=>$page]);
+    public static function products($page=1, $offset=50){
+        $page = max(1, (int)$page);
+        $response = self::GET('products', ['page'=>$page, 'offset'=>$offset]);
         if($response['data'] ){
             return $response['data'];
         }
@@ -95,9 +95,9 @@ class WebService{
         return [];
     }
 /* orders */
-    public static function orders($page=1){
-        $page = min(1, (int)$page);
-        $response = self::GET('orders', ['page'=>$page]);
+    public static function orders($page=1, $offset=50){
+        $page = max(1, (int)$page);
+        $response = self::GET('orders', ['page'=>$page, 'offset'=>$offset]);
         if($response['data'] ){
             return $response['data'];
         }

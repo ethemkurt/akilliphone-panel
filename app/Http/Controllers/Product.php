@@ -42,17 +42,30 @@ class Product extends Controller
                 }
                 $item[$key] = $value;
             }
-            if(isset($item['productNumber'])){
-                $item['productNumber'] = count($items) + $start + 1;
+            if(isset($item['orderNumber'])){
+                $item['orderNumber'] = count($items) + $start + 1;
             }
             $items[] = $item;
         }
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
+    private function _format_name($item){
+        $html = '';
+        if($item['variants']){
+            foreach ($item['variants'] as $variant){
+                $variant['featuredImage'] = str_replace('img/', '', $variant['featuredImage']);
+                $html .='<img src="https://cdn.akilliphone.com/8004/30x30/'.$variant['featuredImage'].'"> ';
+            }
+        }
+        return $item['name'].'<hr>'.$html;
+    }
     private function _format_featuredImage($item){
         $item['featuredImage'] = str_replace('img/', '', $item['featuredImage']);
-        return '<img src="https://cdn-x.akilliphone.com/8004/30x30/img/'.$item['featuredImage'].'">';
+        return '<img src="https://cdn.akilliphone.com/8004/30x30/'.$item['featuredImage'].'">';
+    }
+    private function _format_status($item){
+        return '<span class="badge rounded-pill badge-light-'.\ActivePassive::color($item['status']).'" text-capitalized="">'.\ActivePassive::__($item['status']).'</span>';
     }
     private function dataTableParams(){
         $dataTable = new \AjaxDataTable();
@@ -61,7 +74,7 @@ class Product extends Controller
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'featuredImage'=>['title'=>'', 'className'=>'', 'orderable'=>''],
+            'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
             'code'=>['title'=>'Kodu', 'className'=>'', 'orderable'=>''],
             'name'=>['title'=>'Ad', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durum', 'className'=>'', 'orderable'=>''],
