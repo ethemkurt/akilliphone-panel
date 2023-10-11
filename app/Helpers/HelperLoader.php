@@ -5,3 +5,9 @@ if(is_file( dirname(__FILE__).'/Helpers.php') ){
 if(is_file( dirname(__FILE__).'/WebService.php') ){
     include_once( dirname(__FILE__).'/WebService.php' );
 }
+if(is_file( dirname(__FILE__).'/AjaxDataTable.php') ){
+    include_once( dirname(__FILE__).'/AjaxDataTable.php' );
+}
+if(is_file( dirname(__FILE__).'/Enum.php') ){
+    include_once( dirname(__FILE__).'/Enum.php' );
+}

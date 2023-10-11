@@ -5,8 +5,7 @@ use GuzzleHttp\Client;
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-class WebService
-{
+class WebService{
     const WEBSERVICE_URL = 'http://api.duzzona.site/';
     const AUTH_URL = 'http://auth.akillimagaza.com/connect/token';
     protected $userName = '';
@@ -60,7 +59,14 @@ class WebService
         return $response['data'];
     }
     public static function isLogged(){
-        return request()->session()->get('user', null);
+        $user = request()->session()->get('user', null);
+        if($user){
+            if($user['jwtExp']<time()){
+                $user = null;
+            }
+            return $user;
+        }
+        return $user;
     }
     public static function logout()
     {
@@ -72,7 +78,7 @@ class WebService
         request()->session()->put('jwtToken', $user['jwtToken']);
         request()->session()->put('user', $user);
     }
-
+/* orders */
     public static function orders($page=1){
         $page = min(1, (int)$page);
         $response = self::GET('orders', ['page'=>$page]);
@@ -83,6 +89,16 @@ class WebService
     }
     public static function order($orderId){
         $response = self::GET('orders/'.$orderId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+/* customer */
+    public static function customers($page=1, $offset=50){
+        $page = max(1, (int)$page);
+        $offset = max(10, (int)$offset);
+        $response = self::GET('users', ['page'=>$page, 'offset'=>$offset]);
         if($response['data'] ){
             return $response['data'];
         }
@@ -100,10 +116,16 @@ class WebService
         return null;
     }
     static private function GET($service, $data){
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . request()->session()->get('token', null),
-        ])->get(self::WEBSERVICE_URL.$service, $data);
-        return self::standartResponse($response);
+        try{
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
+            ])->get(self::WEBSERVICE_URL.$service, $data);
+
+            return self::standartResponse($response);
+
+        } catch (\Exception $ex){
+            return self::standartErrorResponse($ex->getMessage());
+        }
     }
     static private function POST($service, $data){
         $response = Http::withHeaders([
@@ -111,16 +133,29 @@ class WebService
         ])->post(self::WEBSERVICE_URL.$service, $data);
         return self::standartResponse($response);
     }
+    static private function standartErrorResponse($error){
+        $result['status'] = 0;
+        $result['data'] =  [];
+        $result['errors'] = [$error];
+        return $result;
+    }
     static private function standartResponse($response){
-        $responseData = json_decode($response->body(), true);
-        if($responseData ){
-            $result['status'] = 1;
-            $result['data'] =  isset($responseData['data'])?$responseData['data']:[];
-            $result['errors'] = isset($responseData['errors'])?$responseData['errors']:[];
+
+        if($response->status()==200){
+            $responseData = json_decode($response->body(), true);
+            if($responseData ){
+                $result['status'] = 1;
+                $result['data'] =  isset($responseData['data'])?$responseData['data']:[];
+                $result['errors'] = isset($responseData['errors'])?$responseData['errors']:[];
+            } else {
+                $result['status'] = 0;
+                $result['data'] =  [];
+                $result['errors'] = ['Sunucu yanıtı geçersiz'];
+            }
         } else {
             $result['status'] = 0;
             $result['data'] =  [];
-            $result['errors'] = [];
+            $result['errors'] = ['Istek onaylanmadı. Http Kodu: '.$response->status()];
         }
         return $result;
     }

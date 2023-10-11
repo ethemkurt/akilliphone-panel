@@ -18,12 +18,12 @@ use App\Http\Controllers\Customer;
 |
 */
 
-/*
+
 Route::get('html/{module?}/{action?}', function (string $module = 'home',string $action = null) {
     if($action == null ) return view('content.'.$module);
     return view('content.'.$module.'.'.$action);
 });
-*/
+
 Route::get('/', [Home::class, 'notlogged']);
 Route::get('/login', [Auth::class, 'login'])->name('login')->middleware(['non.registered']);
 Route::post('/check-user', [Auth::class, 'checkUser'])->name('check-user')->middleware(['non.registered']);
@@ -41,5 +41,7 @@ Route::group(['prefix'=>'customer','as'=>'customer.', 'middleware' => ['check.to
     Route::get('/', [Customer::class, 'index'])->name('index');
     Route::get('/detail/{customerId}', [Customer::class, 'detail'])->name('detail');
     Route::get('/new', [Customer::class, 'new'])->name('new');
+    Route::get('/data-table', [Customer::class, 'dataTable'])->name('data-table');
 });
+
 

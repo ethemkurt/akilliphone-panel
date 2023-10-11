@@ -86,26 +86,33 @@
             <div class="card-body border-bottom">
                 <h4 class="card-title">Search & Filter</h4>
                 <div class="row">
-                    <div class="col-md-4 user_role"></div>
-                    <div class="col-md-4 user_plan"></div>
-                    <div class="col-md-4 user_status"></div>
+                    <div class="col-md-4 user_role">
+                        <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
+                            <option value="">Kullanıcı Türü</option>
+                            @foreach(Enum::list('UserRole') as $key=>$val)
+                                <option value="{{ $key }}">{{ $val }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4 user_plan">
+                        <select id="UserStatus" class="form-select text-capitalize mb-md-0 mb-2">
+                            <option value="">Dropshipping</option>
+                            @foreach(Enum::list('ActivePassive') as $key=>$val)
+                                <option value="{{ $key }}">{{ $val }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4 user_status">
+                        <select id="UserStatus" class="form-select text-capitalize mb-md-0 mb-2">
+                        <option value="">Durumu</option>
+                        @foreach(Enum::list('ActivePassive') as $key=>$val)
+                            <option value="{{ $key }}">{{ $val }}</option>
+                        @endforeach
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="card-datatable table-responsive pt-0">
-                <table class="user-list-table table">
-                    <thead class="table-light">
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Plan</th>
-                        <th>Billing</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
+            <x-data-table :dataTable="$dataTable"/>
             <!-- Modal to add new user starts-->
             <div class="modal modal-slide-in new-user-modal fade" id="modals-slide-in">
                 <div class="modal-dialog">
@@ -246,6 +253,5 @@
 @endsection
 
 @section('page-script')
-    {{-- Page js files --}}
-    <script src="{{ asset(mix('js/scripts/pages/app-user-list.js')) }}"></script>
+
 @endsection
