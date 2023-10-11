@@ -57,7 +57,6 @@ class PaymentType extends \Enum{
         ];
         return isset($items[$const])?$items[$const]:$const;
     }
-
 }
 class UserRole extends \Enum{
     const ADMIN=1;

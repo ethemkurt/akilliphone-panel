@@ -27,6 +27,14 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
+            <div class="col-md-4 user_role">
+                <select name="userRole" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                    <option value="">Ödeme Türü</option>
+                    @foreach(Enum::list('PaymentType') as $key=>$val)
+                        <option value="{{ $key }}">{{ $val }}</option>
+                    @endforeach
+                </select>
+            </div>
 
         </div>
       </div>
