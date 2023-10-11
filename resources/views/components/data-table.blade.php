@@ -2,6 +2,14 @@
 $dt = isset($dataTable)?$dataTable:null;
 ?>
 @if($dt)
+    <style>
+        .dataTables_wrapper .row:first-child{
+            padding: 1.5rem 1.5rem!important;
+        }
+        .dataTables_wrapper .row:last-child{
+            padding: 1.5rem 1.5rem!important;
+        }
+    </style>
     <div class="card-datatable table-responsive pt-0">
         <table id="{{ $dt->tableId() }}" class="table-{{ $dt->tableId() }}{{ $dt->tableId() }} table">
             <thead class="table-light">
