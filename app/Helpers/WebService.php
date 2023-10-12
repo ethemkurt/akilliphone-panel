@@ -88,7 +88,7 @@ class WebService{
         return [];
     }
     public static function product($productId){
-        $response = self::GET('orders/'.$orderId, []);
+        $response = self::GET('orders/'.$productId, []);
         if($response['data'] ){
             return $response['data'];
         }

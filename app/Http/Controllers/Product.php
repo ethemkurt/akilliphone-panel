@@ -67,15 +67,21 @@ class Product extends Controller
              </div>
             </div>';
     }
+    private function _format_price($item){
+        if(isset($item['variants'][0])){
+            return '<div class="text-end">'.$item['variants'][0]['salePrice'].''.str_replace('USD', '$', $item['currency']).'<br>'
+            .$item['variants'][0]['price'].'₺</div>';
+        }
+    }
     private function _format_name($item){
-        $html = '';
+        $html = '<div class="demo-inline-spacing">';
         if($item['variants']){
             foreach ($item['variants'] as $variant){
                 $variant['featuredImage'] = str_replace('img/', '', $variant['featuredImage']);
-                $html .='<img src="https://cdn.akilliphone.com/8004/30x30/'.$variant['featuredImage'].'"> ';
+                $html .='<div class="mr-1"><img src="https://cdn.akilliphone.com/8004/30x30/'.$variant['featuredImage'].'"></div>';
             }
         }
-        return $item['name'].'<hr>'.$html;
+        return $item['name'].'<hr>'.$html.'</div>';
     }
     private function _format_featuredImage($item){
         $item['featuredImage'] = str_replace('img/', '', $item['featuredImage']);
@@ -95,6 +101,7 @@ class Product extends Controller
             'code'=>['title'=>'Kodu', 'className'=>'', 'orderable'=>''],
             'name'=>['title'=>'Ad', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durum', 'className'=>'', 'orderable'=>''],
+            'price'=>['title'=>'Fiyat', 'className'=>'', 'orderable'=>''],
             'action'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
         return $dataTable;

@@ -1,5 +1,4 @@
 <?php
-
 class OrderStatus extends \Enum{
     const ODEMEBEKLIYOR = 1;// "Ödeme Bekleniyor",
     const BEKLIYOR = 0;//> "Bekliyor",
