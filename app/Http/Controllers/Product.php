@@ -77,8 +77,7 @@ class Product extends Controller
         $html = '<div class="demo-inline-spacing">';
         if($item['variants']){
             foreach ($item['variants'] as $variant){
-                $variant['featuredImage'] = str_replace('img/', '', $variant['featuredImage']);
-                $html .='<div class="mr-1"><img src="https://cdn.akilliphone.com/8004/30x30/'.$variant['featuredImage'].'"></div>';
+                $html .='<div class="mr-1"><img src="'.getProductImageUrl($variant['featuredImage'], 60, 60).'"></div>';
             }
         }
         return $item['name'].'<hr>'.$html.'</div>';

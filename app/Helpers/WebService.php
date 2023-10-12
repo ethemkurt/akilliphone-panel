@@ -136,7 +136,6 @@ class WebService{
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
             ])->get(self::WEBSERVICE_URL.$service, $data);
-
             return self::standartResponse($response);
 
         } catch (\Exception $ex){
@@ -156,7 +155,6 @@ class WebService{
         return $result;
     }
     static private function standartResponse($response){
-
         if($response->status()==200){
             $responseData = json_decode($response->body(), true);
             if($responseData ){
@@ -219,4 +217,5 @@ class WebService{
         $authUser->jwtExp = $user['jwtExp'];
         return $authUser;
     }
+
 }

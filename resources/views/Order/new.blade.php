@@ -22,7 +22,7 @@
 
 @section('content')
 
-    <!-- Advanced Search -->
+<!-- Advanced Search -->
 <section id="advanced-search-datatable">
     <div class="row">
       <div class="col-12">

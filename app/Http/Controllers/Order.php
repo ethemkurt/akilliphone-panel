@@ -20,6 +20,11 @@ class Order extends Controller
     }
     public function new(Request $request ){
         $data = [];
+        $order = [
+            'paymentStatus'=>\PaymentStatus::BEKLIYOR,
+            'paymentType'=>\PaymentType::KREDIKARTI,
+
+            ];
         return view('Order.new', $data);
     }
     public function dataTable(Request $request){

@@ -50,5 +50,8 @@ return [
     'TELEFON'  => "Telefon",
     'DEGISIM'  => "İade / Değişim",
     'MAGAZA'  =>  "Mağaza Hazırlayacak",
-    'AVCILAR'  =>  "Avcılar Hazırlayacak"
+    'AVCILAR'  =>  "Avcılar Hazırlayacak",
+    'ODENMEDI'  =>  "Ödenmedi",
+    'ODENDI'  =>  "Ödendi",
+    'BEKLIYOR'  =>  "Ödeme Bekliyor",
 ];

@@ -121,6 +121,37 @@ class PaymentType extends \Enum{
         return isset($items[$const])?$items[$const]:$const;
     }
 }
+class PaymentStatus extends \Enum{
+    const BEKLIYOR=0;
+    const ODENDI=1;
+    const ODENMEDI=2;
+    const IADE=2;
+    static function colors($class=null){
+        return[
+            self::ODENMEDI=>'danger',
+            self::ODENDI=>'info',
+            self::BEKLIYOR=>'warning',
+            self::IADE=>'info',
+        ];
+    }
+    static function color($const){
+        $items = self::colors();
+        if(isset($items[$const])){
+            return $items[$const];
+        }
+        return '';
+    }
+    static function __($const){
+        $items = [
+            self::ODENMEDI=>__('enum.ODENMEDI'),
+            self::ODENDI=>__('enum.ODENDI'),
+            self::BEKLIYOR=>__('enum.BEKLIYOR'),
+            self::IADE=>__('enum.IADE'),
+        ];
+        return isset($items[$const])?$items[$const]:$const;
+    }
+
+}
 class UserRole extends \Enum{
     const ADMIN=1;
     const BAYI=2;
