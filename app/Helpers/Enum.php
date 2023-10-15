@@ -63,27 +63,28 @@ class OrderStatus extends \Enum{
     }
 }
 class PaymentType extends \Enum{
-    const KREDIKARTI = 1 ;
-    const HAVALE = 2 ;
-    const KAPIDANAKIT = 3 ;
-    const KAPIDAKREDIKARTI= 4 ;
-    const MOBIL = 5;
-    const PAYPAL = 6;
-    const PARCALI = 7;
-    const BAKIYE = 8;
-    const ELDEN = 9;
-    const HESAPTAN = 10;
-    const N11 = 20;
-    const GG = 21;
-    const HB = 22;
-    const AMAZON = 23;
-    const HBBASEUS = 24;
-    const N11BASEUS = 25;
-    const TRENDYOL = 26;
-    const GGBASEUS = 27;
-    const GORDUMALDIM = 28;
-    const CICEKSEPETI = 29;
-    const MOTOKURYE = 31;
+    /* idler kontrol edilidi*/
+    const KREDIKARTI = 3 ;
+    const HAVALE = 5 ;
+    const KAPIDANAKIT = 6 ;
+    const KAPIDAKREDIKARTI= 7 ;
+    const MOBIL = 8;
+    const PAYPAL = 9;
+    const PARCALI = 10;
+    const BAKIYE = 11;
+    const ELDEN = 12;
+    const HESAPTAN = 13;
+    const N11 = 14;
+    const GG = 15;
+    const HB = 16;
+    const AMAZON = 17;
+    const HBBASEUS = 18;
+    const N11BASEUS = 19;
+    const TRENDYOL = 20;
+    const GGBASEUS = 21;
+    const GORDUMALDIM = 22;
+    const CICEKSEPETI = 23;
+    const MOTOKURYE = 24;
     static function colors($class=null){
         return [];
     }
