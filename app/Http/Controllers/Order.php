@@ -19,13 +19,8 @@ class Order extends Controller
         return view('Order.detail', $data);
     }
     public function new(Request $request ){
-        $data = [];
-        $order = [
-            'paymentStatus'=>\PaymentStatus::BEKLIYOR,
-            'paymentType'=>\PaymentType::KREDIKARTI,
-
-            ];
-        return view('Order.new', $data);
+        \Enum::loadConst('orders/order-status');
+        return view('Order.new', []);
     }
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();

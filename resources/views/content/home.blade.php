@@ -3,11 +3,6 @@
 
 @section('title', 'Dashboard')
 
-@section('vendor-style')
-  {{-- vendor css files --}}
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/charts/apexcharts.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
-@endsection
 @section('page-style')
   {{-- Page css files --}}
   <link rel="stylesheet" href="{{ asset(mix('css/base/pages/dashboard-ecommerce.css')) }}">

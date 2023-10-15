@@ -29,3 +29,22 @@ function getProductImageUrl($url, $w=false, $h=false, $cdnx=false){
     return $result;
 
 }
+function returnSucces($data, $message=''){
+    return [
+        'status'=>1,
+        'message'=>$message,
+        'html'=>isset($data['html'])?$data['html']:'',
+        'data'=>$data,
+        'errors'=>[],
+    ];
+}
+function returnError($errors, $message=''){
+    return [
+        'status'=>0,
+        'message'=>$message,
+        'html'=>'',
+        'data'=>[],
+        'errors'=>implode('<br>', $errors),
+    ];
+}
+

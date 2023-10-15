@@ -1,0 +1,36 @@
+{
+    "status": 1,
+    "cached": 0,
+    "message": "User Role found",
+    "count": 2,
+    "data": [
+        {
+            "id": 1,
+            "name": "Admin",
+            "code": "1",
+            "createdAt": "2023-09-12T06:52:54.7280713",
+            "updatedAt": "2023-09-12T06:52:54.7280722",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "id": 0,
+            "name": "Bayi",
+            "code": "2",
+            "createdAt": "2023-09-12T06:52:54.7280713",
+            "updatedAt": "2023-09-12T06:52:54.7280722",
+            "orderHistories": [],
+            "orders": []
+        }
+        {
+            "id": 0,
+            "name": "Uye",
+            "code": "3",
+            "createdAt": "2023-09-12T06:52:54.7280713",
+            "updatedAt": "2023-09-12T06:52:54.7280722",
+            "orderHistories": [],
+            "orders": []
+        }
+    ],
+    "errors": null
+}

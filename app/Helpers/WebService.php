@@ -79,6 +79,13 @@ class WebService{
         request()->session()->put('user', $user);
     }
 /* products */
+    public static function get_endpoint($endpoint, $data=[]){
+        $response = self::GET($endpoint, $data);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
     public static function products($page=1, $offset=50){
         $page = max(1, (int)$page);
         $response = self::GET('products', ['page'=>$page, 'offset'=>$offset]);
@@ -105,6 +112,13 @@ class WebService{
     }
     public static function order($orderId){
         $response = self::GET('orders/'.$orderId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function order_status($page){
+        $response = self::GET('orders/order-status', []);
         if($response['data'] ){
             return $response['data'];
         }

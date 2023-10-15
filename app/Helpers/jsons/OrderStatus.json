@@ -1,0 +1,207 @@
+{
+    "status": 1,
+    "cached": 0,
+    "message": "Order statuses found",
+    "count": 22,
+    "data": [
+        {
+            "orderStatusId": 26,
+            "name": "Ödeme Bekleniyor",
+            "code": "1",
+            "createdAt": "2023-09-12T06:52:54.7280713",
+            "updatedAt": "2023-09-12T06:52:54.7280722",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 27,
+            "name": "Bekliyor",
+            "code": "0",
+            "createdAt": "2023-09-12T06:52:54.9166239",
+            "updatedAt": "2023-09-12T06:52:54.9166246",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 28,
+            "name": "Onaylandı",
+            "code": "2",
+            "createdAt": "2023-09-12T06:52:54.987187",
+            "updatedAt": "2023-09-12T06:52:54.987188",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 29,
+            "name": "Sipariş Hazırlanıyor",
+            "code": "4",
+            "createdAt": "2023-09-12T06:52:55.060813",
+            "updatedAt": "2023-09-12T06:52:55.0608141",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 30,
+            "name": "ARAS Kargoya Verildi",
+            "code": "5",
+            "createdAt": "2023-09-12T06:52:55.1550321",
+            "updatedAt": "2023-09-12T06:52:55.1550329",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 31,
+            "name": "MNG Kargoya Verildi",
+            "code": "20",
+            "createdAt": "2023-09-12T06:52:55.2458781",
+            "updatedAt": "2023-09-12T06:52:55.2458792",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 32,
+            "name": "SÜRAT Kargoya Verildi",
+            "code": "21",
+            "createdAt": "2023-09-12T06:52:55.3423415",
+            "updatedAt": "2023-09-12T06:52:55.3423423",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 33,
+            "name": "UPS Kargoya Verildi",
+            "code": "22",
+            "createdAt": "2023-09-12T06:52:55.4190954",
+            "updatedAt": "2023-09-12T06:52:55.4190966",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 34,
+            "name": "YURTİÇİ Kargoya Verildi",
+            "code": "23",
+            "createdAt": "2023-09-12T06:52:55.5064444",
+            "updatedAt": "2023-09-12T06:52:55.5064452",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 35,
+            "name": "YANGO'ya Verildi",
+            "code": "31",
+            "createdAt": "2023-09-12T06:52:55.6060296",
+            "updatedAt": "2023-09-12T06:52:55.6060304",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 36,
+            "name": "Teslim Edildi",
+            "code": "6",
+            "createdAt": "2023-09-12T06:52:55.6804106",
+            "updatedAt": "2023-09-12T06:52:55.6804115",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 37,
+            "name": "İptal Edildi",
+            "code": "7",
+            "createdAt": "2023-09-12T06:52:55.7662369",
+            "updatedAt": "2023-09-12T06:52:55.7662377",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 38,
+            "name": "İade Edildi",
+            "code": "11",
+            "createdAt": "2023-09-12T06:52:55.836345",
+            "updatedAt": "2023-09-12T06:52:55.8363457",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 39,
+            "name": "Temin Ediliyor",
+            "code": "12",
+            "createdAt": "2023-09-12T06:52:55.9200413",
+            "updatedAt": "2023-09-12T06:52:55.9200421",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 40,
+            "name": "Ulaşılamıyor",
+            "code": "13",
+            "createdAt": "2023-09-12T06:52:55.9965666",
+            "updatedAt": "2023-09-12T06:52:55.9965673",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 41,
+            "name": "İnceleniyor",
+            "code": "14",
+            "createdAt": "2023-09-12T06:52:56.0664988",
+            "updatedAt": "2023-09-12T06:52:56.0664996",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 42,
+            "name": "Başarısız",
+            "code": "15",
+            "createdAt": "2023-09-12T06:52:56.1476598",
+            "updatedAt": "2023-09-12T06:52:56.1476605",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 43,
+            "name": "Eksik Sipariş",
+            "code": "30",
+            "createdAt": "2023-09-12T06:52:56.2248658",
+            "updatedAt": "2023-09-12T06:52:56.2248666",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 44,
+            "name": "Telefon",
+            "code": "16",
+            "createdAt": "2023-09-12T06:52:56.3000601",
+            "updatedAt": "2023-09-12T06:52:56.3000609",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 45,
+            "name": "İade / Değişim",
+            "code": "17",
+            "createdAt": "2023-09-12T06:52:56.374365",
+            "updatedAt": "2023-09-12T06:52:56.3743657",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 46,
+            "name": "Mağaza Hazırlayacak",
+            "code": "18",
+            "createdAt": "2023-09-12T06:52:56.4544719",
+            "updatedAt": "2023-09-12T06:52:56.4544728",
+            "orderHistories": [],
+            "orders": []
+        },
+        {
+            "orderStatusId": 47,
+            "name": "Avcılar Hazırlayacak",
+            "code": "19",
+            "createdAt": "2023-09-12T06:52:56.5474084",
+            "updatedAt": "2023-09-12T06:52:56.5474092",
+            "orderHistories": [],
+            "orders": []
+        }
+    ],
+    "errors": null
+}
