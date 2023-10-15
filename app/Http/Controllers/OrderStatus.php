@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 
 class OrderStatus extends Controller
 {
@@ -28,7 +29,6 @@ class OrderStatus extends Controller
         $order = [
             'paymentStatus'=>\PaymentStatus::BEKLIYOR,
             'paymentType'=>\PaymentType::KREDIKARTI,
-
             ];
         return view('Order.new', $data);
     }
@@ -60,6 +60,13 @@ class OrderStatus extends Controller
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
+
+    private function _format_action($item){
+        $url = route('popup', 'OrderStatus').'?orderStatusId='.$item['orderStatusId'];
+        $html = poupFormButton($url, '', '', '');
+        $html .= '<a class="btn confirm-popup" href="'.$url.'" title="\''.$item['name'].'\' silinsin mi?"><i class="fa fa-trash"></i></a>';
+        return '<div class="text-end">'.$html.'</div>';
+    }
     private function dataTableParams(){
         $dataTable = new \AjaxDataTable();
         $dataTable->setTableId('order-status');
@@ -70,6 +77,7 @@ class OrderStatus extends Controller
             'orderNumber'=>['title'=>'Sıra No', 'className'=>'', 'orderable'=>''],
             'orderStatusId'=>['title'=>'Id', 'className'=>'', 'orderable'=>''],
             'name'=>['title'=>'Adı', 'className'=>'', 'orderable'=>''],
+            'action'=>['title'=>'Adı', 'className'=>'', 'orderable'=>''],
         ]);
         return $dataTable;
     }

@@ -19,7 +19,7 @@ class Order extends Controller
         return view('Order.detail', $data);
     }
     public function new(Request $request ){
-        
+
         return view('Order.new', []);
     }
     public function dataTable(Request $request){

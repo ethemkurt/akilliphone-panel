@@ -124,6 +124,13 @@ class WebService{
         }
         return [];
     }
+    public static function order_state($orderStatusId){
+        $response = self::GET('orders/order-status/'.$orderStatusId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
 /* customer */
     public static function customers($page=1, $offset=50){
         $page = max(1, (int)$page);

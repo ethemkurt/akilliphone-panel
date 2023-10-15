@@ -29,6 +29,9 @@ function getProductImageUrl($url, $w=false, $h=false, $cdnx=false){
     return $result;
 
 }
+function poupFormButton($url, $text, $title='', $class='btn-primary' ){
+    return \Illuminate\Support\Facades\Blade::render('<x-button-popup-form :title="\''.$title.'\'" :text="\''.$text.'\'" :url="\''.$url.'\'" :class="\''.$class.'\'" />') ;
+}
 function returnSucces($data, $message=''){
     return [
         'status'=>1,

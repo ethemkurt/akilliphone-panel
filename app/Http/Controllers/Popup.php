@@ -16,7 +16,12 @@ class Popup extends Controller
         }
     }
     public function OrderStatus(Request $request ){
-        $data = [];
+        $orderStatusId = $request->input('orderStatusId');
+        if($orderStatusId){
+            $data['orderStatus'] = \Webservice::order_state($orderStatusId);
+        } else {
+            $data['orderStatus'] = [];
+        }
         $data['html'] = view('popup-forms.product-status', $data)->render();
         return returnSucces($data);
     }

@@ -35,28 +35,28 @@ class OrderStatus extends \Enum{
     }
     static function __($const){
         $items = [
-            self::ODEMEBEKLENIYOR=>__('enum.ODEMEBEKLENIYOR'),
-            self::BEKLIYOR=>__('enum.BEKLIYOR'),
-            self::ONAYLANDI=>__('enum.ONAYLANDI'),
-            self::SIPARISHAZIRLANIYOR=>__('enum.SIPARISHAZIRLANIYOR'),
-            self::ARASKARGOYAVERILDI=>__('enum.ARASKARGOYAVERILDI'),
-            self::MNGKARGOYAVERILDI=>__('enum.MNGKARGOYAVERILDI'),
-            self::SURATKARGOYAVERILDI=>__('enum.SURATKARGOYAVERILDI'),
-            self::UPSKARGOYAVERILDI=>__('enum.UPSKARGOYAVERILDI'),
-            self::YURTICIKARGOYAVERILDI=>__('enum.YURTICIKARGOYAVERILDI'),
-            self::YANGOYAVERILDI=>__('enum.YANGOYAVERILDI'),
-            self::TESLIMEDILDI=>__('enum.TESLIMEDILDI'),
-            self::IPTALEDILDI=>__('enum.IPTALEDILDI'),
-            self::IADEEDILDI=>__('enum.IADEEDILDI'),
-            self::TEMINEDILIYOR=>__('enum.TEMINEDILIYOR'),
-            self::ULASILAMIYOR=>__('enum.ULASILAMIYOR'),
-            self::INCELENIYOR=>__('enum.INCELENIYOR'),
-            self::BASARISIZ=>__('enum.BASARISIZ'),
-            self::EKSIKSIPARIS=>__('enum.EKSIKSIPARIS'),
-            self::TELEFON=>__('enum.TELEFON'),
-            self::IADEDEGISIM=>__('enum.IADE/DEGISIM'),
-            self::MAGAZAHAZIRLAYACAK=>__('enum.MAGAZAHAZIRLAYACAK'),
-            self::AVCILARHAZIRLAYACAK=>__('enum.AVCILARHAZIRLAYACAK'),
+            self::ODEMEBEKLENIYOR=>'Ödeme Bekleniyor',
+            self::BEKLIYOR=>'Bekliyor',
+            self::ONAYLANDI=>'Onaylandı',
+            self::SIPARISHAZIRLANIYOR=>'Sipariş Hazırlanıyor',
+            self::ARASKARGOYAVERILDI=>'ARAS Kargoya Verildi',
+            self::MNGKARGOYAVERILDI=>'MNG Kargoya Verildi',
+            self::SURATKARGOYAVERILDI=>'SÜRAT Kargoya Verildi',
+            self::UPSKARGOYAVERILDI=>'UPS Kargoya Verildi',
+            self::YURTICIKARGOYAVERILDI=>'YURTİÇİ Kargoya Verildi',
+            self::YANGOYAVERILDI=>'Yango \'ya Verildi',
+            self::TESLIMEDILDI=>'Teslim Edildi',
+            self::IPTALEDILDI=>'İptal Edildi',
+            self::IADEEDILDI=>'İade Edildi',
+            self::TEMINEDILIYOR=>'Temin Ediliyor',
+            self::ULASILAMIYOR=>'Ulaşılamıyor',
+            self::INCELENIYOR=>'İnceleniyor',
+            self::BASARISIZ=>'Başarısız',
+            self::EKSIKSIPARIS=>'Eksik Sipariş',
+            self::TELEFON=>'Telefon',
+            self::IADEDEGISIM=>'İade / Değişim',
+            self::MAGAZAHAZIRLAYACAK=>'Mağaza Hazırlayacak',
+            self::AVCILARHAZIRLAYACAK=>'Avcılar Hazırlayacak',
 
         ];
         return isset($items[$const])?$items[$const]:$const;
@@ -221,10 +221,11 @@ class Enum
 {
     static function list($class){
         $list = [];
+        $cClass = new $class();
         $oClass = new ReflectionClass($class);
         $items = $oClass->getConstants();
         foreach ($items as $item => $value) {
-            $list[$value] = __('enum.' . $item);
+            $list[$value] = $cClass::__($value);
         }
         return $list;
     }
@@ -250,9 +251,10 @@ class Enum
                     echo "const ".strtoupper($item['name'])." = ".current($item).";<br>";
                 }
                 foreach($response as $item){
+                    $name = $item['name'];
                     $item['name'] = str_replace(['ğ','ü','ş','ı','ö','ç','Ğ','Ü','Ş','İ','Ö','Ç'],['G','U','S','I','O','C','G','U','S','I','O','C'], $item['name']);
                     $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''],  $item['name'] );
-                    echo "self::".strtoupper($item['name'])."=>__('enum.".strtoupper($item['name'])."'),<br>";
+                    echo "self::".strtoupper($item['name'])."=>'".$name."',<br>";
                 }
             }
         }
