@@ -1,27 +1,28 @@
 <?php
 class OrderStatus extends \Enum{
-    const ODEMEBEKLIYOR = 1;// "Ödeme Bekleniyor",
-    const BEKLIYOR = 0;//> "Bekliyor",
-    const ONAYLANDI = 2;//> "Onaylandı",
-    const HAZIRLANIYOR = 4;//> "Sipariş Hazırlanıyor",
-    const ARASKARGOLANDI = 5;//> "ARAS Kargoya Verildi",
-    const MNGKARGOLANDI = 20;//=> "MNG Kargoya Verildi",
-    const SURATKARGOLANDI = 21;//=> "SÜRAT Kargoya Verildi",
-    const UPSKARGOLANDI = 22;//=> "UPS Kargoya Verildi",
-    const YURTICIKARGOLANDI = 23;//=> "YURTİÇİ Kargoya Verildi",
-    const YANGOKARGOLANDI = 31;//=> "YANGO'ya Verildi",
-    const TESLIM = 6;//> "Teslim Edildi",
-    const IPTAL = 7;//> "İptal Edildi",
-    const IADE = 11;//=> "İade Edildi",
-    const TEMIN = 12;//=> "Temin Ediliyor",
-    const ULASILAMIYOR = 13;//=> "Ulaşılamıyor",
-    const INCELENIYOR = 14;//=> "İnceleniyor",
-    const BASARISIZ = 15;//=> "Başarısız",
-    const EKSIKSIPARIS = 30;//=> "Eksik Sipariş",
-    const TELEFON = 16;//=> "Telefon",
-    const DEGISIM = 17;//=> "İade / Değişim",
-    const MAGAZA = 18;//=> "Mağaza Hazırlayacak",
-    const AVCILAR = 19;//=> "Avcılar Hazırlayacak"
+    const ODEMEBEKLENIYOR = 26;
+    const BEKLIYOR = 27;
+    const ONAYLANDI = 28;
+    const SIPARISHAZIRLANIYOR = 29;
+    const ARASKARGOYAVERILDI = 30;
+    const MNGKARGOYAVERILDI = 31;
+    const SURATKARGOYAVERILDI = 32;
+    const UPSKARGOYAVERILDI = 33;
+    const YURTICIKARGOYAVERILDI = 34;
+    const YANGOYAVERILDI = 35;
+    const TESLIMEDILDI = 36;
+    const IPTALEDILDI = 37;
+    const IADEEDILDI = 38;
+    const TEMINEDILIYOR = 39;
+    const ULASILAMIYOR = 40;
+    const INCELENIYOR = 41;
+    const BASARISIZ = 42;
+    const EKSIKSIPARIS = 43;
+    const TELEFON = 44;
+    const IADEDEGISIM = 45;
+    const MAGAZAHAZIRLAYACAK = 46;
+    const AVCILARHAZIRLAYACAK = 47;
+
     static function colors($class=null){
         return [];
     }
@@ -34,56 +35,59 @@ class OrderStatus extends \Enum{
     }
     static function __($const){
         $items = [
-            self::ODEMEBEKLIYOR=>__('enum.ODEMEBEKLIYOR'),
-            self::BEKLIYOR=>__('enum.BEKLIYOR'),
-            self::ONAYLANDI=>__('enum.ONAYLANDI'),
-            self::HAZIRLANIYOR=>__('enum.HAZIRLANIYOR'),
-            self::ARASKARGOLANDI=>__('enum.ARASKARGOLANDI'),
-            self::MNGKARGOLANDI=>__('enum.MNGKARGOLANDI'),
-            self::SURATKARGOLANDI=>__('enum.SURATKARGOLANDI'),
-            self::UPSKARGOLANDI =>__('enum.UPSKARGOLANDI'),
-            self::YURTICIKARGOLANDI=>__('enum.YURTICIKARGOLANDI'),
-            self::YANGOKARGOLANDI=>__('enum.YANGOKARGOLANDI'),
-            self::TESLIM=>__('enum.TESLIM'),
-            self::IPTAL=>__('enum.IPTAL'),
-            self::IPTAL=>__('enum.IPTAL'),
-            self::IADE=>__('enum.IADE'),
-            self::TEMIN=>__('enum.TEMIN'),
-            self::ULASILAMIYOR=>__('enum.ULASILAMIYOR'),
-            self::INCELENIYOR=>__('enum.INCELENIYOR'),
-            self::BASARISIZ=>__('enum.BASARISIZ'),
-            self::EKSIKSIPARIS=>__('enum.EKSIKSIPARIS'),
-            self::TELEFON=>__('enum.TELEFON'),
-            self::MAGAZA=>__('enum.MAGAZA'),
-            self::DEGISIM=>__('enum.DEGISIM'),
-            self::AVCILAR=>__('enum.AVCILAR'),
+            self::ODEMEBEKLENIYOR=>'Ödeme Bekleniyor',
+            self::BEKLIYOR=>'Bekliyor',
+            self::ONAYLANDI=>'Onaylandı',
+            self::SIPARISHAZIRLANIYOR=>'Sipariş Hazırlanıyor',
+            self::ARASKARGOYAVERILDI=>'ARAS Kargoya Verildi',
+            self::MNGKARGOYAVERILDI=>'MNG Kargoya Verildi',
+            self::SURATKARGOYAVERILDI=>'SÜRAT Kargoya Verildi',
+            self::UPSKARGOYAVERILDI=>'UPS Kargoya Verildi',
+            self::YURTICIKARGOYAVERILDI=>'YURTİÇİ Kargoya Verildi',
+            self::YANGOYAVERILDI=>'Yango \'ya Verildi',
+            self::TESLIMEDILDI=>'Teslim Edildi',
+            self::IPTALEDILDI=>'İptal Edildi',
+            self::IADEEDILDI=>'İade Edildi',
+            self::TEMINEDILIYOR=>'Temin Ediliyor',
+            self::ULASILAMIYOR=>'Ulaşılamıyor',
+            self::INCELENIYOR=>'İnceleniyor',
+            self::BASARISIZ=>'Başarısız',
+            self::EKSIKSIPARIS=>'Eksik Sipariş',
+            self::TELEFON=>'Telefon',
+            self::IADEDEGISIM=>'İade / Değişim',
+            self::MAGAZAHAZIRLAYACAK=>'Mağaza Hazırlayacak',
+            self::AVCILARHAZIRLAYACAK=>'Avcılar Hazırlayacak',
 
         ];
         return isset($items[$const])?$items[$const]:$const;
     }
 }
 class PaymentType extends \Enum{
-    const KREDIKARTI = 1 ;
-    const HAVALE = 2 ;
-    const KAPIDANAKIT = 3 ;
-    const KAPIDAKREDIKARTI= 4 ;
-    const MOBIL = 5;
-    const PAYPAL = 6;
-    const PARCALI = 7;
-    const BAKIYE = 8;
-    const ELDEN = 9;
-    const HESAPTAN = 10;
-    const N11 = 20;
-    const GG = 21;
-    const HB = 22;
-    const AMAZON = 23;
-    const HBBASEUS = 24;
-    const N11BASEUS = 25;
-    const TRENDYOL = 26;
-    const GGBASEUS = 27;
-    const GORDUMALDIM = 28;
-    const CICEKSEPETI = 29;
-    const MOTOKURYE = 31;
+    /* idler kontrol edilidi*/
+    const KREDIKARTI = 3;
+    const HAVALE = 5;
+    const KAPIDANAKIT = 6;
+    const KAPIDAKREDIKARTI = 7;
+    const MOBIL = 8;
+    const PAYPAL = 9;
+    const PARCALI = 10;
+    const BAKIYE = 11;
+    const ELDEN = 12;
+    const HESAPTAN = 13;
+    const N11 = 14;
+    const GG = 15;
+    const HB = 16;
+    const AMAZON = 17;
+    const HBBASEUS = 18;
+    const N11BASEUS = 19;
+    const TRENDYOL = 20;
+    const GGBASEUS = 21;
+    const GORDUMALDIMISBANKASI = 22;
+    const CICEKSEPETI = 23;
+    const MOTOKURYE = 24;
+
+
+
     static function colors($class=null){
         return [];
     }
@@ -103,7 +107,7 @@ class PaymentType extends \Enum{
             self::MOBIL=>__('enum.MOBIL'),
             self::PAYPAL=>__('enum.PAYPAL'),
             self::PARCALI=>__('enum.PARCALI'),
-            self::BAKIYE =>__('enum.COD'),
+            self::BAKIYE=>__('enum.BAKIYE'),
             self::ELDEN=>__('enum.ELDEN'),
             self::HESAPTAN=>__('enum.HESAPTAN'),
             self::N11=>__('enum.N11'),
@@ -114,7 +118,7 @@ class PaymentType extends \Enum{
             self::N11BASEUS=>__('enum.N11BASEUS'),
             self::TRENDYOL=>__('enum.TRENDYOL'),
             self::GGBASEUS=>__('enum.GGBASEUS'),
-            self::GORDUMALDIM=>__('enum.GORDUMALDIM'),
+            self::GORDUMALDIMISBANKASI=>__('enum.GORDUMALDIMISBANKASI'),
             self::CICEKSEPETI=>__('enum.CICEKSEPETI'),
             self::MOTOKURYE=>__('enum.MOTOKURYE'),
         ];
@@ -122,10 +126,11 @@ class PaymentType extends \Enum{
     }
 }
 class PaymentStatus extends \Enum{
-    const BEKLIYOR=0;
-    const ODENDI=1;
-    const ODENMEDI=2;
-    const IADE=2;
+    const BEKLIYOR = 3;
+    const ODENDI = 11;
+    const ODENMEDI = 24;
+    const IADE = 25;
+
     static function colors($class=null){
         return[
             self::ODENMEDI=>'danger',
@@ -143,9 +148,9 @@ class PaymentStatus extends \Enum{
     }
     static function __($const){
         $items = [
-            self::ODENMEDI=>__('enum.ODENMEDI'),
-            self::ODENDI=>__('enum.ODENDI'),
             self::BEKLIYOR=>__('enum.BEKLIYOR'),
+            self::ODENDI=>__('enum.ODENDI'),
+            self::ODENMEDI=>__('enum.ODENMEDI'),
             self::IADE=>__('enum.IADE'),
         ];
         return isset($items[$const])?$items[$const]:$const;
@@ -216,10 +221,11 @@ class Enum
 {
     static function list($class){
         $list = [];
+        $cClass = new $class();
         $oClass = new ReflectionClass($class);
         $items = $oClass->getConstants();
         foreach ($items as $item => $value) {
-            $list[$value] = __('enum.' . $item);
+            $list[$value] = $cClass::__($value);
         }
         return $list;
     }
@@ -231,5 +237,27 @@ class Enum
     static function color($const)
     {
         return '';
+    }
+
+    static function loadConst($endpoint=null){
+        if($endpoint===null) $endpoint = request()->input('e');
+        if($endpoint){
+            $response = Webservice::get_endpoint($endpoint);
+
+            if($response ){
+                foreach($response as $item){
+                    $item['name'] = str_replace(['ğ','ü','ş','ı','ö','ç','Ğ','Ü','Ş','İ','Ö','Ç'],['G','U','S','I','O','C','G','U','S','I','O','C'], $item['name']);
+                    $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''],  $item['name'] );
+                    echo "const ".strtoupper($item['name'])." = ".current($item).";<br>";
+                }
+                foreach($response as $item){
+                    $name = $item['name'];
+                    $item['name'] = str_replace(['ğ','ü','ş','ı','ö','ç','Ğ','Ü','Ş','İ','Ö','Ç'],['G','U','S','I','O','C','G','U','S','I','O','C'], $item['name']);
+                    $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''],  $item['name'] );
+                    echo "self::".strtoupper($item['name'])."=>'".$name."',<br>";
+                }
+            }
+        }
+        die();
     }
 }

@@ -25,6 +25,69 @@ class Order extends Controller
             'paymentType'=>\PaymentType::KREDIKARTI,
 
             ];
+        $response = \WebService::products();
+        $data['products'] =$response['items'];
+        return view('Order.new', $data);
+    }
+    public function newOrder(Request $request ){
+        $data = $request->input('order');
+        $products=$request->input('products');
+        $variants = explode('|', $products[0]);
+        $data['customerId']=null;
+        $data['orderNo']=null;
+        $data['shippingCompany']="aras";
+        $data['shippingTrackingNumber']="";
+        $data['shippingTrackingUrl']="";
+        $data['marketplaceOrderId']="";
+        $data['marketplaceOrderCode']="";
+        $data['customer']["customerId"]=null;
+        $data['customer']["code"]=null;
+        $data['customer']["tcKimlik"]=null;
+        $data['shippingAddress']["customerId"]=null;
+        $data['shippingAddress']["description"]=null;
+        $data['shippingAddress']["zipCode"]=null;
+        $data['shippingAddress']["latitude"]=null;
+        $data['shippingAddress']["longitude"]=null;
+        $data['shippingAddress']["placeId"]=null;
+        $data['billingAddress']["customerId"]=null;
+        $data['billingAddress']["description"]=null;
+        $data['billingAddress']["zipCode"]=null;
+        $data['billingAddress']["latitude"]=null;
+        $data['billingAddress']["longitude"]=null;
+        $data['billingAddress']["placeId"]=null;
+        $data['billingAddress']["company"]=null;
+        $data['billingAddress']["taxOffice"]=null;
+        $data['billingAddress']["taxNumber"]=null;
+        $product['productId']=$variants[0];
+        $product['variantId']=$variants[1];
+        $product['quantity']=1;
+
+        $variant = \WebService::variant($product['variantId']);
+        $product['optionId']=$variant['variantOptions'][0]['variantOptionId'];
+        $product['total']=$variant['price']*$product['quantity'];
+        $data['orderProducts'][]=$product;
+        $total=['code'=>'products','name'=>'Ürünler Toplamı (KDV Dahil)','value'=>$product['total']];
+        $data['totals'][]=$total;
+        $data['orderTotal']=$product['total'];
+
+
+
+
+        $response = \WebService::newOrder($data);
+
+        if(!$response){
+            $request->session()->flash('flash-error', ['Bilgileri Tekrar Kontrol Ediniz ', 'Sipariş Oluşturulamadı.']);
+        }
+        else{
+            $request->session()->flash('flash-success', ['Sipariş Başarılı Bir Şekilde Oluşturuldu. ', 'Sipariş Oluşturuldu.']);
+
+        }
+
+        $order = [
+            'paymentStatus'=>\PaymentStatus::BEKLIYOR,
+            'paymentType'=>\PaymentType::KREDIKARTI,
+
+        ];
         return view('Order.new', $data);
     }
     public function dataTable(Request $request){
@@ -58,6 +121,9 @@ class Order extends Controller
     private function _format_orderTotal($item){
         return $item['orderTotal'].' TL';
     }
+    private function _format_firstName($item){
+        return $item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'];
+    }
     private function _format_paymentTypeId($item){
         return '<span class="badge rounded-pill badge-light-'.\PaymentType::color($item['paymentTypeId']).'" text-capitalized="">'.\PaymentType::__($item['paymentTypeId']).'</span>';
     }
@@ -68,10 +134,12 @@ class Order extends Controller
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
+            'firstName'=>['title'=>'Ad', 'className'=>'', 'orderable'=>''],
             'orderNumber'=>['title'=>'Sipariş No', 'className'=>'', 'orderable'=>''],
             'paymentTypeId'=>['title'=>'Ödeme Türü', 'className'=>'', 'orderable'=>''],
             'shippingCompany'=>['title'=>'Kargo', 'className'=>'', 'orderable'=>''],
             'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
+            'orderStatusId'=>['title'=>'OrderStatus', 'className'=>'', 'orderable'=>''],
         ]);
         return $dataTable;
     }

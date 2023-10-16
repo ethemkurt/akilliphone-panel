@@ -61,7 +61,7 @@
             </form>
           </div>
           <hr class="my-0" />
-<x-data-table :dataTable="$dataTable"/>
+                <x-data-table :dataTable="$dataTable"/>
         </div>
       </div>
     </div>

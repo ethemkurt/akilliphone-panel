@@ -77,6 +77,8 @@ class WebService{
     {
         request()->session()->put('jwtToken', $user['jwtToken']);
         request()->session()->put('user', $user);
+
+
     }
 /* products */
     public static function products($page=1, $offset=50){
@@ -91,6 +93,15 @@ class WebService{
         $response = self::GET('orders/'.$productId, []);
         if($response['data'] ){
             return $response['data'];
+        }
+        return [];
+    }
+
+    public static function variant($variantId){
+        $response = self::GET('variants/'.$variantId, []);
+        if($response['data'] ){
+            return $response['data'];
+
         }
         return [];
     }
@@ -110,13 +121,22 @@ class WebService{
         }
         return [];
     }
+    public static function newOrder($body){
+
+        $response = self::POST('orders',$body);
+
+
+        return $response['data'];
+    }
 /* customer */
     public static function customers($page=1, $offset=50){
         $page = max(1, (int)$page);
         $offset = max(10, (int)$offset);
         $response = self::GET('users', ['page'=>$page, 'offset'=>$offset]);
         if($response['data'] ){
+
             return $response['data'];
+
         }
         return [];
     }
@@ -136,6 +156,7 @@ class WebService{
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
             ])->get(self::WEBSERVICE_URL.$service, $data);
+
             return self::standartResponse($response);
 
         } catch (\Exception $ex){
@@ -143,8 +164,9 @@ class WebService{
         }
     }
     static private function POST($service, $data){
+
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . request()->session()->get('token', null),
+            'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->post(self::WEBSERVICE_URL.$service, $data);
         return self::standartResponse($response);
     }
@@ -171,6 +193,7 @@ class WebService{
             $result['data'] =  [];
             $result['errors'] = ['Istek onaylanmadı. Http Kodu: '.$response->status()];
         }
+
         return $result;
     }
     static function userToAuthUser($user){
