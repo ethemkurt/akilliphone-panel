@@ -80,10 +80,35 @@
             "slug": ""
         },
         {
-            "url": "order",
             "name": "Siparişler",
             "icon": "shopping-cart",
-            "slug": "home"
+            "slug": "home",
+            "submenu": [
+                {
+                    "url": "order",
+                    "name": "Listele",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "order/order-status",
+                    "name": "Sipariş Durumları",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "order/payment-status",
+                    "name": "Ödeme Durumları",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "order/payment-types",
+                    "name": "Ödeme Tipleri",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                }
+            ]
         },
         {
             "navheader": "KULLANICI YÖNETİMİ",

@@ -19,12 +19,8 @@ class Order extends Controller
         return view('Order.detail', $data);
     }
     public function new(Request $request ){
-        $data = [];
-        $order = [
-            'paymentStatus'=>\PaymentStatus::BEKLIYOR,
-            'paymentType'=>\PaymentType::KREDIKARTI,
 
-            ];
+
         $response = \WebService::products();
         $data['products'] =$response['items'];
         return view('Order.new', $data);
@@ -89,6 +85,9 @@ class Order extends Controller
 
         ];
         return view('Order.new', $data);
+
+        return view('Order.new', []);
+
     }
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();
@@ -118,6 +117,16 @@ class Order extends Controller
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
+    private function _format_orderStatusId($item){
+        $options = '<option value="" selected disabled>Sipariş Durumu Seçiniz</option>';
+        foreach(\Enum::list('orderStatus') as $orderStatusId=>$orderStatus){
+            $selected = $orderStatusId == $item['orderStatusId']?'selected':'';
+            $options .= '<option value="'.$orderStatusId.'" '.$selected.'>'.$orderStatus.$item['orderStatusId'].'</option>';
+        }
+        return '<div class="input-group mb-2">
+                                        <select class="form-select" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search1">'.$options.'</select><button class="input-group-text btn-primary" id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check me-25"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+                                    </div>';
+    }
     private function _format_orderTotal($item){
         return $item['orderTotal'].' TL';
     }
@@ -137,6 +146,7 @@ class Order extends Controller
             'firstName'=>['title'=>'Ad', 'className'=>'', 'orderable'=>''],
             'orderNumber'=>['title'=>'Sipariş No', 'className'=>'', 'orderable'=>''],
             'paymentTypeId'=>['title'=>'Ödeme Türü', 'className'=>'', 'orderable'=>''],
+            'orderStatusId'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
             'shippingCompany'=>['title'=>'Kargo', 'className'=>'', 'orderable'=>''],
             'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
             'orderStatusId'=>['title'=>'OrderStatus', 'className'=>'', 'orderable'=>''],

@@ -2,11 +2,6 @@
 
 @section('title', 'Slide Ekle')
 
-@section('vendor-style')
-<link rel="stylesheet" href="{{asset('vendors/css/pickers/flatpickr/flatpickr.min.css')}}">
-<link rel="stylesheet" href="{{asset('vendors/css/forms/select/select2.min.css')}}">
-<link rel="stylesheet" href="{{asset('vendors/css/file-uploaders/dropzone.min.css')}}">
-@endsection
 @section('page-style')
 <link rel="stylesheet" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
 <link rel="stylesheet" href="{{asset('css/base/pages/app-invoice.css')}}">

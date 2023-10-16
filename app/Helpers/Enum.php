@@ -219,7 +219,8 @@ class YesNo extends \Enum{
 }
 class Enum
 {
-    static function list($class){
+    static function list($class)
+    {
         $list = [];
         $cClass = new $class();
         $oClass = new ReflectionClass($class);
@@ -230,34 +231,35 @@ class Enum
         return $list;
     }
 
-    static function colors($class=null)
+    static function colors($class = null)
     {
         return [];
     }
+
     static function color($const)
     {
         return '';
     }
 
-    static function loadConst($endpoint=null){
-        if($endpoint===null) $endpoint = request()->input('e');
-        if($endpoint){
+    static function loadConst($endpoint = null)
+    {
+        if ($endpoint === null) $endpoint = request()->input('e');
+        if ($endpoint) {
             $response = Webservice::get_endpoint($endpoint);
 
-            if($response ){
-                foreach($response as $item){
-                    $item['name'] = str_replace(['ğ','ü','ş','ı','ö','ç','Ğ','Ü','Ş','İ','Ö','Ç'],['G','U','S','I','O','C','G','U','S','I','O','C'], $item['name']);
-                    $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''],  $item['name'] );
-                    echo "const ".strtoupper($item['name'])." = ".current($item).";<br>";
+            if ($response) {
+                foreach ($response as $item) {
+                    $item['name'] = str_replace(['ğ', 'ü', 'ş', 'ı', 'ö', 'ç', 'Ğ', 'Ü', 'Ş', 'İ', 'Ö', 'Ç'], ['G', 'U', 'S', 'I', 'O', 'C', 'G', 'U', 'S', 'I', 'O', 'C'], $item['name']);
+                    $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''], $item['name']);
+                    echo "const " . strtoupper($item['name']) . " = " . current($item) . ";<br>";
                 }
-                foreach($response as $item){
+                foreach ($response as $item) {
                     $name = $item['name'];
-                    $item['name'] = str_replace(['ğ','ü','ş','ı','ö','ç','Ğ','Ü','Ş','İ','Ö','Ç'],['G','U','S','I','O','C','G','U','S','I','O','C'], $item['name']);
-                    $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''],  $item['name'] );
-                    echo "self::".strtoupper($item['name'])."=>'".$name."',<br>";
+                    $item['name'] = str_replace(['ğ', 'ü', 'ş', 'ı', 'ö', 'ç', 'Ğ', 'Ü', 'Ş', 'İ', 'Ö', 'Ç'], ['G', 'U', 'S', 'I', 'O', 'C', 'G', 'U', 'S', 'I', 'O', 'C'], $item['name']);
+                    $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''], $item['name']);
+                    echo "self::" . strtoupper($item['name']) . "=>'" . $name . "',<br>";
                 }
             }
         }
-        die();
     }
 }

@@ -2,10 +2,6 @@
 
 @section('title', 'Birim Ekle')
 
-@section('vendor-style')
-    {{-- Vendor Css files --}}
-@endsection
-
 @section('page-style')
     {{-- Page Css files --}}
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">

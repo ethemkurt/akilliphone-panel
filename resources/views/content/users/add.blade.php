@@ -2,11 +2,6 @@
 
 @section('title', 'Adres Ekle')
 
-@section('vendor-style')
-  {{-- Vendor Css files --}}
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
-@endsection
 
 @section('page-style')
   {{-- Page Css files --}}

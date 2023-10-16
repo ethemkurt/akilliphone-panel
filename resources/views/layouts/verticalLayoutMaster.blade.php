@@ -63,7 +63,7 @@ data-asset-path="{{ asset('/')}}">
   {{-- include default scripts --}}
   @include('panels/scripts')
   @include('webservice-js')
-
+  <script src="{{ url('js/akilliphone.js') }}?_v={{ time() }}"></script>
   <script type="text/javascript">
     $(window).on('load', function() {
       if (feather) {

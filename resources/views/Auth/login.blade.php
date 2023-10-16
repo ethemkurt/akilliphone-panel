@@ -6,11 +6,6 @@
 
 @section('title', 'Login Basic - Pages')
 
-@section('vendor-style')
-    <!-- Vendor -->
-    <link rel="stylesheet" href="{{asset('assets/vendor/libs/@form-validation/umd/styles/index.min.css')}}" />
-@endsection
-
 @section('page-style')
     <!-- Page -->
     <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">

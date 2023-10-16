@@ -1,31 +1,31 @@
 
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Yeni Sipariş')
+@section('title', 'Sipariş Listesi')
 
 @section('page-style')
 {{-- Page Css files --}}
 <link rel="stylesheet" type="text/css" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
 @endsection
 
-
-
 @section('content')
-
     <!-- Advanced Search -->
 <section id="advanced-search-datatable">
     <div class="row">
       <div class="col-12">
         <div class="card">
-            <div class="col-md-4 user_role">
-                <select name="userRole" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
-                    <option value="">Ödeme Türü</option>
-                    @foreach(Enum::list('PaymentType') as $key=>$val)
-                        <option value="{{ $key }}">{{ $val }}</option>
-                    @endforeach
-                </select>
-            </div>
-
+            <div class="card-header border-bottom"></div>
+          <div class="card-body mt-2">
+            <form class="dt_adv_search" method="POST">
+              <div class="row g-1 mb-md-1">
+                <div class="col-md-4">
+                    <x-button-popup-form :title="'Sipariş Durumu'" :text="'Yeni Sipariş Durumu'" :url="route('popup', 'OrderStatus')" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <hr class="my-0" />
+            <x-data-table :dataTable="$dataTable"/>
         </div>
       </div>
     </div>

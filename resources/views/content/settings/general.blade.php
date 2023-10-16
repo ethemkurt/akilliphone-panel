@@ -2,11 +2,6 @@
 
 @section('title', 'Genel Ayarlar')
 
-@section('vendor-style')
-  {{-- Vendor Css files --}}
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
-@endsection
-
 @section('page-style')
   {{-- Page Css files --}}
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
