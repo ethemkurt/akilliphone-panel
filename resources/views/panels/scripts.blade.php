@@ -16,7 +16,7 @@
 <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.html5.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.print.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
-cript src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/forms/cleave/cleave.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/forms/cleave/addons/cleave-phone.us.js')) }}"></script>
 <!-- END: Page Vendor JS-->

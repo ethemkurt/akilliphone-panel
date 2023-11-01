@@ -98,9 +98,11 @@ class Product extends Controller
         $dataTable->setCols([
             'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
             'code'=>['title'=>'Kodu', 'className'=>'', 'orderable'=>''],
-            'name'=>['title'=>'Ad', 'className'=>'', 'orderable'=>''],
-            'status'=>['title'=>'Durum', 'className'=>'', 'orderable'=>''],
+            'name'=>['title'=>'Ürün Adı', 'className'=>'', 'orderable'=>''],
+            'category'=>['title'=>'Kategorisi', 'className'=>'', 'orderable'=>''],
+            'brand'=>['title'=>'Marka', 'className'=>'', 'orderable'=>''],
             'price'=>['title'=>'Fiyat', 'className'=>'', 'orderable'=>''],
+            'status'=>['title'=>'Durum', 'className'=>'', 'orderable'=>''],
             'action'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
         return $dataTable;

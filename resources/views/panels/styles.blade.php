@@ -52,3 +52,8 @@
   {{-- user custom styles --}}
   <link rel="stylesheet" href="{{ asset(mix('css/style.css')) }}" />
 @endif
+<style>
+    .main-menu.menu-light .navigation .navigation-header {
+        display: none.;
+    }
+</style>
