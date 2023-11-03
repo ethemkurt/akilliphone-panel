@@ -29,3 +29,17 @@ function getProductImageUrl($url, $w=false, $h=false, $cdnx=false){
     return $result;
 
 }
+function _HumanDate($date = NULL, $format = 'd.m.Y') {
+    if ($date === NULL) $date = date('Y-m-d');
+    return date($format, strtotime($date));
+}
+function _FormatPrice($price, $currency='TL'){
+    $price = number_format(round($price, 2),2,',','.') ;
+    return $price.''.$currency;
+}
+function _Asset($file){
+    return url($file).'?_v='.time();
+}
+function _Image($file, $w='', $h=''){
+    return '<img src="'._Asset('images/'.$file).'" width="'.$w.'" height="'.$h.'" >';
+}

@@ -89,6 +89,14 @@ class Order extends Controller
         return view('Order.new', []);
 
     }
+    public function view(Request $request, $orderId){
+        $data['order'] = \WebService::order($orderId);
+        return view('Order.view', $data);
+    }
+    public function edit(Request $request, $orderId){
+        $data['order'] = \WebService::order($orderId);
+        return view('Order.edit', $data);
+    }
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();
         $offset = $request->input('length', 10);
@@ -117,24 +125,56 @@ class Order extends Controller
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
-    private function _format_orderStatusId($item){
+    private function _format_orderStatusId($item) {
         $options = '<option value="" selected disabled>Sipariş Durumu Seçiniz</option>';
         foreach(\Enum::list('orderStatus') as $orderStatusId=>$orderStatus){
             $selected = $orderStatusId == $item['orderStatusId']?'selected':'';
-            $options .= '<option value="'.$orderStatusId.'" '.$selected.'>'.$orderStatus.$item['orderStatusId'].'</option>';
+            $options .= '<option value="'.$orderStatusId.'" '.$selected.'>'.$orderStatus.'</option>';
         }
         return '<div class="input-group mb-2">
-                                        <select class="form-select" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search1">'.$options.'</select><button class="input-group-text btn-primary" id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check me-25"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
-                                    </div>';
+                <select class="form-select" aria-describedby="basic-addon-search1">'.$options.'</select>
+                <button class="input-group-text btn-primary" id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check me-25"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+            </div>';
     }
     private function _format_orderTotal($item){
-        return $item['orderTotal'].' TL';
+        return  _FormatPrice($item['orderTotal']);
+    }
+    private function _format_shippingCompany($item){
+        return  _Image('kargo/'.$item['shippingCompany'].'.png', 18,18);
     }
     private function _format_firstName($item){
-        return $item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'];
+        return '<div class="d-flex justify-content-start align-items-center order-name text-nowrap"><div class="d-flex flex-column"><h6 class="m-0"><a href="pages-profile-user.html" class="text-body">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</a></h6><small class="text-muted">'.$item['orderCustomer']['email'].'</small></div></div>';
+    }
+    private function _format_createdAt($item){
+        return _HumanDate($item['createdAt']);
     }
     private function _format_paymentTypeId($item){
-        return '<span class="badge rounded-pill badge-light-'.\PaymentType::color($item['paymentTypeId']).'" text-capitalized="">'.\PaymentType::__($item['paymentTypeId']).'</span>';
+        return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\PaymentType::color($item['paymentTypeId']).'"><i class="ti ti-circle-filled fs-tiny me-2"></i>'.\PaymentType::__($item['paymentTypeId']).'</h6>';
+
+    }
+    private function _format_actions($item){
+        $editUrl = route('order.edit', $item['orderId']);
+        $viewUrl = route('order.view', $item['orderId']);
+        return '<div class="dropdown">
+                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0 waves-effect waves-float waves-light" data-bs-toggle="dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="'.$viewUrl.'">
+                            <i class="feather icon-file-text"></i>
+                            <span>Görüntüle</span>
+                        </a>
+                        <a class="dropdown-item" href="'.$editUrl.'">
+                            <i class="feather icon-edit"></i>
+                            <span>Düzenle</span>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="feather icon-trash-2"></i>
+                            <span>Delete</span>
+                        </a>
+                    </div>
+                </div>';
     }
     private function dataTableParams(){
         $dataTable = new \AjaxDataTable();
@@ -143,13 +183,14 @@ class Order extends Controller
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'firstName'=>['title'=>'Ad', 'className'=>'', 'orderable'=>''],
             'orderNumber'=>['title'=>'Sipariş No', 'className'=>'', 'orderable'=>''],
+            'createdAt'=>['title'=>'Tarih', 'className'=>'', 'orderable'=>''],
+            'firstName'=>['title'=>'Ad', 'className'=>'', 'orderable'=>''],
             'paymentTypeId'=>['title'=>'Ödeme Türü', 'className'=>'', 'orderable'=>''],
             'orderStatusId'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
             'shippingCompany'=>['title'=>'Kargo', 'className'=>'', 'orderable'=>''],
             'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
-            'orderStatusId'=>['title'=>'OrderStatus', 'className'=>'', 'orderable'=>''],
+            'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
         return $dataTable;
     }
