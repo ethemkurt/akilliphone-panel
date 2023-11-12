@@ -31,7 +31,7 @@ class OrderStatus extends \Enum{
         if(isset($items[$const])){
             return $items[$const];
         }
-        return 'info';
+        return 'success';
     }
     static function __($const){
         $items = [
@@ -175,6 +175,31 @@ class UserRole extends \Enum{
         }
         return '';
     }
+}
+class ShippingCompanies extends \Enum{
+    const ARAS='aras';
+    const MNG='mng';
+    static function colors($class=null){
+        return[
+            self::ARAS=>'success',
+            self::MNG=>'danger',
+        ];
+    }
+    static function color($const){
+        $items = self::colors();
+        if(isset($items[$const])){
+            return $items[$const];
+        }
+        return '';
+    }
+    static function __($const){
+        $items = [
+            self::ARAS=>'Aras Kargo',
+            self::MNG=>'MNG Kargo',
+        ];
+        return isset($items[$const])?$items[$const]:$const;
+    }
+
 }
 class ActivePassive extends \Enum{
     const ACTIVE=1;

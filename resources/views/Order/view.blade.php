@@ -21,8 +21,8 @@
             <p class="text-body">{{ _HumanDate($order['createdAt'], 'd.m.Y') }}</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-2">
-            <a class="btn btn-primary edit-order waves-effect" href="{{ route('order.edit', $order['orderId']) }}">Siparişi Düzenle</a>
-            <a class="btn btn-danger delete-order waves-effect" href="{{ route('order.delete', $order['orderId']) }}">Siparişi Sil</a>
+            <a class="btn btn-primary edit-order waves-effect" href="{{ route('order.edit', $order['orderId']) }}"><i class="fa fa-edit"></i> Siparişi Düzenle</a>
+            <button type="button" class="btn btn-danger  waves-effect waves-float waves-light btn-popup-form" data-bs-toggle="modal" data-bs-target="#poupForm" data-url="{{ route('popup', 'deleteOrder') }}?orderId={{ $order['orderId'] }}"><i class="fa fa-trash"></i> Sipariş Sil</button>
         </div>
     </div>
     <div class="row">
@@ -30,7 +30,6 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title m-0">Sipariş Detayı</h5>
-                    <h6 class="m-0"><a href=" javascript:void(0)">Düzenle</a></h6>
                 </div>
                 <div class="card-datatable table-responsive">
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -102,7 +101,6 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title m-0">Sipariş Geçmişi</h5>
-                    <h6 class="m-0"><a href=" javascript:void(0)">Düzenle</a></h6>
                 </div>
 
                 <div class="card-body">
@@ -154,7 +152,6 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title m-0">Müşteri Bilgileri</h5>
-                    <h6 class="m-0"><a href=" javascript:void(0)">Düzenle</a></h6>
                 </div>
                 <div class="card-body">
                     <p class=" mb-1">#{{ $order['orderCustomer']['orderCustomerId'] }}</p>
@@ -166,7 +163,6 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title m-0">Teslimat Bilgileri</h5>
-                    <h6 class="m-0"><a href=" javascript:void(0)">Düzenle</a></h6>
                 </div>
                 <div class="card-body">
                     <p class=" mb-1">{{ $order['shippingAddress']['firstName'] }} {{ $order['shippingAddress']['lastName'] }}</p>
@@ -179,7 +175,6 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title m-0">Fatura Bilgileri</h5>
-                    <h6 class="m-0"><a href=" javascript:void(0)">Düzenle</a></h6>
                 </div>
                 <div class="card-body">
                     <p class=" mb-1">{{ $order['billingAddress']['firstName'] }} {{ $order['billingAddress']['lastName'] }}</p>

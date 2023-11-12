@@ -1,0 +1,1552 @@
+{
+    "status": 1,
+    "data": {
+        "items": {
+            "207": {
+                "categoryId": null,
+                "code": 207,
+                "slug": "aksesuarlar-207",
+                "name": "Aksesuarlar",
+                "image": "img\/2022-02\/24\/brandlogo1645711203-1.png",
+                "description": null,
+                "seoTitle": "Cep Telefonu Aksesuarları   | Akilliphone.com",
+                "seoDescription": "Tüm cep telefonu modellerine uyumlu kapak, kılıf , aksesuarlar en uygun fiyatlarla Akilliphone.com da!",
+                "childs": {
+                    "280": {
+                        "categoryId": null,
+                        "code": 280,
+                        "slug": "arac-aksesuarlari-280",
+                        "name": "Araç Aksesuarları",
+                        "image": "img\/2022-03\/28\/brandlogo1648476254-1.png",
+                        "description": null,
+                        "seoTitle": "Araç aksesuarları Oto Aksesuar",
+                        "seoDescription": "Telefon tutucu araba cep telefonu ve tablet tüm  aksesuar modellerini, cazip fiyatlar çeşitli markalar.",
+                        "childs": {
+                            "213": {
+                                "categoryId": null,
+                                "code": 213,
+                                "slug": "arac-ici-telefon-tutucu-213",
+                                "name": "Araç İçi Telefon Tutucu",
+                                "image": "img\/2017-11\/16\/brandlogo1510826923-1.png",
+                                "description": null,
+                                "seoTitle": "Araç Araç İçi Telefon Tutucu",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "349": {
+                                "categoryId": null,
+                                "code": 349,
+                                "slug": "bluetooth-arac-kiti-349",
+                                "name": "Bluetooth Araç Kiti",
+                                "image": "img\/2023-06\/07\/brandlogo1686122675-1.png",
+                                "description": null,
+                                "seoTitle": "Bluetooth Araç Kiti",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "352": {
+                                "categoryId": null,
+                                "code": 352,
+                                "slug": "bisiklet-motosiklet-aksesuarlari-352",
+                                "name": "Bisiklet & Motosiklet Aksesuarları",
+                                "image": "img\/2023-06\/07\/brandlogo1686122280-1.png",
+                                "description": null,
+                                "seoTitle": "Bisiklet & Motosiklet Aksesuarları",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "350": {
+                                "categoryId": null,
+                                "code": 350,
+                                "slug": "torpido-aksesuarlari-350",
+                                "name": "Torpido Aksesuarları",
+                                "image": "img\/2023-06\/07\/brandlogo1686123706-1.png",
+                                "description": null,
+                                "seoTitle": "Torpido Aksesuarları",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "353": {
+                                "categoryId": null,
+                                "code": 353,
+                                "slug": "oto-bakim-temizlik-353",
+                                "name": "Oto Bakım & Temizlik",
+                                "image": "img\/2023-06\/07\/brandlogo1686122957-1.png",
+                                "description": null,
+                                "seoTitle": "Oto Bakım & Temizlik",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "359": {
+                                "categoryId": null,
+                                "code": 359,
+                                "slug": "oto-guneslik-perde-359",
+                                "name": "Oto Güneşlik & Perde",
+                                "image": "img\/2023-06\/07\/brandlogo1686123181-1.png",
+                                "description": null,
+                                "seoTitle": "Oto Güneşlik & Perde",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "361": {
+                                "categoryId": null,
+                                "code": 361,
+                                "slug": "lastik-bakim-urunleri-361",
+                                "name": "Lastik Bakım Ürünleri",
+                                "image": "img\/2023-06\/07\/brandlogo1686122890-1.png",
+                                "description": null,
+                                "seoTitle": "Lastik Bakım Ürünleri",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "362": {
+                                "categoryId": null,
+                                "code": 362,
+                                "slug": "kapi-aksesuarlari-362",
+                                "name": "Kapı Aksesuarları",
+                                "image": "img\/2023-06\/07\/brandlogo1686122820-1.png",
+                                "description": null,
+                                "seoTitle": "Kapı Aksesuarları",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "363": {
+                                "categoryId": null,
+                                "code": 363,
+                                "slug": "ayna-aksesuarlari-363",
+                                "name": "Ayna Aksesuarları",
+                                "image": "img\/2023-06\/07\/brandlogo1686122130-1.png",
+                                "description": null,
+                                "seoTitle": "Ayna Aksesuarları",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "367": {
+                                "categoryId": null,
+                                "code": 367,
+                                "slug": "scooter-aksesuar-yedek-parca-367",
+                                "name": "Scooter Aksesuar & Yedek Parça",
+                                "image": "img\/2023-06\/07\/brandlogo1686123253-1.png",
+                                "description": null,
+                                "seoTitle": "Scooter Aksesuar & Yedek Parça",
+                                "seoDescription": "",
+                                "childs": []
+                            }
+                        }
+                    },
+                    "156": {
+                        "categoryId": null,
+                        "code": 156,
+                        "slug": "telefon-kiliflari-156",
+                        "name": "Telefon Kılıfları",
+                        "image": "img\/2017-11\/16\/brandlogo1510826708-1.png",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu  Cüzdan, Silikon, Kapaklı, Taşlı, Bay ve Bayanlara özel Kılıflar",
+                        "seoDescription": "Cep Telefonu Kılıfları, Samsung, iphone, Sony, Htc ,lg marka modellerine silikon kılıf,  kapaklı veya deri . cüzdan, Plastik kılıflar,  Akilliphone.com da",
+                        "childs": {
+                            "240": {
+                                "categoryId": null,
+                                "code": 240,
+                                "slug": "silikon-kiliflar-240",
+                                "name": "Silikon Kılıflar",
+                                "image": "img\/2023-06\/07\/brandlogo1686126475-1.jpg",
+                                "description": null,
+                                "seoTitle": "Silikon  Plastik Telefon Kılıfları",
+                                "seoDescription": "Sizler için ekonomik fiyatlarda sunduğu silikon kılıf,  plastik kılıf alternatiflerini değerlendirmelisiniz.",
+                                "childs": []
+                            },
+                            "232": {
+                                "categoryId": null,
+                                "code": 232,
+                                "slug": "universal-telefon-kiliflari-232",
+                                "name": "Universal Telefon Kılıfları",
+                                "image": "img\/2017-11\/16\/brandlogo1510826944-1.png",
+                                "description": null,
+                                "seoTitle": "Universal aksesuarlar",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "269": {
+                                "categoryId": null,
+                                "code": 269,
+                                "slug": "sticker-kaplamalar-269",
+                                "name": "Sticker Kaplamalar",
+                                "image": "img\/2017-11\/16\/brandlogo1510826714-1.png",
+                                "description": null,
+                                "seoTitle": "Cep Telefone Sticker Kaplama  (Çıkartma)",
+                                "seoDescription": "Cep Telefonu Sticker ve diğer cep telefonu aksesuarları. Stoktan Teslim Kapıda ödeme.",
+                                "childs": []
+                            }
+                        }
+                    },
+                    "221": {
+                        "categoryId": null,
+                        "code": 221,
+                        "slug": "tablet-kiliflari-221",
+                        "name": "Tablet Kılıfları",
+                        "image": "img\/2017-11\/16\/brandlogo1510826934-1.png",
+                        "description": null,
+                        "seoTitle": "Tablet Kılıfları",
+                        "seoDescription": "",
+                        "childs": {
+                            "326": {
+                                "categoryId": null,
+                                "code": 326,
+                                "slug": "kapakli-tablet-kiliflari-326",
+                                "name": "Kapaklı Tablet Kılıfları",
+                                "image": "img\/2023-06\/07\/brandlogo1686126001-1.jpg",
+                                "description": null,
+                                "seoTitle": "Kapaklı Tablet Kılıfları",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "370": {
+                                "categoryId": null,
+                                "code": 370,
+                                "slug": "zirhli-tablet-kiliflari-370",
+                                "name": "Zırhlı Tablet Kılıfları",
+                                "image": "img\/2023-06\/07\/brandlogo1686126126-1.jpg",
+                                "description": null,
+                                "seoTitle": "Zırhlı Tablet Kılıfları",
+                                "seoDescription": "Zırhlı Tablet Kılıfları",
+                                "childs": []
+                            },
+                            "371": {
+                                "categoryId": null,
+                                "code": 371,
+                                "slug": "silikon-tablet-kiliflari-371",
+                                "name": "Silikon Tablet Kılıfları",
+                                "image": "img\/2023-06\/07\/brandlogo1686126048-1.jpg",
+                                "description": null,
+                                "seoTitle": "Silikon Tablet Kılıfları",
+                                "seoDescription": "Silikon Tablet Kılıfları",
+                                "childs": []
+                            }
+                        }
+                    },
+                    "132": {
+                        "categoryId": null,
+                        "code": 132,
+                        "slug": "ekran-koruyucular-132",
+                        "name": "Ekran Koruyucular",
+                        "image": "img\/2017-11\/16\/brandlogo1510826698-1.png",
+                        "description": null,
+                        "seoTitle": "Cep telefonu  Ekran Koruyucu, Darbe dayanıklı Kırılmaz çizilmez",
+                        "seoDescription": "Cep telefonu ve tabletlerinize , orjinal kırılmaz cam, darbe dayanıklı,  bir çok marka Ekran Koruyucu Filmler ile koruyun. Ayrıca toz  ve çizilmelere  engel olun, güvenle kullanın.",
+                        "childs": {
+                            "246": {
+                                "categoryId": null,
+                                "code": 246,
+                                "slug": "kirilmaz-cam-koruyucular-246",
+                                "name": "Kırılmaz Cam  Koruyucular",
+                                "image": "img\/2023-06\/07\/brandlogo1686124959-1.jpg",
+                                "description": null,
+                                "seoTitle": "Kırılmaz Cam  Koruyucular",
+                                "seoDescription": "Kırılmaz Cam  Koruyucular",
+                                "childs": []
+                            },
+                            "247": {
+                                "categoryId": null,
+                                "code": 247,
+                                "slug": "darbe-emici-koruyucular-247",
+                                "name": "Darbe Emici Koruyucular",
+                                "image": "img\/2023-06\/07\/brandlogo1686124466-1.jpg",
+                                "description": null,
+                                "seoTitle": "Cep Telefonu Darbe Emici Koruyucular",
+                                "seoDescription": "Darbe Emici Koruyucular stoktan teslim kapıda ödeme.",
+                                "childs": []
+                            },
+                            "249": {
+                                "categoryId": null,
+                                "code": 249,
+                                "slug": "kirilmaz-arka-koruyucular-249",
+                                "name": "Kırılmaz Arka Koruyucular",
+                                "image": "img\/2023-06\/07\/brandlogo1686124886-1.jpg",
+                                "description": null,
+                                "seoTitle": "Arka Kırılmaz  Koruyucular",
+                                "seoDescription": "Telefon arka ve ekran koruyucu, telefon jelatini,  en uygun fiyatlar kapıda ödeme Arka Kapak Cep telefonu ekran koruyucu full kaplama  ve daha fazla koruyucu",
+                                "childs": []
+                            },
+                            "276": {
+                                "categoryId": null,
+                                "code": 276,
+                                "slug": "kamera-lens-koruyucular-276",
+                                "name": "Kamera Lens Koruyucular",
+                                "image": "img\/2023-06\/07\/brandlogo1686124651-1.jpg",
+                                "description": null,
+                                "seoTitle": "Kamera ( Lens ) Cep Telefonu Ekran Koruyucu",
+                                "seoDescription": "Telefon kamera koruyucu, telefon lens  jelatini, şeffaf kaplama . Kamera Cep telefonu ekran koruyucu.",
+                                "childs": []
+                            },
+                            "372": {
+                                "categoryId": null,
+                                "code": 372,
+                                "slug": "tablet-ekran-koruyuculari-372",
+                                "name": "Tablet Ekran Koruyucuları",
+                                "image": "img\/2023-06\/07\/brandlogo1686125030-1.jpg",
+                                "description": null,
+                                "seoTitle": "Tablet Ekran Koruyucuları",
+                                "seoDescription": "Tablet Ekran Koruyucuları",
+                                "childs": []
+                            }
+                        }
+                    },
+                    "259": {
+                        "categoryId": null,
+                        "code": 259,
+                        "slug": "giyilebilir-aksesuarlar-259",
+                        "name": "Giyilebilir  Aksesuarlar",
+                        "image": "img\/2022-02\/24\/brandlogo1645711226-1.png",
+                        "description": null,
+                        "seoTitle": "Samsung Gear , Akıllı saat ,Watch apple  Teknoloji Aksesuarları ve malzemeleri akilliphone.com da",
+                        "seoDescription": "Akıllı saatler, bluetooth kulaklıklar, tablet kalemleri gibi giyilebilir aksesuarlar ve daha fazlasını akilliphone.com adresinden sipariş verebilir, güvenli ödeme sistemi ile cep telefonunuzun ihtiyacı olan aksesuarları kolaylıkla temin edebilirsiniz.",
+                        "childs": {
+                            "261": {
+                                "categoryId": null,
+                                "code": 261,
+                                "slug": "ekran-koruyucu-261",
+                                "name": "Ekran Koruyucu",
+                                "image": "img\/2017-11\/16\/brandlogo1510826979-1.png",
+                                "description": null,
+                                "seoTitle": "Ekran Koruyucu",
+                                "seoDescription": "Ekran Koruyucu",
+                                "childs": []
+                            },
+                            "260": {
+                                "categoryId": null,
+                                "code": 260,
+                                "slug": "kilif-kordon-kayis-260",
+                                "name": "Kılıf Kordon Kayış",
+                                "image": "img\/2017-11\/16\/brandlogo1510827053-1.png",
+                                "description": null,
+                                "seoTitle": "Kılıf Kordon Kayış",
+                                "seoDescription": "Kılıf Kordon Kayış",
+                                "childs": []
+                            },
+                            "266": {
+                                "categoryId": null,
+                                "code": 266,
+                                "slug": "akilli-saat-sarj-kablolari-266",
+                                "name": "Akıllı Saat Şarj kabloları",
+                                "image": "img\/2017-11\/16\/brandlogo1510827021-1.png",
+                                "description": null,
+                                "seoTitle": "Akıllı Saat Şarj kabloları",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "262": {
+                                "categoryId": null,
+                                "code": 262,
+                                "slug": "tamir-malzemeleri-262",
+                                "name": "Tamir Malzemeleri",
+                                "image": "img\/2017-11\/16\/brandlogo1510826987-1.png",
+                                "description": null,
+                                "seoTitle": "Tamir Malzemeleri",
+                                "seoDescription": "Tamir Malzemeleri",
+                                "childs": []
+                            },
+                            "282": {
+                                "categoryId": null,
+                                "code": 282,
+                                "slug": "akilli-saat-yedek-parcalari-282",
+                                "name": "Akıllı Saat Yedek Parçaları",
+                                "image": "img\/2023-06\/07\/brandlogo1686125233-1.jpg",
+                                "description": null,
+                                "seoTitle": "Akıllı saat yedek parçaları",
+                                "seoDescription": "Akıllı saat yedek parçaları",
+                                "childs": []
+                            },
+                            "295": {
+                                "categoryId": null,
+                                "code": 295,
+                                "slug": "airpods-aksesuarlari-295",
+                                "name": "AirPods Aksesuarları",
+                                "image": "img\/2023-06\/07\/brandlogo1686125086-1.jpg",
+                                "description": null,
+                                "seoTitle": "AirPods Aksesuarları",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "298": {
+                                "categoryId": null,
+                                "code": 298,
+                                "slug": "apple-pencil-kalem-aksesuarlari-298",
+                                "name": "Apple Pencil (Kalem) Aksesuarları",
+                                "image": "img\/2023-06\/07\/brandlogo1686125534-1.png",
+                                "description": null,
+                                "seoTitle": "Apple pencil Kalem Ürünleri",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "344": {
+                                "categoryId": null,
+                                "code": 344,
+                                "slug": "airtag-aksesuarlari-344",
+                                "name": "AirTag Aksesuarları",
+                                "image": "img\/2023-06\/07\/brandlogo1686125135-1.jpg",
+                                "description": null,
+                                "seoTitle": "AirTag Aksesuarları",
+                                "seoDescription": "{kategori-adi}",
+                                "childs": []
+                            }
+                        }
+                    },
+                    "305": {
+                        "categoryId": null,
+                        "code": 305,
+                        "slug": "selfie-ve-standlar-305",
+                        "name": "Selfie Ve Standlar",
+                        "image": "img\/2022-03\/28\/brandlogo1648477030-1.png",
+                        "description": null,
+                        "seoTitle": "Telefon Selfie Tripod  apart ve Cihazları",
+                        "seoDescription": "Selfie Çubuğu Bluetooth Wifi ve Tripod çeşitleri. Stoktan Teslim kapıda ödeme",
+                        "childs": {
+                            "212": {
+                                "categoryId": null,
+                                "code": 212,
+                                "slug": "telefon-standi-212",
+                                "name": "Telefon Standı",
+                                "image": "img\/2017-11\/16\/brandlogo1510826904-1.png",
+                                "description": null,
+                                "seoTitle": "Telefon Standı",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "373": {
+                                "categoryId": null,
+                                "code": 373,
+                                "slug": "tablet-standi-373",
+                                "name": "Tablet Standı",
+                                "image": "img\/2023-06\/07\/brandlogo1686125921-1.jpg",
+                                "description": null,
+                                "seoTitle": "Tablet Standı",
+                                "seoDescription": "Tablet Standı",
+                                "childs": []
+                            },
+                            "374": {
+                                "categoryId": null,
+                                "code": 374,
+                                "slug": "laptop-standi-374",
+                                "name": "Laptop Standı",
+                                "image": "img\/2023-06\/07\/brandlogo1686125654-1.png",
+                                "description": null,
+                                "seoTitle": "Laptop Standı",
+                                "seoDescription": "Laptop Standı",
+                                "childs": []
+                            },
+                            "375": {
+                                "categoryId": null,
+                                "code": 375,
+                                "slug": "sarj-standi-375",
+                                "name": "Şarj Standı",
+                                "image": "img\/2023-06\/07\/brandlogo1686125799-1.png",
+                                "description": null,
+                                "seoTitle": "Şarj Standı",
+                                "seoDescription": "Şarj Standı",
+                                "childs": []
+                            },
+                            "376": {
+                                "categoryId": null,
+                                "code": 376,
+                                "slug": "led-canli-yayin-isigi-376",
+                                "name": "LED Canlı Yayın Işığı",
+                                "image": "img\/2023-06\/07\/brandlogo1686125709-1.jpg",
+                                "description": null,
+                                "seoTitle": "LED Canlı Yayın Işığı",
+                                "seoDescription": "LED Canlı Yayın Işığı",
+                                "childs": []
+                            },
+                            "377": {
+                                "categoryId": null,
+                                "code": 377,
+                                "slug": "selfie-cubugu-377",
+                                "name": "Selfie Çubuğu",
+                                "image": "img\/2023-06\/07\/brandlogo1686125877-1.png",
+                                "description": null,
+                                "seoTitle": "Selfie Çubuğu",
+                                "seoDescription": "Selfie Çubuğu",
+                                "childs": []
+                            },
+                            "378": {
+                                "categoryId": null,
+                                "code": 378,
+                                "slug": "kulaklik-standi-378",
+                                "name": "Kulaklık Standı",
+                                "image": "img\/2023-06\/07\/brandlogo1686125588-1.png",
+                                "description": null,
+                                "seoTitle": "Kulaklık Standı",
+                                "seoDescription": "Kulaklık Standı",
+                                "childs": []
+                            }
+                        }
+                    },
+                    "321": {
+                        "categoryId": null,
+                        "code": 321,
+                        "slug": "oyun-aksesuarlari-321",
+                        "name": "Oyun Aksesuarları",
+                        "image": "img\/2022-03\/28\/brandlogo1648476427-1.png",
+                        "description": null,
+                        "seoTitle": "Oyun aksesuarları",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "307": {
+                        "categoryId": null,
+                        "code": 307,
+                        "slug": "stylus-kalemler-307",
+                        "name": "Stylus Kalemler",
+                        "image": "img\/2022-03\/28\/brandlogo1648476307-1.png",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Dokunmatik Ekran Kalemleri - Stylus Kalem",
+                        "seoDescription": "Cep Telefon Ekran kalemleri,  stylus kalem uygun fiyatları, kalem, stylus çeşitleri  kalem ve çeşitleri Akilliphone.com d",
+                        "childs": []
+                    }
+                }
+            },
+            "327": {
+                "categoryId": null,
+                "code": 327,
+                "slug": "ev-yasam-327",
+                "name": "Ev Yaşam",
+                "image": "img\/2022-03\/13\/brandlogo1647164534-1.png",
+                "description": null,
+                "seoTitle": "Ev Yaşam",
+                "seoDescription": "",
+                "childs": {
+                    "340": {
+                        "categoryId": null,
+                        "code": 340,
+                        "slug": "hava-nemlendiriciler-340",
+                        "name": "Hava Nemlendiriciler",
+                        "image": "img\/2023-06\/07\/brandlogo1686135204-1.jpg",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "379": {
+                        "categoryId": null,
+                        "code": 379,
+                        "slug": "kucuk-ev-aletleri-379",
+                        "name": "Küçük Ev Aletleri",
+                        "image": "img\/2022-03\/28\/brandlogo1648476902-1.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "338": {
+                        "categoryId": null,
+                        "code": 338,
+                        "slug": "supurge-ve-aksesuarlari-338",
+                        "name": "Süpürge ve Aksesuarları",
+                        "image": "img\/2022-03\/28\/brandlogo1648476820-1.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "342": {
+                        "categoryId": null,
+                        "code": 342,
+                        "slug": "aydinlatmalar-342",
+                        "name": "Aydınlatmalar",
+                        "image": "img\/2023-06\/22\/brandlogo1687418364-1.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "341": {
+                        "categoryId": null,
+                        "code": 341,
+                        "slug": "vantilatorler-341",
+                        "name": "Vantilatörler",
+                        "image": "img\/2022-03\/28\/brandlogo1648476853-1.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "343": {
+                        "categoryId": null,
+                        "code": 343,
+                        "slug": "kisisel-bakim-urunleri-343",
+                        "name": "Kişisel Bakım Ürünleri",
+                        "image": "img\/2023-06\/22\/brandlogo1687418463-1.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "381": {
+                        "categoryId": null,
+                        "code": 381,
+                        "slug": "banyo-ve-temizlik-urunleri-381",
+                        "name": "Banyo ve Temizlik Ürünleri",
+                        "image": "img\/2023-06\/07\/brandlogo1686135149-1.jpg",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "335": {
+                        "categoryId": null,
+                        "code": 335,
+                        "slug": "saglik-335",
+                        "name": "Sağlık",
+                        "image": "img\/2023-06\/22\/brandlogo1687418596-1.png",
+                        "description": null,
+                        "seoTitle": "Sağlık",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "383": {
+                        "categoryId": null,
+                        "code": 383,
+                        "slug": "giyim-383",
+                        "name": "Giyim",
+                        "image": "img\/2023-06\/07\/brandlogo1686135096-1.jpg",
+                        "description": null,
+                        "seoTitle": "Ayakkabılar",
+                        "seoDescription": "Ayakkabılar",
+                        "childs": []
+                    }
+                }
+            },
+            "179": {
+                "categoryId": null,
+                "code": 179,
+                "slug": "yedek-parcalar-179",
+                "name": "Yedek Parçalar",
+                "image": "img\/2022-02\/24\/brandlogo1645711121-1.png",
+                "description": null,
+                "seoTitle": "Cep Telefonu {kategori-adi} Stoktan Teslim Aynı Gün Kargo  | Akilliphone.com",
+                "seoDescription": "Cep telefonu yedek parçaları ve daha fazlası uygun fiyatlarla AkıllıPhone'da!",
+                "childs": {
+                    "127": {
+                        "categoryId": null,
+                        "code": 127,
+                        "slug": "dokunmatik-127",
+                        "name": "Dokunmatik",
+                        "image": "img\/2023-06\/07\/brandlogo1686139196-1.jpg",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu  Dokunmatik ve Ekranlar  | Akilliphone.com",
+                        "seoDescription": "Cep Telefonu Dokunmatikleri,  Akilliphone Online Cep Telefonu Yedek Parça Mağazası ile çeşitli ödeme seçenekleriyle en uygun ekran fiyatları.",
+                        "childs": []
+                    },
+                    "231": {
+                        "categoryId": null,
+                        "code": 231,
+                        "slug": "ekran-dokunmatik-231",
+                        "name": "Ekran Dokunmatik",
+                        "image": "img\/2023-06\/07\/brandlogo1686138402-1.jpg",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Ekran Dokunmatiklerler",
+                        "seoDescription": "Biribiriden farklı marklara ve modelere hitap eden  Cep Telefonu Ekran ve Lcd Dokunmatik Reyonumuzda  Stoktan Teslimat , Kapıda Ödeme, Aynı gün kargo ile hemen teslim.",
+                        "childs": []
+                    },
+                    "281": {
+                        "categoryId": null,
+                        "code": 281,
+                        "slug": "ekran-lcd-281",
+                        "name": "Ekran LCD",
+                        "image": "img\/2018-04\/02\/brandlogo1522682598-1.jpg",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Ekran LCD ler",
+                        "seoDescription": "Biribiriden farklı marklara ve modelere hitap eden Cep Telefonu Ekran ve Lcd Reyonumuzda Stoktan Teslimat , Kapıda Ödeme, Aynı gün kargo ile hemen teslim.",
+                        "childs": []
+                    },
+                    "96": {
+                        "categoryId": null,
+                        "code": 96,
+                        "slug": "bataryalar-96",
+                        "name": "Bataryalar",
+                        "image": "img\/2023-06\/07\/brandlogo1686138496-1.jpg",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Bataryaları , Bataryası , Pil, Yedek Batarya I Akilliphone.com",
+                        "seoDescription": "Cep Telefonu batarya modeli ve kaç  mAh değerinde  bataryalara ulaşabilirsiniz.  istediğiniz modele uygun batarya çeşitlerini görebilmek için web sitemizden faydalanabilirsiniz.",
+                        "childs": []
+                    },
+                    "319": {
+                        "categoryId": null,
+                        "code": 319,
+                        "slug": "kamera-lensler-319",
+                        "name": "Kamera lensler",
+                        "image": "img\/2022-03\/28\/brandlogo1648476999-1.png",
+                        "description": null,
+                        "seoTitle": "Kamera lensler",
+                        "seoDescription": "Kamera lensler",
+                        "childs": []
+                    },
+                    "165": {
+                        "categoryId": null,
+                        "code": 165,
+                        "slug": "sarj-soket-165",
+                        "name": "Şarj Soket",
+                        "image": "img\/2017-11\/06\/brandlogo1509953807-1.png",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Şarj Soketi Yedek Parçası | Akilliphone.com",
+                        "seoDescription": "Şarj Soketi ve Yedek Parça  Online Mağaza Satışı Aynı gün kargo, en indirimli fiyatlar.Stoktan teslimat.",
+                        "childs": []
+                    },
+                    "136": {
+                        "categoryId": null,
+                        "code": 136,
+                        "slug": "film-flex-136",
+                        "name": "Film Flex",
+                        "image": "img\/2017-11\/06\/brandlogo1509953955-4.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi} Cep Telefonu Yedek Parçası | Akilliphone.com",
+                        "seoDescription": "Film Flex Cep Telefonu Yedek Parçası aradığınız telefon parçaları,  en uygun ödeme seçenekleri stoktan teslim ürünler.",
+                        "childs": []
+                    },
+                    "147": {
+                        "categoryId": null,
+                        "code": 147,
+                        "slug": "ic-kulaklik-speaker-147",
+                        "name": "İç Kulaklık - Speaker",
+                        "image": "img\/2017-11\/06\/brandlogo1509954324-1.png",
+                        "description": null,
+                        "seoTitle": "İç Kulaklık\/Speaker",
+                        "seoDescription": "İç kulaklık \/Speaker  telefonla konuşunca karşımızada kinin ahizden kulağımız ses vermeye yarayan parça.",
+                        "childs": []
+                    },
+                    "141": {
+                        "categoryId": null,
+                        "code": 141,
+                        "slug": "hoparlor-buzzer-anten-141",
+                        "name": "Hoparlör Buzzer Anten",
+                        "image": "img\/2017-11\/06\/brandlogo1509954520-1.png",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Yedek Parçaları Hoparlor, Buzzer, Anten,  | Akilliphone.com",
+                        "seoDescription": "Her marka cep telefonu modellerinin yedek parçalarını Teknik Servis Malzemeleri bulabileceğiniz internet mağazası",
+                        "childs": []
+                    },
+                    "150": {
+                        "categoryId": null,
+                        "code": 150,
+                        "slug": "joystick-touchpad-150",
+                        "name": "Joystick - TouchPad",
+                        "image": "img\/2017-11\/06\/brandlogo1509954952-1.png",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Yedek Parçaları  Joystic ve Touch  Pad | Akilliphone.com",
+                        "seoDescription": "Cep Telefonu Yedek Parçaları  Joystic ve Touch  Pad Teknik malzeme mağazası. Aynı gün kargo, en indirimli fiyatlar.",
+                        "childs": []
+                    },
+                    "159": {
+                        "categoryId": null,
+                        "code": 159,
+                        "slug": "on-off-ses-flim-switch-159",
+                        "name": "On off ses Flim Switch",
+                        "image": "img\/2017-11\/06\/brandlogo1509955274-1.png",
+                        "description": null,
+                        "seoTitle": "On off Ses Switch",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "163": {
+                        "categoryId": null,
+                        "code": 163,
+                        "slug": "sim-hafiza-kart-okuyucular-163",
+                        "name": "Sim & Hafiza Kart okuyucular",
+                        "image": "img\/2017-11\/06\/brandlogo1509955628-1.png",
+                        "description": null,
+                        "seoTitle": "Sim&Hafiza Kart okuyucular",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "152": {
+                        "categoryId": null,
+                        "code": 152,
+                        "slug": "kameralar-152",
+                        "name": "Kameralar",
+                        "image": "img\/2017-11\/06\/brandlogo1509955936-1.png",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Ön Kamera ve Cep Telefonu Arka Kamera | Akilliphone.com",
+                        "seoDescription": "Cep telefonu kamera yedek parçaları Aynı gün kargo, en indirimli fiyatlar. Stoktan teslim",
+                        "childs": []
+                    },
+                    "220": {
+                        "categoryId": null,
+                        "code": 220,
+                        "slug": "sim-kart-kapagi-220",
+                        "name": "Sim Kart Kapağı",
+                        "image": "img\/2023-06\/07\/brandlogo1686135964-1.jpg",
+                        "description": null,
+                        "seoTitle": "Sim Kart Kapağı",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "211": {
+                        "categoryId": null,
+                        "code": 211,
+                        "slug": "titresim-motoru-211",
+                        "name": "Titreşim Motoru",
+                        "image": "img\/2017-11\/06\/brandlogo1509956637-1.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi} - Cep Telefonu Yedek Parçaları",
+                        "seoDescription": "Her marka modele uygun cep telefonunun titremesine yarayan Titreşim motorları, Stoktan Teslimat. Kapıda Ödeme Seçenekleri",
+                        "childs": []
+                    },
+                    "170": {
+                        "categoryId": null,
+                        "code": 170,
+                        "slug": "tus-bordlari-170",
+                        "name": "Tuş Bordları",
+                        "image": "img\/2017-11\/06\/brandlogo1509956997-1.png",
+                        "description": null,
+                        "seoTitle": "Tuş Bordları",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "172": {
+                        "categoryId": null,
+                        "code": 172,
+                        "slug": "tus-keypad-172",
+                        "name": "Tuş Keypad",
+                        "image": "img\/2017-11\/06\/brandlogo1509957627-1.png",
+                        "description": null,
+                        "seoTitle": "Tuş takımı {kategori-adi} Cep Telefonu Yedekparçaları | Akilliphone.com",
+                        "seoDescription": "Cep Telefonu Tuşları ve Tuş Takımları Keypad, Online Cep Telefonu Yedek parça satışı Aynı gün kargo, en indirimli fiyatlar, Stoktan Teslimat.",
+                        "childs": []
+                    },
+                    "185": {
+                        "categoryId": null,
+                        "code": 185,
+                        "slug": "kalem-stylus-185",
+                        "name": "Kalem - Stylus",
+                        "image": "img\/2023-06\/07\/brandlogo1686135880-1.jpg",
+                        "description": null,
+                        "seoTitle": "Kalem- Stlylus",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "239": {
+                        "categoryId": null,
+                        "code": 239,
+                        "slug": "mikrofonlar-239",
+                        "name": "Mikrofonlar",
+                        "image": "img\/2017-11\/06\/brandlogo1509958013-1.png",
+                        "description": null,
+                        "seoTitle": "Mikrofonlar",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "164": {
+                        "categoryId": null,
+                        "code": 164,
+                        "slug": "sarj-kulaklik-soketi-164",
+                        "name": "Şarj Kulaklık Soketi",
+                        "image": "img\/2017-11\/06\/brandlogo1509958341-1.png",
+                        "description": null,
+                        "seoTitle": "Şarj Kulaklık Soketi",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "258": {
+                        "categoryId": null,
+                        "code": 258,
+                        "slug": "konnektorler-258",
+                        "name": "Konnektörler",
+                        "image": "img\/2017-11\/06\/brandlogo1509958894-1.jpg",
+                        "description": null,
+                        "seoTitle": "Batarya Konnektörleri",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "265": {
+                        "categoryId": null,
+                        "code": 265,
+                        "slug": "ic-entegreler-265",
+                        "name": "İç Entegreler",
+                        "image": "img\/2017-11\/06\/brandlogo1509959333-1.png",
+                        "description": null,
+                        "seoTitle": "İC-ENTEGRELER",
+                        "seoDescription": "İC-ENTEGRELER",
+                        "childs": []
+                    },
+                    "180": {
+                        "categoryId": null,
+                        "code": 180,
+                        "slug": "kasa-kapak-180",
+                        "name": "Kasa - Kapak",
+                        "image": "img\/2023-06\/07\/brandlogo1686135504-1.jpg",
+                        "description": null,
+                        "seoTitle": "Telefon Kapakları  & Kasaları, Kasası -  iphone, samsung ,Akilliphone.com da",
+                        "seoDescription": "Cep telefonu markaları xperia, galaxy, samsung, iphone, lg, htc, sony telefon  kasaları ve  cep telefonu kılıfları uygun fiyatlar Akilliphone.com;da.",
+                        "childs": {
+                            "294": {
+                                "categoryId": null,
+                                "code": 294,
+                                "slug": "orta-kasa-294",
+                                "name": "Orta Kasa",
+                                "image": "",
+                                "description": null,
+                                "seoTitle": "Orta Kasa",
+                                "seoDescription": "",
+                                "childs": []
+                            },
+                            "241": {
+                                "categoryId": null,
+                                "code": 241,
+                                "slug": "arka-kapak-241",
+                                "name": "Arka Kapak",
+                                "image": "",
+                                "description": null,
+                                "seoTitle": "Telefon  Arka Kapak ve Pil Kapakları",
+                                "seoDescription": "cep telefonu kapakları web sitemizde satışa sunduğumuz tüm ürünlerin fotoğrafı, kalitesi, renk alternatifleri ve fiyat aralıkları bulunmaktadır.  renkive fiyat aralığını belirleyip sipariş verebilirsiniz",
+                                "childs": []
+                            }
+                        }
+                    }
+                }
+            },
+            "203": {
+                "categoryId": null,
+                "code": 203,
+                "slug": "sarj-aletleri-203",
+                "name": "Şarj Aletleri",
+                "image": "img\/2022-02\/24\/brandlogo1645711130-1.png",
+                "description": null,
+                "seoTitle": "Cep Telefonu Sarj Aleti ve şarj Cihazları  | Akilliphone.com",
+                "seoDescription": "Tüm cep telefonu ve tablet modelleri için şarj aletleri en uygun fiyatlarla akilliphone.com'da!",
+                "childs": {
+                    "208": {
+                        "categoryId": null,
+                        "code": 208,
+                        "slug": "iphone-lightning-sarj-aleti-208",
+                        "name": "iPhone Lightning Şarj Aleti",
+                        "image": "img\/2023-06\/12\/brandlogo1686602588-1.jpg",
+                        "description": null,
+                        "seoTitle": "Şarj Başlıkları",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "158": {
+                        "categoryId": null,
+                        "code": 158,
+                        "slug": "mikro-usb-sarj-aleti-158",
+                        "name": "Mikro USB Şarj Aleti",
+                        "image": "img\/2023-06\/07\/brandlogo1686136139-1.png",
+                        "description": null,
+                        "seoTitle": "Mikro USB Şarj Aleti",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "251": {
+                        "categoryId": null,
+                        "code": 251,
+                        "slug": "universal-sarj-basliklari-251",
+                        "name": "Universal Şarj Başlıkları",
+                        "image": "img\/2017-11\/06\/brandlogo1509963251-1.png",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Şarj Başlıkları",
+                        "seoDescription": "En kaliteli şarj başlıkları  cep telefonu modellerine uygun orjinal  ürünler cazip fiyat ve renk seçenekleriyle Akilliphone.com da",
+                        "childs": []
+                    },
+                    "94": {
+                        "categoryId": null,
+                        "code": 94,
+                        "slug": "arac-basligi-sarj-aleti-94",
+                        "name": "Araç Başlığı Şarj Aleti",
+                        "image": "img\/2023-06\/12\/brandlogo1686602846-1.jpg",
+                        "description": null,
+                        "seoTitle": "Araç Başlığı Şarj Aleti",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "187": {
+                        "categoryId": null,
+                        "code": 187,
+                        "slug": "mini-usb-sarj-aleti-187",
+                        "name": "Mini USB Şarj Aleti",
+                        "image": "img\/2017-11\/06\/brandlogo1509964053-1.png",
+                        "description": null,
+                        "seoTitle": "Mini USB Şarj Aleti",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "254": {
+                        "categoryId": null,
+                        "code": 254,
+                        "slug": "powerbank-254",
+                        "name": "PowerBank",
+                        "image": "img\/2023-06\/12\/brandlogo1686602682-1.jpg",
+                        "description": null,
+                        "seoTitle": "Powerbank Akilli Mobil Şarj Aleti",
+                        "seoDescription": "Powerbank  Yedek şarj cihazı  Powerbank Akilliphonede  satılır . Bol çeşit, perakende ve toptan  stoklu satış çeşitli ödeme seçenekleri, kapıda ödeme..",
+                        "childs": []
+                    },
+                    "268": {
+                        "categoryId": null,
+                        "code": 268,
+                        "slug": "usb-type-c-sarj-aleti-268",
+                        "name": "USB Type C Şarj Aleti",
+                        "image": "img\/2023-06\/12\/brandlogo1686602800-1.jpg",
+                        "description": null,
+                        "seoTitle": "USB Type C Şarj Aleti",
+                        "seoDescription": "USB Type C Şarj Aleti",
+                        "childs": []
+                    },
+                    "270": {
+                        "categoryId": null,
+                        "code": 270,
+                        "slug": "kablosuz-sarj-aletleri-270",
+                        "name": "Kablosuz Şarj Aletleri",
+                        "image": "img\/2023-06\/12\/brandlogo1686602922-1.jpg",
+                        "description": null,
+                        "seoTitle": "Kablosuz Şarj Aletleri",
+                        "seoDescription": "Kablosuz Şarj Aletleri",
+                        "childs": []
+                    }
+                }
+            },
+            "209": {
+                "categoryId": null,
+                "code": 209,
+                "slug": "kablolar-ve-donusturuculer-209",
+                "name": "Kablolar ve Dönüştürücüler",
+                "image": "img\/2022-02\/24\/brandlogo1645711210-1.png",
+                "description": null,
+                "seoTitle": "Kablolar Ve Dönüştürücüler, Şarj  Data , Usb, Cep Telefonu Kabloları Dönüşüm apartları | Akilliphone.com",
+                "seoDescription": "Tüm cihazlarla uyumlu şarj kabloları ve dönüştürücüler AkıllıPhone'da sizleri bekliyor.",
+                "childs": {
+                    "219": {
+                        "categoryId": null,
+                        "code": 219,
+                        "slug": "mikro-usb-kablo-219",
+                        "name": "Mikro USB Kablo",
+                        "image": "img\/2023-06\/22\/brandlogo1687418762-1.png",
+                        "description": null,
+                        "seoTitle": "Mikro USB Kablo",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "237": {
+                        "categoryId": null,
+                        "code": 237,
+                        "slug": "iphone-lightning-usb-kablolar-237",
+                        "name": "iPhone Lightning Usb Kablolar",
+                        "image": "img\/2023-06\/12\/brandlogo1686603431-1.jpg",
+                        "description": null,
+                        "seoTitle": "Apple  Lightning  Usb Kablo",
+                        "seoDescription": "Bu USB 2.0 veya 3.0  kablosu, Lightning çıkışı olan iPhone, iPad veya iPod'unuzu  şarj etmek veya bilgisayarınızdan dosya aktarmak için",
+                        "childs": []
+                    },
+                    "255": {
+                        "categoryId": null,
+                        "code": 255,
+                        "slug": "usb-type-c-kablo-255",
+                        "name": "USB Type C Kablo",
+                        "image": "img\/2023-06\/12\/brandlogo1686603071-1.jpg",
+                        "description": null,
+                        "seoTitle": "USB Type C",
+                        "seoDescription": "USB Type C",
+                        "childs": []
+                    },
+                    "176": {
+                        "categoryId": null,
+                        "code": 176,
+                        "slug": "usb-kablo-3gs-4s-kadar-apple-176",
+                        "name": "Usb Kablo 3GS.4S Kadar(Apple)",
+                        "image": "img\/2017-11\/16\/brandlogo1510826770-1.png",
+                        "description": null,
+                        "seoTitle": "Usb Kablo 3GS.4S Kadar(Apple)",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "216": {
+                        "categoryId": null,
+                        "code": 216,
+                        "slug": "diger-usb-kablolar-216",
+                        "name": "Diğer Usb Kablolar",
+                        "image": "img\/2023-06\/07\/brandlogo1686136497-1.jpg",
+                        "description": null,
+                        "seoTitle": "Diğer Usb Kablolar",
+                        "seoDescription": "Diğer Usb Kablolar",
+                        "childs": []
+                    },
+                    "218": {
+                        "categoryId": null,
+                        "code": 218,
+                        "slug": "mini-usb-kablo-218",
+                        "name": "Mini USB Kablo",
+                        "image": "img\/2017-11\/16\/brandlogo1510826823-1.png",
+                        "description": null,
+                        "seoTitle": "Mini USB Kablo",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "193": {
+                        "categoryId": null,
+                        "code": 193,
+                        "slug": "tv-hdmi-kablo-193",
+                        "name": "Tv & HDMI Kablo",
+                        "image": "img\/2023-06\/07\/brandlogo1686136551-1.jpg",
+                        "description": null,
+                        "seoTitle": "Tv ve HDMI KABLO",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "292": {
+                        "categoryId": null,
+                        "code": 292,
+                        "slug": "usb-baglanti-kiti-kart-okuycular-292",
+                        "name": "Usb Bağlantı Kiti & Kart Okuycular",
+                        "image": "img\/2022-03\/28\/brandlogo1648476614-1.png",
+                        "description": null,
+                        "seoTitle": "Usb Bağlantı Kiti",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "288": {
+                        "categoryId": null,
+                        "code": 288,
+                        "slug": "mikro-donusturuculer-288",
+                        "name": "Mikro Dönüştürücüler",
+                        "image": "img\/2022-03\/28\/brandlogo1648476568-1.png",
+                        "description": null,
+                        "seoTitle": "Mikro Dönüştürücüler",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "289": {
+                        "categoryId": null,
+                        "code": 289,
+                        "slug": "otg-donusturuculer-289",
+                        "name": "OTG Dönüştürücüler",
+                        "image": "img\/2022-03\/28\/brandlogo1648476591-1.png",
+                        "description": null,
+                        "seoTitle": "OTG Dönüştürücüler",
+                        "seoDescription": "Otg Dönüştürücü  Usb Otg, Mikro Otg Dönüştürücüçeşitleri ,dönüştürücü markaları, renk seçenekleri, özellikleri ve en uygun fiyatlar",
+                        "childs": []
+                    },
+                    "293": {
+                        "categoryId": null,
+                        "code": 293,
+                        "slug": "iphone-donusturuculer-293",
+                        "name": "iPhone Dönüştürücüler",
+                        "image": "img\/2022-03\/28\/brandlogo1648476446-1.png",
+                        "description": null,
+                        "seoTitle": "Dönüştürücü Priz",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "318": {
+                        "categoryId": null,
+                        "code": 318,
+                        "slug": "type-c-donusturuculer-318",
+                        "name": "Type-C Dönüştürücüler",
+                        "image": "img\/2022-03\/28\/brandlogo1648476540-1.png",
+                        "description": null,
+                        "seoTitle": "Type-C dönüştürücüler",
+                        "seoDescription": "Type-C dönüştürücüler",
+                        "childs": []
+                    },
+                    "304": {
+                        "categoryId": null,
+                        "code": 304,
+                        "slug": "kablo-koruyucu-ve-tutucular-304",
+                        "name": "Kablo Koruyucu ve Tutucular",
+                        "image": "img\/2022-03\/28\/brandlogo1648476517-1.png",
+                        "description": null,
+                        "seoTitle": "Kablo Tutucular",
+                        "seoDescription": "",
+                        "childs": []
+                    }
+                }
+            },
+            "168": {
+                "categoryId": null,
+                "code": 168,
+                "slug": "tamir-malzemeleri-168",
+                "name": "Tamir Malzemeleri",
+                "image": "img\/2023-06\/07\/brandlogo1686139074-1.jpg",
+                "description": null,
+                "seoTitle": "Cep Telefonu Tamir Malzemleri | Akilliphone.com",
+                "seoDescription": "Cep telefonu tamir malzemeleri, tamir setleri ve daha fazlası AkıllıPhone'da!",
+                "childs": {
+                    "192": {
+                        "categoryId": null,
+                        "code": 192,
+                        "slug": "tamir-setleri-192",
+                        "name": "Tamir Setleri",
+                        "image": "img\/2017-11\/16\/brandlogo1510826593-1.png",
+                        "description": null,
+                        "seoTitle": "Cep Telefon Tamir Setleri",
+                        "seoDescription": "Cep Telefon Tamir Setleri, Tamir Malzemeleri , Çeşitli Tamir aparatları. Stoktan Teslim Akilliphone.com da",
+                        "childs": []
+                    },
+                    "190": {
+                        "categoryId": null,
+                        "code": 190,
+                        "slug": "tornavidalar-190",
+                        "name": "Tornavidalar",
+                        "image": "img\/2017-11\/16\/brandlogo1510826584-1.png",
+                        "description": null,
+                        "seoTitle": "Cep Telefonu Tornavidası, Tornavida Seteri, Vida Açma Aleti",
+                        "seoDescription": "Cep telefonu tornavida Seteri, Telefon Açma Tornavidası, Çeşitli Setler  Akilliphone.com",
+                        "childs": []
+                    },
+                    "234": {
+                        "categoryId": null,
+                        "code": 234,
+                        "slug": "samsung-tamir-malzemeleri-234",
+                        "name": "Samsung Tamir Malzemeleri",
+                        "image": "img\/2017-11\/16\/brandlogo1510826607-1.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "Samsung Tamir Malzemeleri. Kapıda ödeme, Stoktan Teslimat.",
+                        "childs": []
+                    },
+                    "235": {
+                        "categoryId": null,
+                        "code": 235,
+                        "slug": "iphone-tamir-malzemeleri-235",
+                        "name": "iPhone Tamir Malzemeleri",
+                        "image": "img\/2017-11\/16\/brandlogo1510826613-1.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "iPhone Tamir Malzemeleri. Kapıda Ödeme Stoktan Teslimat.",
+                        "childs": []
+                    },
+                    "317": {
+                        "categoryId": null,
+                        "code": 317,
+                        "slug": "tamir-hasirlari-317",
+                        "name": "Tamir Hasırları",
+                        "image": "img\/2022-03\/28\/brandlogo1648476054-1.png",
+                        "description": null,
+                        "seoTitle": "Tamir Hasırları",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "316": {
+                        "categoryId": null,
+                        "code": 316,
+                        "slug": "lehim-telleri-316",
+                        "name": "Lehim Telleri",
+                        "image": "img\/2023-06\/22\/brandlogo1687419008-1.png",
+                        "description": null,
+                        "seoTitle": "Lehim Teli",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "314": {
+                        "categoryId": null,
+                        "code": 314,
+                        "slug": "buyutecler-314",
+                        "name": "Büyüteçler",
+                        "image": "img\/2023-06\/22\/brandlogo1687418891-1.png",
+                        "description": null,
+                        "seoTitle": "Büyüteçler",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "315": {
+                        "categoryId": null,
+                        "code": 315,
+                        "slug": "aparatlar-315",
+                        "name": "Aparatlar",
+                        "image": "img\/2022-03\/28\/brandlogo1648476013-1.png",
+                        "description": null,
+                        "seoTitle": "Aparatlar",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "313": {
+                        "categoryId": null,
+                        "code": 313,
+                        "slug": "elektronik-cihazlar-313",
+                        "name": "Elektronik Cihazlar",
+                        "image": "img\/2023-06\/22\/brandlogo1687419202-1.png",
+                        "description": null,
+                        "seoTitle": "Elektronik Cihaz",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "312": {
+                        "categoryId": null,
+                        "code": 312,
+                        "slug": "cift-tarafli-yapistirici-bantlar-312",
+                        "name": "Çift Taraflı Yapıştırıcı Bantlar",
+                        "image": "img\/2022-03\/28\/brandlogo1648476161-1.png",
+                        "description": null,
+                        "seoTitle": "Çift Taraflı Yapıştırıcı Bantlar",
+                        "seoDescription": "Çift Taraflı Yapıştırıcı Bantlar",
+                        "childs": []
+                    },
+                    "311": {
+                        "categoryId": null,
+                        "code": 311,
+                        "slug": "tamir-bordlari-311",
+                        "name": "Tamir Bordları",
+                        "image": "img\/2022-03\/28\/brandlogo1648476136-1.png",
+                        "description": null,
+                        "seoTitle": "Tamir Bordları",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "310": {
+                        "categoryId": null,
+                        "code": 310,
+                        "slug": "penseler-310",
+                        "name": "Penseler",
+                        "image": "img\/2022-03\/28\/brandlogo1648476113-1.png",
+                        "description": null,
+                        "seoTitle": "Penseler",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "309": {
+                        "categoryId": null,
+                        "code": 309,
+                        "slug": "flux-sprey-yapistiricilar-309",
+                        "name": "Flux - Sprey - Yapıştırıcılar",
+                        "image": "img\/2023-06\/07\/brandlogo1686138995-1.jpg",
+                        "description": null,
+                        "seoTitle": "Yapıştırıcılar",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "308": {
+                        "categoryId": null,
+                        "code": 308,
+                        "slug": "cimbizlar-308",
+                        "name": "Cımbızlar",
+                        "image": "img\/2022-03\/28\/brandlogo1648476074-1.png",
+                        "description": null,
+                        "seoTitle": "Cımbızlar",
+                        "seoDescription": "",
+                        "childs": []
+                    }
+                }
+            },
+            "157": {
+                "categoryId": null,
+                "code": 157,
+                "slug": "ses-sistemleri-157",
+                "name": "Ses Sistemleri",
+                "image": "img\/2023-06\/16\/brandlogo1686906288-1.png",
+                "description": null,
+                "seoTitle": "Cep Telefonu {kategori-adi} , Bluetooth kulaklıklar, Kablosuz, | Akilliphone.com",
+                "seoDescription": "Ses Sistemleri\r\nGünümüzde akıllı cihazlar için en önemli parçalardan biri olan kulaklıklar, birbirinden farklı özelliklerle donatılmıştır.\r\nSes alışverişini sağlayan ve günümüzde artık telefon görüşmeleri için kullanıcıları oldukça memnun eden bu ürünlerin fiyatları da değişkenlik göstermektedir.\r\nYüzlerce kulaklık çeşidi arasından kişisel zevkinize ve ihtiyacınıza göre tercihler yapabilirsiniz.\r\n3.5mm kulaklıklarla geniş kullanım yelpazesiyle sınırsızca müzik dinlemenin keyfini çıkarabilir, speaker hoparlör ses bombalarıyla müzik keyfinizi katlayabilirsiniz.\r\nLightning, Usb Type-C arayüzlere sahip android ve ios cihazlarınız için yüzlerce farklı özelliklere sahip kulaklıklar için doğru adrestesiniz.\r\nMikrofonlar sayesinde mükemmel ses kayıtları yapabilirsiniz. Aux kabloları ile Aux girişe sahip araçlarınızda, hoparlörlerinizde ve tüm ses sistemlerinde kaliteli iletim sağlayabilirsiniz.\r\nBluetooth kablosuz kulaklığınızla özgürce müzik dinleyebilirsiniz.\r\nApple ve android sistemleriyle bluetooth özelliği olan tüm cihazlarla bluetooth kulaklıklar kullanılabilir.\r\nHızlı eşleştirme sayesinde kolayca kullanım imkanı sunan dayanıklı bluetooth kulaklıkları ve daha fazlasını akilliphone.com adresinden sipariş verebilir, güvenli ödeme sistemi ile cep telefonunuzun ihtiyacı olan tüm aksesuarları kolaylıkla temin edebilirsiniz. \r\n\r\nYüzlerce farklı çeşit cep telefonu kulakları, bluetooth kablosuz  kulaklıklar ve ses sistemleri için kabloları www.akilliphone.com üzerinden güvenle satın alabilirsiniz.",
+                "childs": {
+                    "186": {
+                        "categoryId": null,
+                        "code": 186,
+                        "slug": "3-5-mm-kulaklik-186",
+                        "name": "3.5 mm Kulaklık",
+                        "image": "img\/2023-06\/16\/brandlogo1686905846-1.jpg",
+                        "description": null,
+                        "seoTitle": "3.5 mm Kulaklık",
+                        "seoDescription": "Standart kulaklık girişi olan telefon, ses sistemi, laptop, masaüstü bilgisayar gibi tüm cihazlarla uyumlu 3,5mm kulaklıklar geniş bir kullanım alanına sahiptir. Günümüzde akıllı cihazlarda da en çok kullanılan ürünler arasında olan 3,5mm kulaklıklar yıllardır hala en çok tercih edilen kulaklık modelleri arasındadır. 3,5mm kulaklıklar ile kaliteli şekilde müzik dinleyebilir, film izleyebilir, video konferanslara katılabilir veya aramalar gerçekleştirebilirsiniz. Mikrofon özelliği bulunan 3,5mm kulaklıklar ile dilediğinizce vloglar çekebilirsiniz. Kablolu tasarımı sayesinde gecikme sorunu olmadan ve aynı zamanda frekans kaybı yaşamadan nitelikli ses deneyimi yaşayabilirsiniz. Baseus, Ally, Plextone, Usams, Kuulaa, Realme, Magic Sound, Hoco, BBGear kulaklıklar AkıllıPhone’da sizleri bekliyor.\r\n3.5mm kulaklıkları ve daha fazlasını akilliphone.com adresinden sipariş verebilir, güvenli ödeme sistemi ile cep telefonunuzun ihtiyacı olan tüm aksesuarları kolaylıkla temin edebilirsiniz.",
+                        "childs": []
+                    },
+                    "256": {
+                        "categoryId": null,
+                        "code": 256,
+                        "slug": "bluetooth-kulaklik-256",
+                        "name": "Bluetooth Kulaklık",
+                        "image": "img\/2023-06\/07\/brandlogo1686136600-1.jpg",
+                        "description": null,
+                        "seoTitle": "bluetooth kulaklık",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "257": {
+                        "categoryId": null,
+                        "code": 257,
+                        "slug": "speaker-hoparlor-ses-bombasi-257",
+                        "name": "Speaker Hoparlör Ses Bombası",
+                        "image": "img\/2023-06\/22\/brandlogo1687418155-1.png",
+                        "description": null,
+                        "seoTitle": "Speaker Hoparlör Ses Bombası",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "263": {
+                        "categoryId": null,
+                        "code": 263,
+                        "slug": "lightning-kulaklik-263",
+                        "name": "Lightning Kulaklık",
+                        "image": "img\/2017-11\/16\/brandlogo1510826558-1.png",
+                        "description": null,
+                        "seoTitle": "Lightning kulaklık",
+                        "seoDescription": "Lightning kulaklık",
+                        "childs": []
+                    },
+                    "267": {
+                        "categoryId": null,
+                        "code": 267,
+                        "slug": "usb-type-c-kulaklik-267",
+                        "name": "Usb Type C Kulaklık",
+                        "image": "img\/2023-06\/07\/brandlogo1686136864-1.jpg",
+                        "description": null,
+                        "seoTitle": "Usb Type C Kulaklık",
+                        "seoDescription": "TYPE-C KULAKLIKLAR \r\nType-C kulaklıklar son yıllarda OnePlus, Samsung Galaxy, Huawei, Oppo, Xiaomi gibi yeni nesil android cep telefonları ve dizüstü bilgisayarlar sayesinde oldukça yaygınlaştı ve tercih edilmeye başlandı. Güçlü iletim hızına sahip type-c kulaklıklar ile kaliteli şekilde müzik dinleyebilir, film izleyebilir, video konferanslara katılabilir veya aramalar gerçekleştirebilirsiniz. Günümüzde akıllı cihazlarda da en çok kullanılan ürünler arasında olan type-c kulaklıklar, en çok tercih edilen kulaklık modelleri arasındadır. Mikrofon özelliği bulunan type-c kulaklıklar ile dilediğinizce vloglar çekebilirsiniz. Kablolu tasarımı sayesinde gecikme sorunu olmadan ve aynı zamanda frekans kaybı yaşamadan nitelikli ses deneyimi yaşayabilirsiniz. Baseus, Ally, Plextone, Usams, Kuulaa, Realme, Magic Sound, Hoco, BBGear kulaklıklar AkıllıPhone’da sizleri bekliyor.\r\nType-c kulaklıkları ve daha fazlasını akilliphone.com adresinden sipariş verebilir, güvenli ödeme sistemi ile cep telefonunuzun ihtiyacı olan tüm aksesuarları kolaylıkla temin edebilirsiniz.",
+                        "childs": []
+                    },
+                    "278": {
+                        "categoryId": null,
+                        "code": 278,
+                        "slug": "mikrofon-278",
+                        "name": "Mikrofon",
+                        "image": "img\/2018-03\/21\/brandlogo1521617275-1.jpg",
+                        "description": null,
+                        "seoTitle": "Mikrofonlar",
+                        "seoDescription": "Mikrofonlar",
+                        "childs": []
+                    },
+                    "279": {
+                        "categoryId": null,
+                        "code": 279,
+                        "slug": "3-5mm-aux-kablo-279",
+                        "name": "3.5mm Aux Kablo",
+                        "image": "img\/2023-06\/16\/brandlogo1686905981-1.jpg",
+                        "description": null,
+                        "seoTitle": "3.5mm Aux Kabloları",
+                        "seoDescription": "3.5mm Aux Kabloları",
+                        "childs": []
+                    },
+                    "330": {
+                        "categoryId": null,
+                        "code": 330,
+                        "slug": "usb-type-c-aux-kablo-330",
+                        "name": "Usb type-c Aux Kablo",
+                        "image": "img\/2022-03\/28\/brandlogo1648475930-1.png",
+                        "description": null,
+                        "seoTitle": "Usb type-c Aux Kabloları",
+                        "seoDescription": "Usb type-c Aux Kabloları",
+                        "childs": []
+                    },
+                    "331": {
+                        "categoryId": null,
+                        "code": 331,
+                        "slug": "iphone-aux-kablolari-331",
+                        "name": "İphone Aux Kabloları",
+                        "image": "img\/2023-06\/16\/brandlogo1686906028-1.jpg",
+                        "description": null,
+                        "seoTitle": "İphone Aux Kabloları",
+                        "seoDescription": "İphone Aux Kabloları",
+                        "childs": []
+                    },
+                    "345": {
+                        "categoryId": null,
+                        "code": 345,
+                        "slug": "usb-kulaklik-345",
+                        "name": "USB Kulaklık",
+                        "image": "img\/2022-03\/28\/brandlogo1648475978-1.png",
+                        "description": null,
+                        "seoTitle": "",
+                        "seoDescription": "",
+                        "childs": []
+                    }
+                }
+            },
+            "217": {
+                "categoryId": null,
+                "code": 217,
+                "slug": "diger-urunler-217",
+                "name": "Diğer Ürünler",
+                "image": "img\/2023-06\/12\/brandlogo1686602556-1.jpg",
+                "description": null,
+                "seoTitle": "Universal Cep Telefonu Aksesuar ürünleri",
+                "seoDescription": "Ev yaşam ürünleri ve daha fazlasını akilliphone.com adresinden sipariş verebilir, güvenli ödeme sistemi ile cep telefonunuzun ihtiyacı olan aksesuarları kolaylıkla temin edebilirsiniz.",
+                "childs": {
+                    "323": {
+                        "categoryId": null,
+                        "code": 323,
+                        "slug": "bluetooth-klavye-323",
+                        "name": "Bluetooth Klavye",
+                        "image": "img\/2022-03\/28\/brandlogo1648476747-1.png",
+                        "description": null,
+                        "seoTitle": "Bluetooth Klavyeler",
+                        "seoDescription": "Bluetooth Klavyeler",
+                        "childs": []
+                    },
+                    "336": {
+                        "categoryId": null,
+                        "code": 336,
+                        "slug": "grafik-tabletler-336",
+                        "name": "Grafik Tabletler",
+                        "image": "img\/2023-06\/07\/brandlogo1686134383-1.jpg",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "337": {
+                        "categoryId": null,
+                        "code": 337,
+                        "slug": "kisisel-bakim-337",
+                        "name": "Kişisel Bakım",
+                        "image": "img\/2022-03\/28\/brandlogo1648476785-1.png",
+                        "description": null,
+                        "seoTitle": "{kategori-adi}",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "322": {
+                        "categoryId": null,
+                        "code": 322,
+                        "slug": "drone-aksesuarlari-322",
+                        "name": "Drone Aksesuarları",
+                        "image": "img\/2022-03\/28\/brandlogo1648476728-1.png",
+                        "description": null,
+                        "seoTitle": "Drone Aksesuarları",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "320": {
+                        "categoryId": null,
+                        "code": 320,
+                        "slug": "laptop-aksesuarlari-320",
+                        "name": "Laptop Aksesuarları",
+                        "image": "img\/2022-03\/28\/brandlogo1648476709-1.png",
+                        "description": null,
+                        "seoTitle": "Laptop Aksesuarları",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "306": {
+                        "categoryId": null,
+                        "code": 306,
+                        "slug": "hafiza-kartlari-306",
+                        "name": "Hafıza Kartları",
+                        "image": "img\/2022-03\/28\/brandlogo1648476689-1.png",
+                        "description": null,
+                        "seoTitle": "Hafıza kartları",
+                        "seoDescription": "",
+                        "childs": []
+                    },
+                    "297": {
+                        "categoryId": null,
+                        "code": 297,
+                        "slug": "aksiyon-kamera-ve-aksesuarlari-297",
+                        "name": "Aksiyon Kamera ve Aksesuarları",
+                        "image": "img\/2022-03\/28\/brandlogo1648476668-1.png",
+                        "description": null,
+                        "seoTitle": "GoPro Ürünleri Aksiyon kamera aksesuar ve parçaları",
+                        "seoDescription": "GoPro ve diğer kameralar için üretilmiş tüm  aksesuarlar  ürünler, Akilliphone.com' da",
+                        "childs": []
+                    },
+                    "296": {
+                        "categoryId": null,
+                        "code": 296,
+                        "slug": "network-ag-urunleri-296",
+                        "name": "Network -Ağ Ürünleri",
+                        "image": "img\/2023-06\/07\/brandlogo1686134936-1.jpg",
+                        "description": null,
+                        "seoTitle": "Network - Ağ Aksesuarları",
+                        "seoDescription": "",
+                        "childs": []
+                    }
+                }
+            }
+        }
+    },
+    "local": "2023-09-29 05:44:09"
+}

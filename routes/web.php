@@ -46,8 +46,11 @@ Route::group(['prefix'=>'order','as'=>'order.', 'middleware' => ['check.token']]
     Route::get('/edit/{orderId}', [Order::class, 'edit'])->name('edit');
     Route::post('/edit/{orderId}', [Order::class, 'editOrder'])->name('editOrder');
     Route::get('/view/{orderId}', [Order::class, 'view'])->name('view');
-    Route::get('/delete/{orderId}', [Order::class, 'delete'])->name('delete');
+    Route::post('/delete/{orderId}', [Order::class, 'delete'])->name('delete');
     Route::get('/data-table', [Order::class, 'dataTable'])->name('data-table');
+    Route::get('/find-product-form', [Order::class, 'findProductForm'])->name('find-product-form');
+    Route::get('/find-product-select2', [Order::class, 'findProductSelect2'])->name('find-product-select2');
+    Route::post('/add-product-to-order', [Order::class, 'addProductToOrder'])->name('add-product-to-order');
     Route::get('/order-status', [OrderStatus::class, 'index'])->name('status');
     Route::post('/order-status', [OrderStatus::class, 'Save'])->name('status-save');
     Route::get('/order-status-table', [OrderStatus::class, 'dataTable'])->name('status-table');

@@ -1,0 +1,34 @@
+{
+  "status":1,
+  "cached":0,
+  "message":"Gemel Ayarlar",
+  "count":1,
+  "data":{
+    "companyName": "Akilliphone",
+    "companyOfficialName": "Akilliphone",
+    "siteAddress": "www.akilliphone.com",
+    "authorizedPerson": "akilliphone",
+    "logo": "/img/logo/akilli-64x64.png",
+    "phone1": "0850 520 08 80",
+    "phone2": "0850 520 08 80",
+    "fax": "0850 520 08 80",
+    "email": "info@akilliphone.com",
+    "address": "Ardıçlı mah Doğan Araslı Bulvarı No: 230/232 KB Blok, 34510 Esenyurt/İstanbul",
+    "latitude": "41",
+    "longitude": "28",
+    "taxOffice": "Esenyurt",
+    "taxNumber":"5316549871",
+    "theme option": "Tema 1",
+    "seo": {
+      "favicon": "",
+      "title": "",
+      "description": "",
+      "keywords": "",
+      "content-language": "tr",
+      "google-site-verification": "ıowewed08492384klklsnd"
+    }
+  },
+  "errors":[
+
+  ]
+}

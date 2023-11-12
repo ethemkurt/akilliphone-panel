@@ -12,7 +12,7 @@ var Akilliphone = {
         });
     },
     poupForms: function(){
-        let html = `<div class="modal fade" id="poupForm" tabindex="-1" aria-labelledby="poupFormTitle" aria-modal="true" role="dialog">
+        let html = `<div class="modal fade" id="poupForm" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="static" aria-labelledby="poupFormTitle" aria-modal="true" role="dialog">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
@@ -41,6 +41,18 @@ var Akilliphone = {
         $('body').append(html);
         $('#confirmPopup').modal();
     },
+    select2:function(){
+        $('.select2-ajax').select2({
+            ajax: {
+                url: this._select2Url,
+                dataType: 'json'
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            }
+        });
+    },
+    _select2Url: function(){
+        return  '#2365';
+    },
     _openPopupFormEvent: function (){
         $('body').on('click', '.btn-popup-form', function(){
             $('#poupForm .modal-header .modal-title').html($(this).data('title'));
@@ -52,11 +64,12 @@ var Akilliphone = {
                 }  else {
                     $('#poupForm .modal-body').html(response.errors);
                 }
+                $('#poupForm').modal('show');
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 $('#poupForm .modal-body').html('Oluşan hatalar için konsola bakınız');
                 console.log(jqXHR.responseText);
+                $('#poupForm').modal('show');
             }).always(function() {
-
             });
         });
     },
@@ -65,13 +78,17 @@ var Akilliphone = {
             e.preventDefault();
             $('body .ajax-form-result').html('<i class="fas fa-circle-notch fa-spin"></i>');
             $.ajax( {
-                url: $(this).data('url'),
-                method: $(this).attr('method')
+                url: $(this).attr('action'),
+                method: $(this).attr('method'),
+                data: $(this).serialize()
             } ).done(function(response) {
                 if(response.status){
                     $('body .ajax-form-result').html(response.html);
                 }  else {
                     $('body .ajax-form-result').html(response.errors);
+                }
+                if(response.redirect){
+                    window.location.href = response.redirect;
                 }
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 $('body .ajax-form-result').html('Oluşan hatalar için konsola bakınız');
@@ -96,6 +113,5 @@ var Akilliphone = {
         });
         return false;
     }
-
 }
 Akilliphone.init();

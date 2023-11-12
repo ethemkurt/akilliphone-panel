@@ -1,16 +1,13 @@
 <?php
-
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-
 class WebService{
     const WEBSERVICE_URL = 'http://api.duzzona.site/';
-    const AUTH_URL = 'http://auth.akillimagaza.com/connect/token';
+    const AUTH_URL = 'http://212.22.69.229:44302/api/Authenticate';
     protected $userName = '';
     protected $userPassword = '';
-
     public static function checkUser($username, $password)
     {
         $result = [
@@ -55,7 +52,7 @@ class WebService{
     public  static function getUser($userId, $token){
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->get(self::WEBSERVICE_URL.'user', ['userId'=>$userId]);
+        ])->get(self::AUTH_URL.'/user', ['userId'=>$userId]);
         return $response['data'];
     }
     public static function isLogged(){
@@ -77,8 +74,6 @@ class WebService{
     {
         request()->session()->put('jwtToken', $user['jwtToken']);
         request()->session()->put('user', $user);
-
-
     }
 /* products */
     public static function get_endpoint($endpoint, $data=[]){
@@ -88,9 +83,11 @@ class WebService{
         }
         return [];
     }
-    public static function products($page=1, $offset=50){
-        $page = max(1, (int)$page);
-        $response = self::GET('products', ['page'=>$page, 'offset'=>$offset]);
+    public static function products($filter){
+        $filter['page'] = max(1, (int)(isset($filter['page'])?$filter['page']:1));
+        $filter['offset'] = max(1, (int)(isset($filter['offset'])?$filter['offset']:25));
+        $filter['text'] = (isset($filter['text'])?$filter['text']:'');
+        $response = self::GET('products', $filter);
         if($response['data'] ){
             return $response['data'];
         }
@@ -103,7 +100,6 @@ class WebService{
         }
         return [];
     }
-
     public static function variant($variantId){
         $response = self::GET('variants/'.$variantId, []);
         if($response['data'] ){
@@ -129,13 +125,20 @@ class WebService{
         return [];
     }
     public static function newOrder($body){
-
+        self::fixOrderRequest($body);
         $response = self::POST('orders',$body);
-
-
-        return $response['data'];
+        return $response;
+    }
+    public static function editOrder($orderId, $body){
+        self::fixOrderRequest($body);
+        $response = self::PUT('orders/'.$orderId, $body);
+        return $response;
     }
 
+    public static function orderDelete($orderId){
+        $response = self::DELETE('orders/'.$orderId, []);
+        return $response;
+    }
     public static function order_status($page){
         $response = self::GET('orders/order-status', []);
         if($response['data'] ){
@@ -162,12 +165,20 @@ class WebService{
         }
         return [];
     }
+    public static function countries(){
+        $response = self::static('address/countries', []);
+    }
+    public static function cities($countryId=0){
+        return self::static('address/cities', []);
+    }
+    public static function district($cityId){
+        return self::static('address/district/'.$cityId, []);
+    }
     static private function TOKEN($username, $password){
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('token', null),
-        ])->post(self::WEBSERVICE_URL.'login', ['username'=>$username, 'password'=>$password]);
+        ])->post(self::AUTH_URL.'/login', ['username'=>$username, 'password'=>$password]);
         $responseData = json_decode($response->body(), true);
-
         if(isset($responseData['token'])){
             return $responseData['token'];
         }
@@ -186,12 +197,35 @@ class WebService{
         }
     }
     static private function POST($service, $data){
-
+        //die(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->post(self::WEBSERVICE_URL.$service, $data);
         return self::standartResponse($response);
     }
+    static private function PUT($service, $data){
+        //die(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
+        ])->put(self::WEBSERVICE_URL.$service, $data);
+        return self::standartResponse($response);
+    }
+    static private function DELETE($service, $data){
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
+        ])->delete(self::WEBSERVICE_URL.$service, $data);
+        return self::standartResponse($response);
+    }
+    private static function static($endpoint){
+        $json_path = public_path().'/jsons/'.$endpoint.'.json';
+        if(is_file($json_path)){
+            $json = file_get_contents($json_path);
+            return json_decode($json, 1);
+        } else {
+            return [];
+        }
+    }
+
     static private function standartErrorResponse($error){
         $result['status'] = 0;
         $result['data'] =  [];
@@ -199,68 +233,36 @@ class WebService{
         return $result;
     }
     static private function standartResponse($response){
+
+        if($response->status()=='500'){
+            die('Webservis İşlem Hatası: '.$response->body());
+        }
+        if($response->status()=='502'){
+            die('Webservis Getaway Hatası: '.$response->body());
+        }
+        $responseData = json_decode($response->body(), true);
         if($response->status()==200){
-            $responseData = json_decode($response->body(), true);
             if($responseData ){
                 $result['status'] = 1;
                 $result['data'] =  isset($responseData['data'])?$responseData['data']:[];
-                $result['errors'] = isset($responseData['errors'])?$responseData['errors']:[];
             } else {
                 $result['status'] = 0;
                 $result['data'] =  [];
-                $result['errors'] = ['Sunucu yanıtı geçersiz'];
+                //$result['errors'] = ['Sunucu yanıtı geçersiz'];
             }
         } else {
             $result['status'] = 0;
             $result['data'] =  [];
-            $result['errors'] = ['Istek onaylanmadı. Http Kodu: '.$response->status()];
+            //$result['errors'] = ['Istek onaylanmadı. Http Kodu: '.$response->status()];
         }
+
+        $result['errors'] = isset($responseData['errors'])?$responseData['errors']:[];
 
         return $result;
     }
-    static function userToAuthUser($user){
-        $authUser = new \App\Models\User();
-
-        $authUser->id = $user['id'];
-        $authUser->userName = $user['userName'];
-        $authUser->normalizedUserName = $user['normalizedUserName'];
-        $authUser->email = $user['email'];
-        $authUser->normalizedEmail = $user['normalizedEmail'];
-        $authUser->emailConfirmed = $user['emailConfirmed'];
-        $authUser->passwordHash = $user['passwordHash'];
-        $authUser->securityStamp = $user['securityStamp'];
-        $authUser->concurrencyStamp = $user['concurrencyStamp'];
-        $authUser->phoneNumber = $user['phoneNumber'];
-        $authUser->phoneNumberConfirmed = $user['phoneNumberConfirmed'];
-        $authUser->twoFactorEnabled = $user['twoFactorEnabled'];
-        $authUser->lockoutEnd = $user['lockoutEnd'];
-        $authUser->lockoutEnabled = $user['lockoutEnabled'];
-        $authUser->accessFailedCount = $user['accessFailedCount'];
-        $authUser->code = $user['code'];
-        $authUser->firstName = $user['firstName'];
-        $authUser->passwordS = $user['passwordS'];
-        $authUser->tcKimlik = $user['tcKimlik'];
-        $authUser->telefon = $user['telefon'];
-        $authUser->lastName = $user['lastName'];
-        $authUser->userId = $user['userId'];
-        $authUser->active = $user['active'];
-        $authUser->privateDiscountType = $user['privateDiscountType'];
-        $authUser->newsletter = $user['newsletter'];
-        $authUser->shippingAddressId = $user['shippingAddressId'];
-        $authUser->hasDropshippingPermission = $user['hasDropshippingPermission'];
-        $authUser->invoiceAddressId = $user['invoiceAddressId'];
-        $authUser->birthDate = $user['birthDate'];
-        $authUser->basket = $user['basket'];
-        $authUser->addresses = $user['addresses'];
-        $authUser->billingAddresses = $user['billingAddresses'];
-        $authUser->customerFavorites = $user['customerFavorites'];
-        $authUser->orderCustomers = $user['orderCustomers'];
-        $authUser->orderHistories = $user['orderHistories'];
-        $authUser->orders = $user['orders'];
-        $authUser->shippingAddresses = $user['shippingAddresses'];
-        $authUser->jwtToken = $user['jwtToken'];
-        $authUser->jwtExp = $user['jwtExp'];
-        return $authUser;
+    static function fixOrderRequest(&$order){
+        $order['shippingTrackingNumber'] = (string)$order['shippingTrackingNumber'] ;
+        $order['shippingTrackingUrl'] = (string)$order['shippingTrackingUrl'] ;
+        return $order;
     }
-
 }

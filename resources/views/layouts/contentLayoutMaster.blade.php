@@ -24,8 +24,7 @@ $configData = Helper::applClasses();
   <title>@yield('title') - Akıllıphone Yönetim Paneli </title>
   <link rel="apple-touch-icon" href="{{ asset('images/ico/favicon-32x32.png') }}">
   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo/favicon.ico') }}">
-  <link rel="stylesheet" href="fonts/feather/iconfont.css" />
-
+  <link rel="stylesheet" href="{{ asset('fonts/feather/iconfont.css') }}" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
     rel="stylesheet">
   {{-- Include core + vendor Styles --}}

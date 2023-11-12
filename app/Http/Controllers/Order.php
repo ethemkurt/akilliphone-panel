@@ -7,8 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
-class Order extends Controller
-{
+class Order extends Controller{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
         $data['dataTable'] = $this->dataTableParams();
@@ -19,13 +18,12 @@ class Order extends Controller
         return view('Order.detail', $data);
     }
     public function new(Request $request ){
-
-
-        $response = \WebService::products();
-        $data['products'] =$response['items'];
-        return view('Order.new', $data);
+        return $this->edit($request, 'new');
     }
     public function newOrder(Request $request ){
+        return $this->editOrder($request, 'new');
+    }
+    /*public function newOrder(Request $request ){
         $data = $request->input('order');
         $products=$request->input('products');
         $variants = explode('|', $products[0]);
@@ -88,14 +86,137 @@ class Order extends Controller
 
         return view('Order.new', []);
 
-    }
+    }*/
     public function view(Request $request, $orderId){
         $data['order'] = \WebService::order($orderId);
         return view('Order.view', $data);
     }
+    public function editOrder(Request $request, $orderId){
+        $order = $request->input('order');
+        if(isset($order['totals'])){
+            foreach($order['totals'] as $total){
+                $totals[] =  $total;
+            }
+            $order['totals'] = $totals;
+        }
+        if(isset($order['orderProducts'])){
+            foreach($order['orderProducts'] as $orderProduct){
+                $orderProducts[] =  $orderProduct;
+            }
+            $order['orderProducts'] = $orderProducts;
+        }
+        if(isset($order['shippingAddress'])){
+            if(empty($order['shippingAddress']['addressLine2']))$order['shippingAddress']['addressLine2']="";
+        }
+        if(isset($order['billingAddress'])){
+            if(empty($order['billingAddress']['addressLine2']))$order['billingAddress']['addressLine2']="";
+        }
+        if($orderId=='new'){
+            unset($order['orderId']);
+            $response = \WebService::newOrder($order);
+            $order['orderId'] = 'new';
+        } else {
+            $response = \WebService::editOrder($orderId, $order);
+        }
+
+        if(isset($response['errors']) && $response['errors']){
+            $responseErrors = [];
+            foreach($response['errors'] as $errors){
+                foreach($errors as $error){
+                    $responseErrors[] = $error;
+                }
+            }
+            $request->session()->flash('flash-error', ['', implode(" ", $responseErrors)]);
+            return back()->withInput(['order'=>$order]);
+        } else{
+            $orderId = isset($response['orderId'])?$response['orderId']:$orderId;
+        }
+        return redirect(route('order.edit', $orderId));
+    }
     public function edit(Request $request, $orderId){
-        $data['order'] = \WebService::order($orderId);
+        $oldOrder = old('order');
+        if($oldOrder){
+            $data['order'] = $oldOrder;
+        }elseif($orderId=='new'){
+            $data['order'] = \Instance::Order();
+        } else{
+            $data['order'] = \WebService::order($orderId);
+        }
+        if(!isset($data['order']['createdAt'])){
+            $data['order']['createdAt'] = 'Y-m-d H:i:s';
+        }
+        if(!isset($data['order']['orderCustomer'])){
+            $data['order']['orderCustomer'] = $data['order']['customer'];
+        }
+        if(isset($data['order']['orderTotals'])){
+            $totals = [];
+            foreach ($data['order']['orderTotals'] as $orderTotal){
+                $totals[$orderTotal['code']] = $orderTotal['code'];
+            }
+            if(!isset($totals['products'])){
+                $data['order']['orderTotals']['products'] = ['code'=>'products', 'name'=>'Ürünler Toplamı (KDV Dahil)', 'value'=>'0'];
+            }
+            if(!isset($totals['shipping'])){
+                $data['order']['orderTotals']['shipping'] = ['code'=>'shipping', 'name'=>'Kargo', 'value'=>'0'];
+            }
+            if(!isset($totals['discount'])){
+                $data['order']['orderTotals']['discount'] = ['code'=>'discount', 'name'=>'İndirim', 'value'=>'0'];
+            }
+        } else {
+            $data['order']['orderTotals'][] = ['code'=>'products', 'name'=>'Ürün Toplamı', 'value'=>'0'];
+            $data['order']['orderTotals'][] = ['code'=>'shipping', 'name'=>'Kargo', 'value'=>'0'];
+            $data['order']['orderTotals'][] = ['code'=>'discount', 'name'=>'İndirim', 'value'=>'0'];
+        }
+        $data['countries'] = \WebService::countries();
+        $data['cities'] = \WebService::cities();
         return view('Order.edit', $data);
+    }
+    public function delete(Request $request, $orderId){
+        if($orderId){
+            $response = \WebService::orderDelete($orderId);
+            if(isset($response['errors']) && $response['errors']){
+                $errors = [];
+                foreach($response['errors'] as $error){
+                    $errors[] = $error['message'];
+                }
+                return _ReturnError('', '', $errors);
+            } else {
+                return _ReturnSucces('', 'silindi', route('order.index'));
+            }
+        } else{
+            return _ReturnError('', '', ['Sipariş Bulunamadı']);
+        }
+    }
+    public function findProductForm(Request $request){
+        $data = [];
+        $html = view('Order.findProductForm', $data)->render();
+        return ['status'=>1, 'message'=>'m', 'html'=>$html];
+    }
+    public function findProductSelect2(Request $request){
+        $data['results'] = [];
+        $response = \WebService::products(['offset'=>25, 'page'=>1,'text'=>$request->input('term')]);
+
+        if($response && isset($response['items'])){
+            foreach($response['items'] as $item){
+                $data['results'][] = [
+                    'id'=>$item['productId'],
+                    'text'=> $item['name'].'#'. $item['code'],
+                    'image'=> getProductImageUrl($item['featuredImage'], 18,18),
+                    'variants'=>$item['variants']
+                ];
+            }
+        }
+        return $data;
+    }
+    public function addProductToOrder(Request $request){
+        $html = '';
+        if($variantId = $request->input('variantId')){
+            $data['variant'] = \WebService::variant($variantId);
+            if($data['variant'] && isset($data['variant']['variantId'])){
+                $html = view('Order.order-add-product-item', $data)->render();
+            }
+        }
+        return ['status'=>1, 'message'=>'m', 'html'=>$html];
     }
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();
@@ -126,7 +247,9 @@ class Order extends Controller
         return $dataTable->toJson();
     }
     private function _format_orderStatusId($item) {
-        $options = '<option value="" selected disabled>Sipariş Durumu Seçiniz</option>';
+        return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\OrderStatus::color($item['orderStatusId']).'"><i class="ti ti-circle-filled fs-tiny me-2"></i>'.\OrderStatus::__($item['orderStatusId']).'</h6>';
+
+        /*$options = '<option value="" selected disabled>Sipariş Durumu Seçiniz</option>';
         foreach(\Enum::list('orderStatus') as $orderStatusId=>$orderStatus){
             $selected = $orderStatusId == $item['orderStatusId']?'selected':'';
             $options .= '<option value="'.$orderStatusId.'" '.$selected.'>'.$orderStatus.'</option>';
@@ -135,7 +258,7 @@ class Order extends Controller
                 <select class="form-select" aria-describedby="basic-addon-search1">'.$options.'</select>
                 <button class="input-group-text btn-primary" id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check me-25"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </button>
-            </div>';
+            </div>';*/
     }
     private function _format_orderTotal($item){
         return  _FormatPrice($item['orderTotal']);
@@ -156,6 +279,7 @@ class Order extends Controller
     private function _format_actions($item){
         $editUrl = route('order.edit', $item['orderId']);
         $viewUrl = route('order.view', $item['orderId']);
+        $deleteUrl = route('popup', 'deleteOrder').'?orderId='. $item['orderId'];
         return '<div class="dropdown">
                     <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0 waves-effect waves-float waves-light" data-bs-toggle="dropdown">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
@@ -169,10 +293,10 @@ class Order extends Controller
                             <i class="feather icon-edit"></i>
                             <span>Düzenle</span>
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <button class="dropdown-item btn-popup-form" data-url="'.$deleteUrl.'">
                             <i class="feather icon-trash-2"></i>
                             <span>Delete</span>
-                        </a>
+                        </button>
                     </div>
                 </div>';
     }
@@ -194,5 +318,7 @@ class Order extends Controller
         ]);
         return $dataTable;
     }
+    private function mergeOrder($data, $order){
 
+    }
 }

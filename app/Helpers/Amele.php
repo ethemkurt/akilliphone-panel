@@ -43,3 +43,27 @@ function _Asset($file){
 function _Image($file, $w='', $h=''){
     return '<img src="'._Asset('images/'.$file).'" width="'.$w.'" height="'.$h.'" >';
 }
+function _ReturnSucces($message, $html, $redirect=''){
+    $data['status'] = 1;
+    $data['message'] = $message;
+    $data['html'] = $html;
+    $data['redirect'] = $redirect;
+    return _ReturnResponse($data);
+}
+function _ReturnError($message, $html, $errors=[]){
+    $data['status'] = 0;
+    $data['message'] = $message;
+    $data['html'] = $html;
+    $data['errors'] = implode('<br>', $errors);
+    return _ReturnResponse($data);
+}
+function _ReturnResponse($data){
+    $data['status'] = isset($data['status'])?$data['status']:1;
+    $data['date'] = date('Y-m-d H:i:s');
+    $data['ver'] = env('VER','1.0.0');
+    $data['message'] = isset($data['message'])?$data['message']:'';
+    $data['html'] = isset($data['html'])?$data['html']:'';
+    $data['errors'] = isset($data['errors'])?$data['errors']:'';
+    $data['redirect'] = isset($data['redirect'])?$data['redirect']:'';
+    return $data;
+}

@@ -1,0 +1,93 @@
+{
+  "status": 1,
+  "cached": 0,
+  "message": "Dörlü Kategori Bilgileri",
+  "count": 1,
+  "data": {
+    "title": "Dörlü Kategori",
+    "image": "assets/images/vertical-banner.png",
+    "slug" :"#slug",
+    "items": [
+      {
+        "category": {
+          "categoryId": 1,
+          "name": "",
+          "slug": "",
+          "image": "assets/images/product-category1.png"
+        },
+        "product": {
+          "image": "assets/images/product-images/1.png",
+          "name": "2. Baseus SIMU S1 ANC TWS Bluetooth 5.1 Kulaklık DSP",
+          "slug":"urun-seo-name-1",
+          "oldPrice": "52",
+          "newPrice": "48",
+          "discountRate": 50,
+          "currency": "₺",
+          "inStock": 1,
+          "brandName": "Baseus",
+          "brandImage": "assets/images/brands/1.png"
+        }
+      },
+      {
+        "category": {
+          "categoryId": 1,
+          "name": "",
+          "slug": "",
+          "image": "assets/images/product-category1.png"
+        },
+        "product": {
+          "image": "assets/images/product-images/2.png",
+          "name": "1. Baseus SIMU S1 ANC TWS Bluetooth 5.1 Kulaklık DSP",
+          "slug":"urun-seo-name-1",
+          "oldPrice": 52,
+          "newPrice": 48,
+          "discountRate": 50,
+          "currency": "₺",
+          "inStock": 1,
+          "brandName": "Baseus",
+          "brandImage": "assets/images/brands/2.png"
+        }
+      },
+      {
+        "category": {
+          "categoryId": 1,
+          "name": "",
+          "slug": "",
+          "image": "assets/images/product-category1.png"
+        },
+        "product": {
+          "image": "assets/images/product-images/3.png",
+          "name": "1. Baseus SIMU S1 ANC TWS Bluetooth 5.1 Kulaklık DSP",
+          "slug":"urun-seo-name-1",
+          "oldPrice": 52,
+          "newPrice": 48,
+          "discountRate": 50,
+          "currency": "₺",
+          "inStock": 1,
+          "brandName": "Baseus",
+          "brandImage": "assets/images/brands/3.png"
+        }
+      },
+      {
+        "category": {
+          "categoryId": 1,
+          "name": "",
+          "slug": "",
+          "image": "assets/images/product-category1.png"
+        },
+        "product": {
+          "image": "assets/images/product-images/3.png",
+          "name": "1. Baseus SIMU S1 ANC TWS Bluetooth 5.1 Kulaklık DSP",
+          "slug":"urun-seo-name-1",
+          "oldPrice": 52,
+          "newPrice": 48,
+          "discountRate": 50,
+          "currency": "₺",
+          "inStock": 1,
+          "brandName": "Baseus",
+          "brandImage": "assets/images/brands/3.png"
+        }
+      }
+    ]
+  }
+}

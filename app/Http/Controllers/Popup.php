@@ -22,7 +22,17 @@ class Popup extends Controller
         } else {
             $data['orderStatus'] = [];
         }
-        $data['html'] = view('popup-forms.product-status', $data)->render();
-        return returnSucces($data);
+        $html = view('popup-forms.product-status', $data)->render();
+        return _ReturnSucces('', $html);
+    }
+    public function deleteOrder(Request $request){
+        $orderId = $request->input('orderId');
+        if($orderId){
+            $data['order'] = \Webservice::order($orderId);
+        } else {
+            $data['order'] = [];
+        }
+        $html = view('popup-forms.order-delete', $data)->render();
+        return _ReturnSucces('', $html);
     }
 }

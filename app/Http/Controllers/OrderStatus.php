@@ -16,20 +16,13 @@ class OrderStatus extends Controller
         return view('OrderStatus.index', $data);
     }
     public function save(Request $request ){
-        $data['status']=1;
-        $data['html']='Katdedildi';
-        returnSucces($data);
+        _ReturnSucces('Kaydedeildi', '');
     }
     public function detail(Request $request, $orderId ){
-        $data['order'] = \WebService::order($orderId);
-        return view('Order.detail', $data);
+        _ReturnSucces('detay', '');
     }
     public function new(Request $request ){
-        $data = [];
-        $order = [
-            'paymentStatus'=>\PaymentStatus::BEKLIYOR,
-            'paymentType'=>\PaymentType::KREDIKARTI,
-            ];
+        $data['orderStatus'] = [];
         return view('Order.new', $data);
     }
     public function dataTable(Request $request){
@@ -60,10 +53,9 @@ class OrderStatus extends Controller
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
-
     private function _format_action($item){
         $url = route('popup', 'OrderStatus').'?orderStatusId='.$item['orderStatusId'];
-        $html = poupFormButton($url, '', '', '');
+        $html = '';//poupFormButton($url, '', '', '');
         $html .= '<a class="btn confirm-popup" href="'.$url.'" title="\''.$item['name'].'\' silinsin mi?"><i class="fa fa-trash"></i></a>';
         return '<div class="text-end">'.$html.'</div>';
     }
