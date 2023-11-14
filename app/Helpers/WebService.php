@@ -85,7 +85,7 @@ class WebService{
     }
     public static function products($filter){
         $filter['page'] = max(1, (int)(isset($filter['page'])?$filter['page']:1));
-        $filter['offset'] = max(1, (int)(isset($filter['offset'])?$filter['offset']:25));
+        $filter['offset'] = max(25, (int)(isset($filter['offset'])?$filter['offset']:25));
         $filter['text'] = (isset($filter['text'])?$filter['text']:'');
         $response = self::GET('products', $filter);
         if($response['data'] ){
@@ -162,6 +162,17 @@ class WebService{
 
             return $response['data'];
 
+        }
+        return [];
+    }
+    public static function brand($brandId=0){
+        $response = self::static('brands/list', []);
+        if(isset($response['data'])){
+            foreach($response['data']['items'] as $brand){
+                if($brand['brandId']==$brandId){
+                    return $brand;
+                }
+            }
         }
         return [];
     }

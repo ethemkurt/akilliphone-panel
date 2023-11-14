@@ -267,7 +267,9 @@ class Order extends Controller{
         return  _Image('kargo/'.$item['shippingCompany'].'.png', 18,18);
     }
     private function _format_firstName($item){
-        return '<div class="d-flex justify-content-start align-items-center order-name text-nowrap"><div class="d-flex flex-column"><h6 class="m-0"><a href="pages-profile-user.html" class="text-body">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</a></h6><small class="text-muted">'.$item['orderCustomer']['email'].'</small></div></div>';
+       if($item['shippingAddress']){
+           return '<div class="d-flex justify-content-start align-items-center order-name text-nowrap"><div class="d-flex flex-column"><h6 class="m-0"><a href="pages-profile-user.html" class="text-body">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</a></h6><small class="text-muted">'.$item['orderCustomer']['email'].'</small></div></div>';
+       }
     }
     private function _format_createdAt($item){
         return _HumanDate($item['createdAt']);

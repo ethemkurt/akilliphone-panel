@@ -24,10 +24,10 @@ class Product extends Controller
     }
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();
-        $offset = $request->input('length', 10);
-        $start = $request->input('start', 0);
-        $page = ($start/$offset)+1;
-        $response = \WebService::products($page, $offset);
+        $filter['offset'] = $request->input('length', 10);
+        $filter['start'] = $request->input('start', 0);
+        $filter['page'] = ceil($filter['start']/$filter['offset']);
+        $response = \WebService::products($filter);
         $dataTable->setRecordsTotal($response['totalCount']);
         $dataTable->setRecordsFiltered($response['totalCount']);
         $items = [];
@@ -43,29 +43,16 @@ class Product extends Controller
                 $item[$key] = $value;
             }
             if(isset($item['orderNumber'])){
-                $item['orderNumber'] = count($items) + $start + 1;
+                $item['orderNumber'] = count($items) + ($filter['offset']  * ($filter['page'])) + 1;
             }
             $items[] = $item;
         }
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
-    private function _format_action($item){
-        return '<div class="dropdown">
-             <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0 waves-effect waves-float waves-light" data-bs-toggle="dropdown" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-             </button>
-             <div class="dropdown-menu dropdown-menu-end" style="">
-              <a class="dropdown-item" href="#">
-               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 me-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
-               <span>Düzenle</span>
-              </a>
-              <a class="dropdown-item" href="#">
-               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash me-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-               <span>Sil</span>
-              </a>
-             </div>
-            </div>';
+    private function _format_actions($item){
+        return '<div style="min-width: 40px;" class="text-end"><button type="button" class="btn btn-flat-primary waves-effect p-0 me-1"><i class="fa fa-edit"></i></button>
+<button type="button" class="btn btn-flat-danger waves-effect p-0 me-1"><i class="fa fa-trash"></i></button></div>';
     }
     private function _format_price($item){
         if(isset($item['variants'][0])){
@@ -82,12 +69,22 @@ class Product extends Controller
         }
         return $item['name'].'<hr>'.$html.'</div>';
     }
+    private function _format_brandId($item){
+        $brand = \WebService::brand($item['brandId']);
+        if($brand){
+            return $brand['name'];
+        }
+    }
     private function _format_featuredImage($item){
         $item['featuredImage'] = str_replace('img/', '', $item['featuredImage']);
         return '<img src="https://cdn.akilliphone.com/8004/30x30/'.$item['featuredImage'].'">';
     }
     private function _format_status($item){
-        return '<span class="badge bg-'.\ActivePassive::color($item['status']).' me-1">'.\ActivePassive::__($item['status']).'</span>';
+        return '<div class="d-flex flex-column">
+            <div class="form-check form-check-success form-switch">
+                <input type="checkbox" '.($item['status']?'checked':'').' class="form-check-input" id="customSwitch4">
+            </div>
+        </div>';
     }
     private function dataTableParams(){
         $dataTable = new \AjaxDataTable();
@@ -99,11 +96,11 @@ class Product extends Controller
             'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
             'code'=>['title'=>'Kodu', 'className'=>'', 'orderable'=>''],
             'name'=>['title'=>'Ürün Adı', 'className'=>'', 'orderable'=>''],
-            'category'=>['title'=>'Kategorisi', 'className'=>'', 'orderable'=>''],
-            'brand'=>['title'=>'Marka', 'className'=>'', 'orderable'=>''],
+            'productCategories'=>['title'=>'Kategorisi', 'className'=>'', 'orderable'=>''],
+            'brandId'=>['title'=>'Marka', 'className'=>'', 'orderable'=>''],
             'price'=>['title'=>'Fiyat', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durum', 'className'=>'', 'orderable'=>''],
-            'action'=>['title'=>'', 'className'=>'', 'orderable'=>''],
+            'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
         return $dataTable;
     }
