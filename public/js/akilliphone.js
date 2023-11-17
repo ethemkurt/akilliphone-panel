@@ -82,13 +82,18 @@ var Akilliphone = {
                 method: $(this).attr('method'),
                 data: $(this).serialize()
             } ).done(function(response) {
-                if(response.status){
-                    $('body .ajax-form-result').html(response.html);
-                }  else {
-                    $('body .ajax-form-result').html(response.errors);
-                }
-                if(response.redirect){
-                    window.location.href = response.redirect;
+                if(response.hasOwnProperty("status")){
+                    if(response.status){
+                        $('body .ajax-form-result').html(response.html);
+                    }  else {
+                        $('body .ajax-form-result').html(response.errors);
+                    }
+                    if(response.redirect){
+                        window.location.href = response.redirect;
+                    }
+                } else{
+                    $('body .ajax-form-result').html('Oluşan hatalar için konsola bakınız');
+                    console.log(response);
                 }
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 $('body .ajax-form-result').html('Oluşan hatalar için konsola bakınız');

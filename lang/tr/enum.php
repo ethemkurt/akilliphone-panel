@@ -54,4 +54,5 @@ return [
     'ODENMEDI'  =>  "Ödenmedi",
     'ODENDI'  =>  "Ödendi",
     'BEKLIYOR'  =>  "Ödeme Bekliyor",
+    'GORDUMALDIMISBANKASI'  =>  "Gördüm Aldım",
 ];

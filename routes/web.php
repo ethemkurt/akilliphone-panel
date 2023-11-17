@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderStatus;
 use App\Http\Controllers\Customer;
 use App\Http\Controllers\Product;
 use App\Http\Controllers\Popup;
+use App\Http\Controllers\Settings;
 
 
 /*
@@ -66,6 +67,11 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
     Route::get('/new', [Product::class, 'new'])->name('new');
     Route::get('/data-table', [Product::class, 'dataTable'])->name('data-table');
+});
+Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Settings::class, 'index'])->name('index');
+    Route::get('/enum', [Settings::class, 'enum'])->name('enum');
+
 });
 
 

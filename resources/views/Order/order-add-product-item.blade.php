@@ -4,7 +4,7 @@ $productKey = time();
 <tr class="order-items">
     <td class="  control" tabindex="0" style="display: none;"></td>
     <td class="sorting_1">
-        <div class="d-flex justify-content-start align-items-center text-nowrap">
+        <div class="d-flex justify-content-start align-items-center">
             <div class="avatar-wrapper">
                 <div class="avatar me-2"><img src="{{ getProductImageUrl($variant['featuredImage'], 40,40) }}" class="rounded-2"></div>
             </div>

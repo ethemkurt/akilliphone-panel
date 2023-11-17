@@ -265,10 +265,10 @@ class Order extends Controller{
     }
     private function _format_shippingCompany($item){
         return  _Image('kargo/'.$item['shippingCompany'].'.png', 18,18);
-    }
+    } 
     private function _format_firstName($item){
        if($item['shippingAddress']){
-           return '<div class="d-flex justify-content-start align-items-center order-name text-nowrap"><div class="d-flex flex-column"><h6 class="m-0"><a href="pages-profile-user.html" class="text-body">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</a></h6><small class="text-muted">'.$item['orderCustomer']['email'].'</small></div></div>';
+           return '<div class="d-flex justify-content-start align-items-center order-name"><div class="d-flex flex-column"><h6 class="m-0"><a href="pages-profile-user.html" class="text-body">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</a></h6><small class="text-muted">'.$item['orderCustomer']['email'].'</small></div></div>';
        }
     }
     private function _format_createdAt($item){
