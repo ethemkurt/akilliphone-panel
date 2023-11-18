@@ -12,7 +12,8 @@ class User extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
         $data['dataTable'] = $this->dataTableParams();
-        return view('Customer.index', $data);
+        $data['routeName'] =  $request->route()->getName();
+        return view('User.index', $data);
     }
     public function detail(Request $request, $userrId ){
         $data['user'] = \WebService::user($userrId);
@@ -25,7 +26,7 @@ class User extends Controller
     private function dataTableParams(){
         $dataTable = new \AjaxDataTable();
         $dataTable->setTableId('user-list');
-        $dataTable->setUrl(route('customer.data-table'));
+        $dataTable->setUrl(route('user.data-table'));
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
@@ -43,25 +44,37 @@ class User extends Controller
         $offset = $request->input('length', 10);
         $start = $request->input('start', 0);
         $page = ($start/$offset)+1;
-        $response = \WebService::customers($page, $offset);
-        $dataTable->setRecordsTotal($response['totalCount']);
-        $dataTable->setRecordsFiltered($response['totalCount']);
+        $filter = [];
+        if($where = $request->input('where')){
+
+        }
+        if($search = $request->input('search')){
+            if($search['value']){
+                $filter['text'] = $search['value'];
+            }
+        }
+        $response = \WebService::users($page, $offset, $filter);
+
+        $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
+        $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
         $items = [];
-        foreach($response['items'] as $row){
-            $item = [];
-            foreach($dataTable->cols() as $key=>$col){
-                $method = '_format_'.$key;
-                if(method_exists($this, $method)){
-                    $value = $this->$method($row);
-                } else {
-                    $value = isset($row[$key])?$row[$key]:'';
+        if(isset($response['items'])){
+            foreach($response['items'] as $row){
+                $item = [];
+                foreach($dataTable->cols() as $key=>$col){
+                    $method = '_format_'.$key;
+                    if(method_exists($this, $method)){
+                        $value = $this->$method($row);
+                    } else {
+                        $value = isset($row[$key])?$row[$key]:'';
+                    }
+                    $item[$key] = $value;
                 }
-                $item[$key] = $value;
+                if(isset($item['orderNumber'])){
+                    $item['orderNumber'] = count($items) + $start + 1;
+                }
+                $items[] = $item;
             }
-            if(isset($item['orderNumber'])){
-                $item['orderNumber'] = count($items) + $start + 1;
-            }
-            $items[] = $item;
         }
         $dataTable->setItems($items);
         return $dataTable->toJson();

@@ -248,10 +248,15 @@ class WebService{
         return [];
     }
 /* customer */
-    public static function customers($page=1, $offset=50){
-        $page = max(1, (int)$page);
-        $offset = max(10, (int)$offset);
-        $response = self::GET('users', ['page'=>$page, 'offset'=>$offset]);
+    public static function users($page=1, $offset=50, $filter){
+        $params['page'] = max(1, (int)$page);
+        $params['offset'] = max(10, (int)$offset);
+        if(isset($filter['text'])){
+            $params['text'] = $filter['text'];
+        }
+
+        $response = self::GET('users', $params);
+
         if($response['data'] ){
 
             return $response['data'];
@@ -354,7 +359,13 @@ class WebService{
         }
         if(isset($responseData['errors']) && $responseData['errors']){
             foreach($responseData['errors'] as $error){
-                $errors[] = $error['message'];
+                if(is_string($error)){
+                    $errors[] = $error;
+                } elseif(is_array($error)){
+                    if(isset($error['message'])){
+                        $errors[] = $error['message'];
+                    }
+                }
             }
             return [
                 'status'=>0,

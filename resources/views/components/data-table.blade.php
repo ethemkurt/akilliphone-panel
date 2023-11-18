@@ -36,13 +36,13 @@ $dt = isset($dataTable)?$dataTable:null;
                             orderable: !!{{intval($col["orderable"])}},
                         },@endforeach],
                     ajax_url: '{{$dt->url()}}',
-                    ajax_data: function(d){
+                    /*ajax_data: function(d){
                         if($('.datatable-filer').length){
                             $('.datatable-filer').each(function(){
                                 console.log(d);
                             });
                         }
-                    },
+                    },*/
                     ajax_success : function(json){
                         return json.data;
                     },
