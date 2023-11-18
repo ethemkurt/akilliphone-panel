@@ -7,7 +7,7 @@ use App\Http\Controllers\Order;
 use App\Http\Controllers\OrderStatus;
 use App\Http\Controllers\PaymentStatus;
 use App\Http\Controllers\PaymentType;
-use App\Http\Controllers\Customer;
+use App\Http\Controllers\User;
 use App\Http\Controllers\Product;
 use App\Http\Controllers\Popup;
 use App\Http\Controllers\Settings;
@@ -67,11 +67,13 @@ Route::group(['prefix'=>'order','as'=>'order.', 'middleware' => ['check.token']]
     Route::post('/payment-type', [PaymentType::class, 'save'])->name('payment-type-save');
     Route::get('/payment-type-table', [PaymentType::class, 'dataTable'])->name('payment-type-table');
 });
-Route::group(['prefix'=>'customer','as'=>'customer.', 'middleware' => ['check.token']], function () {
-    Route::get('/', [Customer::class, 'index'])->name('index');
-    Route::get('/detail/{customerId}', [Customer::class, 'detail'])->name('detail');
-    Route::get('/new', [Customer::class, 'new'])->name('new');
-    Route::get('/data-table', [Customer::class, 'dataTable'])->name('data-table');
+Route::group(['prefix'=>'user','as'=>'user.', 'middleware' => ['check.token']], function () {
+    Route::get('/admin', [User::class, 'index'])->name('admin');
+    Route::get('/bayi', [User::class, 'index'])->name('bayi');
+    Route::get('/uye', [User::class, 'index'])->name('uye');
+    Route::get('/detail/{customerId}', [User::class, 'detail'])->name('detail');
+    Route::get('/new', [User::class, 'new'])->name('new');
+    Route::get('/data-table', [User::class, 'dataTable'])->name('data-table');
 });
 Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Product::class, 'index'])->name('index');

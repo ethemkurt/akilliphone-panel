@@ -120,8 +120,20 @@
             "slug": "",
             "submenu": [
                 {
-                    "url": "customer",
-                    "name": "Listele",
+                    "url": "user/admin",
+                    "name": "Personel",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "user/bayi",
+                    "name": "Bayiler",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "user/uye",
+                    "name": "Müşteriler",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
@@ -155,20 +167,6 @@
                     "slug": "collapsed-menu"
                 }
             ]
-        },
-        {
-            "navheader": "BAYİ YÖNETİMİ",
-            "slug": ""
-        },
-        {
-            "name": "Bayiler",
-            "icon": "users",
-            "slug": "",
-            "url": "dealer/list"
-        },
-        {
-            "navheader": "AYARLAR",
-            "slug": ""
         },
         {
             "name": "Ayarlar",
