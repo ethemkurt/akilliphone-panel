@@ -103,7 +103,7 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "order/payment-types",
+                    "url": "order/payment-type",
                     "name": "Ödeme Tipleri",
                     "icon": "circle",
                     "slug": "collapsed-menu"
