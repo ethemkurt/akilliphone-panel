@@ -46,6 +46,23 @@
                                     <div class="card-body">
                                         <div class="col-12">
                                             <div class="mb-1 row">
+                                                <div class="col-sm-3"><label class="col-form-label" for="contact-info">Sipariş durumu</label></div>
+                                                <div class="col-sm-9">
+                                                        <?php
+                                                        $options = '<option value="" selected disabled> Sipariş Durumu Seçiniz</option>';
+                                                        foreach(\Enum::list('orderStatus') as $orderStatusId=>$orderStatus){
+                                                            $selected = $orderStatusId == $order['orderStatusId']?'selected':'';
+                                                            $options .= '<option value="'.$orderStatusId.'" '.$selected.'>'.$orderStatus.'</option>';
+                                                        }
+                                                        ?>
+                                                    <select value="{{ $order['orderStatusId'] }}" type="text" required class="form-select" name="order[orderStatusId]" placeholder="orderStatusId">
+                                                        {!! $options !!}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ödeme Metodu</label></div>
                                                 <div class="col-sm-9">
                                                         <?php
@@ -80,23 +97,6 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-1 row">
-                                                <div class="col-sm-3"><label class="col-form-label" for="contact-info">Sipariş durumu</label></div>
-                                                <div class="col-sm-9">
-                                                        <?php
-                                                        $options = '<option value="" selected disabled> Sipariş Durumu Seçiniz</option>';
-                                                        foreach(\Enum::list('orderStatus') as $orderStatusId=>$orderStatus){
-                                                            $selected = $orderStatusId == $order['orderStatusId']?'selected':'';
-                                                            $options .= '<option value="'.$orderStatusId.'" '.$selected.'>'.$orderStatus.'</option>';
-                                                        }
-                                                        ?>
-                                                    <select value="{{ $order['orderStatusId'] }}" type="text" required class="form-select" name="order[orderStatusId]" placeholder="orderStatusId">
-                                                        {!! $options !!}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Kargo</label></div>
                                                 <div class="col-sm-9">
 
@@ -112,7 +112,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

@@ -17,12 +17,38 @@ class Popup extends Controller
     }
     public function OrderStatus(Request $request ){
         $orderStatusId = $request->input('orderStatusId');
+        $data['orderStatus'] = [];
         if($orderStatusId){
-            $data['orderStatus'] = \Webservice::order_state($orderStatusId);
-        } else {
-            $data['orderStatus'] = [];
+            $response = \Webservice::orderStatus($orderStatusId);
+            if(isset($response['orderStatusId'])){
+                $data['orderStatus'] = $response;
+            }
         }
-        $html = view('popup-forms.product-status', $data)->render();
+        $html = view('popup-forms.order-status', $data)->render();
+        return _ReturnSucces('', $html);
+    }
+    public function PaymentStatus(Request $request ){
+        $paymentStatusId = $request->input('paymentStatusId');
+        $data['paymentStatus'] = [];
+        if($paymentStatusId){
+            $response = \Webservice::paymentStatus($paymentStatusId);
+            if(isset($response['paymentStatusId'])){
+                $data['paymentStatus'] = $response;
+            }
+        }
+        $html = view('popup-forms.payment-status', $data)->render();
+        return _ReturnSucces('', $html);
+    }
+    public function PaymentType(Request $request ){
+        $paymentTypeId = $request->input('paymentTypeId');
+        $data['paymentType'] = [];
+        if($paymentTypeId){
+            $response = \Webservice::paymentType($paymentTypeId);
+            if(isset($response['paymentTypeId'])){
+                $data['paymentType'] = $response;
+            }
+        }
+        $html = view('popup-forms.payment-type', $data)->render();
         return _ReturnSucces('', $html);
     }
     public function deleteOrder(Request $request){

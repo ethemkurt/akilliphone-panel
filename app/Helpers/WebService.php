@@ -139,17 +139,111 @@ class WebService{
         $response = self::DELETE('orders/'.$orderId, []);
         return $response;
     }
-    public static function order_status($page){
+    /*orderStatuses*/
+    public static function orderStatuses($page){
         $response = self::GET('orders/order-status', []);
         if($response['data'] ){
             return $response['data'];
         }
         return [];
     }
-    public static function order_state($orderStatusId){
+    public static function orderStatus($orderStatusId){
         $response = self::GET('orders/order-status/'.$orderStatusId, []);
         if($response['data'] ){
             return $response['data'];
+        }
+        return [];
+    }
+    public static function orderStatusNew($orderStatus){
+        $response = self::POST('orders/order-status', $orderStatus);
+        if($response){
+            return $response;
+        }
+        return [];
+    }
+    public static function orderStatusEdit($orderStatusId, $orderStatus){
+        $response = self::PUT('orders/order-status/'.$orderStatusId, $orderStatus);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function orderStatusDelete($orderStatusId){
+        $response = self::DELETE('orders/order-status/'.$orderStatusId, []);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    /*paymentStatuses*/
+    public static function paymentStatuses($page){
+        $response = self::GET('orders/payment-status', []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function paymentStatus($orderStatusId){
+        $response = self::GET('orders/payment-status/'.$orderStatusId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function paymentStatusNew($orderStatus){
+        $response = self::POST('orders/payment-status', $orderStatus);
+        if($response){
+            return $response;
+        }
+        return [];
+    }
+    public static function paymentStatusEdit($orderStatusId, $orderStatus){
+        $response = self::PUT('orders/payment-status/'.$orderStatusId, $orderStatus);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function paymentStatusDelete($orderStatusId){
+        $response = self::DELETE('orders/payment-status/'.$orderStatusId, []);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    /*paymentType*/
+    public static function paymentTypes($page){
+        $response = self::GET('orders/payment-type', []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function paymentType($orderStatusId){
+        $response = self::GET('orders/payment-type/'.$orderStatusId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function paymentTypeNew($orderStatus){
+        $response = self::POST('orders/payment-type', $orderStatus);
+        if($response){
+            return $response;
+        }
+        return [];
+    }
+    public static function paymentTypeEdit($paymentTypeId, $orderStatus){
+        $response = self::PUT('orders/payment-type/'.$paymentTypeId, $orderStatus);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function paymentTypeDelete($paymentTypeId){
+        $response = self::DELETE('orders/payment-type/'.$paymentTypeId, []);
+        if($response ){
+            return $response;
         }
         return [];
     }
@@ -215,7 +309,7 @@ class WebService{
         return self::standartResponse($response);
     }
     static private function PUT($service, $data){
-        //die(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+        //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->put(self::WEBSERVICE_URL.$service, $data);
@@ -245,13 +339,31 @@ class WebService{
     }
     static private function standartResponse($response){
 
-        if($response->status()=='500'){
-            die('Webservis İşlem Hatası: '.$response->body());
-        }
-        if($response->status()=='502'){
-            die('Webservis Getaway Hatası: '.$response->body());
-        }
         $responseData = json_decode($response->body(), true);
+
+        $errors = [];
+        if($response->status()=='500'){
+            $errors[]= 'Webservis Hatası';
+        }
+        if(empty($responseData)){
+            $responseData['errors'][]= ['message'=>'Webservis İşlem Hatası: '.$response->body()];
+        }
+
+        if($response->status()=='502'){
+            $responseData['errors'][]= ['message'=>'Webservis Getaway Hatası: '.$response->body()];
+        }
+        if(isset($responseData['errors']) && $responseData['errors']){
+            foreach($responseData['errors'] as $error){
+                $errors[] = $error['message'];
+            }
+            return [
+                'status'=>0,
+                'data'=>[],
+                'errors' => $errors
+            ];
+        }
+
+        // $responseData = json_decode($response->body(), true);
         if($response->status()==200){
             if($responseData ){
                 $result['status'] = 1;
