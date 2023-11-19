@@ -15,6 +15,39 @@ class Popup extends Controller
             return $this->{$method}($request);
         }
     }
+
+    public function User(Request $request ){
+        $data['userType'] = $request->input('userType', 'uye');
+        $data['userId'] = $request->input('userId', 'new');
+        if($data['userId']=='new'){
+            $data['user'] = \Instance::user();
+        } else {
+            $response = \Webservice::user($data['userId']);
+            if(isset($response['paymentStatusId'])){
+                $data['user'] = $response;
+            } else{
+                return _ReturnError('', '',['Kullanıcı Bulunamadı']);
+            }
+        }
+        $html = view('popup-forms.user', $data)->render();
+        return _ReturnSucces('', $html);
+    }
+
+    public function changeOrderState(Request $request ){
+        $orderId = $request->input('orderId');
+        $orderStatusId = $request->input('orderStatusId');
+        if($orderId){
+            $order = \WebService::order($orderId);
+            if($order && isset($order['orderStatusId'])){
+                $order['orderStatusId'] = $orderStatusId;
+                $response = \WebService::editOrder($orderId, $order);
+                if($response && isset($response['data']['orderStatusId']) && isset($response['data']['orderStatusId'])){
+                    return _ReturnSucces('', '<i class="fa fa-check text-success"></i> Sipariş Durumu Güncellendi');
+                }
+            }
+        }
+        return _ReturnSucces('', '<i class="fa fa-times text-danger"></i> Sipariş Durumu Güncellenemedi');
+    }
     public function OrderStatus(Request $request ){
         $orderStatusId = $request->input('orderStatusId');
         $data['orderStatus'] = [];

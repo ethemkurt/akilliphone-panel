@@ -22,24 +22,19 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-            <div class="card-header border-bottom"></div>
-          <div class="card-body mt-2">
-            <form class="dt_adv_search" method="POST">
-              <div class="row g-1 mb-md-1">
-                <div class="col-md-4">
                     @if($routeName=='user.admin')
-                        <x-button-popup-form :title="'Yeni Personel'" :text="'Yeni Personel'" :url="route('popup', 'User')" />
-                    @elseif($routeName=='user.bayi')
-                        <x-button-popup-form :title="'Yeni Bayi'" :text="'Yeni Bayi'" :url="route('popup', 'User')" />
-                    @elseif($routeName=='user.uye')
-                        <x-button-popup-form :title="'Yeni Müşteri'" :text="'Yeni Müşteri'" :url="route('popup', 'User')" />
-                    @endif
+                <div class="card-body mt-2">
+                    <form class="dt_adv_search" method="POST">
+                        <div class="row g-1 mb-md-1">
+                            <div class="col-md-4">
+                                <x-button-popup-form :title="'Yeni Personel'" :text="'Yeni Personel'" :url="route('popup', 'User').'?userType=admin'" />
+                            </div>
+                        </div>
+                    </form>
                 </div>
-              </div>
-                <input type="hidden" class="datatable-filter" id="search_route" name="search_route" value="{{ $routeName }}">
-            </form>
-          </div>
+                    @endif
           <hr class="my-0" />
+            <input type="hidden" class="datatable-filter" id="search_route" name="search_route" value="{{ $routeName }}">
             <x-data-table :dataTable="$dataTable"/>
         </div>
       </div>

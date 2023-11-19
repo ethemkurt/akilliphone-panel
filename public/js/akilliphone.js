@@ -9,6 +9,7 @@ var Akilliphone = {
             Akilliphone._openPopupFormEvent();
             Akilliphone._ajaxFormEvent();
             Akilliphone._confirmPopupEvent();
+            Akilliphone._changeOrderStateEvent();
         });
     },
     poupForms: function(){
@@ -50,13 +51,73 @@ var Akilliphone = {
             }
         });
     },
+    popupByUrl: function(url, method, data){
+        $('#poupForm .modal-body').html('<i class="fas fa-circle-notch fa-spin"></i>');
+        $('#poupForm .ajax-form-result').html('');
+        //$('body .ajax-form-result').html('');
+        $('#poupForm').modal('show');
+        $.ajax({
+            url: url,
+            method: method,
+            data: data
+        }).done(function(response) {
+            if(response.hasOwnProperty("status")){
+                if(response.status){
+                    $('#poupForm .modal-body').html(response.html);
+                }  else {
+                    $('#poupForm .modal-body').html(response.errors);
+                }
+                if(response.redirect){
+                    window.location.href = response.redirect;
+                }
+            } else {
+                $('#poupForm .modal-body').html('Oluşan hatalar için konsola bakınız');
+                console.log(response);
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            $('#poupForm .modal-body').html('Oluşan hatalar için konsola bakınız');
+            console.log(jqXHR.responseText);
+        }).always(function() {
+
+        });
+    },
+    submitAjaxForm: function(url, method, data){
+        $('#poupForm .ajax-form-result').html('<i class="fas fa-circle-notch fa-spin"></i>');
+        $('#poupForm').modal('show');
+        $.ajax({
+            url: url,
+            method: method,
+            data: data
+        }).done(function(response) {
+            if(response.hasOwnProperty("status")){
+                if(response.status){
+                    $('body .ajax-form-result').html(response.html);
+                }  else {
+                    $('body .ajax-form-result').html(response.errors);
+                }
+                if(response.redirect){
+                    window.location.href = response.redirect;
+                }
+            } else {
+                $('body .ajax-form-result').html('Oluşan hatalar için konsola bakınız');
+                console.log(response);
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            $('body .ajax-form-result').html('Oluşan hatalar için konsola bakınız');
+            console.log(jqXHR.responseText);
+        }).always(function() {
+
+        });
+    },
     _select2Url: function(){
         return  '#2365';
     },
     _openPopupFormEvent: function (){
-        $('body').on('click', '.btn-popup-form', function(){
+        $('body').on('click', '.btn-popup-form', function(e){
+            e.preventDefault();
             $('#poupForm .modal-header .modal-title').html($(this).data('title'));
-            $('#poupForm .modal-body').html('<i class="fas fa-circle-notch fa-spin"></i>');
+            Akilliphone.popupByUrl($(this).data('url'), 'GET', {});
+            /*$('#poupForm .modal-body').html('<i class="fas fa-circle-notch fa-spin"></i>');
             $('body .ajax-form-result').html('');
             $.ajax( $(this).data('url') ).done(function(response) {
                 if(response.status){
@@ -70,13 +131,14 @@ var Akilliphone = {
                 console.log(jqXHR.responseText);
                 $('#poupForm').modal('show');
             }).always(function() {
-            });
+            });*/
         });
     },
     _ajaxFormEvent: function (){
         $('body').on('submit', '.ajax-form', function(e){
             e.preventDefault();
-            $('body .ajax-form-result').html('<i class="fas fa-circle-notch fa-spin"></i>');
+            Akilliphone.submitAjaxForm($(this).attr('action'), $(this).attr('method'), $(this).serialize());
+            /*
             $.ajax( {
                 url: $(this).attr('action'),
                 method: $(this).attr('method'),
@@ -101,9 +163,17 @@ var Akilliphone = {
             }).always(function() {
 
             });
-
+            */
             return false;
         })
+    },
+    _changeOrderStateEvent: function(){
+        $('body').on('click', '.btn-change-order-state', function(e){
+            e.preventDefault();
+            let orderId = $(this).data('orderid');
+            let orderStatusId = $(this).parents('.input-group').find('.select-order-status-id').val();
+            Akilliphone.popupByUrl('popup/changeOrderState?orderId='+orderId+'&orderStatusId='+orderStatusId, 'GET', {});
+        });
     },
     _confirmPopupEvent: function(){
         $('body').on('click', 'a.confirm-popup', function(e){

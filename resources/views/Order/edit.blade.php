@@ -442,7 +442,7 @@
                                                         <div class="avatar-wrapper">
                                                             <div class="avatar me-2"><img src="{{ getProductImageUrl($product['image'], 40,40) }}" class="rounded-2"></div>
                                                         </div>
-                                                        <div class="d-flex flex-column"><h6 class="text-body mb-0 text-wrap">{{ $product['name'] }}</h6>
+                                                        <div class="d-flex flex-column"><h6 class="text-body mb-0 text-wrap">{{ $product['name'] }} @if($variant) - {{ $variant['name'] }} @endif</h6>
                                                             @if($variant)
                                                                 <small class="text-muted">Kodu: {{ $variant['code'] }}</small>
                                                             @endif

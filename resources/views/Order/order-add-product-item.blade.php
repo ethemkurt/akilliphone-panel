@@ -8,7 +8,7 @@ $productKey = time();
             <div class="avatar-wrapper">
                 <div class="avatar me-2"><img src="{{ getProductImageUrl($variant['featuredImage'], 40,40) }}" class="rounded-2"></div>
             </div>
-            <div class="d-flex flex-column"><h6 class="text-body mb-0 text-wrap">{{ $variant['name'] }}</h6>
+            <div class="d-flex flex-column"><h6 class="text-body mb-0 text-wrap">{{ $variant['product']['name'] }} - {{ $variant['name'] }}</h6>
                 <small class="text-muted">Kodu: {{ $variant['code'] }}</small>
                 <small class="text-muted">Barkodu: {{ $variant['variantOptions'][0]['barcode'] }}</small>
             </div>
@@ -21,10 +21,10 @@ $productKey = time();
         <input type="hidden" name="order[orderProducts][{{$productKey}}][variantId]" value="{{$variant['variantId']}}">
         <input type="hidden" name="order[orderProducts][{{$productKey}}][optionId]" value="{{$variant['variantOptions'][0]['variantOptionId']}}">
         <input type="hidden" name="order[orderProducts][{{$productKey}}][image]" value="{{$variant['featuredImage']}}">
-        <input type="hidden" name="order[orderProducts][{{$productKey}}][name]" value="{{$variant['product']['name']}}">
+        <input type="hidden" name="order[orderProducts][{{$productKey}}][name]" value="{{$variant['product']['name']}} - {{ $variant['name'] }}">
         <input type="hidden" name="order[orderProducts][{{$productKey}}][barcode]" value="{{$variant['variantOptions'][0]['barcode']}}">
 
 
     </td>
-    <td><button class="btn btn-primary"><i class="feather icon-trash-2"></i></button></td>
+    <td><button class="btn btn-primary delete-order-item"><i class="feather icon-trash-2"></i></button></td>
 </tr>

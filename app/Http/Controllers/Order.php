@@ -177,7 +177,11 @@ class Order extends Controller{
             if(isset($response['errors']) && $response['errors']){
                 $errors = [];
                 foreach($response['errors'] as $error){
-                    $errors[] = $error['message'];
+                    if(is_string($error)){
+                        $errors[] = $error;
+                    } elseif (is_array($error) && isset($error['message'])){
+                        $errors[] = $error['message'];
+                    }
                 }
                 return _ReturnError('', '', $errors);
             } else {
@@ -223,7 +227,9 @@ class Order extends Controller{
         $offset = $request->input('length', 10);
         $start = $request->input('start', 0);
         $page = ($start/$offset)+1;
-        $response = \WebService::orders($page, $offset);
+        $params['sort']= '1';
+        $params['orderBy']= 'desc';
+        $response = \WebService::orders($page, $offset, $params);
         $dataTable->setRecordsTotal($response['totalCount']);
         $dataTable->setRecordsFiltered($response['totalCount']);
         $items = [];
@@ -247,25 +253,25 @@ class Order extends Controller{
         return $dataTable->toJson();
     }
     private function _format_orderStatusId($item) {
-        return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\OrderStatus::color($item['orderStatusId']).'"><i class="ti ti-circle-filled fs-tiny me-2"></i>'.\OrderStatus::__($item['orderStatusId']).'</h6>';
+        //return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\OrderStatus::color($item['orderStatusId']).'"><i class="ti ti-circle-filled fs-tiny me-2"></i>'.\OrderStatus::__($item['orderStatusId']).'</h6>';
 
-        /*$options = '<option value="" selected disabled>Sipariş Durumu Seçiniz</option>';
+        $options = '<option value="" selected disabled>Sipariş Durumu Seçiniz</option>';
         foreach(\Enum::list('orderStatus') as $orderStatusId=>$orderStatus){
             $selected = $orderStatusId == $item['orderStatusId']?'selected':'';
             $options .= '<option value="'.$orderStatusId.'" '.$selected.'>'.$orderStatus.'</option>';
         }
-        return '<div class="input-group mb-2">
-                <select class="form-select" aria-describedby="basic-addon-search1">'.$options.'</select>
-                <button class="input-group-text btn-primary" id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check me-25"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        return '<div class="input-group">
+                <select class="form-select tiny select-order-status-id" aria-describedby="basic-addon-search1">'.$options.'</select>
+                <button class="input-group-text btn-change-order-state" data-orderid="'.$item['orderId'].'" id="basic-addon-search1"><i class="fa fa-check"></i>
                 </button>
-            </div>';*/
+            </div>';
     }
     private function _format_orderTotal($item){
         return  _FormatPrice($item['orderTotal']);
     }
     private function _format_shippingCompany($item){
         return  _Image('kargo/'.$item['shippingCompany'].'.png', 18,18);
-    } 
+    }
     private function _format_firstName($item){
        if($item['shippingAddress']){
            return '<div class="d-flex justify-content-start align-items-center order-name"><div class="d-flex flex-column"><h6 class="m-0"><a href="pages-profile-user.html" class="text-body">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</a></h6><small class="text-muted">'.$item['orderCustomer']['email'].'</small></div></div>';

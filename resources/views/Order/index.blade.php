@@ -36,17 +36,34 @@
 
               <div class="row g-1">
                 <div class="col-md-3">
-                    <x-inputs.text-input label="Ada Göre Ara" placeholder="Ada Göre Ara" name="search_name" />
+
+                    <select name="order[paymentTypeId]" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                        <option value="">Ödeme Tipi</option>
+                        @foreach(\Enum::list('PaymentType') as $key=>$val)
+                            <option value="{{ $key }}">{{ $val }}</option>
+                        @endforeach
+                    </select>
+
+
                 </div>
                 <div class="col-md-3">
-                    <x-inputs.text-input label="Sipariş No'ya Göre Ara" placeholder="Sipariş No'ya Göre Ara" name="search_order_no" />
+                    <select name="order[orderStatusId]" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                        <option value="">Sipariş Durumu</option>
+                        @foreach(\Enum::list('OrderStatus') as $key=>$val)
+                            <option value="{{ $key }}">{{ $val }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-3">
-                    <x-inputs.text-input label="Fatura No'ya Göre Ara" placeholder="Fatura No'ya Göre Ara" name="search_receipt_no" />
+                    <select name="order[paymentStatusId]" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                        <option value="">Ödeme Durumu</option>
+                        @foreach(\Enum::list('PaymentStatus') as $key=>$val)
+                            <option value="{{ $key }}">{{ $val }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-3">
-                    <x-inputs.text-input label="Ürün Koduna Göre Ara" placeholder="Ürün Koduna Göre Ara" name="search_product_code" />
-                </div>
+                    <input type="text" class="form-control" id="search_product_code" name="search_product_code" placeholder="Ürün Koduna Göre Ara">                </div>
               </div>
             </form>
           </div>

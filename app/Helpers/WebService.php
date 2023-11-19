@@ -109,9 +109,12 @@ class WebService{
         return [];
     }
 /* orders */
-    public static function orders($page=1, $offset=50){
+    public static function orders($page=1, $offset=50, $params){
         $page = max(1, (int)$page);
-        $response = self::GET('orders', ['page'=>$page, 'offset'=>$offset]);
+        $params['page'] = $page;
+        $params['offset'] =$offset;
+
+        $response = self::GET('orders', $params);
         if($response['data'] ){
             return $response['data'];
         }
@@ -134,7 +137,6 @@ class WebService{
         $response = self::PUT('orders/'.$orderId, $body);
         return $response;
     }
-
     public static function orderDelete($orderId){
         $response = self::DELETE('orders/'.$orderId, []);
         return $response;
@@ -264,6 +266,15 @@ class WebService{
         }
         return [];
     }
+    /*user*/
+    public static function user($userId){
+        $response = self::getUser($userId, request()->session()->get('jwtToken', null));
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+
     public static function brand($brandId=0){
         $response = self::static('brands/list', []);
         if(isset($response['data'])){

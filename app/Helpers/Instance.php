@@ -8,6 +8,13 @@ class Instance{
         $order['createdAt']=date('Y-m-d H:i:s');
         return $order;
     }
+    public static function User()
+    {
+        $order = self::loadJson('user');
+        $order['userId']='new';
+        $order['createdAt']=date('Y-m-d H:i:s');
+        return $order;
+    }
 
     public static function loadJson($endpoint){
         $json_path = dirname(__FILE__).'/instances/'.$endpoint.'.json';
