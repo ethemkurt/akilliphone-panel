@@ -19,9 +19,31 @@ class User extends Controller
         $data['user'] = \WebService::user($userrId);
         return view('Customer.detail', $data);
     }
-    public function new(Request $request ){
+    public function edit(Request $request ){
         $data = [];
         return view('Customer.new', $data);
+    }
+    public function editUser(Request $request, $userId ){
+        $user = $request->input('user', []);
+        if($user){
+            unset($user['userId']);
+            $user['userName'] =  $user['email'];
+            $user['birthDate'] =  date('Y-m-d H:i:s');
+            $user['tcKimlik'] =  "11111111111";
+            $user['newsletter'] =  0;
+            $user['privateDiscountType'] =  "";
+            $user['hasDropshippingPermission'] =  0;
+            $user['phone'] =  $user['telefon'];
+            $user['phoneNumber'] =  $user['telefon'];
+
+            $response = \WebService::userNew($user);
+            if(isset($response['errors']) && $response['errors']){
+                return _ReturnError('', '',$response['errors']);
+
+            }
+            return _ReturnSucces('', '**');
+        }
+        return _ReturnError('', '',['Kullanıcı Kaydedilemedi']);
     }
     private function dataTableParams(){
         $dataTable = new \AjaxDataTable();

@@ -122,10 +122,17 @@ class Order extends Controller{
         if(isset($response['errors']) && $response['errors']){
             $responseErrors = [];
             foreach($response['errors'] as $errors){
-                foreach($errors as $error){
-                    $responseErrors[] = $error;
+
+                if(is_string($errors)){
+                    $responseErrors[] =  $errors;;
+                } else {
+                    foreach($errors as $error){
+                        $responseErrors[] = $error;
+                    }
+
                 }
             }
+
             $request->session()->flash('flash-error', ['', implode(" ", $responseErrors)]);
             return back()->withInput(['order'=>$order]);
         } else{
@@ -274,11 +281,13 @@ class Order extends Controller{
     }
     private function _format_firstName($item){
        if($item['shippingAddress']){
-           return '<div class="d-flex justify-content-start align-items-center order-name"><div class="d-flex flex-column"><h6 class="m-0"><a href="pages-profile-user.html" class="text-body">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</a></h6><small class="text-muted">'.$item['orderCustomer']['email'].'</small></div></div>';
+           return '<div class="d-flex justify-content-start align-items-center order-name"><div class="d-flex flex-column"><h6 class="m-0">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</h6><small class="text-muted">'.$item['orderCustomer']['email'].'</small></div></div>';
        }
     }
     private function _format_createdAt($item){
-        return _HumanDate($item['createdAt']);
+        $html = $item['orderId'];
+        $html .= '<br><small>'._HumanDate($item['createdAt']).'</small>';
+        return $html;
     }
     private function _format_paymentTypeId($item){
         return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\PaymentType::color($item['paymentTypeId']).'"><i class="ti ti-circle-filled fs-tiny me-2"></i>'.\PaymentType::__($item['paymentTypeId']).'</h6>';
@@ -316,8 +325,8 @@ class Order extends Controller{
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
             'orderNumber'=>['title'=>'Sipariş No', 'className'=>'', 'orderable'=>''],
-            'createdAt'=>['title'=>'Tarih', 'className'=>'', 'orderable'=>''],
-            'firstName'=>['title'=>'Ad', 'className'=>'', 'orderable'=>''],
+            'createdAt'=>['title'=>'No', 'className'=>'', 'orderable'=>''],
+            'firstName'=>['title'=>'Müşteri', 'className'=>'', 'orderable'=>''],
             'paymentTypeId'=>['title'=>'Ödeme Türü', 'className'=>'', 'orderable'=>''],
             'orderStatusId'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
             'shippingCompany'=>['title'=>'Kargo', 'className'=>'', 'orderable'=>''],

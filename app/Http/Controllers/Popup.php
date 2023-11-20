@@ -42,6 +42,7 @@ class Popup extends Controller
                 $order['orderStatusId'] = $orderStatusId;
                 $response = \WebService::editOrder($orderId, $order);
                 if($response && isset($response['data']['orderStatusId']) && isset($response['data']['orderStatusId'])){
+                    \KargoService::siparisDurumunaGoreKargola($response['data']);
                     return _ReturnSucces('', '<i class="fa fa-check text-success"></i> Sipariş Durumu Güncellendi');
                 }
             }

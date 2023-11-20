@@ -6,6 +6,17 @@
 @section('page-style')
     {{-- Page Css files --}}
     <link rel="stylesheet" type="text/css" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
+    <style>
+        .invoiceType .bireysel, .invoiceType .kurumsal{
+            display: none;
+        }
+        .invoiceType.invoiceType-bireysel .bireysel{
+            display: block;
+        }
+        .invoiceType.invoiceType-kurumsal .kurumsal{
+            display: block;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -357,42 +368,56 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        @if($order['billingAddress']['invoiceType']=='bireysel')
-                                            <div class="col-12">
-                                                <div class="mb-1 row">
-                                                    <div class="col-sm-3"><label class="col-form-label" for="contact-info">tcKimlik</label></div>
-                                                    <div class="col-sm-9">
-                                                        <input value="{{ $order['orderCustomer']['tcKimlik'] }}" type="text" class="form-control" name="order[customer][tcKimlik]" placeholder="tcKimlik">
+                                        <div class="col-12">
+                                            <div class="mb-1 row">
+                                                <div class="col-sm-3"><label class="col-form-label" for="contact-info">Fatura Tipi</label></div>
+                                                <div class="col-sm-9">
+                                                    <select value="0" type="text" required="" class="form-select select-invoiceType" name="order[billingAddress][invoiceType]" placeholder="paymentStatusId">
+                                                        <option value="" selected="" disabled="">Fatura Tipi Seçiniz</option>
+                                                        <option value="bireysel" @if( $order['billingAddress']['invoiceType']=='bireysel') selected @endif >Bireysel</option>
+                                                        <option value="kurumsal" @if( $order['billingAddress']['invoiceType']=='kurumsal') selected @endif >Kurumsal</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="invoiceType" class="invoiceType invoiceType-{{ $order['billingAddress']['invoiceType'] }}">
+                                            <div class="bireysel">
+                                                <div class="col-12">
+                                                    <div class="mb-1 row">
+                                                        <div class="col-sm-3"><label class="col-form-label" for="contact-info">tcKimlik</label></div>
+                                                        <div class="col-sm-9">
+                                                            <input value="{{ $order['orderCustomer']['tcKimlik'] }}" type="text" class="form-control" name="order[customer][tcKimlik]" placeholder="tcKimlik">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @elseif($order['billingAddress']['invoiceType']=='kurumsal')
-                                            <div class="col-12">
-                                                <div class="mb-1 row">
-                                                    <div class="col-sm-3"><label class="col-form-label" for="contact-info">company</label></div>
-                                                    <div class="col-sm-9">
-                                                        <input value="{{ $order['billingAddress']['company'] }}" type="text" class="form-control" name="order[billingAddress][company]" placeholder="company">
+                                            <div class="kurumsal">
+                                                <div class="col-12">
+                                                    <div class="mb-1 row">
+                                                        <div class="col-sm-3"><label class="col-form-label" for="contact-info">company</label></div>
+                                                        <div class="col-sm-9">
+                                                            <input value="{{ $order['billingAddress']['company'] }}" type="text" class="form-control" name="order[billingAddress][company]" placeholder="company">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-1 row">
+                                                        <div class="col-sm-3"><label class="col-form-label" for="contact-info">taxNumber</label></div>
+                                                        <div class="col-sm-9">
+                                                            <input value="{{ $order['billingAddress']['taxNumber'] }}" type="text" class="form-control" name="order[billingAddress][taxNumber]" placeholder="taxNumber">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-1 row">
+                                                        <div class="col-sm-3"><label class="col-form-label" for="contact-info">taxOffice</label></div>
+                                                        <div class="col-sm-9">
+                                                            <input value="{{ $order['billingAddress']['taxOffice'] }}" type="text" class="form-control" name="order[billingAddress][taxOffice]" placeholder="taxOffice">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="mb-1 row">
-                                                    <div class="col-sm-3"><label class="col-form-label" for="contact-info">taxNumber</label></div>
-                                                    <div class="col-sm-9">
-                                                        <input value="{{ $order['billingAddress']['taxNumber'] }}" type="text" class="form-control" name="order[billingAddress][taxNumber]" placeholder="taxNumber">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-1 row">
-                                                    <div class="col-sm-3"><label class="col-form-label" for="contact-info">taxOffice</label></div>
-                                                    <div class="col-sm-9">
-                                                        <input value="{{ $order['billingAddress']['taxOffice'] }}" type="text" class="form-control" name="order[billingAddress][taxOffice]" placeholder="taxOffice">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                        @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -481,7 +506,6 @@
                                         <div class="d-flex justify-content-between tex-end">
                                             <h6 class="w-px-100 mb-0">Toplam</h6>
                                             <h6 class="mb-0"><input class="form-control text-end" type="number" name="order[orderTotal]" value="{{ $order['orderTotal'] }}" readonly id="orderTotal"/></h6>
-
                                         </div>
                                     </div>
                                 </div>
@@ -564,6 +588,10 @@
     });
     $('#billingAddress-cityId').change();
     $('#billingAddress-districtId').val('{{ $order['billingAddress']['districtId'] }}');
-
+    $('.select-invoiceType').on('change', function(){
+        $('#invoiceType').removeClass('invoiceType-bireysel');
+        $('#invoiceType').removeClass('invoiceType-kurumsal');
+        $('#invoiceType').addClass('invoiceType-' + $(this).val())
+    })
 </script>
 @endsection

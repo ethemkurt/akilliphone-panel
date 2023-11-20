@@ -274,6 +274,12 @@ class WebService{
         }
         return [];
     }
+    public static function userNew($user){
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' .  request()->session()->get('jwtToken', null),
+        ])->post(self::AUTH_URL.'/register-admin', json_encode($user, JSON_UNESCAPED_UNICODE));
+        return self::standartResponse($response) ;
+    }
 
     public static function brand($brandId=0){
         $response = self::static('brands/list', []);
@@ -370,11 +376,14 @@ class WebService{
         }
         if(isset($responseData['errors']) && $responseData['errors']){
             foreach($responseData['errors'] as $error){
+
                 if(is_string($error)){
                     $errors[] = $error;
                 } elseif(is_array($error)){
                     if(isset($error['message'])){
                         $errors[] = $error['message'];
+                    } else{
+                        $errors[] = json_encode(current($error), JSON_UNESCAPED_UNICODE);
                     }
                 }
             }
