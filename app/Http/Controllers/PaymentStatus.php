@@ -23,7 +23,7 @@ class PaymentStatus extends Controller{
             $html = '"'.$response['data']['name'].'"';
             $request->session()->flash('flash-success', [ $html , 'Silindi']);
         }
-        return redirect( route('order.order-status'));
+        return redirect( route('order.payment-status'));
     }
     public function save(Request $request ){
         $html = '';
@@ -38,7 +38,11 @@ class PaymentStatus extends Controller{
             if(isset($response['errors']) && $response['errors']){
                 $html .= implode(', ', $response['errors']);
             } else{
-                $html .= '"'.$response['data']['name'].'" Kaydedildi';
+                if(isset($response['data']['name'])){
+                    $html .= '"'.$response['data']['name'].'" Kaydedildi';
+                } else{
+                    $html .= ' Kaydedildi';
+                }
             }
         }
         return _ReturnSucces('Kaydedildi', $html);

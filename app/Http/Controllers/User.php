@@ -80,7 +80,7 @@ class User extends Controller
         $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
         $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
         $items = [];
-        if(isset($response['items'])){
+        if($response && isset($response['items'])){
             foreach($response['items'] as $row){
                 $item = [];
                 foreach($dataTable->cols() as $key=>$col){

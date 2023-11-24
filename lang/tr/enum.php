@@ -11,7 +11,7 @@ return [
     'KREDIKARTI'=>'Kredi Kartı',
     'HAVALE'=> 'Havale',
     'KAPIDANAKIT'=> 'Kapıda Nakit',
-    'KAPIDAKREDIKARTI'=> 'Kapıda Kredi KArtı',
+    'KAPIDAKREDIKARTI'=> 'Kapıda Kredi Kartı',
     'MOBIL'=> 'Mobil',
     'PAYPAL'=> 'Paypal',
     'PARCALI'=> 'Parçalı',

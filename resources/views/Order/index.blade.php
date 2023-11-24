@@ -17,9 +17,6 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-            <div class="card-header border-bottom">
-
-            </div>
           <!--Search Form -->
           <div class="card-body mt-2">
             <form class="dt_adv_search" method="POST">
@@ -35,27 +32,24 @@
               </div>
 
               <div class="row g-1">
-                <div class="col-md-3">
-
-                    <select name="order[paymentTypeId]" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                <div class="col-md-2">
+                    <select name="paymentTypeId" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
                         <option value="">Ödeme Tipi</option>
                         @foreach(\Enum::list('PaymentType') as $key=>$val)
                             <option value="{{ $key }}">{{ $val }}</option>
                         @endforeach
                     </select>
-
-
                 </div>
-                <div class="col-md-3">
-                    <select name="order[orderStatusId]" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                <div class="col-md-2">
+                    <select name="orderStatusId" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
                         <option value="">Sipariş Durumu</option>
                         @foreach(\Enum::list('OrderStatus') as $key=>$val)
                             <option value="{{ $key }}">{{ $val }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <select name="order[paymentStatusId]" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                <div class="col-md-2">
+                    <select name="paymentStatusId" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
                         <option value="">Ödeme Durumu</option>
                         @foreach(\Enum::list('PaymentStatus') as $key=>$val)
                             <option value="{{ $key }}">{{ $val }}</option>
@@ -63,7 +57,11 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="search_product_code" name="search_product_code" placeholder="Ürün Koduna Göre Ara">                </div>
+                    <input name="startsAt" type="text" id="fp-default" class="form-control flatpickr-basic datatable-filter" placeholder="Başlama Tarihi" />
+                </div>
+                <div class="col-md-3">
+                    <input name="endsAt" type="text" id="fp-default" class="form-control flatpickr-basic datatable-filter" placeholder="Bitiş Tarihi" />
+                </div>
               </div>
             </form>
           </div>
@@ -85,5 +83,13 @@
 
 @section('page-script')
   {{-- Page js files --}}
-  <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
+  <script>
+      if ($('.flatpickr-basic').length) {
+          $('.flatpickr-basic').flatpickr({
+              altInput: true,
+              altFormat: 'd.m.Y',
+              dateFormat: 'Y-m-d'
+          });
+      }
+  </script>
 @endsection

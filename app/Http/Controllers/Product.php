@@ -28,24 +28,26 @@ class Product extends Controller
         $filter['start'] = $request->input('start', 0);
         $filter['page'] = ceil($filter['start']/$filter['offset']);
         $response = \WebService::products($filter);
-        $dataTable->setRecordsTotal($response['totalCount']);
-        $dataTable->setRecordsFiltered($response['totalCount']);
+        $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
+        $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
         $items = [];
-        foreach($response['items'] as $row){
-            $item = [];
-            foreach($dataTable->cols() as $key=>$col){
-                $method = '_format_'.$key;
-                if(method_exists($this, $method)){
-                    $value = $this->$method($row);
-                } else {
-                    $value = isset($row[$key])?$row[$key]:'';
+        if($response && isset($response['items'])){
+            foreach($response['items'] as $row){
+                $item = [];
+                foreach($dataTable->cols() as $key=>$col){
+                    $method = '_format_'.$key;
+                    if(method_exists($this, $method)){
+                        $value = $this->$method($row);
+                    } else {
+                        $value = isset($row[$key])?$row[$key]:'';
+                    }
+                    $item[$key] = $value;
                 }
-                $item[$key] = $value;
+                if(isset($item['orderNumber'])){
+                    $item['orderNumber'] = count($items) + ($filter['offset']  * ($filter['page'])) + 1;
+                }
+                $items[] = $item;
             }
-            if(isset($item['orderNumber'])){
-                $item['orderNumber'] = count($items) + ($filter['offset']  * ($filter['page'])) + 1;
-            }
-            $items[] = $item;
         }
         $dataTable->setItems($items);
         return $dataTable->toJson();

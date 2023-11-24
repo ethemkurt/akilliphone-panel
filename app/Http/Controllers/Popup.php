@@ -40,9 +40,15 @@ class Popup extends Controller
             $order = \WebService::order($orderId);
             if($order && isset($order['orderStatusId'])){
                 $order['orderStatusId'] = $orderStatusId;
+                $result = \KargoService::siparisDurumunaGoreKargola($order);
+                if($result){
+                    $order['shippingTrackingNumber'] = $result['message'];
+                }
                 $response = \WebService::editOrder($orderId, $order);
-                if($response && isset($response['data']['orderStatusId']) && isset($response['data']['orderStatusId'])){
-                    \KargoService::siparisDurumunaGoreKargola($response['data']);
+                if($response && isset($response['data']['orderStatusId']) ){
+                    if($result){
+                        return _ReturnSucces('', '<i class="fa fa-check text-success"></i> '.$result['html']);
+                    }
                     return _ReturnSucces('', '<i class="fa fa-check text-success"></i> Sipariş Durumu Güncellendi');
                 }
             }

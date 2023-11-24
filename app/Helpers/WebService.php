@@ -199,8 +199,10 @@ class WebService{
         }
         return [];
     }
-    public static function paymentStatusEdit($orderStatusId, $orderStatus){
-        $response = self::PUT('orders/payment-status/'.$orderStatusId, $orderStatus);
+    public static function paymentStatusEdit($orderStatusId, $paymentStatus){
+        $paymentStatus['id'] = $paymentStatus['paymentStatusId'];
+        unset($paymentStatus['paymentStatusId']);
+        $response = self::PUT('orders/payment-status/'.$orderStatusId, $paymentStatus);
         if($response ){
             return $response;
         }
@@ -235,8 +237,11 @@ class WebService{
         }
         return [];
     }
-    public static function paymentTypeEdit($paymentTypeId, $orderStatus){
-        $response = self::PUT('orders/payment-type/'.$paymentTypeId, $orderStatus);
+    public static function paymentTypeEdit($paymentTypeId, $paymentType){
+        $paymentType['id'] = $paymentType['paymentTypeId'];
+        unset($paymentType['paymentTypeId']);
+        $response = self::PUT('orders/payment-type/'.$paymentTypeId, $paymentType);
+        //dd(json_encode($paymentType, JSON_PRETTY_PRINT), $response);
         if($response ){
             return $response;
         }
@@ -249,6 +254,7 @@ class WebService{
         }
         return [];
     }
+    /*user*/
 /* customer */
     public static function users($page=1, $offset=50, $filter){
         $params['page'] = max(1, (int)$page);
@@ -266,7 +272,6 @@ class WebService{
         }
         return [];
     }
-    /*user*/
     public static function user($userId){
         $response = self::getUser($userId, request()->session()->get('jwtToken', null));
         if($response['data'] ){
@@ -281,6 +286,11 @@ class WebService{
         return self::standartResponse($response) ;
     }
 
+    public static function orderHistoryNew($orderHistory){
+        $response = self::post('orders/history', $orderHistory);
+        dd($response);
+        return self::standartResponse($response) ;
+    }
     public static function brand($brandId=0){
         $response = self::static('brands/list', []);
         if(isset($response['data'])){

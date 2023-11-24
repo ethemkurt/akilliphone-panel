@@ -10,6 +10,17 @@ use Illuminate\Http\Request;
 class Order extends Controller{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
+        /*$orderHistory = [
+            "orderId"=> 1170,
+            "customerId"=> 163,
+            "orderStatusId"=> 31,
+            "paymentStatusId"=> 11,
+            "description"=> "açıklama",
+            "notify"=> true,
+            "notifyResult"=> "sonuç"
+        ];
+        echo json_encode($orderHistory);
+        \WebService::orderHistoryNew($orderHistory);*/
         $data['dataTable'] = $this->dataTableParams();
         return view('Order.index', $data);
     }
@@ -236,25 +247,52 @@ class Order extends Controller{
         $page = ($start/$offset)+1;
         $params['sort']= '1';
         $params['orderBy']= 'desc';
+        $search = $request->input('search', []);
+        if(isset($search['value']) && $search['value']){
+            /**
+             * SearchFor parametresi NameSurname, ProductCode ya da OrderNo içerisinde arıyor
+             */
+            $params['text'] = $search['value'];
+            $params['searchFor'] = 'nameSurname';
+        }
+        $where = $request->input('where', []);
+        if(isset($where['paymentTypeId']) && $where['paymentTypeId']){
+            $params['paymentType'] = $where['paymentTypeId'];
+        }
+        if(isset($where['paymentStatusId']) && $where['paymentStatusId']){
+            $params['paymentStatus'] = $where['paymentStatusId'];
+        }
+        if(isset($where['orderStatusId']) && $where['orderStatusId']){
+            $params['orderStatus'] = $where['orderStatusId'];
+        }
+        if(isset($where['startsAt']) && $where['startsAt']){
+            $params['startsAt'] = $where['startsAt'];
+        }
+        if(isset($where['endsAt']) && $where['endsAt']){
+            $params['endsAt'] = $where['endsAt'];
+        }
+
         $response = \WebService::orders($page, $offset, $params);
-        $dataTable->setRecordsTotal($response['totalCount']);
-        $dataTable->setRecordsFiltered($response['totalCount']);
+        $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
+        $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
         $items = [];
-        foreach($response['items'] as $row){
-            $item = [];
-            foreach($dataTable->cols() as $key=>$col){
-                $method = '_format_'.$key;
-                if(method_exists($this, $method)){
-                    $value = $this->$method($row);
-                } else {
-                    $value = isset($row[$key])?$row[$key]:'';
+        if($response && isset($response['items'])){
+            foreach($response['items'] as $row){
+                $item = [];
+                foreach($dataTable->cols() as $key=>$col){
+                    $method = '_format_'.$key;
+                    if(method_exists($this, $method)){
+                        $value = $this->$method($row);
+                    } else {
+                        $value = isset($row[$key])?$row[$key]:'';
+                    }
+                    $item[$key] = $value;
                 }
-                $item[$key] = $value;
+                if(isset($item['orderNumber'])){
+                    $item['orderNumber'] = count($items) + $start + 1;
+                }
+                $items[] = $item;
             }
-            if(isset($item['orderNumber'])){
-                $item['orderNumber'] = count($items) + $start + 1;
-            }
-            $items[] = $item;
         }
         $dataTable->setItems($items);
         return $dataTable->toJson();
@@ -290,7 +328,7 @@ class Order extends Controller{
         return $html;
     }
     private function _format_paymentTypeId($item){
-        return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\PaymentType::color($item['paymentTypeId']).'"><i class="ti ti-circle-filled fs-tiny me-2"></i>'.\PaymentType::__($item['paymentTypeId']).'</h6>';
+        return '<h6 class="mb-0 align-items-left d-flex w-px-100 text-'.\PaymentType::color($item['paymentTypeId']).'">'.\PaymentType::__($item['paymentTypeId']).'</h6><small>'.\PaymentStatus::__($item['paymentStatusId']).'</small>';
 
     }
     private function _format_actions($item){

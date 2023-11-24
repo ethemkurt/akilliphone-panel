@@ -64,6 +64,8 @@ data-asset-path="{{ asset('/')}}">
   @include('panels/scripts')
   @include('webservice-js')
   <script src="{{ url('js/akilliphone.js') }}?_v={{ time() }}"></script>
+  @yield('dataTable-script')
+  @yield('page-script')
   <script type="text/javascript">
     $(window).on('load', function() {
       if (feather) {

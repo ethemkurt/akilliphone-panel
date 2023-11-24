@@ -33,5 +33,5 @@
 @endif
 <!-- END: Theme JS-->
 <!-- BEGIN: Page JS-->
-@yield('page-script')
+
 <!-- END: Page JS-->

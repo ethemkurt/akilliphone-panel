@@ -21,7 +21,7 @@ $dt = isset($dataTable)?$dataTable:null;
             </thead>
         </table>
     </div>
-    @section('page-script')
+    @section('dataTable-script')
         <script>
             $(document).ready(function(){
 

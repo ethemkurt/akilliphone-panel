@@ -30,7 +30,6 @@ class PaymentType extends Controller{
         if($paymentType = $request->input('paymentType')){
             $paymentTypeId = isset($paymentType['paymentTypeId'])?$paymentType['paymentTypeId']:false;
             if($paymentTypeId=='new'){
-                unset($paymentType['paymentTypeId']);
                 $response = \WebService::paymentTypeNew($paymentType);
             } else {
                 $response = \WebService::paymentTypeEdit($paymentTypeId, $paymentType);
