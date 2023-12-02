@@ -12,7 +12,6 @@ class Order extends Controller{
     public function index(Request $request ){
         /*$orderHistory = [
             "orderId"=> 1170,
-            "customerId"=> 163,
             "orderStatusId"=> 31,
             "paymentStatusId"=> 11,
             "description"=> "açıklama",
@@ -34,70 +33,6 @@ class Order extends Controller{
     public function newOrder(Request $request ){
         return $this->editOrder($request, 'new');
     }
-    /*public function newOrder(Request $request ){
-        $data = $request->input('order');
-        $products=$request->input('products');
-        $variants = explode('|', $products[0]);
-        $data['customerId']=null;
-        $data['orderNo']=null;
-        $data['shippingCompany']="aras";
-        $data['shippingTrackingNumber']="";
-        $data['shippingTrackingUrl']="";
-        $data['marketplaceOrderId']="";
-        $data['marketplaceOrderCode']="";
-        $data['customer']["customerId"]=null;
-        $data['customer']["code"]=null;
-        $data['customer']["tcKimlik"]=null;
-        $data['shippingAddress']["customerId"]=null;
-        $data['shippingAddress']["description"]=null;
-        $data['shippingAddress']["zipCode"]=null;
-        $data['shippingAddress']["latitude"]=null;
-        $data['shippingAddress']["longitude"]=null;
-        $data['shippingAddress']["placeId"]=null;
-        $data['billingAddress']["customerId"]=null;
-        $data['billingAddress']["description"]=null;
-        $data['billingAddress']["zipCode"]=null;
-        $data['billingAddress']["latitude"]=null;
-        $data['billingAddress']["longitude"]=null;
-        $data['billingAddress']["placeId"]=null;
-        $data['billingAddress']["company"]=null;
-        $data['billingAddress']["taxOffice"]=null;
-        $data['billingAddress']["taxNumber"]=null;
-        $product['productId']=$variants[0];
-        $product['variantId']=$variants[1];
-        $product['quantity']=1;
-
-        $variant = \WebService::variant($product['variantId']);
-        $product['optionId']=$variant['variantOptions'][0]['variantOptionId'];
-        $product['total']=$variant['price']*$product['quantity'];
-        $data['orderProducts'][]=$product;
-        $total=['code'=>'products','name'=>'Ürünler Toplamı (KDV Dahil)','value'=>$product['total']];
-        $data['totals'][]=$total;
-        $data['orderTotal']=$product['total'];
-
-
-
-
-        $response = \WebService::newOrder($data);
-
-        if(!$response){
-            $request->session()->flash('flash-error', ['Bilgileri Tekrar Kontrol Ediniz ', 'Sipariş Oluşturulamadı.']);
-        }
-        else{
-            $request->session()->flash('flash-success', ['Sipariş Başarılı Bir Şekilde Oluşturuldu. ', 'Sipariş Oluşturuldu.']);
-
-        }
-
-        $order = [
-            'paymentStatus'=>\PaymentStatus::BEKLIYOR,
-            'paymentType'=>\PaymentType::KREDIKARTI,
-
-        ];
-        return view('Order.new', $data);
-
-        return view('Order.new', []);
-
-    }*/
     public function view(Request $request, $orderId){
         $data['order'] = \WebService::order($orderId);
         return view('Order.view', $data);
@@ -191,6 +126,8 @@ class Order extends Controller{
     }
     public function delete(Request $request, $orderId){
         if($orderId){
+
+            \WebService::orderHistoryDelete($orderId);
             $response = \WebService::orderDelete($orderId);
             if(isset($response['errors']) && $response['errors']){
                 $errors = [];

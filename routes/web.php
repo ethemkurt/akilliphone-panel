@@ -75,6 +75,8 @@ Route::group(['prefix'=>'user','as'=>'user.', 'middleware' => ['check.token']], 
     Route::get('/edit/{orderId}', [User::class, 'edit'])->name('edit');
     Route::post('/edit/{orderId}', [User::class, 'editUser'])->name('editUser');
     Route::get('/data-table', [User::class, 'dataTable'])->name('data-table');
+    Route::get('/find-user-form', [User::class, 'findUserForm'])->name('find-user-form');
+    Route::get('/find-user-select2', [User::class, 'findUserSelect2'])->name('find-user-select2');
 });
 Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Product::class, 'index'])->name('index');

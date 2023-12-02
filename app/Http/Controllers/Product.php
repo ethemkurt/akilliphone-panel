@@ -11,6 +11,9 @@ class Product extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
+        if($request->input('yedekle')){
+            return $this->yedekle($request);
+        }
         $data['dataTable'] = $this->dataTableParams();
         return view('Product.index', $data);
     }
@@ -106,5 +109,38 @@ class Product extends Controller
         ]);
         return $dataTable;
     }
-
+    private function yedekle(Request $request){
+        $filter['page'] = $request->input('yedekle', 1);
+        $filter['active']='all';
+        $products = \WebService::products($filter);
+        if(isset($products['items']) && $products['items']){
+            foreach($products['items'] as $item){
+                $product = \App\Models\Product::where(['productId' => $item['productId']])->first();
+                if(empty($product)) {
+                    $product = new \App\Models\Product();
+                    $product->productId = $item['productId'];
+                    $product->brandId = $item['brandId'];
+                    $product->featuredImage = $item['featuredImage'];
+                    $product->name = $item['name'];
+                    $product->code = $item['code'];
+                    $product->breadcrumb = $item['breadcrumb'];
+                    $product->currency = $item['currency'];
+                    //$product->description = $item['description'];
+                    $product->slug = $item['slug'];
+                    $product->metaTitle = $item['metaTitle'];
+                    $product->metaDescription = $item['metaDescription'];
+                    $product->discountRate = $item['discountRate'];
+                    $product->sessionalDiscountRate = $item['sessionalDiscountRate'];
+                    $product->sessionalDiscountStart = $item['sessionalDiscountStart'];
+                    $product->sessionalDiscountEnd = $item['sessionalDiscountEnd'];
+                    $product->status = $item['status'];
+                    $product->save();
+                    echo $item['code'].": ".$item['name']." (Eklendi)<br>";
+                } else{
+                    echo $item['code'].": ".$item['name']." (Zaten Var)<br>";
+                }
+            }
+            return redirect(route('product.index', ['yedekle'=>$filter['page']+1, 'active'=>$filter['active']]));
+        }
+    }
 }

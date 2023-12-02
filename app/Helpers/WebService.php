@@ -288,8 +288,11 @@ class WebService{
 
     public static function orderHistoryNew($orderHistory){
         $response = self::post('orders/history', $orderHistory);
-        dd($response);
-        return self::standartResponse($response) ;
+        return $response ;
+    }
+    public static function orderHistoryDelete($orderId){
+        $response = self::DELETE('orders/history/'.$orderId, []);
+        return $response;
     }
     public static function brand($brandId=0){
         $response = self::static('brands/list', []);
@@ -405,7 +408,7 @@ class WebService{
         }
 
         // $responseData = json_decode($response->body(), true);
-        if($response->status()==200){
+        if($response->status()==200 || $response->status()==201){
             if($responseData ){
                 $result['status'] = 1;
                 $result['data'] =  isset($responseData['data'])?$responseData['data']:[];

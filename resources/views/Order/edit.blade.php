@@ -169,6 +169,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <div class="mb-1 row">
+                                                <div class="col-sm-3"><label class="col-form-label" for="contact-info"></label></div>
+                                                <div class="col-sm-9">
+                                                    <button class="btn btn-primary btn-icon  waves-effect waves-float waves-light btn-popup-form" type="button" data-url="{{ route('user.find-user-form') }}"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

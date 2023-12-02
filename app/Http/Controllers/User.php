@@ -134,4 +134,26 @@ class User extends Controller
     private function _format_status($row){
         return '<span class="badge rounded-pill badge-light-'.\ActivePassive::color($row['active']).'" text-capitalized="">'.\ActivePassive::__($row['active']).'</span>';
     }
+    public function findUserForm(Request $request){
+        $data = [];
+        $html = view('User.findUserForm', $data)->render();
+        return ['status'=>1, 'message'=>'m', 'html'=>$html];
+    }
+    public function findUserSelect2(Request $request){
+        $data['results'] = [];
+        $response = \WebService::users(1,25, ['text'=>$request->input('term')]);
+
+        if($response && isset($response['items'])){
+            foreach($response['items'] as $item){
+                $data['results'][] = [
+                    'id'=>$item['userId'],
+                    'text'=> $item['firstName'].' '.$item['lastName'].'('. $item['email'].')',
+                    'image'=> '',
+                    'variants'=>[]
+                ];
+            }
+        }
+        return $data;
+    }
+
 }
