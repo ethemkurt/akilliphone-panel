@@ -123,6 +123,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <div class="mb-1 row">
+                                                <div class="col-sm-3"><label class="col-form-label" for="contact-info">Takip Kodu</label></div>
+                                                <div class="col-sm-9">
+                                                    <input value="{{ $order['shippingTrackingNumber'] }}" type="text" class="form-control" name="order[shippingTrackingNumber]" placeholder="Takip Kodu">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -164,6 +164,17 @@
             </div>
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title m-0">Kargo Bilgileri</h5>
+                </div>
+                <div class="card-body">
+                    @if($order['shippingAddress'])
+                        <p class=" mb-1">Kargo Kodu: {{ $order['shippingTrackingNumber'] }}</p>
+                        <p class=" mb-1">Takip Url: {{ $order['shippingTrackingUrl']  }}</p>
+                    @endif
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title m-0">Teslimat Bilgileri</h5>
                 </div>
                 <div class="card-body">
