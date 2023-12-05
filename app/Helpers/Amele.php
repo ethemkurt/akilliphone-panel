@@ -67,3 +67,32 @@ function _ReturnResponse($data){
     $data['redirect'] = isset($data['redirect'])?$data['redirect']:'';
     return $data;
 }
+function _formatPhoneNumber($phoneNumber) {
+    $phoneNumber = preg_replace('/[^0-9]/','',$phoneNumber);
+
+    if(strlen($phoneNumber) > 10) {
+        $countryCode = substr($phoneNumber, 0, strlen($phoneNumber)-10);
+        $areaCode = substr($phoneNumber, -10, 3);
+        $nextThree = substr($phoneNumber, -7, 3);
+        $lastDouble1 = substr($phoneNumber, -4, 2);
+        $lastDouble2 = substr($phoneNumber, -2, 2);
+
+        $phoneNumber = '+'.$countryCode.' ('.$areaCode.') '.$nextThree.' '.$lastDouble1.' '.$lastDouble2;
+    }
+    else if(strlen($phoneNumber) == 10) {
+        $areaCode = substr($phoneNumber, 0, 3);
+        $nextThree = substr($phoneNumber, 3, 3);
+        $lastDouble1 = substr($phoneNumber, 6, 2);
+        $lastDouble2 = substr($phoneNumber, 8, 2);
+
+        $phoneNumber = '('.$areaCode.') '.$nextThree.' '.$lastDouble1.' '.$lastDouble2;
+    }
+    else if(strlen($phoneNumber) == 7) {
+        $nextThree = substr($phoneNumber, 0, 3);
+        $lastDouble1 = substr($phoneNumber, 3, 2);
+        $lastDouble2 = substr($phoneNumber, 5, 2);
+        $phoneNumber = $nextThree.' '.$lastDouble1.' '.$lastDouble2;
+    }
+
+    return $phoneNumber;
+}

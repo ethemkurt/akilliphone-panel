@@ -158,7 +158,7 @@
                     <p class=" mb-1">#{{ $order['orderCustomer']['orderCustomerId'] }}</p>
                     <p class=" mb-1">{{ $order['orderCustomer']['firstName'] }} {{ $order['orderCustomer']['lastName'] }}</p>
                     <p class=" mb-1">{{ $order['orderCustomer']['email'] }}</p>
-                    <p class=" mb-1">{{ $order['orderCustomer']['telefon'] }} </p>
+                    <p class=" mb-1">{{ _formatPhoneNumber($order['orderCustomer']['telefon']) }} </p>
                     @endif
                 </div>
             </div>
@@ -169,8 +169,8 @@
                 <div class="card-body">
                     @if($order['shippingAddress'])
                     <p class=" mb-1">{{ $order['shippingAddress']['firstName'] }} {{ $order['shippingAddress']['lastName'] }}</p>
-                    <p class=" mb-1">{{ $order['shippingAddress']['phone'] }}</p>
-                    <p class=" mb-1">{{ $order['shippingAddress']['address'] }} </p>
+                    <p class=" mb-1">{{ _formatPhoneNumber($order['shippingAddress']['phone']) }}</p>
+                    <p class=" mb-1">{{ $order['shippingAddress']['addressLine1'] }} </p>
                     <p class=" mb-1">{{ $order['shippingAddress']['district'] }}/{{ $order['shippingAddress']['city'] }}</p>
                     <p class=" mb-1 fw-bold">{{ $order['shippingAddress']['country'] }}</p>
                     @endif
@@ -183,8 +183,8 @@
                 <div class="card-body">
                     @if($order['billingAddress'])
                     <p class=" mb-1">{{ $order['billingAddress']['firstName'] }} {{ $order['billingAddress']['lastName'] }}</p>
-                    <p class=" mb-1">{{ $order['billingAddress']['phone'] }}</p>
-                    <p class=" mb-1">{{ $order['billingAddress']['address'] }} </p>
+                    <p class=" mb-1">{{ _formatPhoneNumber($order['billingAddress']['phone']) }}</p>
+                    <p class=" mb-1">{{ $order['billingAddress']['addressLine1'] }} </p>
                     <p class=" mb-1">{{ $order['billingAddress']['district'] }}/{{ $order['billingAddress']['city'] }}</p>
                     <p class=" mb-1 fw-bold">{{ $order['billingAddress']['country'] }}</p>
                     <hr>
