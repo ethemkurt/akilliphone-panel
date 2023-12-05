@@ -256,7 +256,7 @@ class Order extends Controller{
     }
     private function _format_firstName($item){
        if($item['shippingAddress']){
-           return '<div class="d-flex justify-content-start align-items-center order-name"><div class="d-flex flex-column"><h6 class="m-0">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</h6><small class="text-muted">'.$item['orderCustomer']['email'].'</small></div></div>';
+           return '<div class="d-flex justify-content-start align-items-center order-name"><div class="d-flex flex-column"><h6 class="m-0">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</h6><small class="text-muted">'.($item['orderCustomer']?$item['orderCustomer']['email']:'').'</small></div></div>';
        }
     }
     private function _format_createdAt($item){
