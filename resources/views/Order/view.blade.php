@@ -91,7 +91,7 @@
                             </div>
                             @endforeach
                             <div class="d-flex justify-content-between tex-end">
-                                <h6 class="w-px-100 mb-0">Toplam</h6>
+                                <h6 class="w-px-100 mb-0 pe-1">Toplam: </h6>
                                 <h6 class="mb-0">{{_FormatPrice($order['orderTotal'])}}</h6>
                             </div>
                         </div>

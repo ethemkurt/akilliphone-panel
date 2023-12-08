@@ -11,6 +11,7 @@ use App\Http\Controllers\User;
 use App\Http\Controllers\Product;
 use App\Http\Controllers\Popup;
 use App\Http\Controllers\Settings;
+use App\Http\Controllers\Slide;
 
 
 /*
@@ -88,6 +89,16 @@ Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.to
     Route::get('/', [Settings::class, 'index'])->name('index');
     Route::get('/enum', [Settings::class, 'enum'])->name('enum');
 
+});
+Route::group(['prefix'=>'slide','as'=>'slide.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Slide::class, 'index'])->name('index');
+    Route::get('/data-table', [Slide::class, 'dataTable'])->name('data-table');
+    Route::get('/new', [Slide::class, 'new'])->name('new');
+    Route::post('/new', [Slide::class, 'newOrder'])->name('newOrder');
+    Route::get('/edit/{orderId}', [Slide::class, 'edit'])->name('edit');
+    Route::post('/edit/{orderId}', [Slide::class, 'editSlide'])->name('editSlide');
+    Route::get('/view/{orderId}', [Slide::class, 'view'])->name('view');
+    Route::post('/delete/{orderId}', [Slide::class, 'delete'])->name('delete');
 });
 
 

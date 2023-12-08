@@ -1,5 +1,13 @@
 <?php
 class Instance{
+    public static function Slide()
+    {
+        $order['slideId']='new';
+        $order['code']='';
+        $order['name']='';
+        $order['status']='';
+        return $order;
+    }
     public static function Order()
     {
         $order = self::loadJson('order');

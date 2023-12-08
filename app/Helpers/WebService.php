@@ -286,6 +286,10 @@ class WebService{
         return self::standartResponse($response) ;
     }
 
+    public static function orderHistory($orderId){
+        $response = self::post('orders/history/'.$orderId, []);
+        return $response ;
+    }
     public static function orderHistoryNew($orderHistory){
         $response = self::post('orders/history', $orderHistory);
         return $response ;
@@ -314,6 +318,26 @@ class WebService{
     public static function district($cityId){
         return self::static('address/district/'.$cityId, []);
     }
+    /** Slide */
+    public static function slides($filter){
+        $params['page'] = max(1, (int)$filter['page']);
+        $params['offset'] = max(10, (int)$filter['offset']);
+        if(isset($filter['text'])){
+            $params['text'] = $filter['text'];
+        }
+        //$response = self::GET('users', $params);
+        $response['totalCount'] = \App\Models\Slide::count();
+        $response['data']['items'] = \App\Models\Slide::offset($params['page']-1)->limit($params['offset'])->get();
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function slide($slideId=0){
+        $response['data'] = \App\Models\Slide::find($slideId) ;
+        return $response;
+    }
+
     static private function TOKEN($username, $password){
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('token', null),
@@ -381,7 +405,7 @@ class WebService{
             $errors[]= 'Webservis Hatası';
         }
         if(empty($responseData)){
-            $responseData['errors'][]= ['message'=>'Webservis İşlem Hatası: '.$response->body()];
+            $responseData['errors'][]= ['message'=>'Webservis İşlem Hatası. Http Kodu: '.$response->status() .' Bilgi: '.$response->body()];
         }
 
         if($response->status()=='502'){
