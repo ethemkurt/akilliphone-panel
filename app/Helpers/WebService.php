@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use \Firebase\JWT\JWT;
@@ -334,7 +336,18 @@ class WebService{
         return [];
     }
     public static function slide($slideId=0){
-        $response['data'] = \App\Models\Slide::find($slideId) ;
+        $slide = \App\Models\Slide::find($slideId) ;
+        if($slide){
+            $response = $slide->toArray() ;
+            $rows = DB::table('slide_images')->where(['slideId'=>$response['id']])->get();
+            if(!$rows->isEmpty()){
+                foreach($rows as $row){
+                    $response['images'][] =  $row;
+                }
+            }
+        } else {
+            $response = [];
+        }
         return $response;
     }
 

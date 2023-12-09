@@ -64,6 +64,7 @@ data-asset-path="{{ asset('/')}}">
   @include('panels/scripts')
   @include('webservice-js')
   <script src="{{ url('js/akilliphone.js') }}?_v={{ time() }}"></script>
+  <script src="{{ url('js/tulpar-uploader.js') }}?_v={{ time() }}"></script>
   @yield('dataTable-script')
   @yield('page-script')
   <script type="text/javascript">

@@ -19,8 +19,9 @@ class Order extends Controller{
             "notifyResult"=> "sonuç"
         ];
         echo json_encode($orderHistory);
-        \WebService::orderHistoryNew($orderHistory);*/
-
+        \WebService::orderHistoryNew($orderHistory);
+        $response = \WebService::orderHistory(1454);
+        dd($response);*/
         $data['dataTable'] = $this->dataTableParams();
         return view('Order.index', $data);
     }

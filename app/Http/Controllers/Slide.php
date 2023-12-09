@@ -12,7 +12,6 @@ class Slide extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
         $data['dataTable'] = $this->dataTableParams();
-
         return view('Slide.index', $data);
     }
     public function edit(Request $request, $slideId){
@@ -20,11 +19,22 @@ class Slide extends Controller
         if($oldSlide){
             $data['slide'] = $oldSlide;
         }elseif($slideId=='new'){
-            $data['slide'] = \Instance::Slide();
+            $data['slide'] = \Instance::Slide()->toArray();
         } else{
             $data['slide'] = \WebService::slide($slideId);
         }
         return view('Slide.edit', $data);
+    }
+    public function editSlide(Request $request, $slideId){
+        $slide = \App\Models\Slide::find($slideId);
+        if($slide){
+            $images = $request->input('images', []);
+            $slide->upSertImages($images);
+            $request->session()->flash('flash-success', ['Slayt Kaydedildi', 'Tebrikler.']);
+            return redirect(route('slide.edit', $slideId));
+        }
+        $request->session()->flash('flash-error', ['Slayt Kaydedilemedi', 'Üzgünüz.']);
+        return redirect(route('slide.index'));
     }
 
     public function dataTable(Request $request){
