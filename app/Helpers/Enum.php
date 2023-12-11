@@ -19,12 +19,14 @@ class UserRole extends \Enum{
     }
 }
 class ShippingCompanies extends \Enum{
-    const ARAS='aras';
-    const MNG='mng';
+    const ARAS='Aras';
+    const MNG='Mng';
+    const TRYE='Trendyol Express Marketplace';
     static function colors($class=null){
         return[
             self::ARAS=>'success',
             self::MNG=>'danger',
+            self::MNG=>'warning',
         ];
     }
     static function color($const){
@@ -38,6 +40,7 @@ class ShippingCompanies extends \Enum{
         $items = [
             self::ARAS=>'Aras Kargo',
             self::MNG=>'MNG Kargo',
+            self::TRYE=>'Trendyol Express Marketplace',
         ];
         return isset($items[$const])?$items[$const]:$const;
     }

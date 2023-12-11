@@ -254,11 +254,11 @@ class Order extends Controller{
         return  _FormatPrice($item['orderTotal']);
     }
     private function _format_shippingCompany($item){
-        return  _Image('kargo/'.$item['shippingCompany'].'.png', 18,18);
+        return  $item['shippingCompany'];//_Image('kargo/'.$item['shippingCompany'].'.png', 18,18);
     }
     private function _format_firstName($item){
        if($item['shippingAddress']){
-           return '<div class="d-flex justify-content-start align-items-center order-name"><div class="d-flex flex-column"><h6 class="m-0">'.$item['shippingAddress']['firstName'].' '.$item['shippingAddress']['lastName'].'</h6><small class="text-muted">'.($item['orderCustomer']?$item['orderCustomer']['email']:'').'</small></div></div>';
+           return '<div class="d-flex justify-content-start align-items-center order-name"><div class="d-flex flex-column"><h6 class="m-0">'.$item['shippingAddress']['firstname'].' '.$item['shippingAddress']['lastname'].'</h6><small class="text-muted">'.($item['orderCustomer']?$item['orderCustomer']['email']:'').'</small></div></div>';
        }
     }
     private function _format_createdAt($item){

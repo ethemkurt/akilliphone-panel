@@ -7,13 +7,13 @@
     {{-- Page Css files --}}
     <link rel="stylesheet" type="text/css" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
     <style>
-        .invoiceType .bireysel, .invoiceType .kurumsal{
+        .invoiceType .Bireysel, .invoiceType .Kurumsal{
             display: none;
         }
-        .invoiceType.invoiceType-bireysel .bireysel{
+        .invoiceType.invoiceType-Bireysel .Bireysel{
             display: block;
         }
-        .invoiceType.invoiceType-kurumsal .kurumsal{
+        .invoiceType.invoiceType-Kurumsal .Kurumsal{
             display: block;
         }
     </style>
@@ -196,8 +196,8 @@
                                         <input value="{{ $order['shippingAddress']['countryId'] }}" type="hidden" name="order[shippingAddress][countryId]" value="2">
                                         <input value="{{ $order['shippingAddress']['cityId'] }}" type="hidden" name="order[shippingAddress][cityId]">
                                         <input value="{{ $order['shippingAddress']['districtId'] }}" type="hidden" name="order[shippingAddress][districtId]">
-                                        <input value="{{ $order['shippingAddress']['firstName'] }}" type="hidden" name="order[shippingAddress][firstName]">
-                                        <input value="{{ $order['shippingAddress']['lastName'] }}" type="hidden" name="order[shippingAddress][lastName]">
+                                        <input value="{{ $order['shippingAddress']['firstname'] }}" type="hidden" name="order[shippingAddress][firstName]">
+                                        <input value="{{ $order['shippingAddress']['lastname'] }}" type="hidden" name="order[shippingAddress][lastName]">
                                         <input value="" type="hidden" name="order[shippingAddress][name]">
                                         <input value="{{ $order['shippingAddress']['description'] }}" type="hidden" name="order[shippingAddress][description]">
                                         <input value="{{ $order['shippingAddress']['addressLine1'] }}" type="hidden" name="order[shippingAddress][addressLine1]">
@@ -217,7 +217,7 @@
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ad</label></div>
                                                 <div class="col-sm-9">
-                                                    <input value="{{ $order['shippingAddress']['firstName'] }}" type="text" class="form-control" name="order[shippingAddress][firstName]" placeholder="Ad">
+                                                    <input value="{{ $order['shippingAddress']['firstname'] }}" type="text" class="form-control" name="order[shippingAddress][firstName]" placeholder="Ad">
                                                 </div>
                                             </div>
                                         </div>
@@ -225,7 +225,7 @@
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Soyad</label></div>
                                                 <div class="col-sm-9">
-                                                    <input value="{{ $order['shippingAddress']['lastName'] }}" type="text" class="form-control" name="order[shippingAddress][lastName]" placeholder="Soyad">
+                                                    <input value="{{ $order['shippingAddress']['lastname'] }}" type="text" class="form-control" name="order[shippingAddress][lastName]" placeholder="Soyad">
                                                 </div>
                                             </div>
                                         </div>
@@ -293,8 +293,8 @@
                                         <input value="{{ $order['billingAddress']['countryId'] }}" type="hidden" name="order[billingAddress][countryId]" value="2">
                                         <input value="{{ $order['billingAddress']['cityId'] }}" type="hidden" name="order[billingAddress][cityId]">
                                         <input value="{{ $order['billingAddress']['districtId'] }}" type="hidden" name="order[billingAddress][districtId]">
-                                        <input value="{{ $order['billingAddress']['firstName'] }}" type="hidden" name="order[billingAddress][firstName]">
-                                        <input value="{{ $order['billingAddress']['lastName'] }}" type="hidden" name="order[billingAddress][lastName]">
+                                        <input value="{{ $order['billingAddress']['firstname'] }}" type="hidden" name="order[billingAddress][firstName]">
+                                        <input value="{{ $order['billingAddress']['lastname'] }}" type="hidden" name="order[billingAddress][lastName]">
                                         <input value="" type="hidden" name="order[billingAddress][name]">
                                         <input value="{{ $order['billingAddress']['description'] }}" type="hidden" name="order[billingAddress][description]">
                                         <input value="{{ $order['billingAddress']['addressLine1'] }}" type="hidden" name="order[billingAddress][addressLine1]">
@@ -318,7 +318,7 @@
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ad</label></div>
                                                 <div class="col-sm-9">
-                                                    <input value="{{ $order['billingAddress']['firstName'] }}" type="text" class="form-control" name="order[billingAddress][firstName]" placeholder="Ad">
+                                                    <input value="{{ $order['billingAddress']['firstname'] }}" type="text" class="form-control" name="order[billingAddress][firstName]" placeholder="Ad">
                                                 </div>
                                             </div>
                                         </div>
@@ -326,7 +326,7 @@
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Soyad</label></div>
                                                 <div class="col-sm-9">
-                                                    <input value="{{ $order['billingAddress']['lastName'] }}" type="text" class="form-control" name="order[billingAddress][lastName]" placeholder="Soyad">
+                                                    <input value="{{ $order['billingAddress']['lastname'] }}" type="text" class="form-control" name="order[billingAddress][lastName]" placeholder="Soyad">
                                                 </div>
                                             </div>
                                         </div>
@@ -390,14 +390,14 @@
                                                 <div class="col-sm-9">
                                                     <select value="0" type="text" required="" class="form-select select-invoiceType" name="order[billingAddress][invoiceType]" placeholder="paymentStatusId">
                                                         <option value="" selected="" disabled="">Fatura Tipi Seçiniz</option>
-                                                        <option value="bireysel" @if( $order['billingAddress']['invoiceType']=='bireysel') selected @endif >Bireysel</option>
-                                                        <option value="kurumsal" @if( $order['billingAddress']['invoiceType']=='kurumsal') selected @endif >Kurumsal</option>
+                                                        <option value="Bireysel" @if( $order['billingAddress']['invoiceType']=='Bireysel') selected @endif >Bireysel</option>
+                                                        <option value="Kurumsal" @if( $order['billingAddress']['invoiceType']=='Kurumsal') selected @endif >Kurumsal</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="invoiceType" class="invoiceType invoiceType-{{ $order['billingAddress']['invoiceType'] }}">
-                                            <div class="bireysel">
+                                            <div class="Bireysel">
                                                 <div class="col-12">
                                                     <div class="mb-1 row">
                                                         <div class="col-sm-3"><label class="col-form-label" for="contact-info">tcKimlik</label></div>
@@ -407,7 +407,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="kurumsal">
+                                            <div class="Kurumsal">
                                                 <div class="col-12">
                                                     <div class="mb-1 row">
                                                         <div class="col-sm-3"><label class="col-form-label" for="contact-info">company</label></div>
@@ -605,8 +605,8 @@
     $('#billingAddress-cityId').change();
     $('#billingAddress-districtId').val('{{ $order['billingAddress']['districtId'] }}');
     $('.select-invoiceType').on('change', function(){
-        $('#invoiceType').removeClass('invoiceType-bireysel');
-        $('#invoiceType').removeClass('invoiceType-kurumsal');
+        $('#invoiceType').removeClass('invoiceType-Bireysel');
+        $('#invoiceType').removeClass('invoiceType-Kurumsal');
         $('#invoiceType').addClass('invoiceType-' + $(this).val())
     })
 </script>

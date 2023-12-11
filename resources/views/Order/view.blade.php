@@ -168,6 +168,7 @@
                 </div>
                 <div class="card-body">
                     @if($order['shippingAddress'])
+                        <p class=" mb-1">Kargo Firma: {{ $order['shippingCompany'] }}</p>
                         <p class=" mb-1">Kargo Kodu: {{ $order['shippingTrackingNumber'] }}</p>
                         <p class=" mb-1">Takip Url: {{ $order['shippingTrackingUrl']  }}</p>
                     @endif
@@ -179,7 +180,7 @@
                 </div>
                 <div class="card-body">
                     @if($order['shippingAddress'])
-                    <p class=" mb-1">{{ $order['shippingAddress']['firstName'] }} {{ $order['shippingAddress']['lastName'] }}</p>
+                    <p class=" mb-1">{{ $order['shippingAddress']['firstname'] }} {{ $order['shippingAddress']['lastname'] }}</p>
                     <p class=" mb-1">{{ _formatPhoneNumber($order['shippingAddress']['phone']) }}</p>
                     <p class=" mb-1">{{ $order['shippingAddress']['addressLine1'] }} </p>
                     <p class=" mb-1">{{ $order['shippingAddress']['district'] }}/{{ $order['shippingAddress']['city'] }}</p>
@@ -193,16 +194,16 @@
                 </div>
                 <div class="card-body">
                     @if($order['billingAddress'])
-                    <p class=" mb-1">{{ $order['billingAddress']['firstName'] }} {{ $order['billingAddress']['lastName'] }}</p>
+                    <p class=" mb-1">{{ $order['billingAddress']['firstname'] }} {{ $order['billingAddress']['lastname'] }}</p>
                     <p class=" mb-1">{{ _formatPhoneNumber($order['billingAddress']['phone']) }}</p>
                     <p class=" mb-1">{{ $order['billingAddress']['addressLine1'] }} </p>
                     <p class=" mb-1">{{ $order['billingAddress']['district'] }}/{{ $order['billingAddress']['city'] }}</p>
                     <p class=" mb-1 fw-bold">{{ $order['billingAddress']['country'] }}</p>
                     <hr>
-                        @if($order['billingAddress']['invoiceType']=='bireysel')
+                        @if($order['billingAddress']['invoiceType']=='Bireysel')
                             <h6 class="m-0 text-info">Bireysel Fatura</h6>
                             <p class=" mb-1">TC Kimlik: {{ $order['billingAddress']['tcKimlik'] }}</p>
-                        @elseif($order['billingAddress']['invoiceType']=='bireysel')
+                        @elseif($order['billingAddress']['invoiceType']=='Bireysel')
                             <h6 class="m-0 text-danger">Kurumsal Fatura</h6>
                             <p class=" mb-1">Firma: {{ $order['billingAddress']['company'] }}}</p>
                             <p class=" mb-1">Vergi No: {{ $order['billingAddress']['taxNumber'] }}}</p>

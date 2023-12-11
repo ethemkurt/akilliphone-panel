@@ -51,7 +51,7 @@ class ArasKargo{
             "Password"              => $setting['apipass'],//"sibel1234",
             "TradingWaybillNumber"  => $orderNumber,
             "InvoiceNumber"  		=> $orderNumber,
-            "ReceiverName"			=> html_entity_decode($order['shippingAddress']['firstName'] .' '.$order['shippingAddress']['lastName'], ENT_COMPAT, "UTF-8"),
+            "ReceiverName"			=> html_entity_decode($order['shippingAddress']['firstname'] .' '.$order['shippingAddress']['lastname'], ENT_COMPAT, "UTF-8"),
             "ReceiverAddress"       => html_entity_decode($address, ENT_COMPAT, "UTF-8"),
             "ReceiverPhone1"        => $order['shippingAddress']['phone'],
             "ReceiverCityName"      => $city,
