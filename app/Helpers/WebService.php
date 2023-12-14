@@ -289,8 +289,11 @@ class WebService{
     }
 
     public static function orderHistory($orderId){
-        $response = self::post('orders/history/'.$orderId, []);
-        return $response ;
+        $response = self::get('orders/history/'.$orderId, []);
+        if(isset($response['data'])){
+            return  $response['data'];
+        }
+        return [] ;
     }
     public static function orderHistoryNew($orderHistory){
         $response = self::post('orders/history', $orderHistory);

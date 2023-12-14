@@ -20,7 +20,7 @@ class Order extends Controller{
         ];
         echo json_encode($orderHistory);
         \WebService::orderHistoryNew($orderHistory);
-        $response = \WebService::orderHistory(1454);
+        $response = \WebService::orderHistory(1537);
         dd($response);*/
         $data['dataTable'] = $this->dataTableParams();
         return view('Order.index', $data);
@@ -37,6 +37,7 @@ class Order extends Controller{
     }
     public function view(Request $request, $orderId){
         $data['order'] = \WebService::order($orderId);
+        $data['orderHistory'] = \WebService::orderHistory($orderId);
         return view('Order.view', $data);
     }
     public function editOrder(Request $request, $orderId){

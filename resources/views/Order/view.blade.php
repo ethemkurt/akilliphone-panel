@@ -105,16 +105,31 @@
 
                 <div class="card-body">
                     <ul class="timeline pb-0 mb-0">
-                        <li class="timeline-item timeline-item-transparent">
-                            <span class="timeline-point timeline-point-primary"></span>
-                            <div class="timeline-event">
-                                <div class="timeline-header">
-                                    <h6 class="mb-0">Sipariş Geçmişi alınamadı</h6>
-                                    <span class="text-muted">{{ _HumanDate(date('Y-m-d')) }}</span>
+                        @if($orderHistory)
+                            @foreach($orderHistory as $history)
+                                <li class="timeline-item timeline-item-transparent">
+                                    <span class="timeline-point timeline-point-primary"></span>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header">
+                                            <h6 class="mb-0">{{ $history['description'] }}</h6>
+                                            <span class="text-muted">{{ _HumanDate($history['createdAt']) }}</span>
+                                        </div>
+                                        <p class="mt-2"></p>
+                                    </div>
+                                </li>
+                            @endforeach
+                        @else
+                            <li class="timeline-item timeline-item-transparent">
+                                <span class="timeline-point timeline-point-primary"></span>
+                                <div class="timeline-event">
+                                    <div class="timeline-header">
+                                        <h6 class="mb-0">Sipariş Geçmişi alınamadı</h6>
+                                        <span class="text-muted">{{ _HumanDate(date('Y-m-d')) }}</span>
+                                    </div>
+                                    <p class="mt-2">Hatalar için yazılım ekibiyle görüşünüzu</p>
                                 </div>
-                                <p class="mt-2">Hatalar için yazılım ekibiyle görüşünüzu</p>
-                            </div>
-                        </li>
+                            </li>
+                        @endif
 {{--                        <li class="timeline-item timeline-item-transparent">--}}
 {{--                            <span class="timeline-point timeline-point-primary"></span>--}}
 {{--                            <div class="timeline-event">--}}
