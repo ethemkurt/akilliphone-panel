@@ -20,7 +20,7 @@ class Order extends Controller{
         ];
         echo json_encode($orderHistory);
         \WebService::orderHistoryNew($orderHistory);
-        $response = \WebService::orderHistory(1537);
+        $response = \WebService::orderHistory(2000);
         dd($response);*/
         $data['dataTable'] = $this->dataTableParams();
         return view('Order.index', $data);

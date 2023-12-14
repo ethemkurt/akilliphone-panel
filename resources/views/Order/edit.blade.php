@@ -390,8 +390,8 @@
                                                 <div class="col-sm-9">
                                                     <select value="0" type="text" required="" class="form-select select-invoiceType" name="order[billingAddress][invoiceType]" placeholder="paymentStatusId">
                                                         <option value="" selected="" disabled="">Fatura Tipi Seçiniz</option>
-                                                        <option value="Bireysel" @if( $order['billingAddress']['invoiceType']=='Bireysel') selected @endif >Bireysel</option>
-                                                        <option value="Kurumsal" @if( $order['billingAddress']['invoiceType']=='Kurumsal') selected @endif >Kurumsal</option>
+                                                        <option value="Bireysel" @if( $order['billingAddress']['invoiceType']=='Bireysel' || $order['billingAddress']['invoiceType']=='bireysel') selected @endif >Bireysel</option>
+                                                        <option value="Kurumsal" @if( $order['billingAddress']['invoiceType']=='Kurumsal' || $order['billingAddress']['invoiceType']=='kurumsal') selected @endif >Kurumsal</option>
                                                     </select>
                                                 </div>
                                             </div>
