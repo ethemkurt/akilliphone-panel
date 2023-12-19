@@ -190,6 +190,12 @@
                     "name": "Push Notification",
                     "icon": "circle",
                     "slug": "collapsed-menu"
+                },
+                {
+                    "url": "logs/error",
+                    "name": "Hata Logları",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
                 }
             ]
         }

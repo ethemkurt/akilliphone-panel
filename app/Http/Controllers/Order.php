@@ -11,7 +11,7 @@ class Order extends Controller{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
         /*$orderHistory = [
-            "orderId"=> 1170,
+            "orderId"=> 2572,
             "orderStatusId"=> 31,
             "paymentStatusId"=> 11,
             "description"=> "açıklama",
@@ -19,7 +19,8 @@ class Order extends Controller{
             "notifyResult"=> "sonuç"
         ];
         echo json_encode($orderHistory);
-        \WebService::orderHistoryNew($orderHistory);
+        $response =\WebService::orderHistoryNew($orderHistory);
+        dd($response);
         $response = \WebService::orderHistory(2000);
         dd($response);*/
         $data['dataTable'] = $this->dataTableParams();

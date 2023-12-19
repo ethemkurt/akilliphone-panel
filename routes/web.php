@@ -12,6 +12,7 @@ use App\Http\Controllers\Product;
 use App\Http\Controllers\Popup;
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\Slide;
+use App\Http\Controllers\Logs;
 
 
 /*
@@ -99,6 +100,12 @@ Route::group(['prefix'=>'slide','as'=>'slide.', 'middleware' => ['check.token']]
     Route::post('/edit/{orderId}', [Slide::class, 'editSlide'])->name('editSlide');
     Route::get('/view/{orderId}', [Slide::class, 'view'])->name('view');
     Route::post('/delete/{orderId}', [Slide::class, 'delete'])->name('delete');
+});
+Route::group(['prefix'=>'logs','as'=>'logs.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Logs::class, 'index'])->name('index');
+    Route::get('/data-table', [Logs::class, 'dataTable'])->name('data-table');
+    Route::get('/error', [Logs::class, 'error'])->name('error');
+    Route::get('/error/{logId}', [Logs::class, 'errorView'])->name('error.view');
 });
 
 
