@@ -71,8 +71,7 @@ class Logs extends Controller
         return $dataTable;
     }
     private function _format_data($row){
-        $data= json_decode($row->data, 1);
-        if(isset($data['ex'])) return $data['ex'];
+        return $row->message;
     }
     private function _format_created_at($row){
         return _HumanDate($row->created_at, 'm.d.Y H:i');
