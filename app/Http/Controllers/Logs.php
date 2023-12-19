@@ -29,10 +29,10 @@ class Logs extends Controller
         $filter['offset'] = $request->input('length', 10);
         $filter['start'] = $request->input('start', 0);
         $filter['page'] = ceil($filter['start']/$filter['offset']);
-        $rows = FailedLogs::orderBy('id', 'DESC')->get();
-
-        $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
-        $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
+        $rows = FailedLogs::orderBy('id', 'DESC')->limit($filter['offset'])->offset( $filter['start'])->get();
+        $totalCount = FailedLogs::count();
+        $dataTable->setRecordsTotal(isset($totalCount)?$totalCount:0);
+        $dataTable->setRecordsFiltered(isset($totalCount)?$totalCount:0);
         $items = [];
         if( !$rows->isEmpty() ){
             foreach($rows as $row){
