@@ -30,5 +30,4 @@
     {{-- vendor files --}}
 @endsection
 @section('page-script')
-    {{-- Page js files --}}
 @endsection

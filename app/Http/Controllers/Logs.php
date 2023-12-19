@@ -21,6 +21,9 @@ class Logs extends Controller
     }
     public function errorView(Request $request, $errorId ){
         $data['log'] = FailedLogs::find($errorId);
+        if($data['log']){
+            $data['log']->data = json_decode($data['log']->data);
+        }
         return view('Logs.error-view', $data);
     }
 
