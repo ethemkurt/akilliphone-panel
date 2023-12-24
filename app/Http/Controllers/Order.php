@@ -297,7 +297,7 @@ class Order extends Controller{
                         </a>
                         <a class="dropdown-item" href="'.$barcodeUrl.'" target="_blank">
                             <i class="feather icon-edit"></i>
-                            <span>Barkot Yazdır</span>
+                            <span>Barkod Yazdır</span>
                         </a>
                         <button class="dropdown-item btn-popup-form" data-url="'.$deleteUrl.'">
                             <i class="feather icon-trash-2"></i>
