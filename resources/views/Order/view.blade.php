@@ -21,8 +21,8 @@
             <p class="text-body">{{ _HumanDate($order['createdAt'], 'd.m.Y') }}</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-2">
-            <a class="btn btn-secondary edit-order waves-effect" href="{{ route('order.barcode', $order['orderId']) }}"><i class="fa fa-barcode"></i> Barkod</a>
-            <a class="btn btn-primary edit-order waves-effect" href="{{ route('order.edit', $order['orderId']) }}"><i class="fa fa-edit" target="_blank"></i> Düzenle</a>
+            <a class="btn btn-secondary edit-order waves-effect" href="{{ route('order.barcode', $order['orderId']) }}"><i class="fa fa-barcode" target="_blank"></i> Barkod</a>
+            <a class="btn btn-primary edit-order waves-effect" href="{{ route('order.edit', $order['orderId']) }}"><i class="fa fa-edit"></i> Düzenle</a>
             <button type="button" class="btn btn-danger  waves-effect waves-float waves-light btn-popup-form" data-bs-toggle="modal" data-bs-target="#poupForm" data-url="{{ route('popup', 'deleteOrder') }}?orderId={{ $order['orderId'] }}"><i class="fa fa-trash"></i> Sil</button>
         </div>
     </div>
