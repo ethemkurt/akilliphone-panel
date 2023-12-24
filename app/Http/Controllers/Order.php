@@ -150,6 +150,11 @@ class Order extends Controller{
             return _ReturnError('', '', ['Sipariş Bulunamadı']);
         }
     }
+    public function barcode(Request $request, $orderId){
+        $data['order'] = \WebService::order($orderId);
+        return view('Order.barcode', $data);
+
+    }
     public function findProductForm(Request $request){
         $data = [];
         $html = view('Order.findProductForm', $data)->render();
@@ -273,6 +278,7 @@ class Order extends Controller{
 
     }
     private function _format_actions($item){
+        $barcodeUrl = route('order.barcode', $item['orderId']);
         $editUrl = route('order.edit', $item['orderId']);
         $viewUrl = route('order.view', $item['orderId']);
         $deleteUrl = route('popup', 'deleteOrder').'?orderId='. $item['orderId'];
@@ -288,6 +294,10 @@ class Order extends Controller{
                         <a class="dropdown-item" href="'.$editUrl.'">
                             <i class="feather icon-edit"></i>
                             <span>Düzenle</span>
+                        </a>
+                        <a class="dropdown-item" href="'.$barcodeUrl.'" target="_blank">
+                            <i class="feather icon-edit"></i>
+                            <span>Barkot Yazdır</span>
                         </a>
                         <button class="dropdown-item btn-popup-form" data-url="'.$deleteUrl.'">
                             <i class="feather icon-trash-2"></i>
