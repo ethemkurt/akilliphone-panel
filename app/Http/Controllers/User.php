@@ -11,13 +11,16 @@ class User extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
-        $data['dataTable'] = $this->dataTableParams();
         $data['routeName'] =  $request->route()->getName();
+        $data['dataTable'] = $this->dataTableParams( $data['routeName'] );
         return view('User.index', $data);
     }
     public function detail(Request $request, $userrId ){
         $data['user'] = \WebService::user($userrId);
         return view('Customer.detail', $data);
+    }
+    public function delete(Request $request, $userrId ){
+        $response = \WebService::userDelete($userrId);
     }
     public function edit(Request $request ){
         $data = [];
@@ -26,17 +29,26 @@ class User extends Controller
     public function editUser(Request $request, $userId ){
         $user = $request->input('user', []);
         if($user){
-            unset($user['userId']);
-            $user['userName'] =  $user['email'];
-            $user['birthDate'] =  date('Y-m-d H:i:s');
-            $user['tcKimlik'] =  "11111111111";
-            $user['newsletter'] =  0;
-            $user['privateDiscountType'] =  "";
-            $user['hasDropshippingPermission'] =  0;
-            $user['phone'] =  $user['telefon'];
-            $user['phoneNumber'] =  $user['telefon'];
+            if($user['userId']=='new'){
+                /*$user['userId'] = null;
+                $user['userName'] =  $user['email'];
+                $user['birthDate'] =  date('Y-m-d H:i:s');
+                $user['tcKimlik'] =  "11111111111";
+                $user['newsletter'] =  0;
+                $user['privateDiscountType'] =  "";
+                $user['phone'] =  $user['telefon'];
+                */
+                $user['userId'] = null;
+                $user['phoneNumber'] =  $user['telefon'];
+                $user['hasDropshippingPermission'] =  0;
+                $user['tcKimlik'] =  "11111111111";
+                $user['userName'] =  $user['email'];
+                $user['birthDate'] =  date('Y-m-d H:i:s');
+                $response = \WebService::userAdmin($user);
+            } else{
 
-            $response = \WebService::userNew($user);
+            }
+
             if(isset($response['errors']) && $response['errors']){
                 return _ReturnError('', '',$response['errors']);
 
@@ -45,10 +57,10 @@ class User extends Controller
         }
         return _ReturnError('', '',['Kullanıcı Kaydedilemedi']);
     }
-    private function dataTableParams(){
+    private function dataTableParams($routeName){
         $dataTable = new \AjaxDataTable();
         $dataTable->setTableId('user-list');
-        $dataTable->setUrl(route('user.data-table'));
+        $dataTable->setUrl(route('user.data-table').'?role='.$routeName);
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
@@ -62,11 +74,15 @@ class User extends Controller
         return $dataTable;
     }
     public function dataTable(Request $request){
-        $dataTable = $this->dataTableParams();
+        $role = $request->input('role');
+        $dataTable = $this->dataTableParams($role);
         $offset = $request->input('length', 10);
         $start = $request->input('start', 0);
         $page = ($start/$offset)+1;
         $filter = [];
+        if($role){
+            $filter['role'] = $role;
+        }
         if($where = $request->input('where')){
 
         }
@@ -76,7 +92,6 @@ class User extends Controller
             }
         }
         $response = \WebService::users($page, $offset, $filter);
-
         $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
         $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
         $items = [];
@@ -108,13 +123,13 @@ class User extends Controller
              </button>
              <div class="dropdown-menu dropdown-menu-end" style="">
               <a class="dropdown-item" href="#">
-               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 me-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
-               <span>Düzenle</span>
+              <i class="fa fa-eye"></i>
+               <span>Görüntüle</span>
               </a>
-              <a class="dropdown-item" href="#">
-               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash me-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-               <span>Sil</span>
-              </a>
+<button class="dropdown-item btn-popup-form" data-url="'.route('popup', 'deleteUser').'?userId='. $item['id'].'">
+                            <i class="feather icon-trash-2"></i>
+                            <span>Sil</span>
+                        </button>
              </div>
             </div>';
     }
@@ -134,6 +149,10 @@ class User extends Controller
     private function _format_status($row){
         return '<span class="badge rounded-pill badge-light-'.\ActivePassive::color($row['active']).'" text-capitalized="">'.\ActivePassive::__($row['active']).'</span>';
     }
+    public function getUserData(Request $request){
+        $data = \WebService::user( $request->input('userId'));
+        return ['status'=>1, 'data'=>$data, 'html'=>''];
+    }
     public function findUserForm(Request $request){
         $data = [];
         $html = view('User.findUserForm', $data)->render();
@@ -146,7 +165,7 @@ class User extends Controller
         if($response && isset($response['items'])){
             foreach($response['items'] as $item){
                 $data['results'][] = [
-                    'id'=>$item['userId'],
+                    'id'=>$item['id'],
                     'text'=> $item['firstName'].' '.$item['lastName'].'('. $item['email'].')',
                     'image'=> '',
                     'variants'=>[]

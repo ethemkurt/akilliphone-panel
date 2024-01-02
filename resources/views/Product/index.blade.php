@@ -7,16 +7,12 @@
 @endsection
 
 @section('content')
-    <!-- Advanced Search -->
     <section id="advanced-search-datatable">
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header border-bottom">
-
-                    </div>
                     <!--Search Form -->
-                    <div class="card-body mt-2">
+                    <div class="card-body">
                         <form class="dt_adv_search" method="POST">
                             <div class="row g-1 mb-md-1">
                                 <div class="col-md-4">
@@ -59,7 +55,6 @@
             </div>
         </div>
     </section>
-    <!--/ Advanced Search -->
 @endsection
 
 @section('vendor-script')

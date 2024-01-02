@@ -301,7 +301,7 @@ class Order extends Controller{
                         </a>
                         <button class="dropdown-item btn-popup-form" data-url="'.$deleteUrl.'">
                             <i class="feather icon-trash-2"></i>
-                            <span>Delete</span>
+                            <span>Sil</span>
                         </button>
                     </div>
                 </div>';

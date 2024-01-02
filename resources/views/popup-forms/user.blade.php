@@ -15,7 +15,7 @@
                 <div class="col-sm-3">
                     <label class="col-form-label" for="name">Kullanıcı Adı</label>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                     <input type="text" id="firstName" required class="form-control" name="user[firstName]" value="{{isset($user['firstName'])?$user['firstName']:''}}" placeholder="Kullanıcı adı giriniz">
                 </div>
                 <div class="col-sm-4">
@@ -23,7 +23,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-12">
             <div class="mb-1 row">
                 <div class="col-sm-3">
@@ -51,6 +50,21 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" id="password" required class="form-control" name="user[password]" value="{{isset($user['password'])?$user['password']:''}}" placeholder="Kullanıcı Şifresi giriniz">
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row">
+                <div class="col-sm-3">
+                    <label class="col-form-label" for="name">Yetki Grubu</label>
+                </div>
+                <div class="col-sm-9">
+                    <select id="permission" required class="form-select" name="permission">
+                    <option value=""></option>
+                    <option value="yonetici">Yönetici</option>
+                    <option value="muhasebe">Muhasebe</option>
+                    <option value="depo">Depo</option>
+                    </select>
                 </div>
             </div>
         </div>

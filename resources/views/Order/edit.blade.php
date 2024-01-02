@@ -137,7 +137,7 @@
                             <div class="col-md-3">
                                 <div class="card full-height mb-4">
                                     <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title m-0">Müşteri Bilgileri</h5>
+                                        <h5 class="card-title m-0">Müşteri Bilgileri </h5><button class="btn btn-primary btn-icon  waves-effect waves-float waves-light btn-popup-form pull-end" type="button" data-url="{{ route('user.find-user-form') }}"><i class="fa fa-search"></i></button>
                                         <input value="{{ $order['orderCustomer']['customerId'] }}" type="hidden"  name="order[customer][customerId]" >
                                         <input value="{{ $order['orderCustomer']['code'] }}" type="hidden"  name="order[customer][code]" >
                                         <input value="{{ $order['orderCustomer']['code'] }}" type="hidden"  name="order[customer][code]" >
@@ -177,14 +177,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="mb-1 row">
-                                                <div class="col-sm-3"><label class="col-form-label" for="contact-info"></label></div>
-                                                <div class="col-sm-9">
-                                                    <button class="btn btn-primary btn-icon  waves-effect waves-float waves-light btn-popup-form" type="button" data-url="{{ route('user.find-user-form') }}"><i class="fa fa-search"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -608,6 +601,33 @@
         $('#invoiceType').removeClass('invoiceType-Bireysel');
         $('#invoiceType').removeClass('invoiceType-Kurumsal');
         $('#invoiceType').addClass('invoiceType-' + $(this).val())
+    });
+    $('body').on('click', '#select-user', function (e) {
+        e.preventDefault();
+        $.ajax( {
+            url: '{{ route('user.get-user-data') }}?userId=' + $('#select-userId').val(),
+        } ).done(function(response) {
+            if(response.status){
+                $('input[name="order[customer][customerId]"]').val(response.data.id);
+                $('input[name="order[customer][firstName]"]').val(response.data.firstName);
+                $('input[name="order[customer][lastName]"]').val(response.data.lastName);
+                $('input[name="order[customer][telefon]"]').val(response.data.telefon);
+                $('input[name="order[customer][email]"]').val(response.data.email);
+                $('input[name="order[shippingAddress][firstName]"]').val(response.data.firstName);
+                $('input[name="order[shippingAddress][lastName]"]').val(response.data.lastName);
+                $('input[name="order[shippingAddress][phone]"]').val(response.data.telefon);
+                $('input[name="order[billingAddress][firstName]"]').val(response.data.firstName);
+                $('input[name="order[billingAddress][lastName]"]').val(response.data.lastName);
+                $('input[name="order[billingAddress][phone]"]').val(response.data.telefon);
+                $('#poupForm').modal('hide');
+            }  else {
+
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            $('body .ajax-form-result').html('Oluşan hatalar için konsola bakınız');
+            console.log(jqXHR.responseText);
+        })
+        return false;
     })
 </script>
 @endsection

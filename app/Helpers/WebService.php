@@ -27,7 +27,9 @@ class WebService{
                     if(isset($tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'])){
                         $userId = $tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
                         $user = self::getUser($userId, $token);
-                        if($user){
+
+                        if($user && isset($user['data'])){
+                            $user = $user['data'];
                             $user['jwtToken'] = $token;
                             $user['jwtExp'] = $tokenData['exp'];
                             $user['fullName'] = $user['firstName'].' '.$user['lastName'];
@@ -55,7 +57,7 @@ class WebService{
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
         ])->get(self::AUTH_URL.'/user', ['userId'=>$userId]);
-        return $response['data'];
+        return self::standartResponse($response) ;
     }
     public static function isLogged(){
         $user = request()->session()->get('user', null);
@@ -264,6 +266,15 @@ class WebService{
         if(isset($filter['text'])){
             $params['text'] = $filter['text'];
         }
+        if(isset($filter['role'])){
+            if($filter['role']=='user.admin'){
+                $params['role'] = 1;
+            } elseif($filter['role']=='user.bayi'){
+                $params['role'] = 3;
+            } elseif($filter['role']=='user.uye'){
+                $params['role'] = 2;
+            }
+        }
 
         $response = self::GET('users', $params);
 
@@ -274,6 +285,7 @@ class WebService{
         }
         return [];
     }
+
     public static function user($userId){
         $response = self::getUser($userId, request()->session()->get('jwtToken', null));
         if($response['data'] ){
@@ -281,11 +293,17 @@ class WebService{
         }
         return [];
     }
-    public static function userNew($user){
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' .  request()->session()->get('jwtToken', null),
-        ])->post(self::AUTH_URL.'/register-admin', json_encode($user, JSON_UNESCAPED_UNICODE));
-        return self::standartResponse($response) ;
+    public static function userAdmin($user){
+        //echo json_encode($user, JSON_UNESCAPED_UNICODE);
+        $response = self::POST('register-admin', $user);
+
+        return $response ;
+    }
+    public static function userDelete($userId){
+        //echo json_encode($user, JSON_UNESCAPED_UNICODE);
+        $response = self::DELETE('users/'.$userId, [] );
+dd($response);
+        return $response ;
     }
 
     public static function orderHistory($orderId){
@@ -381,6 +399,7 @@ class WebService{
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->post(self::WEBSERVICE_URL.$service, $data);
+
         return self::standartResponse($response);
     }
     static private function PUT($service, $data){
@@ -394,6 +413,7 @@ class WebService{
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->delete(self::WEBSERVICE_URL.$service, $data);
+        dd($response);
         return self::standartResponse($response);
     }
     private static function static($endpoint){
@@ -413,13 +433,17 @@ class WebService{
         return $result;
     }
     static private function standartResponse($response){
-
-        $responseData = json_decode($response->body(), true);
-
         $errors = [];
-        if($response->status()=='500'){
+        $responseData = json_decode($response->body(), true);
+        if($response->status()=='400' || $response->status()=='500'){
             $errors[]= 'Webservis Hatası';
+            if(isset($responseData['message'])){
+                $errors[]=$responseData['message'];
+            } else {
+                $errors[]= $response->body();
+            }
         }
+
         if(empty($responseData)){
             $responseData['errors'][]= ['message'=>'Webservis İşlem Hatası. Http Kodu: '.$response->status() .' Bilgi: '.$response->body()];
         }
@@ -463,7 +487,7 @@ class WebService{
             //$result['errors'] = ['Istek onaylanmadı. Http Kodu: '.$response->status()];
         }
 
-        $result['errors'] = isset($responseData['errors'])?$responseData['errors']:[];
+        $result['errors'] = isset($responseData['errors'])?$responseData['errors']:$errors;
 
         return $result;
     }

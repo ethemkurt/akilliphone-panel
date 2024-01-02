@@ -18,7 +18,7 @@
       <div class="col-12">
         <div class="card">
           <!--Search Form -->
-          <div class="card-body mt-2">
+          <div class="card-body">
             <form class="dt_adv_search" method="POST">
               <div class="row g-1 mb-md-1">
                 <div class="col-md-4">

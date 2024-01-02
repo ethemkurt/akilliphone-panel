@@ -1,7 +1,13 @@
-<div id="select-user-form" method="POST" action="">
+<div id="select-user-form" >
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-    <select class="form-control select2-ajax" required></select>
-    <div id="prodcut-options"></div>
+    <select id="select-userId" class="form-control select2-ajax" required></select>
+    <div class="col-12">
+        <div class="mb-1 row">
+            <div class="col-sm-9 mt-1">
+                <button id="select-user" class="btn btn-success  waves-effect waves-float waves-light pull-end" type="button" >Kullanıcı Seç</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>

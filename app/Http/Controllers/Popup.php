@@ -32,6 +32,16 @@ class Popup extends Controller
         $html = view('popup-forms.user', $data)->render();
         return _ReturnSucces('', $html);
     }
+    public function deleteUser(Request $request){
+        $userId = $request->input('userId');
+        if($userId){
+            $data['user'] = \Webservice::user($userId);
+        } else {
+            $data['user'] = [];
+        }
+        $html = view('popup-forms.user-delete', $data)->render();
+        return _ReturnSucces('', $html);
+    }
 
     public function changeOrderState(Request $request ){
         $orderId = $request->input('orderId');
