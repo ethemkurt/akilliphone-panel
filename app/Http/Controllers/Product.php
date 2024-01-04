@@ -31,6 +31,7 @@ class Product extends Controller
         $dataTable->setRecordsTotal($response['totalCount']);
         $dataTable->setRecordsFiltered($response['totalCount']);
         $items = [];
+
         foreach($response['items'] as $row){
             $item = [];
             foreach($dataTable->cols() as $key=>$col){
@@ -51,7 +52,10 @@ class Product extends Controller
         return $dataTable->toJson();
     }
     private function _format_actions($item){
-        return '<div style="min-width: 40px;" class="text-end"><button type="button" class="btn btn-flat-primary waves-effect p-0 me-1"><i class="fa fa-edit"></i></button>
+        return '<div style="min-width: 40px;" class="text-end">
+<button type="button" class="btn btn-flat-primary waves-effect p-0 me-1" href="deneme">
+<i class="fa fa-edit"></i>
+</button>
 <button type="button" class="btn btn-flat-danger waves-effect p-0 me-1"><i class="fa fa-trash"></i></button></div>';
     }
     private function _format_price($item){
