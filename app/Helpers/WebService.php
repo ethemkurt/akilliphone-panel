@@ -268,16 +268,19 @@ class WebService{
         }
         if(isset($filter['role'])){
             if($filter['role']=='user.admin'){
-                $params['role'] = 1;
+                $params['role'] = UserRole::ADMIN;
             } elseif($filter['role']=='user.bayi'){
-                $params['role'] = 3;
+                $params['role'] = UserRole::BAYI;
             } elseif($filter['role']=='user.uye'){
-                $params['role'] = 2;
+                $params['role'] = UserRole::UYE;
+            } elseif($filter['role']=='user.temsilci'){
+                $params['role'] = UserRole::TEMSILCI;
+            } elseif($filter['role']=='user.superadmin'){
+                $params['role'] = UserRole::SUPARADMIN;
             }
         }
 
         $response = self::GET('users', $params);
-
         if($response['data'] ){
 
             return $response['data'];

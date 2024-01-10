@@ -61,9 +61,9 @@
                 <div class="col-sm-9">
                     <select id="permission" required class="form-select" name="permission">
                     <option value=""></option>
-                    <option value="yonetici">Yönetici</option>
-                    <option value="muhasebe">Muhasebe</option>
-                    <option value="depo">Depo</option>
+                        @foreach (\Enum::list(UserRole::class) as $yetkigrubuId=>$yetkigrubuName)
+                            <option value="{{ $yetkigrubuId }}">{{ $yetkigrubuName }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

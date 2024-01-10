@@ -81,6 +81,7 @@ class User extends Controller
         $page = ($start/$offset)+1;
         $filter = [];
         if($role){
+
             $filter['role'] = $role;
         }
         if($where = $request->input('where')){

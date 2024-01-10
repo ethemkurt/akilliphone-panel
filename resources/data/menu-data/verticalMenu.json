@@ -121,6 +121,12 @@
             "submenu": [
                 {
                     "url": "user/admin",
+                    "name": "Yönetici",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "user/temsilci",
                     "name": "Personel",
                     "icon": "circle",
                     "slug": "collapsed-menu"

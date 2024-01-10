@@ -1,13 +1,49 @@
 <?php
+
+class MarketPlaces extends \Enum{
+    const AKILLIPHONE=10;
+    const MOBILAPP=20;
+    const TRENDYOL=110;
+    const N11=120;
+    const SAHIBINDEN=130;
+    const CICEKSEPETI=140;
+    const AMAZON=150;
+    const HEPSIBURADA=160;
+    const EPTTAVM=170;
+    static function colors($class=null){
+        return[];
+    }
+    static function color($const){
+        $items = self::colors();
+        if(isset($items[$const])){
+            return $items[$const];
+        }
+        return 'info';
+    }
+}
 class UserRole extends \Enum{
-    const ADMIN=1;
-    const BAYI=2;
-    const UYE=3;
+    const ADMIN = 1; // müdür ve muhasebe
+    const UYE = 2;
+    const BAYI = 3;
+    const SUPARADMIN = 4; // web servis yazılımcısı
+    const TEMSILCI = 5; // kurum için depo elamanı personel
+    static function __($value){
+        $names =[
+            self::ADMIN=>'Admin',
+            self::BAYI=>'Bayi',
+            self::UYE=>'Üye',
+            self::TEMSILCI=>'Temsilci',
+            self::SUPARADMIN=>'Süper Admin',
+        ];
+        return isset($names[$value])?$names[$value]:$value;
+    }
     static function colors($class=null){
         return[
             self::ADMIN=>'danger',
             self::BAYI=>'warning',
             self::UYE=>'info',
+            self::TEMSILCI=>'info',
+            self::SUPARADMIN=>'info',
         ];
     }
     static function color($const){
@@ -105,6 +141,9 @@ class Enum
         return $list;
     }
 
+    static function __($value){
+        return $value;
+    }
     static function colors($class = null)
     {
         return [];

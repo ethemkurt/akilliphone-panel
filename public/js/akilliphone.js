@@ -131,6 +131,7 @@ var Akilliphone = {
                 console.log(jqXHR.responseText);
                 $('#poupForm').modal('show');
             }).always(function() {
+            }).always(function() {
             });*/
         });
     },

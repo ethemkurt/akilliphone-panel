@@ -72,6 +72,7 @@ Route::group(['prefix'=>'order','as'=>'order.', 'middleware' => ['check.token']]
 });
 Route::group(['prefix'=>'user','as'=>'user.', 'middleware' => ['check.token']], function () {
     Route::get('/admin', [User::class, 'index'])->name('admin');
+    Route::get('/temsilci', [User::class, 'index'])->name('temsilci');
     Route::get('/bayi', [User::class, 'index'])->name('bayi');
     Route::get('/uye', [User::class, 'index'])->name('uye');
     Route::get('/detail/{userId}', [User::class, 'detail'])->name('detail');
