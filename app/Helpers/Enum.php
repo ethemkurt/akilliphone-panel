@@ -25,7 +25,7 @@ class UserRole extends \Enum{
     const ADMIN = 1; // müdür ve muhasebe
     const UYE = 2;
     const BAYI = 3;
-    const SUPARADMIN = 4; // web servis yazılımcısı
+    //const SUPARADMIN = 4; // web servis yazılımcısı
     const TEMSILCI = 5; // kurum için depo elamanı personel
     static function __($value){
         $names =[
@@ -33,7 +33,7 @@ class UserRole extends \Enum{
             self::BAYI=>'Bayi',
             self::UYE=>'Üye',
             self::TEMSILCI=>'Temsilci',
-            self::SUPARADMIN=>'Süper Admin',
+            //self::SUPARADMIN=>'Süper Admin',
         ];
         return isset($names[$value])?$names[$value]:$value;
     }
@@ -43,7 +43,7 @@ class UserRole extends \Enum{
             self::BAYI=>'warning',
             self::UYE=>'info',
             self::TEMSILCI=>'info',
-            self::SUPARADMIN=>'info',
+            //self::SUPARADMIN=>'info',
         ];
     }
     static function color($const){

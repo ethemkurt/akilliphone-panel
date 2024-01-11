@@ -27,26 +27,46 @@ class User extends Controller
         return view('Customer.new', $data);
     }
     public function editUser(Request $request, $userId ){
-        $user = $request->input('user', []);
+        $user = $request->input('user');
+        $role = $request->input('role');
+
         if($user){
+            $user['hasDropshippingPermission'] =  0;
+            $user['tcKimlik'] =  "11111111111";
+            $user['birthDate'] =  date('Y-m-d H:i:s');
             if($user['userId']=='new'){
-                /*$user['userId'] = null;
-                $user['userName'] =  $user['email'];
-                $user['birthDate'] =  date('Y-m-d H:i:s');
-                $user['tcKimlik'] =  "11111111111";
-                $user['newsletter'] =  0;
-                $user['privateDiscountType'] =  "";
-                $user['phone'] =  $user['telefon'];
-                */
                 $user['userId'] = null;
                 $user['phoneNumber'] =  $user['telefon'];
-                $user['hasDropshippingPermission'] =  0;
-                $user['tcKimlik'] =  "11111111111";
                 $user['userName'] =  $user['email'];
-                $user['birthDate'] =  date('Y-m-d H:i:s');
-                $response = \WebService::userAdmin($user);
+                $response = \WebService::userNew($user, $role);
+                if($response){
+                    if(isset($response['status']) && $response['status']){
+                        return _ReturnSucces('', 'Kullanıcı Oluşturuldu' );
+                    } elseif(isset($response['data']) && $response['data']){
+                        return _ReturnSucces('', 'Kullanıcı Oluşturuldu' );
+                    } else {
+                        $errors = [];
+                        if(isset($response['errors'])){
+                            $errors = $response['errors'];
+                        }
+                        return _ReturnError('', '', $errors );
+                    }
+                }
             } else{
-
+                $user['phoneNumber'] =  $user['telefon'];
+                $user['userName'] =  $user['email'];
+                $response = \WebService::userEdit($user);
+                if($response){
+                    if(isset($response['data']) && isset($response['data']['id'])){
+                        return _ReturnSucces('', 'Kullanıcı Oluşturuldu' );
+                    } else {
+                        $errors = [];
+                        if(isset($response['errors'])){
+                            $errors = $response['errors'];
+                        }
+                        return _ReturnError('', '', $errors );
+                    }
+                }
             }
 
             if(isset($response['errors']) && $response['errors']){

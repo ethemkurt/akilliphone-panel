@@ -275,8 +275,6 @@ class WebService{
                 $params['role'] = UserRole::UYE;
             } elseif($filter['role']=='user.temsilci'){
                 $params['role'] = UserRole::TEMSILCI;
-            } elseif($filter['role']=='user.superadmin'){
-                $params['role'] = UserRole::SUPARADMIN;
             }
         }
 
@@ -296,10 +294,23 @@ class WebService{
         }
         return [];
     }
-    public static function userAdmin($user){
-        //echo json_encode($user, JSON_UNESCAPED_UNICODE);
-        $response = self::POST('register-admin', $user);
-
+    public static function userNew($user, $role){
+        if($role==\UserRole::ADMIN){
+            $webservice_method = 'register-admin';
+        }elseif($role==\UserRole::BAYI){
+            $webservice_method = 'register-bayi';
+        }elseif($role==\UserRole::UYE){
+            $webservice_method = 'register-uye';
+        }elseif($role==\UserRole::TEMSILCI){
+            $webservice_method = 'register-temsilci';
+        } else {
+            return false;
+        }
+        $response = self::POST($webservice_method, $user);
+        return $response ;
+    }
+    public static function userEdit($user){
+        $response = self::PUT( 'user',  $user);
         return $response ;
     }
     public static function userDelete($userId){
@@ -454,6 +465,7 @@ dd($response);
         if($response->status()=='502'){
             $responseData['errors'][]= ['message'=>'Webservis Getaway Hatası: '.$response->body()];
         }
+
         if(isset($responseData['errors']) && $responseData['errors']){
             foreach($responseData['errors'] as $error){
 
@@ -462,6 +474,9 @@ dd($response);
                 } elseif(is_array($error)){
                     if(isset($error['message'])){
                         $errors[] = $error['message'];
+                        if(isset($error['title'])){
+                            $errors[] = $error['title'];
+                        }
                     } else{
                         $errors[] = json_encode(current($error), JSON_UNESCAPED_UNICODE);
                     }
