@@ -23,12 +23,14 @@ class Auth extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
         $checkUser = \WebService::checkUser( $email, $password);
+
         if($checkUser['user']){
             \WebService::login($checkUser['user'], $checkUser['tokenData']);
             $request->session()->flash('flash-success', ['', 'Hoşgeldin. '.$checkUser['user']['fullName']]);
             return redirect( route('home.index'));
         } else {
-            $request->session()->flash('flash-error', ['Kullanıcı bulunmadı. Lütfen daha sonra tekrar deneyiniz', 'Giriş Yapılamadı']);
+            $error = isset($checkUser['error'])&&$checkUser['error']?$checkUser['error']:'Kullanıcı bulunmadı. Lütfen daha sonra tekrar deneyiniz';
+            $request->session()->flash('flash-error', [$error, 'Giriş Yapılamadı']);
             return redirect()->back()->withInput();
         }
     }

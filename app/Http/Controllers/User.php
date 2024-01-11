@@ -55,10 +55,14 @@ class User extends Controller
             } else{
                 $user['phoneNumber'] =  $user['telefon'];
                 $user['userName'] =  $user['email'];
+                $user['id'] = $user['userId'];
+                if($user['password']=='nochange'){
+                    unset($user['password']);
+                }
                 $response = \WebService::userEdit($user);
                 if($response){
                     if(isset($response['data']) && isset($response['data']['id'])){
-                        return _ReturnSucces('', 'Kullanıcı Oluşturuldu' );
+                        return _ReturnSucces('', 'Kullanıcı Kaydedildi' );
                     } else {
                         $errors = [];
                         if(isset($response['errors'])){
@@ -143,14 +147,14 @@ class User extends Controller
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
              </button>
              <div class="dropdown-menu dropdown-menu-end" style="">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item  btn-popup-form" data-url="'.route('popup', 'User').'?userId='. $item['id'].'">
               <i class="fa fa-eye"></i>
                <span>Görüntüle</span>
               </a>
-<button class="dropdown-item btn-popup-form" data-url="'.route('popup', 'deleteUser').'?userId='. $item['id'].'">
+<a class="dropdown-item btn-popup-form" data-url="'.route('popup', 'deleteUser').'?userId='. $item['id'].'">
                             <i class="feather icon-trash-2"></i>
                             <span>Sil</span>
-                        </button>
+                        </a>
              </div>
             </div>';
     }

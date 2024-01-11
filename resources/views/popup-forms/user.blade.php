@@ -1,4 +1,5 @@
-<form class="ajax-form" method="post" action="{{ route('user.edit', $user['userId']) }}">
+
+<form class="ajax-form" method="post" action="{{ route('user.edit', $user['id']) }}">
     <div class="row">
         <div class="col-12">
             <div class="mb-1 row">
@@ -13,7 +14,7 @@
         <div class="col-12">
             <div class="mb-1 row">
                 <div class="col-sm-3">
-                    <label class="col-form-label" for="name">Kullanıcı Adı</label>
+                    <label class="col-form-label" for="name">Adı Soyadı</label>
                 </div>
                 <div class="col-sm-4">
                     <input type="text" id="firstName" required class="form-control" name="user[firstName]" value="{{isset($user['firstName'])?$user['firstName']:''}}" placeholder="Kullanıcı adı giriniz">
@@ -54,7 +55,7 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="input-group">
-                        <input type="password" id="password" required class="form-control" name="user[password]" value="{{isset($user['password'])?$user['password']:''}}" placeholder="Kullanıcı Şifresi giriniz">
+                        <input type="password" id="password" required class="form-control" name="user[password]" value="{{isset($user['password'])?$user['password']:'nochange'}}" placeholder="Kullanıcı Şifresi giriniz">
                         <span id="generate-password" class="input-group-text cursor-pointer"><i class="fa fa-lightbulb"></i></span>
                         <span id="show-password" class="input-group-text cursor-pointer"><i class="fa fa-eye"></i></span>
                     </div>
@@ -62,6 +63,7 @@
                 </div>
             </div>
         </div>
+        @if(isset($user['id']) && $user['id']=='new')
         <div class="col-12">
             <div class="mb-1 row">
                 <div class="col-sm-3">
@@ -77,14 +79,28 @@
                 </div>
             </div>
         </div>
+        @endif
+        <div class="col-12">
+            <div class="mb-1 row">
+                <div class="col-sm-3">
+                    <label class="col-form-label" for="name">Kullanıcı Aktif mi?</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="hidden" name="user[active]" value="0">
+                    <input type="checkbox" id="active" name="user[active]" {{ isset($user['active'])&&$user['active']?'checked':'' }} value="1" placeholder="Kullanıcı Şifresi giriniz">
+
+                </div>
+            </div>
+        </div>
+
         <div class="col-sm-8 offset-sm-3">
-            @if(isset($user['userId']) && $user['userId']=='new')
+            @if(isset($user['id']) && $user['id']=='new')
                 <button type="submit" class="btn btn-primary me-1 waves-effect waves-float waves-light">Oluştur</button>
             @else
                 <button type="submit" class="btn btn-primary me-1 waves-effect waves-float waves-light">Güncelle</button>
             @endif
         </div>
     </div>
-    <input type="hidden" name="user[userId]" value="{{isset($user['userId'])?$user['userId']:'new'}}" />
+    <input type="hidden" name="user[userId]" value="{{isset($user['id'])?$user['id']:'new'}}" />
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 </form>
