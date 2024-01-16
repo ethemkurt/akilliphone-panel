@@ -121,6 +121,12 @@
             "submenu": [
                 {
                     "url": "user/admin",
+                    "name": "Yönetici",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "user/temsilci",
                     "name": "Personel",
                     "icon": "circle",
                     "slug": "collapsed-menu"
@@ -133,19 +139,7 @@
                 },
                 {
                     "url": "user/uye",
-                    "name": "Müşteriler",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "permissions/index",
-                    "name": "Yetkiler",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "roles/index",
-                    "name": "Roller",
+                    "name": "Üyeler",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 }

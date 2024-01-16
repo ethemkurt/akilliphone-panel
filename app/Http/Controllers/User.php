@@ -27,26 +27,50 @@ class User extends Controller
         return view('Customer.new', $data);
     }
     public function editUser(Request $request, $userId ){
-        $user = $request->input('user', []);
+        $user = $request->input('user');
+        $role = $request->input('role');
+
         if($user){
+            $user['hasDropshippingPermission'] =  0;
+            $user['tcKimlik'] =  "11111111111";
+            $user['birthDate'] =  date('Y-m-d H:i:s');
             if($user['userId']=='new'){
-                /*$user['userId'] = null;
-                $user['userName'] =  $user['email'];
-                $user['birthDate'] =  date('Y-m-d H:i:s');
-                $user['tcKimlik'] =  "11111111111";
-                $user['newsletter'] =  0;
-                $user['privateDiscountType'] =  "";
-                $user['phone'] =  $user['telefon'];
-                */
                 $user['userId'] = null;
                 $user['phoneNumber'] =  $user['telefon'];
-                $user['hasDropshippingPermission'] =  0;
-                $user['tcKimlik'] =  "11111111111";
                 $user['userName'] =  $user['email'];
-                $user['birthDate'] =  date('Y-m-d H:i:s');
-                $response = \WebService::userAdmin($user);
+                $response = \WebService::userNew($user, $role);
+                if($response){
+                    if(isset($response['status']) && $response['status']){
+                        return _ReturnSucces('', 'Kullanıcı Oluşturuldu' );
+                    } elseif(isset($response['data']) && $response['data']){
+                        return _ReturnSucces('', 'Kullanıcı Oluşturuldu' );
+                    } else {
+                        $errors = [];
+                        if(isset($response['errors'])){
+                            $errors = $response['errors'];
+                        }
+                        return _ReturnError('', '', $errors );
+                    }
+                }
             } else{
-
+                $user['phoneNumber'] =  $user['telefon'];
+                $user['userName'] =  $user['email'];
+                $user['id'] = $user['userId'];
+                if($user['password']=='nochange'){
+                    unset($user['password']);
+                }
+                $response = \WebService::userEdit($user);
+                if($response){
+                    if(isset($response['data']) && isset($response['data']['id'])){
+                        return _ReturnSucces('', 'Kullanıcı Kaydedildi' );
+                    } else {
+                        $errors = [];
+                        if(isset($response['errors'])){
+                            $errors = $response['errors'];
+                        }
+                        return _ReturnError('', '', $errors );
+                    }
+                }
             }
 
             if(isset($response['errors']) && $response['errors']){
@@ -81,6 +105,7 @@ class User extends Controller
         $page = ($start/$offset)+1;
         $filter = [];
         if($role){
+
             $filter['role'] = $role;
         }
         if($where = $request->input('where')){
@@ -122,14 +147,14 @@ class User extends Controller
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
              </button>
              <div class="dropdown-menu dropdown-menu-end" style="">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item  btn-popup-form" data-url="'.route('popup', 'User').'?userId='. $item['id'].'">
               <i class="fa fa-eye"></i>
                <span>Görüntüle</span>
               </a>
-<button class="dropdown-item btn-popup-form" data-url="'.route('popup', 'deleteUser').'?userId='. $item['id'].'">
+<a class="dropdown-item btn-popup-form" data-url="'.route('popup', 'deleteUser').'?userId='. $item['id'].'">
                             <i class="feather icon-trash-2"></i>
                             <span>Sil</span>
-                        </button>
+                        </a>
              </div>
             </div>';
     }

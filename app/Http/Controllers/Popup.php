@@ -19,11 +19,12 @@ class Popup extends Controller
     public function User(Request $request ){
         $data['userType'] = $request->input('userType', 'uye');
         $data['userId'] = $request->input('userId', 'new');
+
         if($data['userId']=='new'){
             $data['user'] = \Instance::user();
         } else {
             $response = \Webservice::user($data['userId']);
-            if(isset($response['paymentStatusId'])){
+            if(isset($response['id'])){
                 $data['user'] = $response;
             } else{
                 return _ReturnError('', '',['Kullanıcı Bulunamadı']);

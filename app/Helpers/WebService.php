@@ -24,21 +24,30 @@ class WebService{
                 $tokenData = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
                 if($tokenData){
                     $tokenData = (array)$tokenData;
+                    if($tokenData['Active']!="1"){
+                        $result['error'] = 'Kullanıcı Aktif Değil';
+                        return $result;
+                    }
                     if(isset($tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'])){
-                        $userId = $tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-                        $user = self::getUser($userId, $token);
-
-                        if($user && isset($user['data'])){
-                            $user = $user['data'];
-                            $user['jwtToken'] = $token;
-                            $user['jwtExp'] = $tokenData['exp'];
-                            $user['fullName'] = $user['firstName'].' '.$user['lastName'];
-                            $result['tokenData'] = $tokenData;
-                            $result['user'] = $user;
-                            $result['token'] = $token;
-                        } else {
-                            $result['error'] = 'Kullanıcı Bilgisi alınamadı';
+                        $role = $tokenData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+                        if($role=='SuperAdmin' || $role=='Admin' || $role=='Temsilci'){
+                            $userId = $tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+                            $user = self::getUser($userId, $token);
+                            if($user && isset($user['data'])){
+                                $user = $user['data'];
+                                $user['jwtToken'] = $token;
+                                $user['jwtExp'] = $tokenData['exp'];
+                                $user['fullName'] = $user['firstName'].' '.$user['lastName'];
+                                $result['tokenData'] = $tokenData;
+                                $result['user'] = $user;
+                                $result['token'] = $token;
+                            } else {
+                                $result['error'] = 'Kullanıcı Bilgisi alınamadı';
+                            }
+                        } else{
+                            $result['error'] = 'Bu alan için yetkiniz bılınmamakatadır';
                         }
+
                     } else {
                         $result['error'] = 'Kullanıcı Idsi alınamadı';
                     }
@@ -73,11 +82,13 @@ class WebService{
     {
         request()->session()->put('jwtToken', null);
         request()->session()->put('user', null);
+        request()->session()->put('SADMINTOKEN', null);
     }
     public static function login($user, $tokenData)
     {
         request()->session()->put('jwtToken', $user['jwtToken']);
         request()->session()->put('user', $user);
+        request()->session()->put('SADMINTOKEN', self::SADMINTOKEN());
     }
 /* products */
     public static function get_endpoint($endpoint, $data=[]){
@@ -276,16 +287,17 @@ class WebService{
         }
         if(isset($filter['role'])){
             if($filter['role']=='user.admin'){
-                $params['role'] = 1;
+                $params['role'] = UserRole::ADMIN;
             } elseif($filter['role']=='user.bayi'){
-                $params['role'] = 3;
+                $params['role'] = UserRole::BAYI;
             } elseif($filter['role']=='user.uye'){
-                $params['role'] = 2;
+                $params['role'] = UserRole::UYE;
+            } elseif($filter['role']=='user.temsilci'){
+                $params['role'] = UserRole::TEMSILCI;
             }
         }
 
         $response = self::GET('users', $params);
-
         if($response['data'] ){
 
             return $response['data'];
@@ -295,16 +307,29 @@ class WebService{
     }
 
     public static function user($userId){
-        $response = self::getUser($userId, request()->session()->get('jwtToken', null));
+        $response = self::getUser($userId, request()->session()->get('SADMINTOKEN', null));
         if($response['data'] ){
             return $response['data'];
         }
         return [];
     }
-    public static function userAdmin($user){
-        //echo json_encode($user, JSON_UNESCAPED_UNICODE);
-        $response = self::POST('register-admin', $user);
-
+    public static function userNew($user, $role){
+        if($role==\UserRole::ADMIN){
+            $webservice_method = 'register-admin';
+        }elseif($role==\UserRole::BAYI){
+            $webservice_method = 'register-bayi';
+        }elseif($role==\UserRole::UYE){
+            $webservice_method = 'register-uye';
+        }elseif($role==\UserRole::TEMSILCI){
+            $webservice_method = 'register-temsilci';
+        } else {
+            return false;
+        }
+        $response = self::POST($webservice_method, $user);
+        return $response ;
+    }
+    public static function userEdit($user){
+        $response = self::PUT( 'user',  $user);
         return $response ;
     }
     public static function userDelete($userId){
@@ -396,6 +421,16 @@ class WebService{
         return $response;
     }
 
+    static private function SADMINTOKEN(){
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . request()->session()->get('token', null),
+        ])->post(self::AUTH_URL.'/login', ['username'=>env('SUPERADMIN'), 'password'=>env('SUPERPASS')]);
+        $responseData = json_decode($response->body(), true);
+        if(isset($responseData['token'])){
+            return $responseData['token'];
+        }
+        return null;
+    }
     static private function TOKEN($username, $password){
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('token', null),
@@ -409,11 +444,9 @@ class WebService{
     static private function GET($service, $data){
         try{
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
+                'Authorization' => 'Bearer ' . request()->session()->get('SADMINTOKEN', null),
             ])->get(self::WEBSERVICE_URL.$service, $data);
-
             return self::standartResponse($response);
-
         } catch (\Exception $ex){
             return self::standartErrorResponse($ex->getMessage());
         }
@@ -475,6 +508,7 @@ class WebService{
         if($response->status()=='502'){
             $responseData['errors'][]= ['message'=>'Webservis Getaway Hatası: '.$response->body()];
         }
+
         if(isset($responseData['errors']) && $responseData['errors']){
             foreach($responseData['errors'] as $error){
 
@@ -483,6 +517,9 @@ class WebService{
                 } elseif(is_array($error)){
                     if(isset($error['message'])){
                         $errors[] = $error['message'];
+                        if(isset($error['title'])){
+                            $errors[] = $error['title'];
+                        }
                     } else{
                         $errors[] = json_encode(current($error), JSON_UNESCAPED_UNICODE);
                     }
