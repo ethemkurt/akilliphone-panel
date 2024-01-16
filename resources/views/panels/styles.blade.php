@@ -56,4 +56,11 @@
     .main-menu.menu-light .navigation .navigation-header {
         display: none.;
     }
+    .form-select.tiny{
+        padding: 0px 10px;
+    }
+    .modal-footer.ajax-form-result{
+        display: block;
+        overflow: auto;
+    }
 </style>

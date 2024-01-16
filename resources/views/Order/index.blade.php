@@ -17,11 +17,8 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-            <div class="card-header border-bottom">
-
-            </div>
           <!--Search Form -->
-          <div class="card-body mt-2">
+          <div class="card-body">
             <form class="dt_adv_search" method="POST">
               <div class="row g-1 mb-md-1">
                 <div class="col-md-4">
@@ -35,17 +32,35 @@
               </div>
 
               <div class="row g-1">
-                <div class="col-md-3">
-                    <x-inputs.text-input label="Ada Göre Ara" placeholder="Ada Göre Ara" name="search_name" />
+                <div class="col-md-2">
+                    <select name="paymentTypeId" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                        <option value="">Ödeme Tipi</option>
+                        @foreach(\Enum::list('PaymentType') as $key=>$val)
+                            <option value="{{ $key }}">{{ $val }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select name="orderStatusId" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                        <option value="">Sipariş Durumu</option>
+                        @foreach(\Enum::list('OrderStatus') as $key=>$val)
+                            <option value="{{ $key }}">{{ $val }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select name="paymentStatusId" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
+                        <option value="">Ödeme Durumu</option>
+                        @foreach(\Enum::list('PaymentStatus') as $key=>$val)
+                            <option value="{{ $key }}">{{ $val }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-3">
-                    <x-inputs.text-input label="Sipariş No'ya Göre Ara" placeholder="Sipariş No'ya Göre Ara" name="search_order_no" />
+                    <input name="startsAt" type="text" id="fp-default" class="form-control flatpickr-basic datatable-filter" placeholder="Başlama Tarihi" />
                 </div>
                 <div class="col-md-3">
-                    <x-inputs.text-input label="Fatura No'ya Göre Ara" placeholder="Fatura No'ya Göre Ara" name="search_receipt_no" />
-                </div>
-                <div class="col-md-3">
-                    <x-inputs.text-input label="Ürün Koduna Göre Ara" placeholder="Ürün Koduna Göre Ara" name="search_product_code" />
+                    <input name="endsAt" type="text" id="fp-default" class="form-control flatpickr-basic datatable-filter" placeholder="Bitiş Tarihi" />
                 </div>
               </div>
             </form>
@@ -68,5 +83,13 @@
 
 @section('page-script')
   {{-- Page js files --}}
-  <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
+  <script>
+      if ($('.flatpickr-basic').length) {
+          $('.flatpickr-basic').flatpickr({
+              altInput: true,
+              altFormat: 'd.m.Y',
+              dateFormat: 'Y-m-d'
+          });
+      }
+  </script>
 @endsection

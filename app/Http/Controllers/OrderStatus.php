@@ -15,22 +15,45 @@ class OrderStatus extends Controller
         $data['dataTable'] = $this->dataTableParams();
         return view('OrderStatus.index', $data);
     }
+    public function delete(Request $request, $orderStatusId ){
+        $response = \WebService::orderStatusDelete($orderStatusId);
+        if(isset($response['errors']) && $response['errors']){
+            $html = implode(', ', $response['errors']);
+            $request->session()->flash('flash-error', [$html, 'Silinemedi' ]);
+        } else{
+            $html = '"'.$response['data']['name'].'"';
+            $request->session()->flash('flash-success', [ $html , 'Silindi']);
+        }
+        return redirect( route('order.order-status'));
+    }
     public function save(Request $request ){
-        _ReturnSucces('Kaydedeildi', '');
+        $html = '';
+        if($orderStatus = $request->input('orderStatus')){
+            $orderStatusId = isset($orderStatus['orderStatusId'])?$orderStatus['orderStatusId']:false;
+            if($orderStatusId=='new'){
+                unset($orderStatus['orderStatusId']);
+                $response = \WebService::orderStatusNew($orderStatus);
+            } else {
+                $response = \WebService::orderStatusEdit($orderStatusId, $orderStatus);
+            }
+            if(isset($response['errors']) && $response['errors']){
+                $html .= implode(', ', $response['errors']);
+            } else{
+                $html .= '"'.$response['data']['name'].'" Kaydedildi';
+            }
+        }
+        return _ReturnSucces('Kaydedildi', $html);
     }
-    public function detail(Request $request, $orderId ){
-        _ReturnSucces('detay', '');
-    }
-    public function new(Request $request ){
+    /*public function new(Request $request ){
         $data['orderStatus'] = [];
         return view('Order.new', $data);
-    }
+    }*/
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();
         $offset = $request->input('length', 10);
         $start = $request->input('start', 0);
         $page = ($start/$offset)+1;
-        $response = \WebService::order_status($page);
+        $response = \WebService::orderStatuses($page);
         $dataTable->setRecordsTotal(count($response));
         $dataTable->setRecordsFiltered(count($response));
         $items = [];
@@ -54,15 +77,17 @@ class OrderStatus extends Controller
         return $dataTable->toJson();
     }
     private function _format_action($item){
-        $url = route('popup', 'OrderStatus').'?orderStatusId='.$item['orderStatusId'];
-        $html = '';//poupFormButton($url, '', '', '');
-        $html .= '<a class="btn confirm-popup" href="'.$url.'" title="\''.$item['name'].'\' silinsin mi?"><i class="fa fa-trash"></i></a>';
+        $edit = route('popup', 'OrderStatus').'?orderStatusId='.$item['orderStatusId'];
+        $delete = route('order.order-status-delete', $item['orderStatusId']);
+        $html = '';
+        $html .= '<a class="btn confirm-popup" href="'.$delete.'" title="\''.$item['name'].'\' silinsin mi?"><i class="fa fa-trash"></i></a> ';
+        $html .= '<a class="btn btn-popup-form" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="fa fa-edit"></i></a>';
         return '<div class="text-end">'.$html.'</div>';
     }
     private function dataTableParams(){
         $dataTable = new \AjaxDataTable();
         $dataTable->setTableId('order-status');
-        $dataTable->setUrl(route('order.status-table'));
+        $dataTable->setUrl(route('order.order-status-table'));
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([

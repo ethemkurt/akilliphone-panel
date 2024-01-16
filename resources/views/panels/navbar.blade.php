@@ -62,6 +62,8 @@
       </li>
     </ul>
   </div>
+    <h2 style="margin: 0px;
+    line-height: 40px;">@yield('title')</h2>
   <ul class="nav navbar-nav align-items-center ms-auto">
     <li class="nav-item dropdown dropdown-user">
       <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);"

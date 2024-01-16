@@ -42,11 +42,10 @@ data-asset-path="{{ asset('/')}}">
     <div class="content-wrapper {{ $configData['layoutWidth'] === 'boxed' ? 'container-xxl p-0' : '' }}">
       {{-- Include Breadcrumb --}}
       @if($configData['pageHeader'] === true && isset($configData['pageHeader']))
-      @include('panels.breadcrumb')
+{{--      @include('panels.breadcrumb')--}}
       @endif
 
       <div class="content-body">
-        {{-- Include Page Content --}}
         @yield('content')
       </div>
     </div>
@@ -64,6 +63,9 @@ data-asset-path="{{ asset('/')}}">
   @include('panels/scripts')
   @include('webservice-js')
   <script src="{{ url('js/akilliphone.js') }}?_v={{ time() }}"></script>
+  <script src="{{ url('js/tulpar-uploader.js') }}?_v={{ time() }}"></script>
+  @yield('dataTable-script')
+  @yield('page-script')
   <script type="text/javascript">
     $(window).on('load', function() {
       if (feather) {

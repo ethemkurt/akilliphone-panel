@@ -103,7 +103,7 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "order/payment-types",
+                    "url": "order/payment-type",
                     "name": "Ödeme Tipleri",
                     "icon": "circle",
                     "slug": "collapsed-menu"
@@ -120,8 +120,20 @@
             "slug": "",
             "submenu": [
                 {
-                    "url": "customer",
-                    "name": "Listele",
+                    "url": "user/admin",
+                    "name": "Personel",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "user/bayi",
+                    "name": "Bayiler",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "user/uye",
+                    "name": "Müşteriler",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
@@ -149,26 +161,12 @@
             "slug": "",
             "submenu": [
                 {
-                    "url": "campaign/index",
+                    "url": "slide",
                     "name": "Slayt Yönetimi",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 }
             ]
-        },
-        {
-            "navheader": "BAYİ YÖNETİMİ",
-            "slug": ""
-        },
-        {
-            "name": "Bayiler",
-            "icon": "users",
-            "slug": "",
-            "url": "dealer/list"
-        },
-        {
-            "navheader": "AYARLAR",
-            "slug": ""
         },
         {
             "name": "Ayarlar",
@@ -190,6 +188,12 @@
                 {
                     "url": "settings/notification",
                     "name": "Push Notification",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "logs/error",
+                    "name": "Hata Logları",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 }

@@ -20,3 +20,9 @@ if(is_file( dirname(__FILE__).'/Current.php') ){
 if(is_file( dirname(__FILE__).'/Instance.php') ){
     include_once( dirname(__FILE__).'/Instance.php' );
 }
+if(is_file( dirname(__FILE__).'/KargoService.php') ){
+    include_once( dirname(__FILE__).'/KargoService.php' );
+}
+if(is_file( dirname(__FILE__).'/CdnService.php') ){
+    include_once( dirname(__FILE__).'/CdnService.php' );
+}

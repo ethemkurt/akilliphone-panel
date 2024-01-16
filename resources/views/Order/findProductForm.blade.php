@@ -23,7 +23,6 @@
             $('#prodcut-options').html('');
             let html = '<div class="demo-inline-spacing">';
             $(opt.variants).each(function(){
-                console.log($(this));
                 html += '<div class="form-check form-check-success"><input type="radio" name="variantId" required class="form-check-input" id="colorCheck'+$(this)[0].variantId+'" value="'+$(this)[0].variantId+'"> <label class="form-check-label" for="colorCheck'+$(this)[0].variantId+'">'+$(this)[0].name+'</label> </div>'
             });
             html += '</div><div class="col-12 mt-1 text-end"><button type="submit" class="btn btn-danger add-product-to-order" ><i class="feather icon-plus"></i></button></div>';

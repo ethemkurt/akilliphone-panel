@@ -11,6 +11,9 @@ class Product extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
+        if($request->input('yedekle')){
+            return $this->yedekle($request);
+        }
         $data['dataTable'] = $this->dataTableParams();
         return view('Product.index', $data);
     }
@@ -22,16 +25,16 @@ class Product extends Controller
         $data = [];
         return view('Product.new', $data);
     }
-    public function dataTable(Request $request){
-        $dataTable = $this->dataTableParams();
-        $filter['offset'] = $request->input('length', 10);
-        $filter['start'] = $request->input('start', 0);
-        $filter['page'] = ceil($filter['start']/$filter['offset']);
-        $response = \WebService::products($filter);
-        $dataTable->setRecordsTotal($response['totalCount']);
-        $dataTable->setRecordsFiltered($response['totalCount']);
-        $items = [];
-
+   public function dataTable(Request $request){
+    $dataTable = $this->dataTableParams();
+    $filter['offset'] = $request->input('length', 10);
+    $filter['start'] = $request->input('start', 0);
+    $filter['page'] = ceil($filter['start']/$filter['offset']);
+    $response = \WebService::products($filter);
+    $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
+    $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
+    $items = [];
+    if($response && isset($response['items'])){
         foreach($response['items'] as $row){
             $item = [];
             foreach($dataTable->cols() as $key=>$col){
@@ -48,9 +51,10 @@ class Product extends Controller
             }
             $items[] = $item;
         }
-        $dataTable->setItems($items);
-        return $dataTable->toJson();
     }
+    $dataTable->setItems($items);
+    return $dataTable->toJson();
+}
     private function _format_actions($item){
         return '<div style="min-width: 40px;" class="text-end">
 <button type="button" class="btn btn-flat-primary waves-effect p-0 me-1" href="deneme">
@@ -108,5 +112,38 @@ class Product extends Controller
         ]);
         return $dataTable;
     }
-
+    private function yedekle(Request $request){
+        $filter['page'] = $request->input('yedekle', 1);
+        $filter['active']='all';
+        $products = \WebService::products($filter);
+        if(isset($products['items']) && $products['items']){
+            foreach($products['items'] as $item){
+                $product = \App\Models\Product::where(['productId' => $item['productId']])->first();
+                if(empty($product)) {
+                    $product = new \App\Models\Product();
+                    $product->productId = $item['productId'];
+                    $product->brandId = $item['brandId'];
+                    $product->featuredImage = $item['featuredImage'];
+                    $product->name = $item['name'];
+                    $product->code = $item['code'];
+                    $product->breadcrumb = $item['breadcrumb'];
+                    $product->currency = $item['currency'];
+                    //$product->description = $item['description'];
+                    $product->slug = $item['slug'];
+                    $product->metaTitle = $item['metaTitle'];
+                    $product->metaDescription = $item['metaDescription'];
+                    $product->discountRate = $item['discountRate'];
+                    $product->sessionalDiscountRate = $item['sessionalDiscountRate'];
+                    $product->sessionalDiscountStart = $item['sessionalDiscountStart'];
+                    $product->sessionalDiscountEnd = $item['sessionalDiscountEnd'];
+                    $product->status = $item['status'];
+                    $product->save();
+                    echo $item['code'].": ".$item['name']." (Eklendi)<br>";
+                } else{
+                    echo $item['code'].": ".$item['name']." (Zaten Var)<br>";
+                }
+            }
+            return redirect(route('product.index', ['yedekle'=>$filter['page']+1, 'active'=>$filter['active']]));
+        }
+    }
 }

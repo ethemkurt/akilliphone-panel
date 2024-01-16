@@ -21,8 +21,9 @@
             <p class="text-body">{{ _HumanDate($order['createdAt'], 'd.m.Y') }}</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-2">
-            <a class="btn btn-primary edit-order waves-effect" href="{{ route('order.edit', $order['orderId']) }}"><i class="fa fa-edit"></i> Siparişi Düzenle</a>
-            <button type="button" class="btn btn-danger  waves-effect waves-float waves-light btn-popup-form" data-bs-toggle="modal" data-bs-target="#poupForm" data-url="{{ route('popup', 'deleteOrder') }}?orderId={{ $order['orderId'] }}"><i class="fa fa-trash"></i> Sipariş Sil</button>
+            <a class="btn btn-secondary edit-order waves-effect" href="{{ route('order.barcode', $order['orderId']) }}" target="_blank"><i class="fa fa-barcode"></i> Barkod</a>
+            <a class="btn btn-primary edit-order waves-effect" href="{{ route('order.edit', $order['orderId']) }}"><i class="fa fa-edit"></i> Düzenle</a>
+            <button type="button" class="btn btn-danger  waves-effect waves-float waves-light btn-popup-form" data-bs-toggle="modal" data-bs-target="#poupForm" data-url="{{ route('popup', 'deleteOrder') }}?orderId={{ $order['orderId'] }}"><i class="fa fa-trash"></i> Sil</button>
         </div>
     </div>
     <div class="row">
@@ -61,7 +62,7 @@
                                 <tr class="odd">
                                     <td class="  control" tabindex="0" style="display: none;"></td>
                                     <td class="sorting_1">
-                                        <div class="d-flex justify-content-start align-items-center text-nowrap">
+                                        <div class="d-flex justify-content-start align-items-center">
                                             <div class="avatar-wrapper">
                                                 <div class="avatar me-2"><img src="{{ getProductImageUrl($product['image'], 40,40) }}" class="rounded-2"></div>
                                             </div>
@@ -91,7 +92,7 @@
                             </div>
                             @endforeach
                             <div class="d-flex justify-content-between tex-end">
-                                <h6 class="w-px-100 mb-0">Toplam</h6>
+                                <h6 class="w-px-100 mb-0 pe-1">Toplam: </h6>
                                 <h6 class="mb-0">{{_FormatPrice($order['orderTotal'])}}</h6>
                             </div>
                         </div>
@@ -105,45 +106,60 @@
 
                 <div class="card-body">
                     <ul class="timeline pb-0 mb-0">
-                        <li class="timeline-item timeline-item-transparent">
-                            <span class="timeline-point timeline-point-primary"></span>
-                            <div class="timeline-event">
-                                <div class="timeline-header">
-                                    <h6 class="mb-0">Sipariş Oluşturuldu (Sipariş No: #32543)</h6>
-                                    <span class="text-muted">{{ _HumanDate(date('Y-m-d')) }}</span>
+                        @if($orderHistory)
+                            @foreach($orderHistory as $history)
+                                <li class="timeline-item timeline-item-transparent">
+                                    <span class="timeline-point timeline-point-primary"></span>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header">
+                                            <h6 class="mb-0">{{ $history['description'] }}</h6>
+                                            <span class="text-muted">{{ _HumanDate($history['createdAt']) }}</span>
+                                        </div>
+                                        <p class="mt-2"></p>
+                                    </div>
+                                </li>
+                            @endforeach
+                        @else
+                            <li class="timeline-item timeline-item-transparent">
+                                <span class="timeline-point timeline-point-primary"></span>
+                                <div class="timeline-event">
+                                    <div class="timeline-header">
+                                        <h6 class="mb-0">Sipariş Geçmişi alınamadı</h6>
+                                        <span class="text-muted">{{ _HumanDate(date('Y-m-d')) }}</span>
+                                    </div>
+                                    <p class="mt-2">Hatalar için yazılım ekibiyle görüşünüzu</p>
                                 </div>
-                                <p class="mt-2">Siparişiniz başarıyla oluşturuldu</p>
-                            </div>
-                        </li>
-                        <li class="timeline-item timeline-item-transparent">
-                            <span class="timeline-point timeline-point-primary"></span>
-                            <div class="timeline-event">
-                                <div class="timeline-header">
-                                    <h6 class="mb-0">Sipariş Onaylandı</h6>
-                                    <span class="text-muted">{{ _HumanDate(date('Y-m-d')) }}</span>
-                                </div>
-                                <p class="mt-2">Sipariş onaylanarak işleme alındı</p>
-                            </div>
-                        </li>
-                        <li class="timeline-item timeline-item-transparent">
-                            <span class="timeline-point timeline-point-primary"></span>
-                            <div class="timeline-event">
-                                <div class="timeline-header">
-                                    <h6 class="mb-0">Sipariş kargolandı</h6>
-                                    <span class="text-muted">{{ _HumanDate(date('Y-m-d')) }}</span>
-                                </div>
-                                <p class="mt-2">Siaprişiniz Aras Kargoya verildi</p>
-                            </div>
-                        </li>
-                        <li class="timeline-item timeline-item-transparent border-transparent pb-0">
-                            <span class="timeline-point timeline-point-secondary"></span>
-                            <div class="timeline-event pb-0">
-                                <div class="timeline-header">
-                                    <h6 class="mb-0">Teslim Edildi</h6>
-                                </div>
-                                <p class="mt-2 mb-0">Siparişiniz adresinize teslim edildi</p>
-                            </div>
-                        </li>
+                            </li>
+                        @endif
+{{--                        <li class="timeline-item timeline-item-transparent">--}}
+{{--                            <span class="timeline-point timeline-point-primary"></span>--}}
+{{--                            <div class="timeline-event">--}}
+{{--                                <div class="timeline-header">--}}
+{{--                                    <h6 class="mb-0">Sipariş Onaylandı</h6>--}}
+{{--                                    <span class="text-muted">{{ _HumanDate(date('Y-m-d')) }}</span>--}}
+{{--                                </div>--}}
+{{--                                <p class="mt-2">Sipariş onaylanarak işleme alındı</p>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li class="timeline-item timeline-item-transparent">--}}
+{{--                            <span class="timeline-point timeline-point-primary"></span>--}}
+{{--                            <div class="timeline-event">--}}
+{{--                                <div class="timeline-header">--}}
+{{--                                    <h6 class="mb-0">Sipariş kargolandı</h6>--}}
+{{--                                    <span class="text-muted">{{ _HumanDate(date('Y-m-d')) }}</span>--}}
+{{--                                </div>--}}
+{{--                                <p class="mt-2">Siaprişiniz Aras Kargoya verildi</p>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li class="timeline-item timeline-item-transparent border-transparent pb-0">--}}
+{{--                            <span class="timeline-point timeline-point-secondary"></span>--}}
+{{--                            <div class="timeline-event pb-0">--}}
+{{--                                <div class="timeline-header">--}}
+{{--                                    <h6 class="mb-0">Teslim Edildi</h6>--}}
+{{--                                </div>--}}
+{{--                                <p class="mt-2 mb-0">Siparişiniz adresinize teslim edildi</p>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
                     </ul>
                 </div>
             </div>
@@ -154,10 +170,24 @@
                     <h5 class="card-title m-0">Müşteri Bilgileri</h5>
                 </div>
                 <div class="card-body">
+                    @if($order['orderCustomer'])
                     <p class=" mb-1">#{{ $order['orderCustomer']['orderCustomerId'] }}</p>
                     <p class=" mb-1">{{ $order['orderCustomer']['firstName'] }} {{ $order['orderCustomer']['lastName'] }}</p>
                     <p class=" mb-1">{{ $order['orderCustomer']['email'] }}</p>
-                    <p class=" mb-1">{{ $order['orderCustomer']['telefon'] }} </p>
+                    <p class=" mb-1">{{ _formatPhoneNumber($order['orderCustomer']['telefon']) }} </p>
+                    @endif
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title m-0">Kargo Bilgileri</h5>
+                </div>
+                <div class="card-body">
+                    @if($order['shippingAddress'])
+                        <p class=" mb-1">Kargo Firma: {{ $order['shippingCompany'] }}</p>
+                        <p class=" mb-1">Kargo Kodu: {{ $order['shippingTrackingNumber'] }}</p>
+                        <p class=" mb-1">Takip Url: {{ $order['shippingTrackingUrl']  }}</p>
+                    @endif
                 </div>
             </div>
             <div class="card mb-4">
@@ -165,11 +195,13 @@
                     <h5 class="card-title m-0">Teslimat Bilgileri</h5>
                 </div>
                 <div class="card-body">
-                    <p class=" mb-1">{{ $order['shippingAddress']['firstName'] }} {{ $order['shippingAddress']['lastName'] }}</p>
-                    <p class=" mb-1">{{ $order['shippingAddress']['phone'] }}</p>
-                    <p class=" mb-1">{{ $order['shippingAddress']['address'] }} </p>
+                    @if($order['shippingAddress'])
+                    <p class=" mb-1">{{ $order['shippingAddress']['firstname'] }} {{ $order['shippingAddress']['lastname'] }}</p>
+                    <p class=" mb-1">{{ _formatPhoneNumber($order['shippingAddress']['phone']) }}</p>
+                    <p class=" mb-1">{{ $order['shippingAddress']['addressLine1'] }} </p>
                     <p class=" mb-1">{{ $order['shippingAddress']['district'] }}/{{ $order['shippingAddress']['city'] }}</p>
                     <p class=" mb-1 fw-bold">{{ $order['shippingAddress']['country'] }}</p>
+                    @endif
                 </div>
             </div>
             <div class="card mb-4">
@@ -177,21 +209,23 @@
                     <h5 class="card-title m-0">Fatura Bilgileri</h5>
                 </div>
                 <div class="card-body">
-                    <p class=" mb-1">{{ $order['billingAddress']['firstName'] }} {{ $order['billingAddress']['lastName'] }}</p>
-                    <p class=" mb-1">{{ $order['billingAddress']['phone'] }}</p>
-                    <p class=" mb-1">{{ $order['billingAddress']['address'] }} </p>
+                    @if($order['billingAddress'])
+                    <p class=" mb-1">{{ $order['billingAddress']['firstname'] }} {{ $order['billingAddress']['lastname'] }}</p>
+                    <p class=" mb-1">{{ _formatPhoneNumber($order['billingAddress']['phone']) }}</p>
+                    <p class=" mb-1">{{ $order['billingAddress']['addressLine1'] }} </p>
                     <p class=" mb-1">{{ $order['billingAddress']['district'] }}/{{ $order['billingAddress']['city'] }}</p>
                     <p class=" mb-1 fw-bold">{{ $order['billingAddress']['country'] }}</p>
                     <hr>
-                    @if($order['billingAddress']['invoiceType']=='bireysel')
-                        <h6 class="m-0 text-info">Bireysel Fatura</h6>
-                        <p class=" mb-1">TC Kimlik: {{ $order['billingAddress']['tcKimlik'] }}</p>
-                    @elseif($order['billingAddress']['invoiceType']=='bireysel')
-                        <h6 class="m-0 text-danger">Kurumsal Fatura</h6>
-                        <p class=" mb-1">Firma: {{ $order['billingAddress']['company'] }}}</p>
-                        <p class=" mb-1">Vergi No: {{ $order['billingAddress']['taxNumber'] }}}</p>
-                        <p class=" mb-1">Vergi Dairesi: {{ $order['billingAddress']['taxOffice'] }}}</p>
-                    @else
+                        @if($order['billingAddress']['invoiceType']=='Bireysel' || $order['billingAddress']['invoiceType']=='bireysel')
+                            <h6 class="m-0 text-info">Bireysel Fatura</h6>
+                            <p class=" mb-1">TC Kimlik: {{ $order['billingAddress']['tcKimlik'] }}</p>
+                        @elseif($order['billingAddress']['invoiceType']=='Kurumsal' || $order['billingAddress']['invoiceType']=='kurumsal')
+                            <h6 class="m-0 text-danger">Kurumsal Fatura</h6>
+                            <p class=" mb-1">Firma: {{ $order['billingAddress']['company'] }}}</p>
+                            <p class=" mb-1">Vergi No: {{ $order['billingAddress']['taxNumber'] }}}</p>
+                            <p class=" mb-1">Vergi Dairesi: {{ $order['billingAddress']['taxOffice'] }}}</p>
+                        @else
+                        @endif
                     @endif
                 </div>
             </div>
