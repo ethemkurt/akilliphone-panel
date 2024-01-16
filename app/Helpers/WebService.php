@@ -153,6 +153,14 @@ class WebService{
         }
         return [];
     }
+    public static function brands($page){
+        $response = self::GET('brands', []);
+        if($response['data']){
+
+            return $response['data']['items'];
+        }
+        return [];
+    }
     public static function orderStatus($orderStatusId){
         $response = self::GET('orders/order-status/'.$orderStatusId, []);
         if($response['data'] ){
@@ -302,7 +310,7 @@ class WebService{
     public static function userDelete($userId){
         //echo json_encode($user, JSON_UNESCAPED_UNICODE);
         $response = self::DELETE('users/'.$userId, [] );
-dd($response);
+
         return $response ;
     }
 
@@ -332,6 +340,22 @@ dd($response);
         }
         return [];
     }
+    public static function brand_delete($brandId){
+        $response = self::DELETE('brands/'.$brandId, []);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function brand_add($body){
+        $response = self::POST('brands/',$body);
+        if($response ){
+            dd($response);
+            return $response;
+        }
+        return [];
+    }
+
     public static function countries(){
         $response = self::static('address/countries', []);
     }
@@ -413,7 +437,7 @@ dd($response);
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->delete(self::WEBSERVICE_URL.$service, $data);
-        dd($response);
+
         return self::standartResponse($response);
     }
     private static function static($endpoint){

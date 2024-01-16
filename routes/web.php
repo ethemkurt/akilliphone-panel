@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentStatus;
 use App\Http\Controllers\PaymentType;
 use App\Http\Controllers\User;
 use App\Http\Controllers\Product;
+use App\Http\Controllers\BrandManagement;
 use App\Http\Controllers\Popup;
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\Slide;
@@ -87,6 +88,10 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::get('/', [Product::class, 'index'])->name('index');
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
     Route::get('/new', [Product::class, 'new'])->name('new');
+    Route::get('/brand-management-table', [BrandManagement::class, 'dataTable'])->name('brand-management-table');
+    Route::post('/brand-management-table', [BrandManagement::class, 'brand_add'])->name('brand-add');
+//    Route::get('/brand-management-table', [BrandManagement::class, 'brand-delete'])->name('brand-delete');
+    Route::get('/brand-management', [BrandManagement::class, 'index'])->name('brand-management');
     Route::get('/data-table', [Product::class, 'dataTable'])->name('data-table');
 });
 Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.token']], function () {

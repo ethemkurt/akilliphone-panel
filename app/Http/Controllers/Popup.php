@@ -77,6 +77,31 @@ class Popup extends Controller
         $html = view('popup-forms.order-status', $data)->render();
         return _ReturnSucces('', $html);
     }
+    public function BrandEdit(Request $request ){
+        $brandId = $request->input('brandId');
+        $data['brand'] = [];
+        if($brandId){
+            $response = \Webservice::brand($brandId);
+            if(isset($response['brandId'])){
+                $data['brand'] = $response;
+            }
+        }
+        $html = view('popup-forms.brand-edit', $data)->render();
+        return _ReturnSucces('', $html);
+    }
+
+    public function BrandAdd(Request $request ){
+        $brandId = $request->input('brandId');
+        $data['brand'] = [];
+        if($brandId){
+            $response = \Webservice::brand($brandId);
+            if(isset($response['brandId'])){
+                $data['brand'] = $response;
+            }
+        }
+        $html = view('popup-forms.brand-add',$data)->render();
+        return _ReturnSucces('', $html);
+    }
     public function PaymentStatus(Request $request ){
         $paymentStatusId = $request->input('paymentStatusId');
         $data['paymentStatus'] = [];

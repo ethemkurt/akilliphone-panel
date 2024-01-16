@@ -17,13 +17,16 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-            <div class="col-md-4 user_role">
+            <div class="col-md-3">
                 <select name="userRole" id="UserRole" class="form-select text-capitalize mb-md-0 mb-2 datatable-filter">
                     <option value="">Ödeme Türü</option>
                     @foreach(Enum::list('PaymentType') as $key=>$val)
                         <option value="{{ $key }}">{{ $val }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="col-md-3">
+                <x-inputs.text-input label="Fatura No'ya Göre Ara" placeholder="Fatura No'ya Göre Ara" name="search_receipt_no" />
             </div>
 
         </div>
