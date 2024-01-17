@@ -166,7 +166,17 @@ class WebService{
     }
     public static function brands($page){
         $response = self::GET('brands', []);
+
         if($response['data']){
+
+            return $response['data']['items'];
+        }
+        return [];
+    }
+    public static function categories($page){
+        $response = self::GET('categories', []);
+        if($response['data']['items']){
+
 
             return $response['data']['items'];
         }
@@ -367,15 +377,24 @@ class WebService{
     }
     public static function brand_delete($brandId){
         $response = self::DELETE('brands/'.$brandId, []);
+
         if($response ){
             return $response;
         }
         return [];
     }
     public static function brand_add($body){
-        $response = self::POST('brands/',$body);
+        $response = self::POST('brands',$body);
         if($response ){
-            dd($response);
+            return $response;
+        }
+        return [];
+    }
+    public static function brand_edit($brandId,$body){
+
+        $response = self::PUT('brands/'.$brandId,$body);
+
+        if($response ){
             return $response;
         }
         return [];

@@ -32,7 +32,7 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "category/index",
+                    "url": "product/categories",
                     "name": "Kategori Yönetimi",
                     "icon": "circle",
                     "slug": "collapsed-menu"

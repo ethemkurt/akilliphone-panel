@@ -1,7 +1,7 @@
 
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Marka Yönetimi')
+@section('title', 'Kategori Yönetimi')
 
 @section('page-style')
     {{-- Page Css files --}}
@@ -19,7 +19,7 @@
                         <form class="dt_adv_search" method="POST">
                             <div class="row g-1 mb-md-1">
                                 <div class="col-md-4">
-                                    <x-button-popup-form :title="'Marka Ekleme'" :text="'Yeni Marka Ekleme'" :url="route('popup', 'BrandSave',)" />
+                                    <x-button-popup-form :title="'Kategori Ekleme'" :text="'Yeni Kategori Ekleme'" :url="route('popup', '',)" />
                                 </div>
                             </div>
                         </form>

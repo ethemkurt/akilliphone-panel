@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\Order;
+use App\Http\Controllers\Categories;
 use App\Http\Controllers\OrderStatus;
 use App\Http\Controllers\PaymentStatus;
 use App\Http\Controllers\PaymentType;
@@ -90,9 +91,11 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
     Route::get('/new', [Product::class, 'new'])->name('new');
     Route::get('/brand-management-table', [BrandManagement::class, 'dataTable'])->name('brand-management-table');
-    Route::post('/brand-management-table', [BrandManagement::class, 'brand_add'])->name('brand-add');
-//    Route::get('/brand-management-table', [BrandManagement::class, 'brand-delete'])->name('brand-delete');
+    Route::post('/brand-management-table', [BrandManagement::class, 'save'])->name('brand-save');
+    Route::get('/brand-delete/{brandId}', [BrandManagement::class, 'delete'])->name('brand-delete');
     Route::get('/brand-management', [BrandManagement::class, 'index'])->name('brand-management');
+    Route::get('/categories', [Categories::class, 'index'])->name('categories');
+    Route::get('/categories-table', [Categories::class, 'dataTable'])->name('categories-table');
     Route::get('/data-table', [Product::class, 'dataTable'])->name('data-table');
 });
 Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.token']], function () {

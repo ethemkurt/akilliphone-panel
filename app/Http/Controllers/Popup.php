@@ -91,7 +91,7 @@ class Popup extends Controller
         return _ReturnSucces('', $html);
     }
 
-    public function BrandAdd(Request $request ){
+    public function BrandSave(Request $request ){
         $brandId = $request->input('brandId');
         $data['brand'] = [];
         if($brandId){
@@ -100,7 +100,7 @@ class Popup extends Controller
                 $data['brand'] = $response;
             }
         }
-        $html = view('popup-forms.brand-add',$data)->render();
+        $html = view('popup-forms.brand-save',$data)->render();
         return _ReturnSucces('', $html);
     }
     public function PaymentStatus(Request $request ){
