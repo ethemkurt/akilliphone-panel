@@ -339,7 +339,7 @@ class WebService{
             return false;
         }
 
-        $response = self::POST($webservice_method, $user);
+        $response = self::POST($webservice_method, $user, true);
         return $response ;
     }
     public static function userEdit($user){
@@ -472,10 +472,14 @@ class WebService{
             return self::standartErrorResponse($ex->getMessage());
         }
     }
-    static private function POST($service, $data){
-
+    static private function POST($service, $data, $forceAdmin=false){
+        if($forceAdmin){
+            $Authorization = 'Bearer ' . request()->session()->get('SADMINTOKEN', null);
+        } else {
+            $Authorization ='Bearer ' . request()->session()->get('jwtToken', null);
+        }
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
+            'Authorization' => $Authorization,
         ])->post(self::WEBSERVICE_URL.$service, $data);
 
         return self::standartResponse($response, self::WEBSERVICE_URL.$service);
