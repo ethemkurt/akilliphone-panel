@@ -65,6 +65,7 @@ class User extends Controller
                 if($user['password']=='nochange'){
                     unset($user['password']);
                 }
+
                 $response = \WebService::userEdit($user);
                 if($response){
                     if(isset($response['data']) && isset($response['data']['id'])){
