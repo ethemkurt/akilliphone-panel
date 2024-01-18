@@ -44,6 +44,7 @@ Route::get('/enum', [\Enum::class, 'loadConst']);
 
 Route::group(['prefix'=>'home','as'=>'home.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Home::class, 'index'])->name('index');
+    Route::post('/imageTest', [Home::class, 'imageTest'])->name('imageTest');
 });
 Route::group(['prefix'=>'order','as'=>'order.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Order::class, 'index'])->name('index');

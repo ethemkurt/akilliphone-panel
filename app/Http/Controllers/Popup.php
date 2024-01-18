@@ -16,6 +16,24 @@ class Popup extends Controller
         }
     }
 
+    public function ImageTest(Request $request ){
+        $data['userType'] = $request->input('userType', 'uye');
+        $data['userId'] = $request->input('userId', 'new');
+
+        if($data['userId']=='new'){
+            $data['user'] = \Instance::user();
+        } else {
+            $response = \Webservice::user($data['userId']);
+            if(isset($response['id'])){
+                $data['user'] = $response;
+            } else{
+                return _ReturnError('', '',['Kullanıcı Bulunamadı']);
+            }
+        }
+        $html = view('popup-forms.imageTest', $data)->render();
+        return _ReturnSucces('', $html);
+
+    }
     public function User(Request $request ){
         $data['userType'] = $request->input('userType', 'uye');
         $data['userId'] = $request->input('userId', 'new');
