@@ -338,6 +338,7 @@ class WebService{
         } else {
             return false;
         }
+
         $response = self::POST($webservice_method, $user);
         return $response ;
     }
@@ -346,7 +347,7 @@ class WebService{
         return $response ;
     }
     public static function userDelete($userId){
-        $response = self::DELETE('users/'.$userId, [] );
+        $response = self::DELETE('user/'.$userId, [] );
         return $response ;
     }
 
@@ -472,7 +473,7 @@ class WebService{
         }
     }
     static private function POST($service, $data){
-        //die(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->post(self::WEBSERVICE_URL.$service, $data);
