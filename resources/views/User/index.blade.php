@@ -1,6 +1,8 @@
-
 @extends('layouts/contentLayoutMaster')
 @if($routeName=='user.admin')
+        <?php
+        $validRole = UserRole::ADMIN
+        ?>
     @section('title', 'Personel Listesi')
 @elseif($routeName=='user.bayi')
     @section('title', 'Bayi Listesi')

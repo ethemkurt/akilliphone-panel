@@ -21,6 +21,7 @@ class User extends Controller
     }
     public function delete(Request $request, $userrId ){
         $response = \WebService::userDelete($userrId);
+        return $response;
     }
     public function edit(Request $request ){
         $data = [];
