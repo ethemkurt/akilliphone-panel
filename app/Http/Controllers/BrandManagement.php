@@ -7,7 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
-
+use App\Models;
 class BrandManagement extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -15,7 +15,7 @@ class BrandManagement extends Controller
         $data['dataTable'] = $this->dataTableParams();
 
 
-        return view('product.brand-management', $data);
+        return view('Product.brand-management', $data);
     }
 
     public function delete(Request $request, $brandId ){
@@ -37,10 +37,14 @@ class BrandManagement extends Controller
         if($brand = $request->input('brand')){
             $brandId = isset($brand['brandId'])?$brand['brandId']:false;
             if($brandId=='new'){
-                unset($brand['brandId']);
+                $brand['images'] = $request->input('images', []);
+                dd($brand["desktopImageFile"]);
                 $response = \WebService::brand_add($brand);
+                $update=\CdnService::saveToCdn($brand['images'], '');
+
+
             } else {
-                $brand['image']="img/2023-12/16/1-(12)-1702678069-1.png";
+
                 $response = \WebService::brand_edit($brand['brandId'],$brand);
             }
             if(isset($response['errors']) && $response['errors']){

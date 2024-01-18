@@ -13,9 +13,12 @@ class Categories extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
         $data['dataTable'] = $this->dataTableParams();
+        $offset = $request->input('length', 10);
+        $start = $request->input('start', 0);
+        $page = ($start/$offset)+1;
+        $data['categories'] = \WebService::categories($page);
 
-
-        return view('product.categories', $data);
+        return view('Product.categories', $data);
     }
 
 
@@ -55,7 +58,7 @@ class Categories extends Controller
     private function _format_action($item){
 
         $delete = route('product.brand-delete', $item['categoryId']);
-        $edit = route('popup', 'BrandSave').'?categoryId='.$item['categoryId'];
+        $edit = route('popup', 'BrandSave').'?category='.$item['categoryId'];
         $html = '';
         $html .= '<a class="btn confirm-popup" href="'.$delete.'" title="\''.$item['name'].'\' silinsin mi?"><i class="fa fa-trash"></i></a> ';
         $html .= '<a class="btn btn-popup-form" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="fa fa-edit"></i></a>';

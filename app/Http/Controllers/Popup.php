@@ -103,6 +103,20 @@ class Popup extends Controller
         $html = view('popup-forms.brand-save',$data)->render();
         return _ReturnSucces('', $html);
     }
+
+    public function CategoriesSave(Request $request ){
+//        $brandId = $request->input('brandId');
+          $data['categories'] = [];
+          $response = \Webservice::categories(1);
+
+          if($response!=[]){
+                $data['categories'] = $response;
+            }
+
+        $html = view('popup-forms.categories-save',$data)->render();
+        return _ReturnSucces('', $html);
+    }
+
     public function PaymentStatus(Request $request ){
         $paymentStatusId = $request->input('paymentStatusId');
         $data['paymentStatus'] = [];
