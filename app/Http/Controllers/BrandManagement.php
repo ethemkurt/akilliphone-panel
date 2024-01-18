@@ -35,6 +35,7 @@ class BrandManagement extends Controller
         $html = '';
 
         if($brand = $request->input('brand')){
+            $mobileImage='';
             $brandId = isset($brand['brandId'])?$brand['brandId']:false;
             if($brandId=='new'){
 
@@ -46,7 +47,7 @@ class BrandManagement extends Controller
                 } catch (\Exception $ex){
                     die($ex->getMessage());
                 }
-
+                $brand['image']=$mobileImage;
                 $response = \WebService::brand_add($brand);
 
 
