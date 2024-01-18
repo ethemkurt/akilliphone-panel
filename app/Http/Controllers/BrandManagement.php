@@ -37,14 +37,30 @@ class BrandManagement extends Controller
         if($brand = $request->input('brand')){
             $brandId = isset($brand['brandId'])?$brand['brandId']:false;
             if($brandId=='new'){
-                $brand['images'] = $request->input('images', []);
-                dd($brand["desktopImageFile"]);
+
+
+                try{
+                    if($brand['mobileImageFile']){
+                        $mobileImage = \CdnService::saveToCdn($brand['mobileImageFile'], '');
+                    }
+                } catch (\Exception $ex){
+                    die($ex->getMessage());
+                }
+
                 $response = \WebService::brand_add($brand);
-                $update=\CdnService::saveToCdn($brand['images'], '');
+
+
+
 
 
             } else {
-
+                try{
+                    if($brand['mobileImageFile']){
+                        $mobileImage = \CdnService::saveToCdn($brand['mobileImageFile'], '');
+                    }
+                } catch (\Exception $ex){
+                    die($ex->getMessage());
+                }
                 $response = \WebService::brand_edit($brand['brandId'],$brand);
             }
             if(isset($response['errors']) && $response['errors']){

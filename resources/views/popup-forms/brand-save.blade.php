@@ -69,9 +69,9 @@
                 <div class="col-sm-3">
                     <label class="col-form-label" for="name">Marka Logosu</label>
                 </div>
-                <div class="image-upload large" >
-                    <input type="text" name="brand[image][]" value="">
-                    <input type="hidden" name="brand[desktopImageFile][]" value="">
+                <div class="image-upload small" style="background-image: url('') ">
+                    <input type="text" name="brand[mobileImage]" value="" style="display: none">
+                    <input type="hidden" name="brand[mobileImageFile]" value="">
                 </div>
             </div>
         </div>
@@ -89,15 +89,4 @@
 </form>
 <script>
     TulparUploader.createUploder();
-    $('.btn-repeater').on('click', function (){
-        TulparUploader.createUploder();
-        jscolor.install();
-    })
-    $('body').on('change', '.form-control.jscolor', function () {
-        let elem = $(this).parents('.slide-image').find('.image-upload.large');
-        console.log( elem);
-        if(elem.length){
-            elem.css('background-color', $(this).val());
-        }
-    })
 </script>

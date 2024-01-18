@@ -13,10 +13,7 @@
     <!-- Dashboard Ecommerce Starts -->
     <section id="dashboard-ecommerce">
         <div class="row match-height">
-            <div class="col-md-2">
-                <button type="button" class="btn btn-primary  waves-effect waves-float waves-light btn-popup-form" data-bs-toggle="modal" data-bs-target="#poupForm" data-title="Sipariş Durumu" data-url="https://y1.akilliphone.com/popup/ImageTest"><i class="fa fa-edit"></i> Resim Test</button>
-
-            </div>
+           
             <!-- Statistics Card -->
             <div class="col-12">
                 <div class="card card-statistics">
