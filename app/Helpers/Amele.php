@@ -124,3 +124,15 @@ function _CdnImageUrl($url, $w=false, $h=false, $cdnx=false ){
     }
     return $result;
 }
+function validateRole($required=null){
+    if($required==null){
+        return true;
+    }
+    if($required==CURRENT_ROLE){
+        return true;
+    }
+    if($required==UserRole::TEMSILCI && CURRENT_ROLE == UserRole::ADMIN){
+        return true;
+    }
+    return false;
+}

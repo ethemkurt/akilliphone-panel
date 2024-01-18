@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 class WebService{
-    const WEBSERVICE_URL = 'http://api.duzzona.site/';
+    const WEBSERVICE_URL = 'https://api.duzzona.site/';
     const AUTH_URL = 'http://212.22.69.229:44302/api/Authenticate';
     protected $userName = '';
     protected $userPassword = '';
@@ -37,6 +37,7 @@ class WebService{
                                 $user = $user['data'];
                                 $user['jwtToken'] = $token;
                                 $user['jwtExp'] = $tokenData['exp'];
+                                $user['ROLE'] = $role;
                                 $user['fullName'] = $user['firstName'].' '.$user['lastName'];
                                 $result['tokenData'] = $tokenData;
                                 $result['user'] = $user;
@@ -66,7 +67,7 @@ class WebService{
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
         ])->get(self::AUTH_URL.'/user', ['userId'=>$userId]);
-        return self::standartResponse($response) ;
+        return self::standartResponse($response, self::AUTH_URL.'/user') ;
     }
     public static function isLogged(){
         $user = request()->session()->get('user', null);
@@ -74,6 +75,7 @@ class WebService{
             if($user['jwtExp']<time()){
                 $user = null;
             }
+            defined('CURRENT_ROLE') or define('CURRENT_ROLE', self::convertUserRole($user['ROLE']));
             return $user;
         }
         return $user;
@@ -343,9 +345,7 @@ class WebService{
         return $response ;
     }
     public static function userDelete($userId){
-        //echo json_encode($user, JSON_UNESCAPED_UNICODE);
         $response = self::DELETE('users/'.$userId, [] );
-
         return $response ;
     }
 
@@ -465,7 +465,7 @@ class WebService{
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . request()->session()->get('SADMINTOKEN', null),
             ])->get(self::WEBSERVICE_URL.$service, $data);
-            return self::standartResponse($response);
+            return self::standartResponse($response, self::WEBSERVICE_URL.$service);
         } catch (\Exception $ex){
             return self::standartErrorResponse($ex->getMessage());
         }
@@ -476,21 +476,20 @@ class WebService{
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->post(self::WEBSERVICE_URL.$service, $data);
 
-        return self::standartResponse($response);
+        return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
     static private function PUT($service, $data){
         //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->put(self::WEBSERVICE_URL.$service, $data);
-        return self::standartResponse($response);
+        return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
     static private function DELETE($service, $data){
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->delete(self::WEBSERVICE_URL.$service, $data);
-
-        return self::standartResponse($response);
+        return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
     private static function static($endpoint){
         $json_path = public_path().'/jsons/'.$endpoint.'.json';
@@ -508,7 +507,7 @@ class WebService{
         $result['errors'] = [$error];
         return $result;
     }
-    static private function standartResponse($response){
+    static private function standartResponse($response, $endpoit=''){
         $errors = [];
         $responseData = json_decode($response->body(), true);
         if($response->status()=='400' || $response->status()=='500'){
@@ -546,12 +545,14 @@ class WebService{
             }
             return [
                 'status'=>0,
+                'endpoit'=>$endpoit,
                 'data'=>[],
                 'errors' => $errors
             ];
         }
 
         // $responseData = json_decode($response->body(), true);
+        $result['endpoit'] = $endpoit;
         if($response->status()==200 || $response->status()==201){
             if($responseData ){
                 $result['status'] = 1;
@@ -575,5 +576,16 @@ class WebService{
         $order['shippingTrackingNumber'] = (string)$order['shippingTrackingNumber'] ;
         $order['shippingTrackingUrl'] = (string)$order['shippingTrackingUrl'] ;
         return $order;
+    }
+    static function convertUserRole($webServiceRole){
+        if($webServiceRole=='Admin'){
+            return UserRole::ADMIN;
+        }elseif($webServiceRole=='Temsilci'){
+            return UserRole::TEMSILCI;
+        }elseif($webServiceRole=='Bayi'){
+            return UserRole::BAYI;
+        }elseif($webServiceRole=='Uye'){
+            return UserRole::UYE;
+        }
     }
 }
