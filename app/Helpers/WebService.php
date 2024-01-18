@@ -74,8 +74,9 @@ class WebService{
         if($user){
             if($user['jwtExp']<time()){
                 $user = null;
+            } else{
+                defined('CURRENT_ROLE') or define('CURRENT_ROLE', self::convertUserRole($user['ROLE']));
             }
-            defined('CURRENT_ROLE') or define('CURRENT_ROLE', self::convertUserRole($user['ROLE']));
             return $user;
         }
         return $user;
