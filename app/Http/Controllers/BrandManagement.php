@@ -13,8 +13,6 @@ class BrandManagement extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
         $data['dataTable'] = $this->dataTableParams();
-
-
         return view('Product.brand-management', $data);
     }
 
@@ -114,9 +112,9 @@ class BrandManagement extends Controller
         $delete = route('product.brand-delete', $item['brandId']);
         $edit = route('popup', 'BrandSave').'?brandId='.$item['brandId'];
         $html = '';
-        $html .= '<a class="btn confirm-popup" href="'.$delete.'" title="\''.$item['name'].'\' silinsin mi?"><i class="fa fa-trash"></i></a> ';
-        $html .= '<a class="btn btn-popup-form" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="fa fa-edit"></i></a>';
-        return '<div class="text-end">'.$html.'</div>';
+        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="feather icon-file-text"></i></a>';
+        $html .= '<a class="confirm-popup btn waves-effect p-0 ms-1" href="'.$delete.'" title="\''.$item['name'].'\' silinsin mi?"><i class="feather icon-trash text-danger"></i></a> ';
+        return $html;
     }
     private function dataTableParams(){
         $dataTable = new \AjaxDataTable();
@@ -125,11 +123,10 @@ class BrandManagement extends Controller
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'Sıra No', 'className'=>'', 'orderable'=>''],
-            'brandId'=>['title'=>'Id', 'className'=>'', 'orderable'=>''],
+            'orderNumber'=>['title'=>'Sıra No', 'className'=>'sort-order', 'orderable'=>''],
             'image'=>  ['title'=>'Logo','className'=>'','orderable'=>''],
             'name'=>['title'=>'Marka Adı', 'className'=>'', 'orderable'=>''],
-            'action'=>['title'=>'','className'=>'','orderable'=>'']
+            'action'=>['title'=>'','className'=>'action-buttons','orderable'=>'']
         ]);
         return $dataTable;
     }

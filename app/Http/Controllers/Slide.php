@@ -75,7 +75,7 @@ class Slide extends Controller
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
+            'orderNumber'=>['title'=>'', 'className'=>'sort-order', 'orderable'=>''],
             'name'=>['title'=>'Slayt Adı', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],

@@ -12,7 +12,23 @@ class Home extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
-        $data = [];
+        $data['orderCount'] = 0;
+        $orders = \WebService::orders();
+
+        if($orders){
+            $data['orderCount'] = isset($orders['totalCount'])?$orders['totalCount']:0;
+        }
+        $data['productCount'] = 0;
+        $products = \WebService::products([]);
+        if($products){
+            $data['productCount'] = isset($products['totalCount'])?$products['totalCount']:0;
+        }
+        $data['customerCount'] = 0;
+        $customers = \WebService::users([]);
+        if($customers ){
+            $data['customerCount'] = isset($customers['totalCount'])?$customers['totalCount']:0;
+        }
+
         return view('Home.index', $data);
     }
     public function notlogged(Request $request ){

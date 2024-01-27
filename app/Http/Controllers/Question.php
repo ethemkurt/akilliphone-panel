@@ -32,26 +32,54 @@ class Question extends Controller
 
             if($response){
                 if(isset($response['data']) && isset($response['data']['questionId'])){
-                    $result = 'Yorum kaydedildi';
+                    $result = 'Soru kaydedildi';
                 } else{
-                    $result = 'Yorum kaydedilemedi';
+                    $result = 'Soru kaydedilemedi';
                 }
             } else {
                 $result = 'Webservis sonucu alınmadı';
             }
         } else {
-            $result = 'Yorum bilgilerini eksik veya hatalı gönderdiniz';
+            $result = 'Soru bilgilerini eksik veya hatalı gönderdiniz';
+        }
+        return _ReturnSucces('', $result);
+    }
+    public function deleteForm(Request $request, $questionId ){
+
+        if($questionId){
+            $data['question'] = \WebService::question($questionId);
+        } else{
+            $data['question'] = [];
+        }
+        $html = view('Question.question-delete', $data)->render();
+        return _ReturnSucces('', $html);
+    }
+
+    public function delete(Request $request, $questionId ){
+        $response = \WebService::question($questionId);
+        if($response && isset($response['questionId'])){
+            $response = \WebService::questionDelete($questionId);
+            if($response){
+                if( $response && isset($response['data'])){
+                    $result = 'Soru Silindi';
+                } else{
+                    $result = 'Soru Silinemedi';
+                }
+            } else {
+                $result = 'Webservis sonucu alınmadı';
+            }
+        } else{
+            $result = 'Soru bilgilerini eksik veya hatalı gönderdiniz';
         }
         return _ReturnSucces('', $result);
     }
 
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();
+        $params = $request->input('where', []);
         $offset = $request->input('length', 10);
         $start = $request->input('start', 0);
         $page = ($start/$offset)+1;
-        $params['sort']= '2';
-        $params['orderBy']= 'desc';
         $response = \WebService::questions($page, $offset, $params);
 
         $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
@@ -87,15 +115,16 @@ class Question extends Controller
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
+            'orderNumber'=>['title'=>'', 'className'=>'sort-order', 'orderable'=>''],
             'product_image'=>['title'=>'', 'className'=>'', 'orderable'=>''],
             'product'=>['title'=>'Ürün', 'className'=>'', 'orderable'=>''],
-            'customer'=>['title'=>'Müşteri', 'className'=>'', 'orderable'=>''],
-            'question'=>['title'=>'Soru', 'className'=>'', 'orderable'=>''],
+            'question1'=>['title'=>'Soru', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
             'created_at'=>['title'=>'Tarih', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'action-buttons', 'orderable'=>''],
         ]);
+        $dataTable->setFiters('Question.datatable-filter', \request()->all());
+
         return $dataTable;
     }
 
@@ -110,10 +139,18 @@ class Question extends Controller
         return $row['product']['name'];
     }
     private function _format_customer($row){
-        return $row['customer']['firstName'].' '.$row['customer']['lastName'];
+        if($row['customer']){
+            return $row['customer']['firstName'].' '.$row['customer']['lastName'];
+        }
+        return 'Misafir';
     }
-    private function _format_question($row){
-        return $row['question1'];
+    private function _format_question1($row){
+        if($row['customer']){
+            $customer = $row['customer']['firstName'].' '.$row['customer']['lastName'];
+        } else {
+            $customer = 'Misafir';
+        }
+        return '<strong class="badge rounded-pill badge-light-warning">'.$customer.'</strong> '.$row['question1'].'<hr><strong  class="badge rounded-pill badge-light-info">Cevap </strong>'.$row['answer'].'';
     }
     private function _format_rating($row){
         return $row['rating'];
@@ -123,6 +160,6 @@ class Question extends Controller
     }
 
     private function _format_actions($row){
-        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('question.edit', $row['questionId']).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('question.edit', $row['questionId']).'"><i class="feather icon-trash text-danger"></i></a>';
+        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('question.edit', $row['questionId']).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('question.delete.form', $row['questionId']).'"><i class="feather icon-trash text-danger"></i></a>';
     }
 }

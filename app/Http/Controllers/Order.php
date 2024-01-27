@@ -10,19 +10,6 @@ use Illuminate\Http\Request;
 class Order extends Controller{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
-        /*$orderHistory = [
-            "orderId"=> 2572,
-            "orderStatusId"=> 31,
-            "paymentStatusId"=> 11,
-            "description"=> "açıklama",
-            "notify"=> true,
-            "notifyResult"=> "sonuç"
-        ];
-        echo json_encode($orderHistory);
-        $response =\WebService::orderHistoryNew($orderHistory);
-        dd($response);
-        $response = \WebService::orderHistory(2000);
-        dd($response);*/
         $data['dataTable'] = $this->dataTableParams();
         return view('Order.index', $data);
     }
@@ -79,7 +66,6 @@ class Order extends Controller{
                     foreach($errors as $error){
                         $responseErrors[] = $error;
                     }
-
                 }
             }
 
@@ -144,7 +130,7 @@ class Order extends Controller{
                 }
                 return _ReturnError('', '', $errors);
             } else {
-                return _ReturnSucces('', 'silindi', route('order.index'));
+                return _ReturnSucces('', 'Sipariş Silindi');
             }
         } else{
             return _ReturnError('', '', ['Sipariş Bulunamadı']);
@@ -191,8 +177,7 @@ class Order extends Controller{
         $offset = $request->input('length', 10);
         $start = $request->input('start', 0);
         $page = ($start/$offset)+1;
-        $params['sort']= '1';
-        $params['orderBy']= 'desc';
+        $params = $request->input('where', []);
         $search = $request->input('search', []);
         if(isset($search['value']) && $search['value']){
             /**
@@ -201,8 +186,7 @@ class Order extends Controller{
             $params['text'] = $search['value'];
             $params['searchFor'] = 'nameSurname';
         }
-        $where = $request->input('where', []);
-        if(isset($where['paymentTypeId']) && $where['paymentTypeId']){
+        /*if(isset($where['paymentTypeId']) && $where['paymentTypeId']){
             $params['paymentType'] = $where['paymentTypeId'];
         }
         if(isset($where['paymentStatusId']) && $where['paymentStatusId']){
@@ -216,7 +200,7 @@ class Order extends Controller{
         }
         if(isset($where['endsAt']) && $where['endsAt']){
             $params['endsAt'] = $where['endsAt'];
-        }
+        }*/
 
         $response = \WebService::orders($page, $offset, $params);
         $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
@@ -313,7 +297,7 @@ class Order extends Controller{
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'Sipariş No', 'className'=>'', 'orderable'=>''],
+            'orderNumber'=>['title'=>'Sipariş No', 'className'=>'sort-order', 'orderable'=>''],
             'createdAt'=>['title'=>'No', 'className'=>'', 'orderable'=>''],
             'firstName'=>['title'=>'Müşteri', 'className'=>'', 'orderable'=>''],
             'paymentTypeId'=>['title'=>'Ödeme Türü', 'className'=>'', 'orderable'=>''],
@@ -322,6 +306,7 @@ class Order extends Controller{
             'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
+        $dataTable->setFiters('Order.datatable-filter', \request()->all());
         return $dataTable;
     }
     private function mergeOrder($data, $order){

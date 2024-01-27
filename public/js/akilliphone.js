@@ -97,10 +97,11 @@ var Akilliphone = {
                 }
                 if(response.redirect){
                     window.location.href = response.redirect;
+                } else if(response.refreshTable){
+                    manageTable.ajax.reload();
                 }
             } else {
                 $('body .ajax-form-result').html('Oluşan hatalar için konsola bakınız');
-                console.log(response);
             }
         }).fail(function(jqXHR, textStatus, errorThrown) {
             $('body .ajax-form-result').html('Oluşan hatalar için konsola bakınız');

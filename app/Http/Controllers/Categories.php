@@ -71,11 +71,11 @@ class Categories extends Controller
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'Sıra No', 'className'=>'', 'orderable'=>''],
+            'orderNumber'=>['title'=>'Sıra No', 'className'=>'sort-order', 'orderable'=>''],
             'categoryId'=>['title'=>'Id', 'className'=>'', 'orderable'=>''],
             'image'=>  ['title'=>'Kategori Fotoğrafı','className'=>'','orderable'=>''],
             'name'=>['title'=>'Kategori Adı', 'className'=>'', 'orderable'=>''],
-            'action'=>['title'=>'','className'=>'','orderable'=>'']
+            'action'=>['title'=>'','className'=>'action-buttons','orderable'=>'']
         ]);
         return $dataTable;
     }

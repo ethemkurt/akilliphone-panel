@@ -127,7 +127,7 @@ class WebService{
         return [];
     }
 /* orders */
-    public static function orders($page=1, $offset=50, $params){
+    public static function orders($page=1, $offset=50, $params=[]){
         $page = max(1, (int)$page);
         $params['page'] = $page;
         $params['offset'] =$offset;
@@ -156,7 +156,7 @@ class WebService{
         return $response;
     }
     public static function orderDelete($orderId){
-        $response = self::DELETE('orders/'.$orderId, []);
+        $response = self::DELETE('orders/'.$orderId, [], true);
         return $response;
     }
     /*orderStatuses*/
@@ -169,9 +169,7 @@ class WebService{
     }
     public static function brands($page){
         $response = self::GET('brands', []);
-
         if($response['data']){
-
             return $response['data']['items'];
         }
         return [];
@@ -292,7 +290,7 @@ class WebService{
     }
     /*user*/
 /* customer */
-    public static function users($page=1, $offset=50, $filter){
+    public static function users($page=1, $offset=50, $filter=[]){
         $params['page'] = max(1, (int)$page);
         $params['offset'] = max(10, (int)$offset);
         if(isset($filter['text'])){
@@ -347,7 +345,7 @@ class WebService{
         return $response ;
     }
     public static function userDelete($userId){
-        $response = self::DELETE('user/'.$userId, [] );
+        $response = self::DELETE('user/'.$userId, [], FORCEADMIN );
         return $response ;
     }
 
@@ -358,12 +356,16 @@ class WebService{
         if(isset($filter['text'])){
             $params['text'] = $filter['text'];
         }
+        if(isset($filter['sort'])){
+            $params['sort'] = $filter['sort'];
+        }
         if(isset($filter['sortby'])){
             $params['sortby'] = $filter['sortby'];
         }
-        if(isset($filter['filterBy'])){
-            $params['filterBy'] = $filter['filterBy'];
+        if(isset($filter['filterby'])){
+            $params['filterby'] = $filter['filterby'];
         }
+
         $response = self::GET('reviews', $params);
         if($response['data'] ){
             return $response['data'];
@@ -381,6 +383,11 @@ class WebService{
         $response = self::PUT( 'reviews/'.$reviewId,  $review);
         return $response ;
     }
+    public static function reviewDelete($reviewId){
+        $response = self::DELETE( 'reviews/'.$reviewId, []);
+        return $response ;
+    }
+
     /* Question */
     public static function questions($page=1, $offset=50, $filter){
         $params['page'] = max(1, (int)$page);
@@ -388,21 +395,35 @@ class WebService{
         if(isset($filter['text'])){
             $params['text'] = $filter['text'];
         }
+        if(isset($filter['sortby'])){
+            $params['sortby'] = $filter['sortby'];
+        }
+        if(isset($filter['sort'])){
+            $params['sort'] = $filter['sort'];
+        }
+        if(isset($filter['filterby'])){
+            $params['filterby'] = $filter['filterby'];
+        }
         $response = self::GET('questions', $params);
         if($response['data'] ){
             return $response['data'];
         }
         return [];
     }
-    public static function question($reviewId){
-        $response = self::GET('questions/'.$reviewId, []);
+    public static function question($questionId){
+        $response = self::GET('questions/'.$questionId, []);
         if($response['data'] ){
             return $response['data'];
         }
         return [];
     }
-    public static function questionEdit($reviewId, $review){
-        $response = self::PUT( 'questions/'.$reviewId,  $review);
+    public static function questionEdit($questionId, $question){
+        $question['whoAnswered'] = \Current::User('id');
+        $response = self::PUT( 'questions/'.$questionId,  $question);
+        return $response ;
+    }
+    public static function questionDelete($questionId){
+        $response = self::DELETE( 'questions/'.$questionId, []);
         return $response ;
     }
 
@@ -540,16 +561,21 @@ class WebService{
         return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
     static private function PUT($service, $data){
-        //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
         ])->put(self::WEBSERVICE_URL.$service, $data);
+        //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), self::standartResponse($response, self::WEBSERVICE_URL.$service));
 
         return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
-    static private function DELETE($service, $data){
+    static private function DELETE($service, $data, $forceAdmin=false){
+        if($forceAdmin){
+            $Authorization = 'Bearer ' . request()->session()->get('SADMINTOKEN', null);
+        } else {
+            $Authorization ='Bearer ' . request()->session()->get('jwtToken', null);
+        }
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
+            'Authorization' => $Authorization,
         ])->delete(self::WEBSERVICE_URL.$service, $data);
         return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }

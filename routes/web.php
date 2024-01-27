@@ -17,6 +17,7 @@ use App\Http\Controllers\Slide;
 use App\Http\Controllers\Logs;
 use App\Http\Controllers\Review;
 use App\Http\Controllers\Question;
+use App\Http\Controllers\Attribute;
 
 
 /*
@@ -127,12 +128,24 @@ Route::group(['prefix'=>'review','as'=>'review.', 'middleware' => ['check.token'
     Route::get('/data-table', [Review::class, 'dataTable'])->name('data-table');
     Route::get('/edit/{reviewId}', [Review::class, 'edit'])->name('edit');
     Route::post('/save/{reviewId}', [Review::class, 'save'])->name('save');
+    Route::get('/delete/{reviewId}', [Review::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{reviewId}', [Review::class, 'delete'])->name('delete');
 });
 Route::group(['prefix'=>'question','as'=>'question.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Question::class, 'index'])->name('index');
     Route::get('/data-table', [Question::class, 'dataTable'])->name('data-table');
     Route::get('/edit/{questionsId}', [Question::class, 'edit'])->name('edit');
     Route::post('/save/{questionsId}', [Question::class, 'save'])->name('save');
+    Route::get('/delete/{questionsId}', [Question::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{questionsId}', [Question::class, 'delete'])->name('delete');
+});
+Route::group(['prefix'=>'attribute','as'=>'attribute.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Attribute::class, 'index'])->name('index');
+    Route::get('/data-table', [Attribute::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{attributeId}', [Attribute::class, 'edit'])->name('edit');
+    Route::post('/save/{attributeId}', [Attribute::class, 'save'])->name('save');
+    Route::get('/delete/{attributeId}', [Attribute::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{attributeId}', [Attribute::class, 'delete'])->name('delete');
 });
 
 

@@ -1,4 +1,5 @@
 <?php
+define('FORCEADMIN', TRUE);
 if(is_file( dirname(__FILE__).'/Helpers.php') ){
     include_once( dirname(__FILE__).'/Helpers.php' );
 }
