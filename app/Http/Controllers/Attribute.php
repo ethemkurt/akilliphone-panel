@@ -15,10 +15,16 @@ class Attribute extends Controller
         $data['dataTable'] = $this->dataTableParams();
         return view('Attribute.index', $data);
     }
+    public function items(Request $request, $attributeId ){
+        
+    }
     public function edit(Request $request, $attributeId ){
-
         if($attributeId){
-            $data['attribute'] = \WebService::attribute($attributeId);
+            if($attributeId=='new'){
+                $data['attribute'] = \Instance::loadJson('attribute');
+            } else{
+                $data['attribute'] = \WebService::attribute($attributeId);
+            }
         } else{
             $data['attribute'] = [];
         }
@@ -28,7 +34,11 @@ class Attribute extends Controller
     public function save(Request $request, $attributeId ){
         $attribute = $request->input('attribute');
         if($attribute){
-            $response = \WebService::attributeEdit($attributeId, $attribute);
+            if($attributeId=='new'){
+                $response = \WebService::attributeNew( $attribute);
+            } else {
+                $response = \WebService::attributeEdit($attributeId, $attribute);
+            }
 
             if($response){
                 if(isset($response['data']) && isset($response['data']['attributeId'])){
@@ -86,8 +96,8 @@ class Attribute extends Controller
         $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
 
         $items = [];
-        if($response && isset($response['items'])){
-            foreach($response['items'] as $row){
+        if($response ){
+            foreach($response as $row){
                 $item = [];
                 foreach($dataTable->cols() as $key=>$col){
                     $method = '_format_'.$key;
@@ -116,50 +126,16 @@ class Attribute extends Controller
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
             'orderNumber'=>['title'=>'', 'className'=>'sort-order', 'orderable'=>''],
-            'product_image'=>['title'=>'', 'className'=>'', 'orderable'=>''],
-            'product'=>['title'=>'Ürün', 'className'=>'', 'orderable'=>''],
-            'attribute1'=>['title'=>'Ürün Özelliği', 'className'=>'', 'orderable'=>''],
-            'status'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
-            'created_at'=>['title'=>'Tarih', 'className'=>'', 'orderable'=>''],
+            'code'=>['title'=>'Kod', 'className'=>'', 'orderable'=>''],
+            'name'=>['title'=>'Özellik', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'action-buttons', 'orderable'=>''],
         ]);
-        $dataTable->setFiters('Attribute.datatable-filter', \request()->all());
+        //$dataTable->setFiters('Attribute.datatable-filter', \request()->all());
 
         return $dataTable;
     }
 
-    private function _format_created_at($row){
-        return _HumanDate($row['createdAt'], 'm.d.Y');
-    }
-    private function _format_product_image($row){
-        $featuredImage =  '<div class="avatar me-2"><img src="'.getProductImageUrl($row['product']['featuredImage'], 60, 60).'"></div><div class="mr-1">';
-        return $featuredImage;
-    }
-    private function _format_product($row){
-        return $row['product']['name'];
-    }
-    private function _format_customer($row){
-        if($row['customer']){
-            return $row['customer']['firstName'].' '.$row['customer']['lastName'];
-        }
-        return 'Misafir';
-    }
-    private function _format_attribute1($row){
-        if($row['customer']){
-            $customer = $row['customer']['firstName'].' '.$row['customer']['lastName'];
-        } else {
-            $customer = 'Misafir';
-        }
-        return '<strong class="badge rounded-pill badge-light-warning">'.$customer.'</strong> '.$row['attribute1'].'<hr><strong  class="badge rounded-pill badge-light-info">Cevap </strong>'.$row['answer'].'';
-    }
-    private function _format_rating($row){
-        return $row['rating'];
-    }
-    private function _format_status($row){
-        return '<span class="badge rounded-pill badge-light-'.\ActivePassive::color($row['status']).'" text-capitalized="">'.\ActivePassive::__($row['status']).'</span>';
-    }
-
     private function _format_actions($row){
-        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.edit', $row['attributeId']).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.delete.form', $row['attributeId']).'"><i class="feather icon-trash text-danger"></i></a>';
+        return '<a class="btn waves-effect p-0 ms-1" href="'.route('attribute.items', $row['attributeId']).'"><i class="feather icon-git-branch"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.edit', $row['attributeId']).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.delete.form', $row['attributeId']).'"><i class="feather icon-trash text-danger"></i></a>';
     }
 }

@@ -146,6 +146,7 @@ Route::group(['prefix'=>'attribute','as'=>'attribute.', 'middleware' => ['check.
     Route::post('/save/{attributeId}', [Attribute::class, 'save'])->name('save');
     Route::get('/delete/{attributeId}', [Attribute::class, 'deleteForm'])->name('delete.form');
     Route::post('/delete/{attributeId}', [Attribute::class, 'delete'])->name('delete');
+    Route::get('/edit/{attributeId}/items', [Attribute::class, 'items'])->name('items');
 });
 
 

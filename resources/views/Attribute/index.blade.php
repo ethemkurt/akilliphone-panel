@@ -1,7 +1,10 @@
 
 @extends('layouts/contentLayoutMaster')
+@section('nav-buttons')
+    <x-button-popup-form :title="'Ürün Özelliği'" :text="'Yeni Özellik'" :url="route('attribute.edit', 'new')" />
+@endsection
 
-@section('title', 'Ürün Özellikleri')
+@section('title', 'Ürün Özelliği Listesi')
 
 @section('page-style')
     {{-- Page css files --}}

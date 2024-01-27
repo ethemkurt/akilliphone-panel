@@ -1,44 +1,30 @@
-@if($question)
-    <form class="ajax-form" method="post" action="{{ route('question.save', isset($question['questionId'])?$question['questionId']:'new') }}" enctype="multipart/form-data" >
+@if($attribute)
+    <form class="ajax-form" method="post" action="{{ route('attribute.save', isset($attribute['attributeId'])?$attribute['attributeId']:'new') }}" enctype="multipart/form-data" >
         @csrf
         <div class="row">
             <div class="col-12">
                 <div class="mb-1 row">
                     <div class="col-sm-3">
-                        <label class="col-form-label" for="code">Soru </label>
+                        <label class="col-form-label" for="code">Kodu </label>
                     </div>
                     <div class="col-sm-9">
-                        <textarea id="code"  class="form-control" name="question[question]" placeholder="Soru">{{isset($question['question1'])?$question['question1']:''}}</textarea>
+                        <input type="text" id="code"  class="form-control" name="attribute[code]" placeholder="Kodu" value="{{isset($attribute['code'])?$attribute['code']:''}}">
                     </div>
                 </div>
             </div>
             <div class="col-12">
                 <div class="mb-1 row">
                     <div class="col-sm-3">
-                        <label class="col-form-label" for="code">Cevap </label>
+                        <label class="col-form-label" for="code">Adı </label>
                     </div>
                     <div class="col-sm-9">
-                        <textarea  id="code"  class="form-control" name="question[answer]" placeholder="Yorum">{{isset($question['answer'])?$question['answer']:''}}</textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-1 row">
-                    <div class="col-sm-3">
-                        <label class="col-form-label" for="name">Soru Yayınlanmsın mı?</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="hidden" name="question[status]" value="0">
-                        <input type="checkbox" id="active" name="question[status]" {{ isset($question['status'])&&$question['status']?'checked':'' }} value="1" >
-
+                        <input type="text" id="name"  class="form-control" name="attribute[name]" placeholder="Adı" value="{{isset($attribute['name'])?$attribute['name']:''}}">
                     </div>
                 </div>
             </div>
             <div class="col-sm-9 offset-sm-3">
-                <button type="submit" class="btn btn-primary me-1 waves-effect waves-float waves-light">Güncelle</button>
-                <input type="hidden" name="question[questionId]" value="{{isset($question['questionId'])?$question['questionId']:''}}" />
-                <input type="hidden" name="question[customerId]" value="{{isset($question['customerId'])?$question['customerId']:''}}" />
-                <input type="hidden" name="question[productId]" value="{{isset($question['productId'])?$question['productId']:''}}" />
+                <button type="submit" class="btn btn-primary me-1 waves-effect waves-float waves-light">Kaydet</button>
+                <input type="hidden" name="attribute[attributeId]" value="{{isset($attribute['attributeId'])?$attribute['attributeId']:''}}" />
             </div>
         </div>
 

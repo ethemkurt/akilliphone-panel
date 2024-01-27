@@ -1,7 +1,7 @@
 <?php
 $text = isset($text)?$text:'';
 $url = isset($url)?$url:'';
-$icon = isset($icon)?$icon:'edit';
+$icon = isset($icon)?$icon:'plus';
 $title = isset($title)?$title:'';
 $class = isset($class)?$class:'btn-primary ';
 ?>

@@ -3,7 +3,7 @@
 
 @section('nav-buttons')
     <a class="btn btn-primary" href="{{ route('order.new') }}">
-        <i data-feather="save"></i><span class="align-middle">Yeni Sipariş</span>
+        <i class="fa fa-plus"></i> <span class="align-middle">Yeni Sipariş</span>
     </a>
 @endsection
 @section('title', 'Sipariş Listesi')

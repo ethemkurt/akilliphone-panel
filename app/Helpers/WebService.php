@@ -426,6 +426,35 @@ class WebService{
         $response = self::DELETE( 'questions/'.$questionId, []);
         return $response ;
     }
+    /* attributes  */
+    public static function attributes($page=1, $offset=50, $filter){
+        $params['page'] = max(1, (int)$page);
+        $params['offset'] = max(10, (int)$offset);
+        $response = self::GET('attributes', $params);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function attribute($attributeId){
+        $response = self::GET('attributes/'.$attributeId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function attributeNew( $attribute){
+        $response = self::POST( 'attributes',  $attribute);
+        return $response ;
+    }
+    public static function attributeEdit($attributeId, $attribute){
+        $response = self::PUT( 'attributes/'.$attributeId,  $attribute);
+        return $response ;
+    }
+    public static function attributeDelete($attributeId){
+        $response = self::DELETE( 'attributes/'.$attributeId, []);
+        return $response ;
+    }
 
     public static function orderHistory($orderId){
         $response = self::get('orders/history/'.$orderId, []);
