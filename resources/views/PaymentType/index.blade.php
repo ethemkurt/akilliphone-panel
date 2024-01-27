@@ -3,7 +3,6 @@
 @section('nav-buttons')
     <x-button-popup-form :title="'Ödeme Durumu'" :text="'Yeni Ödeme Durumu'" :url="route('popup', 'PaymentType')" />
 @endsection
-
 @section('title', 'Ödeme Durumları Listesi')
 
 @section('page-style')
