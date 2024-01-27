@@ -1,6 +1,8 @@
 
 @extends('layouts/contentLayoutMaster')
-
+@section('nav-buttons')
+    <x-button-popup-form :title="'Sipariş Durumu'" :text="'Yeni Sipariş Durumu'" :url="route('popup', 'OrderStatus')" />
+@endsection
 @section('title', 'Sipariş Durumları Listesi')
 
 @section('page-style')
@@ -14,16 +16,9 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-
           <div class="card-body">
-
-              <div class="col-md-4">
-                  <x-button-popup-form :title="'Sipariş Durumu'" :text="'Yeni Sipariş Durumu'" :url="route('popup', 'OrderStatus')" />
-              </div>
                 <x-data-table :dataTable="$dataTable"/>
-
           </div>
-
         </div>
       </div>
     </div>
