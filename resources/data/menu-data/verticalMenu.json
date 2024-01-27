@@ -50,25 +50,13 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "taxes/index",
-                    "name": "Vergi Yönetimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "units/index",
-                    "name": "Ürün Birimleri",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "products/reviews",
+                    "url": "review",
                     "name": "Ürün Yorumları",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "products/questions",
+                    "url": "question",
                     "name": "Ürün Soruları",
                     "icon": "circle",
                     "slug": "collapsed-menu"

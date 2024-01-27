@@ -9,6 +9,9 @@ $dt = isset($dataTable)?$dataTable:null;
         .dataTables_wrapper .row:last-child{
             padding: 1.5rem 1.5rem!important;
         }
+        .action-buttons{
+            text-align: right;
+        }
     </style>
     <div class="card-datatable table-responsive pt-0">
         <table id="{{ $dt->tableId() }}" class="table-{{ $dt->tableId() }}{{ $dt->tableId() }} table">
@@ -27,7 +30,7 @@ $dt = isset($dataTable)?$dataTable:null;
 
                 let args = {
                     searching: true,
-                    columns               : [@foreach($dt->cols() as $key => $col){data: "{{$key}}"},@endforeach],
+                    columns               : [@foreach($dt->cols() as $key => $col){data: "{{$key}}", className:"{{$col["className"]}}"},@endforeach],
                     columnDefs            : [
                             @php $int=0;@endphp
                             @foreach($dt->cols() as $key => $col){

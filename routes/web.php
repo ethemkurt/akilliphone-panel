@@ -15,6 +15,8 @@ use App\Http\Controllers\Popup;
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\Slide;
 use App\Http\Controllers\Logs;
+use App\Http\Controllers\Review;
+use App\Http\Controllers\Question;
 
 
 /*
@@ -119,6 +121,18 @@ Route::group(['prefix'=>'logs','as'=>'logs.', 'middleware' => ['check.token']], 
     Route::get('/data-table', [Logs::class, 'dataTable'])->name('data-table');
     Route::get('/error', [Logs::class, 'error'])->name('error');
     Route::get('/error/{logId}', [Logs::class, 'errorView'])->name('error.view');
+});
+Route::group(['prefix'=>'review','as'=>'review.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Review::class, 'index'])->name('index');
+    Route::get('/data-table', [Review::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{reviewId}', [Review::class, 'edit'])->name('edit');
+    Route::post('/save/{reviewId}', [Review::class, 'save'])->name('save');
+});
+Route::group(['prefix'=>'question','as'=>'question.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Question::class, 'index'])->name('index');
+    Route::get('/data-table', [Question::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{questionsId}', [Question::class, 'edit'])->name('edit');
+    Route::post('/save/{questionsId}', [Question::class, 'save'])->name('save');
 });
 
 
