@@ -16,7 +16,7 @@ class Attribute extends Controller
         return view('Attribute.index', $data);
     }
     public function items(Request $request, $attributeId ){
-        
+
     }
     public function edit(Request $request, $attributeId ){
         if($attributeId){

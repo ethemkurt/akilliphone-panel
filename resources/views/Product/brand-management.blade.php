@@ -1,5 +1,8 @@
 
 @extends('layouts/contentLayoutMaster')
+@section('nav-buttons')
+    <x-button-popup-form :title="'Marka Ekleme'" :text="'Yeni Marka Ekleme'" :url="route('popup', 'BrandSave',)" />
+@endsection
 
 @section('title', 'Marka Yönetimi')
 
@@ -14,10 +17,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="col-md-4">
-                            <x-button-popup-form :title="'Marka Ekleme'" :text="'Yeni Marka Ekleme'" :url="route('popup', 'BrandSave',)" />
-                        </div>
-
                         <x-data-table :dataTable="$dataTable"/>
                     </div>
                 </div>
