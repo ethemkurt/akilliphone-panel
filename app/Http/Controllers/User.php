@@ -89,6 +89,7 @@ class User extends Controller
         return _ReturnError('', '',['Kullanıcı Kaydedilemedi']);
     }
     private function dataTableParams($routeName){
+
         $dataTable = new \AjaxDataTable();
         $dataTable->setTableId('user-list');
         $dataTable->setUrl(route('user.data-table').'?role='.$routeName);

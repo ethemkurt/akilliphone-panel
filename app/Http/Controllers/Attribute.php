@@ -15,9 +15,7 @@ class Attribute extends Controller
         $data['dataTable'] = $this->dataTableParams();
         return view('Attribute.index', $data);
     }
-    public function items(Request $request, $attributeId ){
 
-    }
     public function edit(Request $request, $attributeId ){
         if($attributeId){
             if($attributeId=='new'){
@@ -92,12 +90,11 @@ class Attribute extends Controller
         $page = ($start/$offset)+1;
         $response = \WebService::attributes($page, $offset, $params);
 
-        $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
-        $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
-
         $items = [];
-        if($response ){
-            foreach($response as $row){
+        if(isset($response['data']) ){
+            $dataTable->setRecordsTotal(count($response['data']));
+            $dataTable->setRecordsFiltered(count($response['data']));
+            foreach($response['data'] as $row){
                 $item = [];
                 foreach($dataTable->cols() as $key=>$col){
                     $method = '_format_'.$key;
@@ -130,12 +127,10 @@ class Attribute extends Controller
             'name'=>['title'=>'Özellik', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'action-buttons', 'orderable'=>''],
         ]);
-        //$dataTable->setFiters('Attribute.datatable-filter', \request()->all());
-
         return $dataTable;
     }
 
     private function _format_actions($row){
-        return '<a class="btn waves-effect p-0 ms-1" href="'.route('attribute.items', $row['attributeId']).'"><i class="feather icon-git-branch"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.edit', $row['attributeId']).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.delete.form', $row['attributeId']).'"><i class="feather icon-trash text-danger"></i></a>';
+        return '<a class="btn waves-effect p-0 ms-1" href="'.route('attribute.value', $row['attributeId']).'"><i class="feather icon-git-branch"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.edit', $row['attributeId']).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.delete.form', $row['attributeId']).'"><i class="feather icon-trash text-danger"></i></a>';
     }
 }

@@ -6,22 +6,19 @@
 @endsection
 
 @if($routeName=='user.admin')
-        <?php
-        $validRole = UserRole::ADMIN
-        ?>
-    @section('title', 'Personel Listesi')
+    <?php $validRole = UserRole::ADMIN; ?>
+    @section('title', 'Yönetici Listesi')
 @elseif($routeName=='user.bayi')
     @section('title', 'Bayi Listesi')
 @elseif($routeName=='user.uye')
     @section('title', 'Müşteri Listesi')
 @else
-    @section('title', 'Kullanıcı Listesi')
+    @section('title', 'Personel Listesi')
 @endif
 
 
 @section('page-style')
 {{-- Page Css files --}}
-<link rel="stylesheet" type="text/css" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
 @endsection
 
 @section('content')

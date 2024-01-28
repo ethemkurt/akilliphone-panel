@@ -63,7 +63,7 @@ $configData = Helper::applClasses();
               }
             @endphp
             <li
-              class="nav-item {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }}">
+              class="nav-item {{ $custom_classes }} {{ request()->is($menu->slug .'*') ? 'active open' : '' }}">
               <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0)' }}" class="d-flex align-items-center"
                 target="{{ isset($menu->newTab) ? '_blank' : '_self' }}">
                 <i data-feather="{{ $menu->icon }}"></i>

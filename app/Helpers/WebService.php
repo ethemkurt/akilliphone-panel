@@ -431,8 +431,8 @@ class WebService{
         $params['page'] = max(1, (int)$page);
         $params['offset'] = max(10, (int)$offset);
         $response = self::GET('attributes', $params);
-        if($response['data'] ){
-            return $response['data'];
+        if($response ){
+            return $response;
         }
         return [];
     }
@@ -453,6 +453,22 @@ class WebService{
     }
     public static function attributeDelete($attributeId){
         $response = self::DELETE( 'attributes/'.$attributeId, []);
+        return $response ;
+    }
+    /* attributesValue  */
+    public static function attributeValue($attributeValueId){
+        $response = self::GET('attribute-values/'.$attributeValueId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function attributeValueNew( $attributeValue){
+        $response = self::POST( 'attribute-values',  $attributeValue, FORCEADMIN);
+        return $response ;
+    }
+    public static function attributeValueEdit($attributeValueId, $attributeValue){
+        $response = self::PUT( 'attribute-values/'.$attributeValueId,  $attributeValue);
         return $response ;
     }
 
@@ -586,6 +602,7 @@ class WebService{
         $response = Http::withHeaders([
             'Authorization' => $Authorization,
         ])->post(self::WEBSERVICE_URL.$service, $data);
+        //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), self::standartResponse($response, self::WEBSERVICE_URL.$service));
 
         return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
@@ -695,7 +712,7 @@ class WebService{
         return $order;
     }
     static function convertUserRole($webServiceRole){
-        if($webServiceRole=='Admin'){
+        if($webServiceRole=='Admin' || $webServiceRole=='SuperAdmin'){
             return UserRole::ADMIN;
         }elseif($webServiceRole=='Temsilci'){
             return UserRole::TEMSILCI;

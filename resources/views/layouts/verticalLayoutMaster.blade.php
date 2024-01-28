@@ -44,7 +44,7 @@
             </div>
         @endif
     @else
-{{--        <p>Bu alan için yetkili değilsiniz</p>--}}
+<p>Bu alan için yetkili değilsiniz</p>
     @endif
 
 </div>
