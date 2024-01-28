@@ -19,7 +19,8 @@ use App\Http\Controllers\Review;
 use App\Http\Controllers\Question;
 use App\Http\Controllers\Attribute;
 use App\Http\Controllers\AttributeValue;
-
+use App\Http\Controllers\Option;
+use App\Http\Controllers\OptionValue;
 
 /*
 |--------------------------------------------------------------------------
@@ -154,6 +155,21 @@ Route::group(['prefix'=>'product/attribute','as'=>'attribute.', 'middleware' => 
     Route::post('/value/{attributeId}/save/{attributeValueId}', [AttributeValue::class, 'save'])->name('value.save');
     Route::get('/value/{attributeId}/delete/{attributeValueId}', [AttributeValue::class, 'deleteForm'])->name('value.delete.form');
     Route::post('/value/{attributeId}/delete/{attributeValueId}', [AttributeValue::class, 'delete'])->name('value.delete');
+});
+Route::group(['prefix'=>'product/option','as'=>'option.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Option::class, 'index'])->name('index');
+    Route::get('/data-table', [Option::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{optionId}', [Option::class, 'edit'])->name('edit');
+    Route::post('/save/{optionId}', [Option::class, 'save'])->name('save');
+    Route::get('/delete/{optionId}', [Option::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{optionId}', [Option::class, 'delete'])->name('delete');
+    ///
+    Route::get('/value/{optionId}', [OptionValue::class, 'index'])->name('value');
+    Route::get('/value/{optionId}/data-table', [OptionValue::class, 'dataTable'])->name('value.data-table');
+    Route::get('/value/{optionId}/edit/{optionValueId}', [OptionValue::class, 'edit'])->name('value.edit');
+    Route::post('/value/{optionId}/save/{optionValueId}', [OptionValue::class, 'save'])->name('value.save');
+    Route::get('/value/{optionId}/delete/{optionValueId}', [OptionValue::class, 'deleteForm'])->name('value.delete.form');
+    Route::post('/value/{optionId}/delete/{optionValueId}', [OptionValue::class, 'delete'])->name('value.delete');
 });
 
 

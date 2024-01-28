@@ -471,6 +471,36 @@ class WebService{
         $response = self::PUT( 'attribute-values/'.$attributeValueId,  $attributeValue);
         return $response ;
     }
+    /* option  */
+    public static function options($page=1, $offset=50, $filter){
+        $params['page'] = max(1, (int)$page);
+        $params['offset'] = max(10, (int)$offset);
+        $response = self::GET('options', $params);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function option($optionId){
+        $response = self::GET('options/'.$optionId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function optionEdit($optionId, $option){
+        $response = self::PUT( 'options/'.$optionId,  $option);
+        return $response ;
+    }
+    /* option  */
+    public static function optionValue($optionValueId){
+        $response = self::GET('option-values/'.$optionValueId, []);
+
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
 
     public static function orderHistory($orderId){
         $response = self::get('orders/history/'.$orderId, []);

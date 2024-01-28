@@ -35,6 +35,12 @@
                     "slug": "collapsed-menu"
                 },
                 {
+                    "url": "product/option",
+                    "name": "Seçenek Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
                     "url": "product/attribute",
                     "name": "Özellik Yönetimi",
                     "icon": "circle",
