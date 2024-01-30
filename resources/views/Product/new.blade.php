@@ -214,7 +214,7 @@
                  </div>
              </div>
          </div>
-         <div class="tabspec" id="stokkategori">
+         <div class="tabspec" id="stokkategori" style="display: none">
              <div class="col-12" >
                  <div class="row equal mb-3">
                      <div class="col-md-6" >
