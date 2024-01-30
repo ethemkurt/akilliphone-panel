@@ -13,7 +13,6 @@
                 <div class="card">
                     <!--Search Form -->
                     <div class="card-body">
-                        <form class="dt_adv_search" method="POST">
                             <div class="row g-1 mb-md-1">
                                 <div class="col-md-4">
                                     <a href="#">
@@ -24,7 +23,6 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="row g-1">
                                 <div class="col-md-3">
                                     <x-inputs.text-input label="Ada Göre Ara" placeholder="Ada Göre Ara" name="search_name" />
@@ -47,10 +45,8 @@
                                     <x-inputs.checkbox-input label="Pasif Ürünler" :id="'search_active_passive'" name="search_active" />
                                 </div>
                             </div>
-                        </form>
+                        <x-data-table :dataTable="$dataTable"/>
                     </div>
-                    <hr class="my-0" />
-                    <x-data-table :dataTable="$dataTable"/>
                 </div>
             </div>
         </div>

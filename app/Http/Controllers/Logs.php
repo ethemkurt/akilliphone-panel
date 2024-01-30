@@ -65,7 +65,7 @@ class Logs extends Controller
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
+            'orderNumber'=>['title'=>'', 'className'=>'sort-order', 'orderable'=>''],
             'module'=>['title'=>'Kayanak', 'className'=>'', 'orderable'=>''],
             'data'=>['title'=>'Bilgiler', 'className'=>'', 'orderable'=>''],
             'created_at'=>['title'=>'Tarih', 'className'=>'', 'orderable'=>''],

@@ -10,14 +10,11 @@
             "icon": "home",
             "slug": "home"
         },
-        {
-            "navheader": "Ürün Yönetimi",
-            "slug": ""
-        },
+
         {
             "name": "Ürünler",
             "icon": "package",
-            "slug": "",
+            "slug": "product",
             "submenu": [
                 {
                     "url": "product",
@@ -38,37 +35,25 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "attributes/index",
+                    "url": "product/option",
+                    "name": "Seçenek Yönetimi",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "product/attribute",
                     "name": "Özellik Yönetimi",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "colors-sets/index",
-                    "name": "Renk Setleri",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "taxes/index",
-                    "name": "Vergi Yönetimi",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "units/index",
-                    "name": "Ürün Birimleri",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "products/reviews",
+                    "url": "product/review",
                     "name": "Ürün Yorumları",
                     "icon": "circle",
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "products/questions",
+                    "url": "product/question",
                     "name": "Ürün Soruları",
                     "icon": "circle",
                     "slug": "collapsed-menu"
@@ -76,13 +61,9 @@
             ]
         },
         {
-            "navheader": "SİPARİŞ YÖNETİMİ",
-            "slug": ""
-        },
-        {
             "name": "Siparişler",
             "icon": "shopping-cart",
-            "slug": "home",
+            "slug": "order",
             "submenu": [
                 {
                     "url": "order",
@@ -111,13 +92,9 @@
             ]
         },
         {
-            "navheader": "KULLANICI YÖNETİMİ",
-            "slug": ""
-        },
-        {
             "name": "Kullanıcılar",
             "icon": "users",
-            "slug": "",
+            "slug": "user",
             "submenu": [
                 {
                     "url": "user/admin",
@@ -146,13 +123,13 @@
             ]
         },
         {
-            "navheader": "KAMPANYA YÖNETİMİ",
+            "navheader": "AYAR YÖNETİMİ",
             "slug": ""
         },
         {
             "name": "Kampanyalar",
             "icon": "file",
-            "slug": "",
+            "slug": "campain",
             "submenu": [
                 {
                     "url": "slide",
@@ -165,7 +142,7 @@
         {
             "name": "Ayarlar",
             "icon": "settings",
-            "slug": "",
+            "slug": "setting",
             "submenu": [
                 {
                     "url": "settings/general",

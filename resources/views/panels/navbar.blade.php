@@ -46,7 +46,7 @@
     </div>
   @else
     <nav
-      class="header-navbar navbar navbar-expand-lg align-items-center {{ $configData['navbarClass'] }} navbar-light navbar-shadow {{ $configData['navbarColor'] }} {{ $configData['layoutWidth'] === 'boxed' && $configData['verticalMenuNavbarType'] === 'navbar-floating' ? 'container-xxl' : '' }}">
+      class="header-navbar navbar navbar-expand-lg align-items-center {{ $configData['navbarClass'] }} navbar-light navbar-shadow {{ $configData['navbarColor'] }} {{ $configData['layoutWidth'] === 'boxed' && $configData['verticalMenuNavbarType'] === 'navbar-floating' ? 'container-xxl' : '' }} mt-1">
 @endif
 <div class="navbar-container d-flex content">
   <div class="bookmark-wrapper d-flex align-items-center">
@@ -64,7 +64,9 @@
   </div>
     <h2 style="margin: 0px;
     line-height: 40px;">@yield('title')</h2>
+
   <ul class="nav navbar-nav align-items-center ms-auto">
+      <li class="nav-item dropdown dropdown-user">@yield('nav-buttons')</li>
     <li class="nav-item dropdown dropdown-user">
       <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);"
         data-bs-toggle="dropdown" aria-haspopup="true">

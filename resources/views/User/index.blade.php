@@ -1,21 +1,24 @@
 @extends('layouts/contentLayoutMaster')
+@section('nav-buttons')
+    @if($routeName=='user.admin')
+        <x-button-popup-form :title="'Yeni Personel'" :text="'Yeni Personel'" :url="route('popup', 'User').'?userType=admin'" />
+    @endif
+@endsection
+
 @if($routeName=='user.admin')
-        <?php
-        $validRole = UserRole::ADMIN
-        ?>
-    @section('title', 'Personel Listesi')
+    <?php $validRole = UserRole::ADMIN; ?>
+    @section('title', 'Yönetici Listesi')
 @elseif($routeName=='user.bayi')
     @section('title', 'Bayi Listesi')
 @elseif($routeName=='user.uye')
     @section('title', 'Müşteri Listesi')
 @else
-    @section('title', 'Kullanıcı Listesi')
+    @section('title', 'Personel Listesi')
 @endif
 
 
 @section('page-style')
 {{-- Page Css files --}}
-<link rel="stylesheet" type="text/css" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
 @endsection
 
 @section('content')
@@ -24,20 +27,10 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-                    @if($routeName=='user.admin')
                 <div class="card-body">
-                    <form class="dt_adv_search" method="POST">
-                        <div class="row g-1 mb-md-1">
-                            <div class="col-md-4">
-                                <x-button-popup-form :title="'Yeni Personel'" :text="'Yeni Personel'" :url="route('popup', 'User').'?userType=admin'" />
-                            </div>
-                        </div>
-                    </form>
+                    <input type="hidden" class="datatable-filter" id="search_route" name="search_route" value="{{ $routeName }}">
+                    <x-data-table :dataTable="$dataTable"/>
                 </div>
-                    @endif
-          <hr class="my-0" />
-            <input type="hidden" class="datatable-filter" id="search_route" name="search_route" value="{{ $routeName }}">
-            <x-data-table :dataTable="$dataTable"/>
         </div>
       </div>
     </div>

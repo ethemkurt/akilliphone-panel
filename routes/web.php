@@ -15,7 +15,12 @@ use App\Http\Controllers\Popup;
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\Slide;
 use App\Http\Controllers\Logs;
-
+use App\Http\Controllers\Review;
+use App\Http\Controllers\Question;
+use App\Http\Controllers\Attribute;
+use App\Http\Controllers\AttributeValue;
+use App\Http\Controllers\Option;
+use App\Http\Controllers\OptionValue;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +125,53 @@ Route::group(['prefix'=>'logs','as'=>'logs.', 'middleware' => ['check.token']], 
     Route::get('/error', [Logs::class, 'error'])->name('error');
     Route::get('/error/{logId}', [Logs::class, 'errorView'])->name('error.view');
 });
+Route::group(['prefix'=>'product/review','as'=>'review.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Review::class, 'index'])->name('index');
+    Route::get('/data-table', [Review::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{reviewId}', [Review::class, 'edit'])->name('edit');
+    Route::post('/save/{reviewId}', [Review::class, 'save'])->name('save');
+    Route::get('/delete/{reviewId}', [Review::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{reviewId}', [Review::class, 'delete'])->name('delete');
+});
+Route::group(['prefix'=>'product/question','as'=>'question.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Question::class, 'index'])->name('index');
+    Route::get('/data-table', [Question::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{questionsId}', [Question::class, 'edit'])->name('edit');
+    Route::post('/save/{questionsId}', [Question::class, 'save'])->name('save');
+    Route::get('/delete/{questionsId}', [Question::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{questionsId}', [Question::class, 'delete'])->name('delete');
+});
+Route::group(['prefix'=>'product/attribute','as'=>'attribute.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Attribute::class, 'index'])->name('index');
+    Route::get('/data-table', [Attribute::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{attributeId}', [Attribute::class, 'edit'])->name('edit');
+    Route::post('/save/{attributeId}', [Attribute::class, 'save'])->name('save');
+    Route::get('/delete/{attributeId}', [Attribute::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{attributeId}', [Attribute::class, 'delete'])->name('delete');
+    ///
+    Route::get('/value/{attributeId}', [AttributeValue::class, 'index'])->name('value');
+    Route::get('/value/{attributeId}/data-table', [AttributeValue::class, 'dataTable'])->name('value.data-table');
+    Route::get('/value/{attributeId}/edit/{attributeValueId}', [AttributeValue::class, 'edit'])->name('value.edit');
+    Route::post('/value/{attributeId}/save/{attributeValueId}', [AttributeValue::class, 'save'])->name('value.save');
+    Route::get('/value/{attributeId}/delete/{attributeValueId}', [AttributeValue::class, 'deleteForm'])->name('value.delete.form');
+    Route::post('/value/{attributeId}/delete/{attributeValueId}', [AttributeValue::class, 'delete'])->name('value.delete');
+});
+Route::group(['prefix'=>'product/option','as'=>'option.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Option::class, 'index'])->name('index');
+    Route::get('/data-table', [Option::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{optionId}', [Option::class, 'edit'])->name('edit');
+    Route::post('/save/{optionId}', [Option::class, 'save'])->name('save');
+    Route::get('/delete/{optionId}', [Option::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{optionId}', [Option::class, 'delete'])->name('delete');
+    ///
+    Route::get('/value/{optionId}', [OptionValue::class, 'index'])->name('value');
+    Route::get('/value/{optionId}/data-table', [OptionValue::class, 'dataTable'])->name('value.data-table');
+    Route::get('/value/{optionId}/edit/{optionValueId}', [OptionValue::class, 'edit'])->name('value.edit');
+    Route::post('/value/{optionId}/save/{optionValueId}', [OptionValue::class, 'save'])->name('value.save');
+    Route::get('/value/{optionId}/delete/{optionValueId}', [OptionValue::class, 'deleteForm'])->name('value.delete.form');
+    Route::post('/value/{optionId}/delete/{optionValueId}', [OptionValue::class, 'delete'])->name('value.delete');
+});
+
 
 
 

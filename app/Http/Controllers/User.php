@@ -89,18 +89,19 @@ class User extends Controller
         return _ReturnError('', '',['Kullanıcı Kaydedilemedi']);
     }
     private function dataTableParams($routeName){
+
         $dataTable = new \AjaxDataTable();
         $dataTable->setTableId('user-list');
         $dataTable->setUrl(route('user.data-table').'?role='.$routeName);
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
+            'orderNumber'=>['title'=>'', 'className'=>'sort-order', 'orderable'=>''],
             'firstName'=>['title'=>'Adı', 'className'=>'', 'orderable'=>''],
             'email'=>['title'=>'Email', 'className'=>'', 'orderable'=>''],
             'phoneNumber'=>['title'=>'Telefonu', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
-            'action'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>'']
+            'action'=>['title'=>'Durumu', 'className'=>'action-buttons', 'orderable'=>'']
         ]);
         return $dataTable;
     }

@@ -1,5 +1,6 @@
 <?php
 class AjaxDataTable{
+    protected $filters ='';
     protected $cols = [];
     protected $url = '';
     protected $tableId = '';
@@ -10,6 +11,12 @@ class AjaxDataTable{
         'tableId'=>'',
         'tableClass'=>'',
     ];
+    function  setFiters(string $template, $data){
+        $this->filters = view($template, $data)->render();
+    }
+    function  filters(){
+        return $this->filters;
+    }
     function  setCols(array $cols){
         $this->cols = $cols;
     }

@@ -40,7 +40,7 @@
 @if(validateRole(UserRole::UYE))
     @extends( 'layouts.verticalLayoutMaster' )
 @else
-    <p>Bu alan için yetkili değilsiniz</p>
+{{--    <p>Bu alan için yetkili değilsiniz</p>--}}
 @endif
 </body>
 </html>

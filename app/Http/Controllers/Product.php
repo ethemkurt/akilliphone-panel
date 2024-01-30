@@ -56,11 +56,7 @@ class Product extends Controller
     return $dataTable->toJson();
 }
     private function _format_actions($item){
-        return '<div style="min-width: 40px;" class="text-end">
-<button type="button" class="btn btn-flat-primary waves-effect p-0 me-1" href="deneme">
-<i class="fa fa-edit"></i>
-</button>
-<button type="button" class="btn btn-flat-danger waves-effect p-0 me-1"><i class="fa fa-trash"></i></button></div>';
+        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="#"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="#"><i class="feather icon-trash text-danger"></i></a>';
     }
     private function _format_price($item){
         if(isset($item['variants'][0])){
@@ -101,14 +97,14 @@ class Product extends Controller
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'', 'className'=>'', 'orderable'=>''],
+            'orderNumber'=>['title'=>'', 'className'=>'sort-order', 'orderable'=>''],
             'code'=>['title'=>'Kodu', 'className'=>'', 'orderable'=>''],
             'name'=>['title'=>'Ürün Adı', 'className'=>'', 'orderable'=>''],
             'productCategories'=>['title'=>'Kategorisi', 'className'=>'', 'orderable'=>''],
             'brandId'=>['title'=>'Marka', 'className'=>'', 'orderable'=>''],
             'price'=>['title'=>'Fiyat', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durum', 'className'=>'', 'orderable'=>''],
-            'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],
+            'actions'=>['title'=>'', 'className'=>'action-buttons', 'orderable'=>''],
         ]);
         return $dataTable;
     }

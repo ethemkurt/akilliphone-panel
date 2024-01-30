@@ -1,7 +1,9 @@
 
 @extends('layouts/contentLayoutMaster')
-
-@section('title', 'Sipariş Listesi')
+@section('nav-buttons')
+    <x-button-popup-form :title="'Sipariş Durumu'" :text="'Yeni Sipariş Durumu'" :url="route('popup', 'OrderStatus')" />
+@endsection
+@section('title', 'Sipariş Durumları Listesi')
 
 @section('page-style')
 {{-- Page Css files --}}
@@ -14,18 +16,9 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-            <div class="card-header border-bottom"></div>
-          <div class="card-body mt-2">
-            <form class="dt_adv_search" method="POST">
-              <div class="row g-1 mb-md-1">
-                <div class="col-md-4">
-                    <x-button-popup-form :title="'Sipariş Durumu'" :text="'Yeni Sipariş Durumu'" :url="route('popup', 'OrderStatus')" />
-                </div>
-              </div>
-            </form>
+          <div class="card-body">
+                <x-data-table :dataTable="$dataTable"/>
           </div>
-          <hr class="my-0" />
-            <x-data-table :dataTable="$dataTable"/>
         </div>
       </div>
     </div>

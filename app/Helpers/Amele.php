@@ -48,6 +48,7 @@ function _ReturnSucces($message, $html, $redirect=''){
     $data['message'] = $message;
     $data['html'] = $html;
     $data['redirect'] = $redirect;
+    $data['refreshTable'] = true;
     return _ReturnResponse($data);
 }
 function _ReturnError($message, $html, $errors=[]){
@@ -55,6 +56,7 @@ function _ReturnError($message, $html, $errors=[]){
     $data['message'] = $message;
     $data['html'] = $html;
     $data['errors'] = implode('<br>', $errors);
+    $data['refreshTable'] = false;
     return _ReturnResponse($data);
 }
 function _ReturnResponse($data){
