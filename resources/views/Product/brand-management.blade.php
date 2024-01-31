@@ -1,7 +1,7 @@
 
 @extends('layouts/contentLayoutMaster')
 @section('nav-buttons')
-    <x-button-popup-form :title="'Marka Ekleme'" :text="'Yeni Marka Ekle'" :url="route('popup', 'BrandSave',)" />
+    <x-button-popup-form :title="'Marka Ekleme'" :text="'Yeni Marka'" :url="route('popup', 'BrandSave',)" />
 @endsection
 
 @section('title', 'Marka Yönetimi')
