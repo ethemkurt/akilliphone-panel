@@ -127,7 +127,7 @@
                                         <h6 class="mb-0">Sipariş Geçmişi alınamadı</h6>
                                         <span class="text-muted">{{ _HumanDate(date('Y-m-d')) }}</span>
                                     </div>
-                                    <p class="mt-2">Hatalar için yazılım ekibiyle görüşünüzu</p>
+                                    <p class="mt-2">Hatalar için yazılım ekibiyle görüşünüz</p>
                                 </div>
                             </li>
                         @endif

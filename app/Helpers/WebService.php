@@ -169,14 +169,47 @@ class WebService{
         }
         return [];
     }
-    public static function brands($page){
-        $response = self::GET('brands', []);
+    /* brands */
+    public static function brands($page=1){
+        $page = max(1, (int)$page);
+        $params['page'] = $page;
+        $params['offset'] =250;
+        $response = self::GET('brands', $params);
         if($response['data']){
-            return $response['data']['items'];
+            return $response['data'];
         }
         return [];
     }
-    public static function categories($page){
+    public static function brand($brandId){
+        $response = self::GET('brands/'.$brandId, []);
+        if($response['data']){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function brandEdit($brandId, $brand){
+        $response = self::PUT('brands/'.$brandId, $brand, FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function brandNew( $brand){
+        $response = self::POST('brands', $brand, FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function brandDelete($brandId){
+        $response = self::DELETE('brands/'.$brandId, [], FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    /* categories */
+    public static function categories($page=1){
         $page = max(1, (int)$page);
         $params['page'] = $page;
         $params['offset'] =250;
@@ -567,41 +600,6 @@ class WebService{
     public static function orderHistoryDelete($orderId){
         $response = self::DELETE('orders/history/'.$orderId, []);
         return $response;
-    }
-    public static function brand($brandId=0){
-        $response = self::static('brands/list', []);
-        if(isset($response['data'])){
-            foreach($response['data']['items'] as $brand){
-                if($brand['brandId']==$brandId){
-                    return $brand;
-                }
-            }
-        }
-        return [];
-    }
-    public static function brand_delete($brandId){
-        $response = self::DELETE('brands/'.$brandId, []);
-
-        if($response ){
-            return $response;
-        }
-        return [];
-    }
-    public static function brand_add($body){
-        $response = self::POST('brands',$body);
-        if($response ){
-            return $response;
-        }
-        return [];
-    }
-    public static function brand_edit($brandId,$body){
-
-        $response = self::PUT('brands/'.$brandId,$body);
-
-        if($response ){
-            return $response;
-        }
-        return [];
     }
 
     public static function countries(){

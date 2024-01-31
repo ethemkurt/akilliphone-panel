@@ -163,7 +163,7 @@ class Category extends Controller
         $dataTable->setCols([
             'orderNumber'=>['title'=>'Sıra', 'className'=>'sort-order', 'orderable'=>''],
             //'categoryId'=>['title'=>'Id', 'className'=>'', 'orderable'=>''],
-            'image'=>  ['title'=>'Kategori Fotoğrafı','className'=>'','orderable'=>''],
+            'image'=>  ['title'=>'Kategori Resmi','className'=>'','orderable'=>''],
             'name'=>['title'=>'Kategori Adı', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'', 'className'=>'', 'orderable'=>''],
             'action'=>['title'=>'','className'=>'action-buttons','orderable'=>'']

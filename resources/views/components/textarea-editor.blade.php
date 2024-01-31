@@ -49,7 +49,7 @@
                 { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
             ]
         },
-        placeholder: 'Welcome to CKEditor 5!',
+        placeholder: '{{ $placeholder }}',
         fontFamily: {
             options: [
                 'default',

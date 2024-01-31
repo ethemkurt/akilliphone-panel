@@ -5,12 +5,11 @@ use App\Http\Controllers\Auth;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\Order;
 use App\Http\Controllers\Category;
-use App\Http\Controllers\OrderStatus;
+use App\Http\Controllers\Brand;
 use App\Http\Controllers\PaymentStatus;
 use App\Http\Controllers\PaymentType;
 use App\Http\Controllers\User;
 use App\Http\Controllers\Product;
-use App\Http\Controllers\BrandManagement;
 use App\Http\Controllers\Popup;
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\Slide;
@@ -115,6 +114,14 @@ Route::group(['prefix'=>'product/category','as'=>'category.', 'middleware' => ['
     Route::post('/save/{categoryId}', [Category::class, 'save'])->name('save');
     Route::get('/delete/{categoryId}', [Category::class, 'deleteForm'])->name('delete.form');
     Route::post('/delete/{categoryId}', [Category::class, 'delete'])->name('delete');
+});
+Route::group(['prefix'=>'product/brand','as'=>'brand.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Brand::class, 'index'])->name('index');
+    Route::get('/data-table', [Brand::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{brandId}', [Brand::class, 'edit'])->name('edit');
+    Route::post('/save/{brandId}', [Brand::class, 'save'])->name('save');
+    Route::get('/delete/{brandId}', [Brand::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{brandId}', [Brand::class, 'delete'])->name('delete');
 });
 Route::group(['prefix'=>'product/review','as'=>'review.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Review::class, 'index'])->name('index');
