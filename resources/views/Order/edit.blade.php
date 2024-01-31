@@ -389,7 +389,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="invoiceType" class="invoiceType invoiceType-{{ $order['billingAddress']['invoiceType'] }}">
+                                        <div id="invoiceType" class="invoiceType invoiceType-{{ ucfirst($order['billingAddress']['invoiceType']) }}">
                                             <div class="Bireysel">
                                                 <div class="col-12">
                                                     <div class="mb-1 row">

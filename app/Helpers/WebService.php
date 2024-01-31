@@ -154,7 +154,7 @@ class WebService{
     }
     public static function editOrder($orderId, $body){
         self::fixOrderRequest($body);
-        $response = self::PUT('orders/'.$orderId, $body);
+        $response = self::PUT('orders/'.$orderId, $body, FORCEADMIN);
         return $response;
     }
     public static function orderDelete($orderId){
@@ -672,9 +672,14 @@ class WebService{
         //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), self::standartResponse($response, self::WEBSERVICE_URL.$service));
         return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
-    static private function PUT($service, $data){
+    static private function PUT($service, $data, $forceAdmin=false){
+        if($forceAdmin){
+            $Authorization = 'Bearer ' . request()->session()->get('SADMINTOKEN', null);
+        } else {
+            $Authorization ='Bearer ' . request()->session()->get('jwtToken', null);
+        }
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
+            'Authorization' => $Authorization,
         ])->put(self::WEBSERVICE_URL.$service, $data);
         //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), self::standartResponse($response, self::WEBSERVICE_URL.$service));
 

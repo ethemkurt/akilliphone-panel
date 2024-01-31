@@ -221,9 +221,9 @@
                             <p class=" mb-1">TC Kimlik: {{ $order['billingAddress']['tcKimlik'] }}</p>
                         @elseif($order['billingAddress']['invoiceType']=='Kurumsal' || $order['billingAddress']['invoiceType']=='kurumsal')
                             <h6 class="m-0 text-danger">Kurumsal Fatura</h6>
-                            <p class=" mb-1">Firma: {{ $order['billingAddress']['company'] }}}</p>
-                            <p class=" mb-1">Vergi No: {{ $order['billingAddress']['taxNumber'] }}}</p>
-                            <p class=" mb-1">Vergi Dairesi: {{ $order['billingAddress']['taxOffice'] }}}</p>
+                            <p class=" mb-1">Firma: {{ $order['billingAddress']['company'] }}</p>
+                            <p class=" mb-1">Vergi No: {{ $order['billingAddress']['taxNumber'] }}</p>
+                            <p class=" mb-1">Vergi Dairesi: {{ $order['billingAddress']['taxOffice'] }}</p>
                         @else
                         @endif
                     @endif
