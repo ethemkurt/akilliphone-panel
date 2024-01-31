@@ -15,7 +15,6 @@ class Uploader extends Controller
     }
     public function cke(Request $request )
     {
-
         if ($request->hasFile('upload')) {
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);

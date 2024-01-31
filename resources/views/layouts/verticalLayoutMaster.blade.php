@@ -61,6 +61,7 @@
 <script src="{{ url('js/akilliphone.js') }}?_v={{ time() }}"></script>
 <script src="{{ url('js/tulpar-uploader.js') }}?_v={{ time() }}"></script>
 @yield('dataTable-script')
+@yield('editor-script')
 @yield('page-script')
 <script type="text/javascript">
     $(window).on('load', function() {

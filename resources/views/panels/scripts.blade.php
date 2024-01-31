@@ -30,11 +30,10 @@
 <!-- custome scripts file for user -->
 <script src="{{ asset(mix('js/core/scripts.js')) }}"></script>
 <script>
-    class FileUploadAdapter {
+    class NewcartFileUploadAdapter {
         constructor( loader ) {
             this.loader = loader;
         }
-
         upload() {
             return this.loader.file
                 .then( file => new Promise( ( resolve, reject ) => {
@@ -92,7 +91,11 @@
             this.xhr.send( data );
         }
     }
-
+    function NewcartFileUploadAdapterPlugin( editor ) {
+        editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
+            return new NewcartFileUploadAdapter( loader );
+        };
+    }
 </script>
 @if($configData['blankPage'] === false)
 <script src="{{ asset(mix('js/scripts/customizer.js')) }}"></script>

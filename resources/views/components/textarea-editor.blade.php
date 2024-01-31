@@ -5,10 +5,11 @@
     $value = isset($value)?$value:'';
 ?>
 <textarea type="text" id="{{ $id }}"  class="form-control" name="{{ $name }}" placeholder="{{ $placeholder }}" >{!! $value !!}</textarea>
+
 <script>
-    function FileUploadAdapterPlugin( editor ) {
+    function NewcartFileUploadAdapterPlugin( editor ) {
         editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
-            return new FileUploadAdapter( loader );
+            return new NewcartFileUploadAdapter( loader );
         };
     }
     CKEDITOR.ClassicEditor.create(document.getElementById("{{ $id }}"), {
@@ -94,20 +95,6 @@
                 }
             }
         },
-        mention: {
-            feeds: [
-                {
-                    marker: '@',
-                    feed: [
-                        '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
-                        '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
-                        '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
-                        '@sugar', '@sweet', '@topping', '@wafer'
-                    ],
-                    minimumCharacters: 1
-                }
-            ]
-        },
         removePlugins: [
             // These two are commercial, but you can try them out without registering to a trial.
             // 'ExportPdf',
@@ -120,7 +107,7 @@
             // Storing images as Base64 is usually a very bad idea.
             // Replace it on production website with other solutions:
             // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html
-            // 'Base64UploadAdapter',
+            'Base64UploadAdapter',
             'RealTimeCollaborativeComments',
             'RealTimeCollaborativeTrackChanges',
             'RealTimeCollaborativeRevisionHistory',
@@ -135,7 +122,8 @@
             // from a local file system (file://) - load this site via HTTP server if you enable MathType
             'MathType'
         ],
-        extraPlugins: [ FileUploadAdapterPlugin ],
+        extraPlugins: [ NewcartFileUploadAdapterPlugin ],
     });
     TulparUploader.createUploder();
 </script>
+
