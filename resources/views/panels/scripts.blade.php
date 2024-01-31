@@ -20,7 +20,8 @@
 <script src="{{ asset(mix('vendors/js/forms/cleave/cleave.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/forms/cleave/addons/cleave-phone.us.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
+{{--<script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>--}}
+<script src="{{ url('js/ckeditor.js') }}"></script>
 <!-- END: Page Vendor JS-->
 <!-- BEGIN: Theme JS-->
 <script src="{{ asset(mix('js/core/app-menu.js')) }}"></script>

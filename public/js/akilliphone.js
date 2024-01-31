@@ -13,7 +13,7 @@ var Akilliphone = {
         });
     },
     poupForms: function(){
-        let html = `<div class="modal fade" id="poupForm" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="static" aria-labelledby="poupFormTitle" aria-modal="true" role="dialog">
+        let html = `<div class="modal fade" id="poupForm" tabindex="-1" data-bs-keyboard="false"  data-bs-focus="false" data-bs-backdrop="static" aria-labelledby="poupFormTitle" aria-modal="true" role="dialog">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
@@ -40,7 +40,8 @@ var Akilliphone = {
                     </div>
                 </div>`;
         $('body').append(html);
-        $('#confirmPopup').modal();
+        //$('#poupForm').modal({	focus: false, show: false});
+        $('#confirmPopup').modal({	focus: false, show: false});
     },
     select2:function(){
         $('.select2-ajax').select2({
@@ -118,22 +119,6 @@ var Akilliphone = {
             e.preventDefault();
             $('#poupForm .modal-header .modal-title').html($(this).data('title'));
             Akilliphone.popupByUrl($(this).data('url'), 'GET', {});
-            /*$('#poupForm .modal-body').html('<i class="fas fa-circle-notch fa-spin"></i>');
-            $('body .ajax-form-result').html('');
-            $.ajax( $(this).data('url') ).done(function(response) {
-                if(response.status){
-                    $('#poupForm .modal-body').html(response.html);
-                }  else {
-                    $('#poupForm .modal-body').html(response.errors);
-                }
-                $('#poupForm').modal('show');
-            }).fail(function(jqXHR, textStatus, errorThrown) {
-                $('#poupForm .modal-body').html('Oluşan hatalar için konsola bakınız');
-                console.log(jqXHR.responseText);
-                $('#poupForm').modal('show');
-            }).always(function() {
-            }).always(function() {
-            });*/
         });
     },
     _ajaxFormEvent: function (){
