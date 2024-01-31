@@ -1,7 +1,16 @@
 
 @extends('layouts/contentLayoutMaster')
 @section('nav-buttons')
-    <x-button-popup-form :title="'Kategori Ekleme'" :text="'Yeni Kategori Ekleme'" :url="route('popup', 'CategoriesSave',)" />
+    <?php
+    if($category){
+        $title = 'Yeni '.$category['name'].' Kategorisi';
+        $parentId = $category['categoryId'];
+    } else {
+        $title = 'Yeni Kategori';
+        $parentId = 0;
+    }
+    ?>
+    <x-button-popup-form :title="$title" :text="'Yeni Kategori Ekleme'" :url="route('category.edit', ['categoryId'=>'new', 'parentId'=>$parentId])" />
 
 @endsection
 @if($category)

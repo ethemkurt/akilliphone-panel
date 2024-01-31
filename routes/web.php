@@ -21,6 +21,7 @@ use App\Http\Controllers\Attribute;
 use App\Http\Controllers\AttributeValue;
 use App\Http\Controllers\Option;
 use App\Http\Controllers\OptionValue;
+use App\Http\Controllers\Uploader;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,10 @@ Route::post('/check-user', [Auth::class, 'checkUser'])->name('check-user')->midd
 Route::get('/logout', [Auth::class, 'logout'])->name('logout');
 Route::get('/enum', [\Enum::class, 'loadConst']);
 
+Route::group(['prefix'=>'upload','as'=>'upload.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Uploader::class, 'index'])->name('index');
+    Route::post('/cke', [Uploader::class, 'cke'])->name('cke');
+});
 Route::group(['prefix'=>'home','as'=>'home.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Home::class, 'index'])->name('index');
     Route::post('/imageTest', [Home::class, 'imageTest'])->name('imageTest');

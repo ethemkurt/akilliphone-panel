@@ -105,7 +105,7 @@ class BrandManagement extends Controller
     private function _format_image($item){
 
 
-        return '<img src="'._CdnImageUrl($item["image"]).'" >';
+        return '<img src="'._CdnImageUrl($item["image"], 100, 100).'" >';
 
     }
     private function _format_action($item){

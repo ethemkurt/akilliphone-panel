@@ -176,8 +176,12 @@ class WebService{
         }
         return [];
     }
-    public static function categories(){
-        $response = self::GET('categories?page=1&offset=1000', []);
+    public static function categories($page){
+        $page = max(1, (int)$page);
+        $params['page'] = $page;
+        $params['offset'] =250;
+
+        $response = self::GET('categories', $params);
         if($response['data']){
             $items = [];
             foreach($response['data']['items'] as $category){
@@ -198,18 +202,28 @@ class WebService{
         }
         return [];
     }
-    /*public static function parentCategories(){
-        $categories = self::categories();
-        $items = [];
-        foreach($categories['items'] as $category){
-            if(empty($category['parentId'])){
-                $items[] = $category;
-            }
+    public static function categoryEdit($categoryId, $category){
+        $response = self::PUT('categories/'.$categoryId, $category, FORCEADMIN);
+        if($response ){
+            return $response;
         }
-        $categories['items'] = $items;
-        $categories['totalCount'] = count($items);
-        return $categories;
-    }*/
+        return [];
+    }
+    public static function categoryNew( $category){
+        $response = self::POST('categories', $category, FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function categoryDelete($categoryId){
+        $response = self::DELETE('categories/'.$categoryId, [], FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+/* orderstatus*/
     public static function orderStatus($orderStatusId){
         $response = self::GET('orders/order-status/'.$orderStatusId, []);
         if($response['data'] ){

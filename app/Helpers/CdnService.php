@@ -38,7 +38,7 @@ class CdnService{
             @ftp_mkdir($conn_id, '/public_html/img/'.date('Y').'-'.date('m'));
             @ftp_mkdir($conn_id, '/public_html/img/'.date('Y').'-'.date('m').'/'.date('d'));
             //
-            $topath = '/img/'.date('Y').'-'.date('m').'/'.date('d').'/'.$tofile;
+            $topath = 'img/'.date('Y').'-'.date('m').'/'.date('d').'/'.$tofile;
             $sonuc = ftp_put($conn_id, '/public_html/'.$topath, $fromfile, FTP_BINARY);
             ftp_close($conn_id);
             return $topath;

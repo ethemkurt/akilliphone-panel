@@ -27,8 +27,72 @@ class Category extends Controller
         } else{
             $data['category'] = [];
         }
+        $data['parentId'] = $request->input('parentId', null);
         $html = view('Category.category-edit', $data)->render();
         return _ReturnSucces('', $html);
+    }
+    public function save(Request $request, $categoryId ){
+        $category = $request->input('category');
+        if($category){
+            if($imageFile = $request->input('imageFile')){
+                $category['image'] = \CdnService::saveToCdn($imageFile);
+            }
+            if($categoryId=='new'){
+                $category['parentId'] = (int)$category['parentId'];
+                $category['N11Category'] = "";
+                $category['MetaDescription'] = "";
+                $category['TrendyolCategory'] = "";
+                $category['slug'] = $category['name'];
+                $response = \WebService::categoryNew($category);
+            } else{
+                $response = \WebService::categoryEdit($categoryId, $category);
+            }
+            if($response){
+                if(isset($response['data']) && isset($response['data']['categoryId'])){
+                    $result = 'Kategori kaydedildi';
+                } else{
+                    $result = 'Kategori kaydedilemedi';
+                }
+            } else {
+                $result = 'Webservis sonucu alınmadı';
+            }
+        } else {
+            $result = 'Kategori bilgilerini eksik veya hatalı gönderdiniz';
+        }
+        return _ReturnSucces('', $result);
+    }
+    public function deleteForm(Request $request, $categoryId ){
+
+        if($categoryId){
+            $data['category'] = \WebService::category($categoryId);
+        } else{
+            $data['category'] = [];
+        }
+        $html = view('Category.category-delete', $data)->render();
+        return _ReturnSucces('', $html);
+    }
+    public function delete(Request $request, $categoryId ){
+        $response = \WebService::category($categoryId);
+
+        if($response && isset($response['categoryId'])){
+            $response = \WebService::categoryDelete($categoryId);
+            if($response){
+                if($response['errors']){
+                    return _ReturnError('1', '2', $response['errors']);
+                }
+
+                if( $response && isset($response['data'])){
+                    $result = 'Kategori Silindi';
+                } else{
+                    $result = 'Kategori Silinemedi';
+                }
+            } else {
+                $result = 'Webservis sonucu alınmadı';
+            }
+        } else{
+            $result = 'Kategori bilgilerini eksik veya hatalı gönderdiniz';
+        }
+        return _ReturnSucces('', $result);
     }
 
     public function dataTable(Request $request, $categoryId='parent'){
@@ -36,7 +100,7 @@ class Category extends Controller
         $offset = $request->input('length', 10);
         $start = $request->input('start', 0);
         if($categoryId=='parent'){
-            $response = \WebService::categories();
+            $response = \WebService::categories(1);
             $dataTable->setRecordsTotal($response['totalCount']);
             $dataTable->setRecordsFiltered($response['totalCount']);
         } else {
@@ -44,10 +108,7 @@ class Category extends Controller
             $response['items'] = $response['inverseCategoryId1Navigation'];
             $dataTable->setRecordsTotal(count($response['items']));
             $dataTable->setRecordsFiltered(count($response['items']));
-
         }
-
-
         $items = [];
 
         foreach($response['items'] as $row){
@@ -71,12 +132,14 @@ class Category extends Controller
     }
     private function _format_image($item){
         return '<img src="'._CdnImageUrl($item["image"], 40, 40).'" >';
-
+    }
+    private function _format_status($row){
+        return '<span class="badge rounded-pill badge-light-'.\ActivePassive::color($row['status']).'" text-capitalized="">'.\ActivePassive::__($row['status']).'</span>';
     }
     private function _format_action($item){
 
         $delete = route('category.delete', $item['categoryId']);
-        $edit = route('category.edit', $item['categoryId']);
+        $edit = route('category.edit', ['categoryId'=>$item['categoryId'], 'parentId'=>$item['parentId']]);
         $html = '';
         $category = \WebService::category($item['categoryId']);
 
@@ -87,7 +150,7 @@ class Category extends Controller
         }
         $html .= '<a class="btn waves-effect p-0 ms-1" href="'.route('category.child', $item['categoryId']).'"><i class="feather icon-git-branch text-'.$childColor.'"></i></a>';
         $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="feather icon-file-text"></i></a>';
-        $html .= '<a class="confirm-popup btn waves-effect p-0 ms-1" href="'.$delete.'" title="\''.$item['name'].'\' silinsin mi?"><i class="feather icon-trash text-danger"></i></a> ';
+        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('category.delete.form', $item['categoryId']).'"><i class="feather icon-trash text-danger"></i></a> ';
 
         return '<div class="text-end">'.$html.'</div>';
     }
@@ -102,6 +165,7 @@ class Category extends Controller
             //'categoryId'=>['title'=>'Id', 'className'=>'', 'orderable'=>''],
             'image'=>  ['title'=>'Kategori Fotoğrafı','className'=>'','orderable'=>''],
             'name'=>['title'=>'Kategori Adı', 'className'=>'', 'orderable'=>''],
+            'status'=>['title'=>'', 'className'=>'', 'orderable'=>''],
             'action'=>['title'=>'','className'=>'action-buttons','orderable'=>'']
         ]);
         return $dataTable;
