@@ -129,20 +129,10 @@ class Brand extends Controller
         return '<span class="badge rounded-pill badge-light-'.\ActivePassive::color($row['status']).'" text-capitalized="">'.\ActivePassive::__($row['status']).'</span>';
     }
     private function _format_action($item){
-
-        $delete = route('brand.delete', $item['brandId']);
         $edit = route('brand.edit', ['brandId'=>$item['brandId'], 'parentId'=>$item['parentId']]);
         $html = '';
-        $brand = \WebService::brand($item['brandId']);
-
-        if(isset($brand['inverseBrandId1Navigation']) && $brand['inverseBrandId1Navigation']){
-            $childColor = 'success';
-        } else {
-            $childColor = 'secondary';
-        }
         $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="feather icon-file-text"></i></a>';
         $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('brand.delete.form', $item['brandId']).'"><i class="feather icon-trash text-danger"></i></a> ';
-
         return '<div class="text-end">'.$html.'</div>';
     }
     private function dataTableParams(){

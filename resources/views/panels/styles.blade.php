@@ -72,4 +72,10 @@
     .ck.ck-editor__main>.ck-editor__editable{
         max-height: 220px;
     }
+    .action-buttons a.btn{
+        display: inline;
+    }
+    .dataTable th.created-at, .dataTable td.created-at{
+        min-width: 130px;
+    }
 </style>

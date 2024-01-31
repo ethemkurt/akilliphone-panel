@@ -6,6 +6,7 @@ use App\Http\Controllers\Home;
 use App\Http\Controllers\Order;
 use App\Http\Controllers\Category;
 use App\Http\Controllers\Brand;
+use App\Http\Controllers\OrderStatus;
 use App\Http\Controllers\PaymentStatus;
 use App\Http\Controllers\PaymentType;
 use App\Http\Controllers\User;

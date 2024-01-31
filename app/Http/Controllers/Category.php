@@ -149,6 +149,7 @@ class Category extends Controller
             $childColor = 'secondary';
         }
         $html .= '<a class="btn waves-effect p-0 ms-1" href="'.route('category.child', $item['categoryId']).'"><i class="feather icon-git-branch text-'.$childColor.'"></i></a>';
+        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-title="'.$item['name'].' Alt Kategorisi Ekle" data-url="'.route('category.edit', ['categoryId'=>'new', 'parentId'=>$item['categoryId']]).'"><i class="feather icon-plus-circle text-info"></i></a>';
         $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="feather icon-file-text"></i></a>';
         $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('category.delete.form', $item['categoryId']).'"><i class="feather icon-trash text-danger"></i></a> ';
 

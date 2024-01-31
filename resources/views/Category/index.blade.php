@@ -3,7 +3,7 @@
 @section('nav-buttons')
     <?php
     if($category){
-        $title = 'Yeni '.$category['name'].' Kategorisi';
+        $title = $category['name'].' Alt Kategorisi Kategorisi';
         $parentId = $category['categoryId'];
     } else {
         $title = 'Yeni Kategori';

@@ -13,7 +13,6 @@ class OrderStatus extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
         $data['dataTable'] = $this->dataTableParams();
-
         return view('OrderStatus.index', $data);
     }
     public function delete(Request $request, $orderStatusId ){

@@ -68,7 +68,7 @@ class Logs extends Controller
             'orderNumber'=>['title'=>'', 'className'=>'sort-order', 'orderable'=>''],
             'module'=>['title'=>'Kayanak', 'className'=>'', 'orderable'=>''],
             'data'=>['title'=>'Bilgiler', 'className'=>'', 'orderable'=>''],
-            'created_at'=>['title'=>'Tarih', 'className'=>'', 'orderable'=>''],
+            'created_at'=>['title'=>'Tarih', 'className'=>'created-at', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
         return $dataTable;
