@@ -116,8 +116,8 @@ function _CdnImageUrl($url, $w=false, $h=false, $cdnx=false ){
     } else{
         $sub = env('CDN_URL');
     }
-    if(empty($w)) $w=160;
-    if(empty($h)) $h=160;
+    if(empty($w)) $w=40;
+    if(empty($h)) $h=40;
     if($w && $h && isset($ports[$port]))
     {
         $result = $sub.$ports[$port].'/'.$w.'x'.$h.'/'.(implode('/',$parts));

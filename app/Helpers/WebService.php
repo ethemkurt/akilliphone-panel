@@ -176,12 +176,12 @@ class WebService{
         }
         return [];
     }
-    public static function categories($categoryId){
+    public static function categories(){
         $response = self::GET('categories?page=1&offset=1000', []);
         if($response['data']){
             $items = [];
             foreach($response['data']['items'] as $category){
-                if((int)$category['parentId']==(int)$categoryId){
+                if(empty($category['parentId'])){
                     $items[] = $category;
                 }
             }

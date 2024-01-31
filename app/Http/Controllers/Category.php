@@ -33,15 +33,21 @@ class Category extends Controller
 
     public function dataTable(Request $request, $categoryId='parent'){
         $dataTable = $this->dataTableParams($categoryId);
-        //$categoryId = $request->input('categoryId', 0);
         $offset = $request->input('length', 10);
         $start = $request->input('start', 0);
+        if($categoryId=='parent'){
+            $response = \WebService::categories();
+            $dataTable->setRecordsTotal($response['totalCount']);
+            $dataTable->setRecordsFiltered($response['totalCount']);
+        } else {
+            $response = \WebService::category($categoryId);
+            $response['items'] = $response['inverseCategoryId1Navigation'];
+            $dataTable->setRecordsTotal(count($response['items']));
+            $dataTable->setRecordsFiltered(count($response['items']));
 
-        $response = \WebService::categories($categoryId);
+        }
 
 
-        $dataTable->setRecordsTotal($response['totalCount']);
-        $dataTable->setRecordsFiltered($response['totalCount']);
         $items = [];
 
         foreach($response['items'] as $row){
@@ -72,8 +78,14 @@ class Category extends Controller
         $delete = route('category.delete', $item['categoryId']);
         $edit = route('category.edit', $item['categoryId']);
         $html = '';
+        $category = \WebService::category($item['categoryId']);
 
-        $html .= '<a class="btn waves-effect p-0 ms-1" href="'.route('category.child', $item['categoryId']).'"><i class="feather icon-git-branch"></i></a>';
+        if(isset($category['inverseCategoryId1Navigation']) && $category['inverseCategoryId1Navigation']){
+            $childColor = 'success';
+        } else {
+            $childColor = 'secondary';
+        }
+        $html .= '<a class="btn waves-effect p-0 ms-1" href="'.route('category.child', $item['categoryId']).'"><i class="feather icon-git-branch text-'.$childColor.'"></i></a>';
         $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="feather icon-file-text"></i></a>';
         $html .= '<a class="confirm-popup btn waves-effect p-0 ms-1" href="'.$delete.'" title="\''.$item['name'].'\' silinsin mi?"><i class="feather icon-trash text-danger"></i></a> ';
 

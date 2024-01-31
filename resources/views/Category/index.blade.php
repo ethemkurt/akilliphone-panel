@@ -2,9 +2,12 @@
 @extends('layouts/contentLayoutMaster')
 @section('nav-buttons')
     <x-button-popup-form :title="'Kategori Ekleme'" :text="'Yeni Kategori Ekleme'" :url="route('popup', 'CategoriesSave',)" />
+
 @endsection
 @if($category)
-    @section('title', $category['name'])
+    @section('title')
+{{$category['name']}} <a class="btn waves-effect p-0 ms-1" href="{{ route('category.child', $category['parentId']?$category['parentId']:'parent') }}"><i class="feather  icon-corner-down-left"></i></a>
+    @endsection
 @else
     @section('title', 'Kategori Yönetimi')
 @endif
