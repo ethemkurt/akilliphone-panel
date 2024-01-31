@@ -3,8 +3,11 @@
 @section('nav-buttons')
     <x-button-popup-form :title="'Kategori Ekleme'" :text="'Yeni Kategori Ekleme'" :url="route('popup', 'CategoriesSave',)" />
 @endsection
-
-@section('title', 'Kategori Yönetimi')
+@if($category)
+    @section('title', $category['name'])
+@else
+    @section('title', 'Kategori Yönetimi')
+@endif
 
 @section('page-style')
     {{-- Page Css files --}}

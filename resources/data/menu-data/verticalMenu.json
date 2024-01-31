@@ -29,7 +29,7 @@
                     "slug": "collapsed-menu"
                 },
                 {
-                    "url": "product/categories",
+                    "url": "product/category",
                     "name": "Kategori Yönetimi",
                     "icon": "circle",
                     "slug": "collapsed-menu"

@@ -42,15 +42,15 @@ class OptionValue extends Controller
             }
             if($response){
                 if(isset($response['data']) && isset($response['data']['optionValueId'])){
-                    $result = 'Yorum kaydedildi';
+                    $result = 'Özellik kaydedildi';
                 } else{
-                    $result = 'Yorum kaydedilemedi';
+                    $result = 'Özellik kaydedilemedi';
                 }
             } else {
                 $result = 'Webservis sonucu alınmadı';
             }
         } else {
-            $result = 'Yorum bilgilerini eksik veya hatalı gönderdiniz';
+            $result = 'Özellik bilgilerini eksik veya hatalı gönderdiniz';
         }
         return _ReturnSucces('', $result);
     }
@@ -138,7 +138,6 @@ class OptionValue extends Controller
         ]);
         return $dataTable;
     }
-
     private function _format_actions($row){
         return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('option.value.edit',[ $row['optionId'], $row['optionValueId']]).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('option.value.delete.form',[ $row['optionId'], $row['optionValueId']]).'"><i class="feather icon-trash text-danger"></i></a>';
     }

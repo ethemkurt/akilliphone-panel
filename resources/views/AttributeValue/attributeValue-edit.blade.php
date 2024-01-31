@@ -18,7 +18,7 @@
                         <label class="col-form-label" for="code">Seçenek Adı </label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" id="name"  class="form-control" name="attributeValue[name]" value="{{isset($attributeValue['name'])?$attributeValue['name']:''}}" placeholder="Ad">
+                        <input type="text" id="value"  class="form-control" name="attributeValue[value]" value="{{isset($attributeValue['value'])?$attributeValue['value']:''}}" placeholder="Ad">
                     </div>
                 </div>
             </div>

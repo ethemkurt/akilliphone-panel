@@ -43,15 +43,15 @@ class AttributeValue extends Controller
 
             if($response){
                 if(isset($response['data']) && isset($response['data']['attributeValueId'])){
-                    $result = 'Yorum kaydedildi';
+                    $result = 'Özellik kaydedildi';
                 } else{
-                    $result = 'Yorum kaydedilemedi';
+                    $result = 'Özellik kaydedilemedi';
                 }
             } else {
                 $result = 'Webservis sonucu alınmadı';
             }
         } else {
-            $result = 'Yorum bilgilerini eksik veya hatalı gönderdiniz';
+            $result = 'Özellik bilgilerini eksik veya hatalı gönderdiniz';
         }
         return _ReturnSucces('', $result);
     }
@@ -100,8 +100,9 @@ class AttributeValue extends Controller
         $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
 
         $items = [];
-        if($response && isset($response['data'])){
-            foreach($response['data']['attributeValues'] as $row){
+
+        if($response && isset($response['attributeValues'])){
+            foreach($response['attributeValues'] as $row){
 
                 $item = [];
                 foreach($dataTable->cols() as $key=>$col){
@@ -132,13 +133,13 @@ class AttributeValue extends Controller
         $dataTable->setCols([
             'orderNumber'=>['title'=>'', 'className'=>'sort-order', 'orderable'=>''],
             'code'=>['title'=>'', 'className'=>'', 'orderable'=>''],
-            'name'=>['title'=>'Özellik', 'className'=>'', 'orderable'=>''],
+            'value'=>['title'=>'Özellik', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'action-buttons', 'orderable'=>''],
         ]);
         return $dataTable;
     }
 
     private function _format_actions($row){
-        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attributeValue.edit', $row['attributeValueId']).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attributeValue.delete.form', $row['attributeValueId']).'"><i class="feather icon-trash text-danger"></i></a>';
+        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.value.edit', [$row['attributeId'], $row['attributeValueId']]).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('attribute.value.delete.form',[ $row['attributeId'], $row['attributeValueId']]).'"><i class="feather icon-trash text-danger"></i></a>';
     }
 }

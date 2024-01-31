@@ -133,7 +133,9 @@ class WebService{
         $params['offset'] =$offset;
 
         $response = self::GET('orders', $params);
+
         if($response['data'] ){
+            $response['data']['filteredCount'] = $response['count'];
             return $response['data'];
         }
         return [];
@@ -174,15 +176,40 @@ class WebService{
         }
         return [];
     }
-    public static function categories($page){
-        $response = self::GET('categories', []);
-        if($response['data']['items']){
-
-
-            return $response['data']['items'];
+    public static function categories($categoryId){
+        $response = self::GET('categories?page=1&offset=1000', []);
+        if($response['data']){
+            $items = [];
+            foreach($response['data']['items'] as $category){
+                if((int)$category['parentId']==(int)$categoryId){
+                    $items[] = $category;
+                }
+            }
+            $response['data']['items'] = $items;
+            $response['data']['totalCount'] = count($items);
+            return  $response['data'];
         }
         return [];
     }
+    public static function category($categoryId){
+        $response = self::GET('categories/'.$categoryId, []);
+        if($response['data']){
+            return $response['data'];
+        }
+        return [];
+    }
+    /*public static function parentCategories(){
+        $categories = self::categories();
+        $items = [];
+        foreach($categories['items'] as $category){
+            if(empty($category['parentId'])){
+                $items[] = $category;
+            }
+        }
+        $categories['items'] = $items;
+        $categories['totalCount'] = count($items);
+        return $categories;
+    }*/
     public static function orderStatus($orderStatusId){
         $response = self::GET('orders/order-status/'.$orderStatusId, []);
         if($response['data'] ){
@@ -464,6 +491,7 @@ class WebService{
         return [];
     }
     public static function attributeValueNew( $attributeValue){
+        unset($attributeValue['attributeValueId']);
         $response = self::POST( 'attribute-values',  $attributeValue, FORCEADMIN);
         return $response ;
     }
@@ -495,11 +523,20 @@ class WebService{
     /* option  */
     public static function optionValue($optionValueId){
         $response = self::GET('option-values/'.$optionValueId, []);
-
         if($response['data'] ){
             return $response['data'];
         }
         return [];
+    }
+    public static function optionValueNew( $optionValue){
+        unset($optionValue['optionValueId']);
+        $response = self::POST( 'option-values',  $optionValue, FORCEADMIN);
+        return $response ;
+    }
+
+    public static function optionValueEdit($optionValueId, $optionValue){
+        $response = self::PUT( 'option-values/'.$optionValueId,  $optionValue);
+        return $response ;
     }
 
     public static function orderHistory($orderId){
@@ -633,7 +670,6 @@ class WebService{
             'Authorization' => $Authorization,
         ])->post(self::WEBSERVICE_URL.$service, $data);
         //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), self::standartResponse($response, self::WEBSERVICE_URL.$service));
-
         return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
     static private function PUT($service, $data){
@@ -717,6 +753,8 @@ class WebService{
 
         // $responseData = json_decode($response->body(), true);
         $result['endpoit'] = $endpoit;
+        $result['count'] = isset($responseData['count'])?$responseData['count']:0;
+
         if($response->status()==200 || $response->status()==201){
             if($responseData ){
                 $result['status'] = 1;
@@ -731,7 +769,6 @@ class WebService{
             $result['data'] =  [];
             //$result['errors'] = ['Istek onaylanmadı. Http Kodu: '.$response->status()];
         }
-
         $result['errors'] = isset($responseData['errors'])?$responseData['errors']:$errors;
 
         return $result;
