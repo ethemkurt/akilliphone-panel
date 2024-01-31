@@ -10,7 +10,7 @@
         $parentId = 0;
     }
     ?>
-    <x-button-popup-form :title="$title" :text="'Yeni Kategori Ekleme'" :url="route('category.edit', ['categoryId'=>'new', 'parentId'=>$parentId])" />
+    <x-button-popup-form :title="$title" :text="'Yeni Kategori'" :url="route('category.edit', ['categoryId'=>'new', 'parentId'=>$parentId])" />
 
 @endsection
 @if($category)
