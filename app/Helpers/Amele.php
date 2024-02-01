@@ -29,6 +29,9 @@ function getProductImageUrl($url, $w=false, $h=false, $cdnx=false){
     return $result;
 
 }
+function _KargoBarkodu($orderId){
+    return 1000000000000 + (int)$orderId;
+}
 function _HumanDate($date = NULL, $format = 'd.m.Y') {
     if ($date === NULL) $date = date('Y-m-d');
     return date($format, strtotime($date));

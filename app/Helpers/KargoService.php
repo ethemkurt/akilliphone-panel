@@ -10,6 +10,7 @@ class KargoService{
         } else {
             $result = [];
         }
+        dd($result);
         return $result;
     }
     static public function firmayaGoreKargola($firma, $order){
@@ -45,7 +46,7 @@ class ArasKargo{
         $state = $order['shippingAddress']['district'];
         $address = $order['shippingAddress']['addressLine1'] .' '.$order['shippingAddress']['district'] .'/'.$order['shippingAddress']['city'];
         $order["invoiceNumber"] = "YOK";
-        $orderNumber = 1000000000000 + (int)$order["orderId"];
+        $orderNumber = _KargoBarkodu($order["orderId"]);
         $params= array(
             "UserName"              => $setting['apiname'],//"akilliphone",
             "Password"              => $setting['apipass'],//"sibel1234",
@@ -74,6 +75,7 @@ class ArasKargo{
         $send['userName'] = $setting['apiname'];
         $send['password'] = $setting['apipass'];
         $response = $client->SetOrder($send);
+
         $result = json_decode(json_encode($response, JSON_UNESCAPED_UNICODE), 1);
         if(!isset($result['SetOrderResult'])){
             return _ReturnError('Başarısız', 'Araskargo hata', ['Aras Kargo: Webservis iletişimi hatalı']);
