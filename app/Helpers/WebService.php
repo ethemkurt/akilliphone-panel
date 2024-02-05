@@ -133,7 +133,9 @@ class WebService{
         $params['offset'] =$offset;
 
         $response = self::GET('orders', $params);
+
         if($response['data'] ){
+            $response['data']['filteredCount'] = $response['count'];
             return $response['data'];
         }
         return [];
@@ -152,7 +154,7 @@ class WebService{
     }
     public static function editOrder($orderId, $body){
         self::fixOrderRequest($body);
-        $response = self::PUT('orders/'.$orderId, $body);
+        $response = self::PUT('orders/'.$orderId, $body, FORCEADMIN);
         return $response;
     }
     public static function orderDelete($orderId){
@@ -167,22 +169,94 @@ class WebService{
         }
         return [];
     }
-    public static function brands($page){
-        $response = self::GET('brands', []);
+    /* brands */
+    public static function brands($page=1){
+        $page = max(1, (int)$page);
+        $params['page'] = $page;
+        $params['offset'] =250;
+        $response = self::GET('brands', $params);
         if($response['data']){
-            return $response['data']['items'];
+            return $response['data'];
         }
         return [];
     }
-    public static function categories($page){
-        $response = self::GET('categories', []);
-        if($response['data']['items']){
-
-
-            return $response['data']['items'];
+    public static function brand($brandId){
+        $response = self::GET('brands/'.$brandId, []);
+        if($response['data']){
+            return $response['data'];
         }
         return [];
     }
+    public static function brandEdit($brandId, $brand){
+        $response = self::PUT('brands/'.$brandId, $brand, FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function brandNew( $brand){
+        $response = self::POST('brands', $brand, FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function brandDelete($brandId){
+        $response = self::DELETE('brands/'.$brandId, [], FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    /* categories */
+    public static function categories($page=1){
+        $page = max(1, (int)$page);
+        $params['page'] = $page;
+        $params['offset'] =250;
+
+        $response = self::GET('categories', $params);
+        if($response['data']){
+            $items = [];
+            foreach($response['data']['items'] as $category){
+                if(empty($category['parentId'])){
+                    $items[] = $category;
+                }
+            }
+            $response['data']['items'] = $items;
+            $response['data']['totalCount'] = count($items);
+            return  $response['data'];
+        }
+        return [];
+    }
+    public static function category($categoryId){
+        $response = self::GET('categories/'.$categoryId, []);
+        if($response['data']){
+            return $response['data'];
+        }
+        return [];
+    }
+    public static function categoryEdit($categoryId, $category){
+        $response = self::PUT('categories/'.$categoryId, $category, FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function categoryNew( $category){
+        $response = self::POST('categories', $category, FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function categoryDelete($categoryId){
+        $response = self::DELETE('categories/'.$categoryId, [], FORCEADMIN);
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+/* orderstatus*/
     public static function orderStatus($orderStatusId){
         $response = self::GET('orders/order-status/'.$orderStatusId, []);
         if($response['data'] ){
@@ -464,6 +538,7 @@ class WebService{
         return [];
     }
     public static function attributeValueNew( $attributeValue){
+        unset($attributeValue['attributeValueId']);
         $response = self::POST( 'attribute-values',  $attributeValue, FORCEADMIN);
         return $response ;
     }
@@ -495,11 +570,20 @@ class WebService{
     /* option  */
     public static function optionValue($optionValueId){
         $response = self::GET('option-values/'.$optionValueId, []);
-
         if($response['data'] ){
             return $response['data'];
         }
         return [];
+    }
+    public static function optionValueNew( $optionValue){
+        unset($optionValue['optionValueId']);
+        $response = self::POST( 'option-values',  $optionValue, FORCEADMIN);
+        return $response ;
+    }
+
+    public static function optionValueEdit($optionValueId, $optionValue){
+        $response = self::PUT( 'option-values/'.$optionValueId,  $optionValue);
+        return $response ;
     }
 
     public static function orderHistory($orderId){
@@ -516,41 +600,6 @@ class WebService{
     public static function orderHistoryDelete($orderId){
         $response = self::DELETE('orders/history/'.$orderId, []);
         return $response;
-    }
-    public static function brand($brandId=0){
-        $response = self::static('brands/list', []);
-        if(isset($response['data'])){
-            foreach($response['data']['items'] as $brand){
-                if($brand['brandId']==$brandId){
-                    return $brand;
-                }
-            }
-        }
-        return [];
-    }
-    public static function brand_delete($brandId){
-        $response = self::DELETE('brands/'.$brandId, []);
-
-        if($response ){
-            return $response;
-        }
-        return [];
-    }
-    public static function brand_add($body){
-        $response = self::POST('brands',$body);
-        if($response ){
-            return $response;
-        }
-        return [];
-    }
-    public static function brand_edit($brandId,$body){
-
-        $response = self::PUT('brands/'.$brandId,$body);
-
-        if($response ){
-            return $response;
-        }
-        return [];
     }
 
     public static function countries(){
@@ -633,12 +682,16 @@ class WebService{
             'Authorization' => $Authorization,
         ])->post(self::WEBSERVICE_URL.$service, $data);
         //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), self::standartResponse($response, self::WEBSERVICE_URL.$service));
-
         return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
-    static private function PUT($service, $data){
+    static private function PUT($service, $data, $forceAdmin=false){
+        if($forceAdmin){
+            $Authorization = 'Bearer ' . request()->session()->get('SADMINTOKEN', null);
+        } else {
+            $Authorization ='Bearer ' . request()->session()->get('jwtToken', null);
+        }
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . request()->session()->get('jwtToken', null),
+            'Authorization' => $Authorization,
         ])->put(self::WEBSERVICE_URL.$service, $data);
         //dd(self::WEBSERVICE_URL.$service, $response, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), self::standartResponse($response, self::WEBSERVICE_URL.$service));
 
@@ -717,6 +770,8 @@ class WebService{
 
         // $responseData = json_decode($response->body(), true);
         $result['endpoit'] = $endpoit;
+        $result['count'] = isset($responseData['count'])?$responseData['count']:0;
+
         if($response->status()==200 || $response->status()==201){
             if($responseData ){
                 $result['status'] = 1;
@@ -731,7 +786,6 @@ class WebService{
             $result['data'] =  [];
             //$result['errors'] = ['Istek onaylanmadı. Http Kodu: '.$response->status()];
         }
-
         $result['errors'] = isset($responseData['errors'])?$responseData['errors']:$errors;
 
         return $result;

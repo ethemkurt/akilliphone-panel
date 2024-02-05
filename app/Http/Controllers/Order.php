@@ -186,25 +186,11 @@ class Order extends Controller{
             $params['text'] = $search['value'];
             $params['searchFor'] = 'nameSurname';
         }
-        /*if(isset($where['paymentTypeId']) && $where['paymentTypeId']){
-            $params['paymentType'] = $where['paymentTypeId'];
-        }
-        if(isset($where['paymentStatusId']) && $where['paymentStatusId']){
-            $params['paymentStatus'] = $where['paymentStatusId'];
-        }
-        if(isset($where['orderStatusId']) && $where['orderStatusId']){
-            $params['orderStatus'] = $where['orderStatusId'];
-        }
-        if(isset($where['startsAt']) && $where['startsAt']){
-            $params['startsAt'] = $where['startsAt'];
-        }
-        if(isset($where['endsAt']) && $where['endsAt']){
-            $params['endsAt'] = $where['endsAt'];
-        }*/
 
         $response = \WebService::orders($page, $offset, $params);
+
         $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
-        $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
+        $dataTable->setRecordsFiltered(isset($response['filteredCount'])?$response['filteredCount']:0);
         $items = [];
         if($response && isset($response['items'])){
             foreach($response['items'] as $row){

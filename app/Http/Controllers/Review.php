@@ -127,7 +127,7 @@ class Review extends Controller
             'title'=>['title'=>'Yorum', 'className'=>'', 'orderable'=>''],
             'rating'=>['title'=>'Yıldız', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
-            'created_at'=>['title'=>'Tarih', 'className'=>'', 'orderable'=>''],
+            'created_at'=>['title'=>'Tarih', 'className'=>'created-at', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'action-buttons', 'orderable'=>''],
         ]);
         $dataTable->setFiters('Review.datatable-filter', \request()->all());

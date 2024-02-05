@@ -120,7 +120,7 @@ class Question extends Controller
             'product'=>['title'=>'Ürün', 'className'=>'', 'orderable'=>''],
             'question1'=>['title'=>'Soru', 'className'=>'', 'orderable'=>''],
             'status'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
-            'created_at'=>['title'=>'Tarih', 'className'=>'', 'orderable'=>''],
+            'created_at'=>['title'=>'Tarih', 'className'=>'created-at', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'action-buttons', 'orderable'=>''],
         ]);
         $dataTable->setFiters('Question.datatable-filter', \request()->all());

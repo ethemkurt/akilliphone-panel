@@ -1,0 +1,20 @@
+{
+    "categoryId": "new",
+    "parentId": null,
+    "name": "",
+    "image": "",
+    "code": "",
+    "slug": "",
+    "breadcrumb": "",
+    "description": "",
+    "metaTitle": null,
+    "metaDescription": "",
+    "trendyolCategory": "",
+    "trendyolCategoryId": null,
+    "n11Category": "0",
+    "n11CategoryId": null,
+    "rate": 0.00,
+    "isLast": false,
+    "sortOrder": 0,
+    "status": true
+}

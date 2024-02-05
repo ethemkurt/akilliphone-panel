@@ -1,10 +1,25 @@
 
 @extends('layouts/contentLayoutMaster')
 @section('nav-buttons')
-    <x-button-popup-form :title="'Kategori Ekleme'" :text="'Yeni Kategori Ekleme'" :url="route('popup', 'CategoriesSave',)" />
-@endsection
+    <?php
+    if($category){
+        $title = $category['name'].' Alt Kategorisi Kategorisi';
+        $parentId = $category['categoryId'];
+    } else {
+        $title = 'Yeni Kategori';
+        $parentId = 0;
+    }
+    ?>
+    <x-button-popup-form :title="$title" :text="'Yeni Kategori'" :url="route('category.edit', ['categoryId'=>'new', 'parentId'=>$parentId])" />
 
-@section('title', 'Kategori Yönetimi')
+@endsection
+@if($category)
+    @section('title')
+{{$category['name']}} <a class="btn waves-effect p-0 ms-1" href="{{ route('category.child', $category['parentId']?$category['parentId']:'parent') }}"><i class="feather  icon-corner-down-left"></i></a>
+    @endsection
+@else
+    @section('title', 'Kategori Yönetimi')
+@endif
 
 @section('page-style')
     {{-- Page Css files --}}

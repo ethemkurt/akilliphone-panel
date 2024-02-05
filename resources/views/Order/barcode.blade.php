@@ -46,7 +46,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
     <script language="javascript">
-        JsBarcode("#barcode", "{{  $order['orderId'] }}", {
+        JsBarcode("#barcode", "{{  _KargoBarkodu($order['orderId']) }}", {
             height: 40
         } );
         window.print();

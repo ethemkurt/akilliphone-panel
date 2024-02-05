@@ -4,13 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\Order;
-use App\Http\Controllers\Categories;
+use App\Http\Controllers\Category;
+use App\Http\Controllers\Brand;
 use App\Http\Controllers\OrderStatus;
 use App\Http\Controllers\PaymentStatus;
 use App\Http\Controllers\PaymentType;
 use App\Http\Controllers\User;
 use App\Http\Controllers\Product;
-use App\Http\Controllers\BrandManagement;
 use App\Http\Controllers\Popup;
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\Slide;
@@ -21,6 +21,7 @@ use App\Http\Controllers\Attribute;
 use App\Http\Controllers\AttributeValue;
 use App\Http\Controllers\Option;
 use App\Http\Controllers\OptionValue;
+use App\Http\Controllers\Uploader;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,10 @@ Route::post('/check-user', [Auth::class, 'checkUser'])->name('check-user')->midd
 Route::get('/logout', [Auth::class, 'logout'])->name('logout');
 Route::get('/enum', [\Enum::class, 'loadConst']);
 
+Route::group(['prefix'=>'upload','as'=>'upload.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Uploader::class, 'index'])->name('index');
+    Route::post('/cke', [Uploader::class, 'cke'])->name('cke');
+});
 Route::group(['prefix'=>'home','as'=>'home.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Home::class, 'index'])->name('index');
     Route::post('/imageTest', [Home::class, 'imageTest'])->name('imageTest');
@@ -100,30 +105,24 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::post('/brand-management-table', [BrandManagement::class, 'save'])->name('brand-save');
     Route::get('/brand-delete/{brandId}', [BrandManagement::class, 'delete'])->name('brand-delete');
     Route::get('/brand-management', [BrandManagement::class, 'index'])->name('brand-management');
-    Route::get('/categories', [Categories::class, 'index'])->name('categories');
-    Route::get('/categories-table', [Categories::class, 'dataTable'])->name('categories-table');
     Route::get('/data-table', [Product::class, 'dataTable'])->name('data-table');
 });
-Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.token']], function () {
-    Route::get('/', [Settings::class, 'index'])->name('index');
-    Route::get('/enum', [Settings::class, 'enum'])->name('enum');
-
+Route::group(['prefix'=>'product/category','as'=>'category.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Category::class, 'index'])->name('index');
+    Route::get('/child/{categoryId}', [Category::class, 'index'])->name('child');
+    Route::get('/data-table/{categoryId}', [Category::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{categoryId}', [Category::class, 'edit'])->name('edit');
+    Route::post('/save/{categoryId}', [Category::class, 'save'])->name('save');
+    Route::get('/delete/{categoryId}', [Category::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{categoryId}', [Category::class, 'delete'])->name('delete');
 });
-Route::group(['prefix'=>'slide','as'=>'slide.', 'middleware' => ['check.token']], function () {
-    Route::get('/', [Slide::class, 'index'])->name('index');
-    Route::get('/data-table', [Slide::class, 'dataTable'])->name('data-table');
-    Route::get('/new', [Slide::class, 'new'])->name('new');
-    Route::post('/new', [Slide::class, 'newOrder'])->name('newOrder');
-    Route::get('/edit/{orderId}', [Slide::class, 'edit'])->name('edit');
-    Route::post('/edit/{orderId}', [Slide::class, 'editSlide'])->name('editSlide');
-    Route::get('/view/{orderId}', [Slide::class, 'view'])->name('view');
-    Route::post('/delete/{orderId}', [Slide::class, 'delete'])->name('delete');
-});
-Route::group(['prefix'=>'logs','as'=>'logs.', 'middleware' => ['check.token']], function () {
-    Route::get('/', [Logs::class, 'index'])->name('index');
-    Route::get('/data-table', [Logs::class, 'dataTable'])->name('data-table');
-    Route::get('/error', [Logs::class, 'error'])->name('error');
-    Route::get('/error/{logId}', [Logs::class, 'errorView'])->name('error.view');
+Route::group(['prefix'=>'product/brand','as'=>'brand.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Brand::class, 'index'])->name('index');
+    Route::get('/data-table', [Brand::class, 'dataTable'])->name('data-table');
+    Route::get('/edit/{brandId}', [Brand::class, 'edit'])->name('edit');
+    Route::post('/save/{brandId}', [Brand::class, 'save'])->name('save');
+    Route::get('/delete/{brandId}', [Brand::class, 'deleteForm'])->name('delete.form');
+    Route::post('/delete/{brandId}', [Brand::class, 'delete'])->name('delete');
 });
 Route::group(['prefix'=>'product/review','as'=>'review.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Review::class, 'index'])->name('index');
@@ -170,6 +169,27 @@ Route::group(['prefix'=>'product/option','as'=>'option.', 'middleware' => ['chec
     Route::post('/value/{optionId}/save/{optionValueId}', [OptionValue::class, 'save'])->name('value.save');
     Route::get('/value/{optionId}/delete/{optionValueId}', [OptionValue::class, 'deleteForm'])->name('value.delete.form');
     Route::post('/value/{optionId}/delete/{optionValueId}', [OptionValue::class, 'delete'])->name('value.delete');
+});
+Route::group(['prefix'=>'slide','as'=>'slide.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Slide::class, 'index'])->name('index');
+    Route::get('/data-table', [Slide::class, 'dataTable'])->name('data-table');
+    Route::get('/new', [Slide::class, 'new'])->name('new');
+    Route::post('/new', [Slide::class, 'newOrder'])->name('newOrder');
+    Route::get('/edit/{orderId}', [Slide::class, 'edit'])->name('edit');
+    Route::post('/edit/{orderId}', [Slide::class, 'editSlide'])->name('editSlide');
+    Route::get('/view/{orderId}', [Slide::class, 'view'])->name('view');
+    Route::post('/delete/{orderId}', [Slide::class, 'delete'])->name('delete');
+});
+Route::group(['prefix'=>'logs','as'=>'logs.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Logs::class, 'index'])->name('index');
+    Route::get('/data-table', [Logs::class, 'dataTable'])->name('data-table');
+    Route::get('/error', [Logs::class, 'error'])->name('error');
+    Route::get('/error/{logId}', [Logs::class, 'errorView'])->name('error.view');
+});
+Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Settings::class, 'index'])->name('index');
+    Route::get('/enum', [Settings::class, 'enum'])->name('enum');
+
 });
 
 

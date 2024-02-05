@@ -78,7 +78,7 @@ class Popup extends Controller
                     if($result){
                         return _ReturnSucces('', '<i class="fa fa-check text-success"></i> '.$result['html']);
                     }
-                    return _ReturnSucces('', '<i class="fa fa-check text-success"></i> Sipariş Durumu Güncellendi');
+                    return _ReturnSucces('', '<i class="fa fa-check text-success"></i> <strong>'.$order['orderCustomer']['firstName'].' '.$order['orderCustomer']['lastName'].'</strong> Sipariş Durumu Güncellendi');
                 }
             }
         }

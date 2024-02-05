@@ -29,6 +29,9 @@ function getProductImageUrl($url, $w=false, $h=false, $cdnx=false){
     return $result;
 
 }
+function _KargoBarkodu($orderId){
+    return 1000000000000 + (int)$orderId;
+}
 function _HumanDate($date = NULL, $format = 'd.m.Y') {
     if ($date === NULL) $date = date('Y-m-d');
     return date($format, strtotime($date));
@@ -116,8 +119,8 @@ function _CdnImageUrl($url, $w=false, $h=false, $cdnx=false ){
     } else{
         $sub = env('CDN_URL');
     }
-    if(empty($w)) $w=160;
-    if(empty($h)) $h=160;
+    if(empty($w)) $w=40;
+    if(empty($h)) $h=40;
     if($w && $h && isset($ports[$port]))
     {
         $result = $sub.$ports[$port].'/'.$w.'x'.$h.'/'.(implode('/',$parts));
