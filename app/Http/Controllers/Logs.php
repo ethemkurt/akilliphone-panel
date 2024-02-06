@@ -32,8 +32,14 @@ class Logs extends Controller
         $filter['offset'] = $request->input('length', 10);
         $filter['start'] = $request->input('start', 0);
         $filter['page'] = ceil($filter['start']/$filter['offset']);
-        $rows = FailedLogs::orderBy('id', 'DESC')->limit($filter['offset'])->offset( $filter['start'])->get();
-        $totalCount = FailedLogs::count();
+        $where = [];
+        $search = $request->input('search', []);
+        if(isset($search['value']) && $search['value']){
+            $where[] = ['message', 'LIKE', '%'.$search['value'].'%'];
+        }
+
+        $rows = FailedLogs::where($where)->orderBy('id', 'DESC')->limit($filter['offset'])->offset( $filter['start'])->get();
+        $totalCount = FailedLogs::where($where)->count();
         $dataTable->setRecordsTotal(isset($totalCount)?$totalCount:0);
         $dataTable->setRecordsFiltered(isset($totalCount)?$totalCount:0);
         $items = [];
@@ -66,7 +72,7 @@ class Logs extends Controller
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
             'orderNumber'=>['title'=>'', 'className'=>'sort-order', 'orderable'=>''],
-            'module'=>['title'=>'Kayanak', 'className'=>'', 'orderable'=>''],
+            'module'=>['title'=>'Kaynak', 'className'=>'', 'orderable'=>''],
             'data'=>['title'=>'Bilgiler', 'className'=>'', 'orderable'=>''],
             'created_at'=>['title'=>'Tarih', 'className'=>'created-at', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],
