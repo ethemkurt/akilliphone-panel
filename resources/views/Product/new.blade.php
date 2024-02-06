@@ -710,6 +710,278 @@
 
                              </div>
 
+
+                             <div class="card-body pazaryeri" id="n11" style="display: none">
+                                 <div class="col-12">
+                                     <div class="card-header d-flex justify-content-between align-items-center">
+                                         <h5 class="card-title m-0">N11 Ayarları</h5>
+
+                                     </div>
+                                     <hr>
+
+
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">N11 Ürün Adı : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="N11 Ürün Adı">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">N11 Ürün Fiyatı : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="N11 Ürün Fiyatı">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">N11 Sabit Fiyatı : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="N11 Sabit Fiyatı">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">N11 İndirim Etiket Tutarı : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="N11 İndirim Etiket Tutarı">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">N11 Birleşme Rengi : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="Ürün Hangi Renkte Birleşsin">
+                                             </div>
+                                         </div>
+                                     </div>
+
+
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çoklu İsimler Seçeneğe Dönüşsün</label></div>
+                                             <div class="col-sm-4">
+
+
+                                                 <select id="" class="select-with-name form-select" data-nametarget="" name="">
+                                                     <option value="">Evet </option>
+                                                     <option value="">Hayır </option>
+
+
+                                                 </select>
+                                             </div>
+                                         </div>
+                                     </div>
+
+
+
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">N11 Komisyon % : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="N11 Komisyon %">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">OEM : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="Oem">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Kritik Stok Adedi : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="">
+                                             </div>
+                                         </div>
+                                     </div>
+
+
+
+
+
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">N11'de Yayınlansın : </label></div>
+                                             <div class="col-sm-4">
+
+
+                                                 <select id="" class="select-with-name form-select" data-nametarget="" name="">
+                                                     <option></option>
+                                                     <option >Evet</option>
+                                                     <option >Hayır</option>
+
+
+                                                 </select>
+                                             </div>
+                                         </div>
+                                     </div>
+
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">N11 Katalog Id : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="N11 Katalog Id ">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">N11 Kategorisi : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="Kategori Kodu ">
+                                             </div>
+                                         </div>
+                                     </div>
+
+                                     <hr>
+
+                                     <div class="col-12" style="margin-top: 20px;">
+
+                                         <a href=" javascript:void(0)" ><button type="button" class="btn btn-info btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">
+                                                 <i>N11 Bilgilerini Kaydet</i></button>
+                                         </a>
+                                         <a href=" javascript:void(0)" ><button type="button" class="btn btn-success btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">
+                                                 <i>N11'de Yenile</i></button>
+                                         </a>
+                                         <a href=" javascript:void(0)" ><button type="button" class="btn btn-danger btn-popup-form"style="margin-top: 10px;float:right ; margin-left: 10px;background-color: #58c9f3">
+                                                 <i>N11'de Güncelle</i></button>
+                                         </a>
+
+
+                                     </div>
+
+                                 </div>
+
+                             </div>
+
+
+                             <div class="card-body pazaryeri" id="pazarama" style="display: none">
+                                 <div class="col-12">
+                                     <div class="card-header d-flex justify-content-between align-items-center">
+                                         <h5 class="card-title m-0">Pazarama Ayarları</h5>
+
+                                     </div>
+                                     <hr>
+
+
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Gördüm Aldım Ürün Adı : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="Gördüm Aldım  Ürün Adı">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Gördüm Aldım Komisyon % : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="Gördüm Aldım  Komisyon %">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Gördüm Aldım  İndirim Etiket Tutarı : </label></div>
+                                             <div class="col-sm-4">
+                                                 <input type="text" class="form-control" name="" placeholder="Gördüm Aldım  İndirim Etiket Tutarı">
+                                             </div>
+                                         </div>
+                                     </div>
+
+
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Gördüm Aldım 'da Yayınlansın </label></div>
+                                             <div class="col-sm-4">
+
+
+                                                 <select id="" class="select-with-name form-select" data-nametarget="" name="">
+                                                     <option value="">Evet </option>
+                                                     <option value="">Hayır </option>
+
+
+                                                 </select>
+                                             </div>
+                                         </div>
+                                     </div>
+
+                                     <hr>
+
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Gördüm Aldım  Marka Seçimi </label></div>
+                                             <div class="col-sm-4">
+
+
+                                                 <select id="" class="select-with-name form-select" data-nametarget="" name="">
+                                                     <option></option>
+                                                     <option value="f3a08ff4-13d1-4e83-abf8-97ff3005913a"> - - </option>
+                                                     <option value="0b758736-cb49-4d79-a578-08d97dabde7e">Hawell</option>
+                                                     <option value="67fd106e-ef77-4982-43d3-08d97e850492">Gor</option>
+                                                     <option value="c99da465-55cb-4660-a577-08d97dabde7e">Duxducis</option>
+                                                     <option value="890d337d-2e4d-482d-a576-08d97dabde7e">Mijobs</option>
+                                                     <option value="8c8c4bac-9033-4923-90ff-47aa8aafabc2">Ally</option>
+                                                     <option value="f3a08ff4-13d1-4e83-abf8-97ff3005913a">ally mobile</option>
+                                                     <option value="6abf51ac-b5a0-4642-8a3b-f6a666e05a1a">Baseus</option>
+                                                     <option value="947343c3-06b0-4c73-9883-6568d88a3ac2">Plextone</option>
+                                                     <option value="2b75d62f-bcae-44e4-9781-7fdcb5a3707f">Kuulaa</option>
+                                                     <option value="703735bc-04ad-4740-97fa-e56ec42ccff4">Northbayou</option>
+                                                     <option value="f676f1bc-435c-4660-9cd0-2939b54f967e">Puluz</option>
+                                                     <option value="fe97153e-bd79-49df-8167-667deb5641d0">Memo</option>
+                                                     <option value="c99da465-55cb-4660-a577-08d97dabde7e">Duxducis</option>
+                                                     <option value="cae92adf-aaf7-42b0-8720-3fb3859e7c5e">Ezere</option>
+                                                     <option value="1fd030d8-f55f-4589-865d-798a163aabfb">Floveme</option>
+                                                     <option value="2dfa454f-6934-4e04-97d1-73754e385b12">USAMS</option>
+                                                     <option value="2e72717f-3b97-4a07-b86c-a505d354dc4a">Uslion</option>
+
+
+                                                 </select>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Gördüm Aldım  Kategorisi </label></div>
+                                             <div class="col-sm-4">
+
+
+                                                 <select id="" class="select-with-name form-select" data-nametarget="" name="">
+                                                     <option></option>
+                                                     <option value="">Kategori Seçiniz</option><option value="7fdb3777-613b-434a-8c6f-00de25cfe2ef" data-leaf="0" data-tree="">Kitap, Kırtasiye, Hobi, Ofis</option><option value="e3104621-4c09-4428-a0e3-03d88fe684ee" data-leaf="0" data-tree="">Elektronik</option><option value="583fdcb9-f33a-4b4d-8165-14b730c826b3" data-leaf="0" data-tree="">Oyun, Konsol ve Dijital Servisler</option><option value="892c16ef-6f4b-40b6-a250-204a4363148a" data-leaf="0" data-tree="">Ev, Yaşam, Yapı Market</option><option value="dce1de0b-840b-43e4-9aa5-3837d94835b4" data-leaf="0" data-tree="">Moda</option><option value="f0d9e9df-8ade-43ec-be98-68716b7bb742" data-leaf="0" data-tree="">Ayakkabı, Çanta ve Aksesuar</option><option value="390bcbfb-83c2-42e6-b63d-6a2e745f6d85" data-leaf="0" data-tree="">Kişisel Bakım ve Kozmetik</option><option value="d0c03783-8809-4675-8e29-a5467fa205f0" data-leaf="0" data-tree="">Otomobil, Motosiklet ve Aksesuarları</option><option value="5b4aea58-4a3d-41b8-84bb-a5eaf69ea252" data-leaf="0" data-tree="">Spor ve Outdoor</option><option value="8d46d6df-82f3-491c-9730-e5576fab651a" data-leaf="0" data-tree="">Süpermarket</option><option value="0ad99e6f-25fd-4e90-9e50-e8bd315cd02c" data-leaf="0" data-tree="">Anne Bebek</option><option value="06df4534-b915-4d85-990b-f374b2a6d27f" data-leaf="0" data-tree="">Cep Telefonu ve Aksesuar</option><option value="1787" data-leaf="1" data-tree="">0</option>
+
+
+                                                 </select>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-12" style="margin-top: 20px;">
+
+                                         <a href=" javascript:void(0)" ><button type="button" class="btn btn-info btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">
+                                                 <i>G&A Bilgilerini Kaydet</i></button>
+                                         </a>
+                                         <a href=" javascript:void(0)" ><button type="button" class="btn btn-success btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">
+                                                 <i>G&A Yayınla</i></button>
+                                         </a>
+
+
+
+                                     </div>
+
+                                 </div>
+
+                             </div>
+
                          </div>
                      </div>
                  </div>
