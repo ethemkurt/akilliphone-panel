@@ -62,7 +62,7 @@ class User extends Controller
                 $user['phoneNumber'] =  $user['telefon'];
                 $user['userName'] =  $user['email'];
                 $user['id'] = $user['userId'];
-                if($user['password']=='nochange'){
+                if(isset($user['password']) && $user['password']=='nochange'){
                     unset($user['password']);
                 }
 

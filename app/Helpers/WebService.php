@@ -415,6 +415,7 @@ class WebService{
         return $response ;
     }
     public static function userEdit($user){
+        //dd(json_encode($user, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
         $response = self::PUT( 'user',  $user);
         return $response ;
     }
