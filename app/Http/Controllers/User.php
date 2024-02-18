@@ -42,7 +42,7 @@ class User extends Controller
             $user['birthDate'] =  date('Y-m-d H:i:s');
             if($user['userId']=='new'){
                 $user['userId'] = null;
-                $user['phoneNumber'] =  $user['telefon'];
+                if(empty($user['phoneNumber'])) $user['phoneNumber'] =  $user['telefon'];
                 $user['userName'] =  $user['email'];
                 $response = \WebService::userNew($user, $role);
                 if($response){
@@ -59,7 +59,7 @@ class User extends Controller
                     }
                 }
             } else{
-                $user['phoneNumber'] =  $user['telefon'];
+                //$user['phoneNumber'] =  $user['telefon'];
                 $user['userName'] =  $user['email'];
                 $user['id'] = $user['userId'];
                 if(isset($user['password']) && $user['password']=='nochange'){
