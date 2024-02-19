@@ -11,7 +11,10 @@ class Settings extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request ){
-        $data = [];
+        return $this->general($request, 'general');
+    }
+    public function general(Request $request, $group='general' ){
+        $data['group'] = $group;
         return view('Settings.index', $data);
     }
     public function enum(Request $request ){

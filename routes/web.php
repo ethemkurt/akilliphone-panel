@@ -188,6 +188,8 @@ Route::group(['prefix'=>'logs','as'=>'logs.', 'middleware' => ['check.token']], 
 });
 Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Settings::class, 'index'])->name('index');
+    Route::get('/general', [Settings::class, 'general'])->name('general');
+    Route::get('/general/{group}', [Settings::class, 'general'])->name('general-group');
     Route::get('/enum', [Settings::class, 'enum'])->name('enum');
 
 });
