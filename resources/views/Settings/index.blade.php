@@ -10,22 +10,30 @@
 @section('content')
     <!-- Dashboard Ecommerce Starts -->
     <section id="settings">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-pills flex-column flex-md-row mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light @if($group=='general') active @endif" href="{{ route('settings.general-group', 'general') }}"><i data-feather="settings"></i> Genel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light @if($group=='local') active @endif" href="{{ route('settings.general-group', 'local') }}"><i data-feather="settings"></i> Bölgesel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light @if($group=='shipping') active @endif" href="{{ route('settings.general-group', 'shipping') }}"><i data-feather="settings"></i> Kargo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light @if($group=='mng') active @endif" href="{{ route('settings.general-group', 'mng') }}"><i data-feather="settings"></i> Mng</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="row match-height">
 
             <!-- Statistics Card -->
             <div class="col-12">
                 <div class="card card-statistics">
-                    <div class="card-header">
-                        <h4 class="card-title">Ayarlar</h4>
-                        <div class="d-flex align-items-center">
-                            <p class="card-text font-small-2 me-25 mb-0">Temel Ayarlar</p>
-                        </div>
-                    </div>
-                    <div class="card-body statistics-body">
-                        <div class="row">
-
-                        </div>
-                    </div>
+                    @include("Settings.groups.".$group)
                 </div>
             </div>
             <!--/ Statistics Card -->

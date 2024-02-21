@@ -44,26 +44,26 @@
                     <label class="col-form-label" for="name">Kullanıcı Epostası</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" id="email" required class="form-control" name="user[email]" value="{{isset($user['email'])?$user['email']:''}}" placeholder="Kullanıcı Epostası giriniz">
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="mb-1 row">
-                <div class="col-sm-3">
-                    <label class="col-form-label" for="name">Kullanıcı Şifresi</label>
-                </div>
-                <div class="col-sm-8">
-                    <div class="input-group">
-                        <input type="password" id="password" required class="form-control" name="user[password]" value="{{isset($user['password'])?$user['password']:'nochange'}}" placeholder="Kullanıcı Şifresi giriniz">
-                        <span id="generate-password" class="input-group-text cursor-pointer"><i class="fa fa-lightbulb"></i></span>
-                        <span id="show-password" class="input-group-text cursor-pointer"><i class="fa fa-eye"></i></span>
-                    </div>
-
+                    <input readonly type="text" id="email" required class="form-control" name="user[email]" value="{{isset($user['email'])?$user['email']:''}}" placeholder="Kullanıcı Epostası giriniz">
                 </div>
             </div>
         </div>
         @if(isset($user['id']) && $user['id']=='new')
+            <div class="col-12">
+                <div class="mb-1 row">
+                    <div class="col-sm-3">
+                        <label class="col-form-label" for="name">Kullanıcı Şifresi</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <input type="password" id="password" required class="form-control" name="user[password]" value="{{isset($user['password'])?$user['password']:'nochange'}}" placeholder="Kullanıcı Şifresi giriniz">
+                            <span id="generate-password" class="input-group-text cursor-pointer"><i class="fa fa-lightbulb"></i></span>
+                            <span id="show-password" class="input-group-text cursor-pointer"><i class="fa fa-eye"></i></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         <div class="col-12">
             <div class="mb-1 row">
                 <div class="col-sm-3">
