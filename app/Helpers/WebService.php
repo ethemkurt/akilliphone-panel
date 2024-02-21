@@ -112,9 +112,17 @@ class WebService{
         return [];
     }
     public static function product($productId){
-        $response = self::GET('orders/'.$productId, []);
+        $response = self::GET('products/'.$productId, []);
         if($response['data'] ){
             return $response['data'];
+        }
+        return [];
+    }
+    public static function addProduct( $product){
+        $response = self::POST('products', $product, FORCEADMIN);
+
+        if($response ){
+            return $response;
         }
         return [];
     }
@@ -201,6 +209,7 @@ class WebService{
         }
         return [];
     }
+
     public static function brandDelete($brandId){
         $response = self::DELETE('brands/'.$brandId, [], FORCEADMIN);
         if($response ){
@@ -225,6 +234,19 @@ class WebService{
             $response['data']['items'] = $items;
             $response['data']['totalCount'] = count($items);
             return  $response['data'];
+        }
+        return [];
+    }
+    public static function categoriess($page=1){
+        $page = max(1, (int)$page);
+        $params['page'] = $page;
+        $params['offset'] =250;
+
+        $response = self::GET('categories', $params);
+
+        if($response['data']){
+
+            return  $response['data']['items'];
         }
         return [];
     }
