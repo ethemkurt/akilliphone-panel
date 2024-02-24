@@ -210,6 +210,7 @@ class Order extends Controller{
                 $items[] = $item;
             }
         }
+
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
@@ -239,8 +240,8 @@ class Order extends Controller{
        }
     }
     private function _format_createdAt($item){
-        $html = $item['orderId'];
-        $html .= '<br><small>'._HumanDate($item['createdAt']).'</small>';
+        $html = " ";
+        $html .= _HumanDate($item['createdAt']);
         return $html;
     }
     private function _format_paymentTypeId($item){
@@ -283,8 +284,9 @@ class Order extends Controller{
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'Sipariş No', 'className'=>'sort-order', 'orderable'=>''],
-            'createdAt'=>['title'=>'No', 'className'=>'', 'orderable'=>''],
+//            'orderNumber'=>['title'=>'Sipariş No', 'className'=>'sort-order', 'orderable'=>''],
+            'orderId'=>['title'=>'Sipariş Id', 'className'=>'', 'orderable'=>''],
+            'createdAt'=>['title'=>'Tarih', 'className'=>'', 'orderable'=>''],
             'firstName'=>['title'=>'Müşteri', 'className'=>'', 'orderable'=>''],
             'paymentTypeId'=>['title'=>'Ödeme Türü', 'className'=>'', 'orderable'=>''],
             'orderStatusId'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
