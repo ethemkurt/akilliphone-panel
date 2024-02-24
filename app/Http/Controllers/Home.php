@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 class Home extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function tasarim(Request $request ){
+        return view('Home.tasarim');
+    }
     public function index(Request $request ){
         $data['orderCount'] = 0;
         $orders = \WebService::orders();

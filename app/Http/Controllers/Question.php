@@ -160,6 +160,6 @@ class Question extends Controller
     }
 
     private function _format_actions($row){
-        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('question.edit', $row['questionId']).'"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('question.delete.form', $row['questionId']).'"><i class="feather icon-trash text-danger"></i></a>';
+        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('question.edit', $row['questionId']).'"><i class="menu-icon tf-icons ti ti-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('question.delete.form', $row['questionId']).'"><i class="menu-icon tf-icons ti ti-trash"></i></a>';
     }
 }

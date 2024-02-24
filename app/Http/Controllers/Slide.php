@@ -98,11 +98,11 @@ class Slide extends Controller
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="'.$editUrl.'">
-                            <i class="feather icon-edit"></i>
+                            <i class="menu-icon tf-icons ti ti-edit"></i>
                             <span>Düzenle</span>
                         </a>
                         <button class="dropdown-item btn-popup-form" data-url="'.$deleteUrl.'">
-                            <i class="feather icon-trash-2"></i>
+                            <i class="menu-icon tf-icons ti ti-trash"></i>
                             <span>Delete</span>
                         </button>
                     </div>

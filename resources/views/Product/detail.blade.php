@@ -287,7 +287,7 @@
                                                 <td><span>Deneme2</span></td>
                                                 <td><span class="text-body">Deneme3</span></td>
 
-                                                <td><button class="btn btn-primary delete-order-item"><i class="feather icon-trash-2"></i></button></td>
+                                                <td><button class="btn btn-primary delete-order-item"><i class="menu-icon tf-icons ti ti-trash"></i></button></td>
                                             </tr>
 
                                         </tbody>

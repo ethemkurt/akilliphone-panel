@@ -26,5 +26,5 @@ $productKey = time();
 
 
     </td>
-    <td><button class="btn btn-primary delete-order-item"><i class="feather icon-trash-2"></i></button></td>
+    <td><button class="btn btn-primary delete-order-item"><i class="menu-icon tf-icons ti ti-trash"></i></button></td>
 </tr>

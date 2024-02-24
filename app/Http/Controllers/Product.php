@@ -56,7 +56,7 @@ class Product extends Controller
     return $dataTable->toJson();
 }
     private function _format_actions($item){
-        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="#"><i class="feather icon-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="#"><i class="feather icon-trash text-danger"></i></a>';
+        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="#"><i class="menu-icon tf-icons ti ti-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="#"><i class="menu-icon tf-icons ti ti-trash"></i></a>';
     }
     private function _format_price($item){
         if(isset($item['variants'][0])){

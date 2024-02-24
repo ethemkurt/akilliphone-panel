@@ -25,6 +25,32 @@ class PaymentType extends \Enum{
 
 
 
+    static function icon($const=null){
+        $items = [
+            self::KREDIKARTI=> _Asset('img/icons/payments/mastercard.png'),
+            self::HAVALE=> _Asset('img/icons/payments/cash.png'),
+            self::KAPIDANAKIT=> _Asset('img/icons/payments/cash.png'),
+            self::KAPIDAKREDIKARTI=> _Asset('img/icons/payments/cash.png'),
+            self::MOBIL=> _Asset('img/icons/payments/cash.png'),
+            self::PAYPAL=> _Asset('img/icons/payments/cash.png'),
+            self::PARCALI=> _Asset('img/icons/payments/cash.png'),
+            self::BAKIYE=> _Asset('img/icons/payments/cash.png'),
+            self::ELDEN=> _Asset('img/icons/payments/cash.png'),
+            self::HESAPTAN=> _Asset('img/icons/payments/cash.png'),
+            self::N11=> _Asset('img/icons/payments/cash.png'),
+            self::GG=> _Asset('img/icons/payments/cash.png'),
+            self::HB=> _Asset('img/icons/payments/cash.png'),
+            self::AMAZON=> _Asset('img/icons/payments/cash.png'),
+            self::HBBASEUS=> _Asset('img/icons/payments/cash.png'),
+            self::N11BASEUS=> _Asset('img/icons/payments/cash.png'),
+            self::TRENDYOL=> _Asset('img/icons/payments/cash.png'),
+            self::GGBASEUS=> _Asset('img/icons/payments/cash.png'),
+            self::GORDUMALDIMISBANKASI=> _Asset('img/icons/payments/cash.png'),
+            self::CICEKSEPETI=> _Asset('img/icons/payments/cash.png'),
+            self::MOTOKURYE=> _Asset('img/icons/payments/cash.png'),
+        ];
+        return isset($items[$const])?$items[$const]:$const;
+    }
     static function colors($class=null){
         return [];
     }

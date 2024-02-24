@@ -75,8 +75,8 @@ class PaymentType extends Controller{
         $edit = route('popup', 'PaymentType').'?paymentTypeId='.$item['paymentTypeId'];
         $delete = route('order.payment-type-delete', $item['paymentTypeId']);
         $html = '';//poupFormButton($url, '', '', '');
-        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="feather icon-file-text"></i></a>';
-        $html .= '<a class="confirm-popup btn waves-effect p-0 ms-1" href="'.$delete.'" title="\''.$item['name'].'\' silinsin mi?"><i class="feather icon-trash text-danger"></i></a> ';
+        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="menu-icon tf-icons ti ti-file-text"></i></a>';
+        $html .= '<a class="confirm-popup btn waves-effect p-0 ms-1" href="'.$delete.'" title="\''.$item['name'].'\' silinsin mi?"><i class="menu-icon tf-icons ti ti-trash"></i></a> ';
         return $html;
     }
     private function dataTableParams(){

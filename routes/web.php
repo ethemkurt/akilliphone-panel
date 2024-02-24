@@ -47,6 +47,7 @@ Route::get('/login', [Auth::class, 'login'])->name('login')->middleware(['non.re
 Route::post('/check-user', [Auth::class, 'checkUser'])->name('check-user')->middleware(['non.registered']);
 Route::get('/logout', [Auth::class, 'logout'])->name('logout');
 Route::get('/enum', [\Enum::class, 'loadConst']);
+Route::get('/tasarim', [Home::class, 'tasarim']);
 
 Route::group(['prefix'=>'upload','as'=>'upload.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Uploader::class, 'index'])->name('index');
@@ -98,10 +99,9 @@ Route::group(['prefix'=>'user','as'=>'user.', 'middleware' => ['check.token']], 
     Route::get('/get-user-data', [User::class, 'getUserData'])->name('get-user-data');
 });
 Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.token']], function () {
-    Route::get('/list', [Product::class, 'index'])->name('index');
+    Route::get('/', [Product::class, 'index'])->name('index');
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
-    Route::get('/new/{productId}', [Product::class, 'new'])->name('new');
-    Route::post('/new', [Product::class, 'addProduct'])->name('addProduct');
+    Route::get('/new', [Product::class, 'new'])->name('new');
     Route::get('/brand-management-table', [BrandManagement::class, 'dataTable'])->name('brand-management-table');
     Route::post('/brand-management-table', [BrandManagement::class, 'save'])->name('brand-save');
     Route::get('/brand-delete/{brandId}', [BrandManagement::class, 'delete'])->name('brand-delete');
@@ -192,7 +192,6 @@ Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.to
     Route::get('/general', [Settings::class, 'general'])->name('general');
     Route::get('/general/{group}', [Settings::class, 'general'])->name('general-group');
     Route::get('/enum', [Settings::class, 'enum'])->name('enum');
-
 });
 
 

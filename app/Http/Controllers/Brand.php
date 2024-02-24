@@ -131,8 +131,8 @@ class Brand extends Controller
     private function _format_action($item){
         $edit = route('brand.edit', ['brandId'=>$item['brandId'], 'parentId'=>$item['parentId']]);
         $html = '';
-        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="feather icon-file-text"></i></a>';
-        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('brand.delete.form', $item['brandId']).'"><i class="feather icon-trash text-danger"></i></a> ';
+        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="menu-icon tf-icons ti ti-file-text"></i></a>';
+        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('brand.delete.form', $item['brandId']).'"><i class="menu-icon tf-icons ti ti-trash"></i></a> ';
         return '<div class="text-end">'.$html.'</div>';
     }
     private function dataTableParams(){

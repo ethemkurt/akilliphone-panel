@@ -41,7 +41,7 @@ function _FormatPrice($price, $currency='TL'){
     return $price.''.$currency;
 }
 function _Asset($file){
-    return url($file).'?_v='.time();
+    return url('assets/'.$file).'?_v='.time();
 }
 function _Image($file, $w='', $h=''){
     return '<img src="'._Asset('images/'.$file).'" width="'.$w.'" height="'.$h.'" >';
@@ -140,4 +140,24 @@ function validateRole($required=null){
         return true;
     }
     return false;
+}
+function _ProfileUserAvatar($user){
+
+    $firstname = mb_substr($user['firstName'],0,1);
+    $lastname = mb_substr($user['lastName'],0,1);
+
+    return '<a class="nav-link dropdown-toggle hide-arrow show" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
+              <div class="avatar avatar-online">
+               <span class="avatar-initial rounded-circle  bg-label-dark">'.$firstname.$lastname.'</span></div>
+            </a>';
+}
+function _OrderUserAvatar($order){
+    $firstname = $order['shippingAddress']['firstname'];
+    $lastname = $order['shippingAddress']['lastname'];
+    $email = $order['orderCustomer']?$order['orderCustomer']['email']:'';
+    return _UserAvatar($firstname, $lastname, $email, 'javascript:void(0)');
+}
+function _UserAvatar($firstname, $lastname, $email, $url){
+
+    return '<div class="d-flex justify-content-start align-items-center order-name text-nowrap"><div class="avatar-wrapper"><div class="avatar me-2"><span class="avatar-initial rounded-circle  bg-label-dark">'.mb_substr($firstname,0,1).mb_substr($lastname,0,1).'</span></div></div><div class="d-flex flex-column"><h6 class="m-0"><a href="'.$url.'" class="text-body">'.$firstname.' '.$lastname.'</a></h6><small class="text-muted">'.$email.'</small></div></div>';
 }

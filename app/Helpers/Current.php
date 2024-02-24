@@ -17,6 +17,7 @@ class Current{
         } catch (\Exception $ex){
             $result = $ex->getMessage();
         }
+
         return $result;
     }
 }

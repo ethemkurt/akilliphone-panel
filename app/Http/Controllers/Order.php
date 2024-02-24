@@ -213,6 +213,14 @@ class Order extends Controller{
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
+    private function _format_checkBox($item) {
+        return '<input type="checkbox" class="form-check-input">';
+    }
+    private function _format_orderStatusId($item) {
+        return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\OrderStatus::color($item['orderStatusId']).'" style="white-space: nowrap;">'.\OrderStatus::__($item['orderStatusId']).'</h6>';
+
+    }
+    /*
     private function _format_orderStatusId($item) {
         //return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\OrderStatus::color($item['orderStatusId']).'"><i class="ti ti-circle-filled fs-tiny me-2"></i>'.\OrderStatus::__($item['orderStatusId']).'</h6>';
 
@@ -226,7 +234,7 @@ class Order extends Controller{
                 <button class="input-group-text btn-change-order-state" data-orderid="'.$item['orderId'].'" id="basic-addon-search1"><i class="fa fa-check"></i>
                 </button>
             </div>';
-    }
+    } */
     private function _format_orderTotal($item){
         return  _FormatPrice($item['orderTotal']);
     }
@@ -235,17 +243,26 @@ class Order extends Controller{
     }
     private function _format_firstName($item){
        if($item['shippingAddress']){
-           return '<div class="d-flex justify-content-start align-items-center order-name"><div class="d-flex flex-column"><h6 class="m-0">'.$item['shippingAddress']['firstname'].' '.$item['shippingAddress']['lastname'].'</h6><small class="text-muted">'.($item['orderCustomer']?$item['orderCustomer']['email']:'').'</small></div></div>';
+           return _OrderUserAvatar($item);
        }
     }
-    private function _format_createdAt($item){
+    private function _format_orderId($item){
+        //$html = $item['orderId'];
         $html = $item['orderId'];
-        $html .= '<br><small>'._HumanDate($item['createdAt']).'</small>';
         return $html;
     }
-    private function _format_paymentTypeId($item){
-        return '<h6 class="mb-0 align-items-left d-flex w-px-100 text-'.\PaymentType::color($item['paymentTypeId']).'">'.\PaymentType::__($item['paymentTypeId']).'</h6><small>'.\PaymentStatus::__($item['paymentStatusId']).'</small>';
+    private function _format_createdAt($item){
+        //$html = $item['orderId'];
+        $html = _HumanDate($item['createdAt']);
+        return $html;
+    }
+    private function _format_paymentStatusId($item){
+        return '<h6 class="mb-0 align-items-left d-flex w-px-100 text-'.\PaymentStatus::color($item['paymentStatusId']).'">'.\PaymentStatus::__($item['paymentStatusId']).'</h6>';
 
+    }
+    private function _format_paymentTypeId($item){
+        return
+'<div class="d-flex align-items-center text-nowrap"><img src="'.\PaymentType::icon($item['paymentTypeId']).'" alt="mastercard" class="me-2" width="16"><span class="text-'.\PaymentType::color($item['paymentTypeId']).'">'.\PaymentType::__($item['paymentTypeId']).'</span></div>';
     }
     private function _format_actions($item){
         $barcodeUrl = route('order.barcode', $item['orderId']);
@@ -258,19 +275,19 @@ class Order extends Controller{
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="'.$viewUrl.'">
-                            <i class="feather icon-file-text"></i>
+                            <i class="menu-icon tf-icons ti ti-file-text"></i>
                             <span>Görüntüle</span>
                         </a>
                         <a class="dropdown-item" href="'.$editUrl.'">
-                            <i class="feather icon-edit"></i>
+                            <i class="menu-icon tf-icons ti ti-edit"></i>
                             <span>Düzenle</span>
                         </a>
                         <a class="dropdown-item" href="'.$barcodeUrl.'" target="_blank">
-                            <i class="feather icon-edit"></i>
+                            <i class="menu-icon tf-icons ti ti-barcode"></i>
                             <span>Barkod Yazdır</span>
                         </a>
                         <button class="dropdown-item btn-popup-form" data-url="'.$deleteUrl.'">
-                            <i class="feather icon-trash-2"></i>
+                            <i class="menu-icon tf-icons ti ti-trash"></i>
                             <span>Sil</span>
                         </button>
                     </div>
@@ -283,13 +300,14 @@ class Order extends Controller{
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
-            'orderNumber'=>['title'=>'Sipariş No', 'className'=>'sort-order', 'orderable'=>''],
-            'createdAt'=>['title'=>'No', 'className'=>'', 'orderable'=>''],
+            'checkBox'=>['title'=>'', 'className'=>'checkbox', 'orderable'=>''],
+            'orderId'=>['title'=>'No', 'className'=>'', 'orderable'=>''],
+            'createdAt'=>['title'=>'Tarihi', 'className'=>'', 'orderable'=>''],
             'firstName'=>['title'=>'Müşteri', 'className'=>'', 'orderable'=>''],
-            'paymentTypeId'=>['title'=>'Ödeme Türü', 'className'=>'', 'orderable'=>''],
+            'paymentStatusId'=>['title'=>'Ödemesi', 'className'=>'', 'orderable'=>''],
             'orderStatusId'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
-            'shippingCompany'=>['title'=>'Kargo', 'className'=>'', 'orderable'=>''],
-            'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
+            'paymentTypeId'=>['title'=>'Ödeme Tipi', 'className'=>'', 'orderable'=>''],
+            //'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
         $dataTable->setFiters('Order.datatable-filter', \request()->all());

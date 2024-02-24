@@ -4,27 +4,30 @@ $dt = isset($dataTable)?$dataTable:null;
 @if($dt)
     <style>
         .dataTables_wrapper .row:first-child{
-            padding: 1.5rem 1.5rem!important;
+            padding: 0px!important;
         }
         .dataTables_wrapper .row:last-child{
-            padding: 1.5rem 1.5rem!important;
+            padding: 0.5rem 1.5rem!important;
         }
         .action-buttons{
             text-align: right;
         }
     </style>
     {!!  $dt->filters() !!}
-    <div class="card-datatable table-responsive pt-0">
-        <table id="{{ $dt->tableId() }}" class="table-{{ $dt->tableId() }}{{ $dt->tableId() }} table">
-            <thead class="table-light">
-            <tr>
-                @foreach($dt->cols() as $key=>$col)
-                    <th class="col-{{$key}}">{{$col['title']}}</th>
-                @endforeach
-            </tr>
-            </thead>
-        </table>
-    </div>
+        <div class="card-datatable table-responsive pt-0">
+            <div id="DataTables_Table_{{ $dt->tableId() }}_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer ms-3 me-3">
+                <table id="{{ $dt->tableId() }}"
+                       class="datatables-basic border-top table dataTable no-footer dtr-column table-{{ $dt->tableId() }}{{ $dt->tableId() }} ">
+                    <thead>
+                    <tr>
+                        @foreach($dt->cols() as $key=>$col)
+                            <th class="col-{{$key}}">{{$col['title']}}</th>
+                        @endforeach
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
     @section('dataTable-script')
         <script>
             var manageTable ;
@@ -55,6 +58,30 @@ $dt = isset($dataTable)?$dataTable:null;
                     },
                     initComplete : function () {
                     },
+                    language: {
+                        "decimal":        "",
+                        "emptyTable":     "Tabloda herhangi bir veri mevcut değil",
+                        "info":           "Toplam _TOTAL_ kayıttan _START_ - _END_ arası gösteriliyor",
+                        "infoEmpty":      "0 kayıttan 0 - 0 arası gösteriliyor",
+                        "infoFiltered":   "(toplam _MAX_ kayıttan filtrelendi)",
+                        "infoPostFix":    "",
+                        "thousands":      ",",
+                        "lengthMenu":     "_MENU_ kayıt göster",
+                        "loadingRecords": "Yükleniyor...",
+                        "processing":     "İşleniyor...",
+                        "search":         "Ara:",
+                        "zeroRecords":    "Eşleşen kayıt bulunamadı",
+                        "paginate": {
+                            "first":      "İlk",
+                            "last":       "Son",
+                            "next":       "Sonraki",
+                            "previous":   "Önceki"
+                        },
+                        "aria": {
+                            "sortAscending":  ": sütunu artan şekilde sıralamak için etkinleştir",
+                            "sortDescending": ": sütunu azalan şekilde sıralamak için etkinleştir"
+                        }
+                    }
                 };
                 createDataTable($('#{{ $dt->tableId() }}'), args);
                 function createDataTable(elem, args) {
@@ -83,6 +110,30 @@ $dt = isset($dataTable)?$dataTable:null;
                             initComplete: function () {
 
                             },
+                            language: {
+                                "decimal":        "",
+                                "emptyTable":     "Tabloda herhangi bir veri mevcut değil",
+                                "info":           "Toplam _TOTAL_ kayıttan _START_ - _END_ arası gösteriliyor",
+                                "infoEmpty":      "0 kayıttan 0 - 0 arası gösteriliyor",
+                                "infoFiltered":   "(toplam _MAX_ kayıttan filtrelendi)",
+                                "infoPostFix":    "",
+                                "thousands":      ",",
+                                "lengthMenu":     "_MENU_ kayıt göster",
+                                "loadingRecords": "Yükleniyor...",
+                                "processing":     "İşleniyor...",
+                                "search":         "Ara:",
+                                "zeroRecords":    "Eşleşen kayıt bulunamadı",
+                                "paginate": {
+                                    "first":      "İlk",
+                                    "last":       "Son",
+                                    "next":       "Sonraki",
+                                    "previous":   "Önceki"
+                                },
+                                "aria": {
+                                    "sortAscending":  ": sütunu artan şekilde sıralamak için etkinleştir",
+                                    "sortDescending": ": sütunu azalan şekilde sıralamak için etkinleştir"
+                                }
+                            }
                         })
                         $('.datatable-filter').on('change', function(){
                             elem.DataTable().ajax.reload();

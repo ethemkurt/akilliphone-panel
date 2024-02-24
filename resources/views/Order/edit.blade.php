@@ -494,7 +494,7 @@
                                                 <input type="hidden" name="order[orderProducts][{{$productKey}}][name]" value="{{$product['name']}}">
                                                 <input type="hidden" name="order[orderProducts][{{$productKey}}][barcode]" value="{{$product['barcode']}}">
                                                 </td>
-                                                <td><button class="btn btn-primary delete-order-item"><i class="feather icon-trash-2"></i></button></td>
+                                                <td><button class="btn btn-primary delete-order-item"><i class="menu-icon tf-icons ti ti-trash"></i></button></td>
                                             </tr>
                                         @endforeach
                                         @endif

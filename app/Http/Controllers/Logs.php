@@ -86,6 +86,6 @@ class Logs extends Controller
         return _HumanDate($row->created_at, 'm.d.Y H:i');
     }
     private function _format_actions($row){
-        return '<a href="'.route('logs.error.view', $row->id).'"><i class="feather icon-file-text"></i></a>';
+        return '<a href="'.route('logs.error.view', $row->id).'"><i class="menu-icon tf-icons ti ti-file-text"></i></a>';
     }
 }
