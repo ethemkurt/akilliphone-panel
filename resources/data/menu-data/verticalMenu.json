@@ -17,7 +17,7 @@
             "slug": "product",
             "submenu": [
                 {
-                    "url": "product",
+                    "url": "product/list",
                     "name": "Ürün Listesi",
                     "icon": "circle",
                     "slug": "collapsed-menu"

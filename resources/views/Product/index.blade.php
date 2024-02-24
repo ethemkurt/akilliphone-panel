@@ -16,7 +16,7 @@
                             <div class="row g-1 mb-md-1">
                                 <div class="col-md-4">
                                     <a href="#">
-                                        <a class="btn btn-primary" href="{{ route('product.new') }}">
+                                        <a class="btn btn-primary" href="{{ route('product.new','new') }}">
                                             <i data-feather="save"></i>
                                             <span class="align-middle">Yeni Ürün</span>
                                         </a>

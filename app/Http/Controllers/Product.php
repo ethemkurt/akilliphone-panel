@@ -21,20 +21,42 @@ class Product extends Controller
         $data['product'] = \WebService::product($productId);
         return view('Product.detail', $data);
     }
-    public function new(Request $request ){
-        $data = [];
+    public function new(Request $request,$productId ){
+
+        if($productId){
+            if($productId=='new'){
+                $data['product'] = \Instance::loadJson('product');
+
+            } else{
+
+                $data['product'] = \WebService::product($productId);
+
+            }
+        } else{
+            $data['product'] = [];
+        }
+        $data['currency'] = \Instance::loadJson('productControl');
+
+        $data['brand'] = \WebService::brands();
+        $data['categories'] = \WebService::categoriess();
+
+
         return view('Product.new', $data);
     }
+
    public function dataTable(Request $request){
     $dataTable = $this->dataTableParams();
     $filter['offset'] = $request->input('length', 10);
     $filter['start'] = $request->input('start', 0);
     $filter['page'] = ceil($filter['start']/$filter['offset']);
     $response = \WebService::products($filter);
+
+
     $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
     $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
     $items = [];
     if($response && isset($response['items'])){
+
         foreach($response['items'] as $row){
             $item = [];
             foreach($dataTable->cols() as $key=>$col){
@@ -45,33 +67,58 @@ class Product extends Controller
                     $value = isset($row[$key])?$row[$key]:'';
                 }
                 $item[$key] = $value;
+
+                if ($key=="productCategories"){
+
+                    $item[$key]=$value[0]["categoryId"];
+                }
+
             }
             if(isset($item['orderNumber'])){
                 $item['orderNumber'] = count($items) + ($filter['offset']  * ($filter['page'])) + 1;
             }
+            if(isset($item['productCategories'])){
+
+
+                $data = \WebService::category($item['productCategories']);
+                $item['productCategories']=$data["name"];
+
+            }
             $items[] = $item;
+
         }
     }
+
     $dataTable->setItems($items);
     return $dataTable->toJson();
 }
+    private function _format_code($item){
+
+        $html = '<a href="'.route('product.new', ['productId'=>$item['productId']]).'" >';
+
+        return $html.$item['code'].'</a>';
+
+    }
     private function _format_actions($item){
-        return '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="#"><i class="menu-icon tf-icons ti ti-file-text"></i></a> <a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="#"><i class="menu-icon tf-icons ti ti-trash"></i></a>';
+
+        $edit = route('product.new', ['productId'=>$item['productId']]);
+        return '<a class="btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle" href="'.route('product.new', ['productId'=>$item['productId']]).'"><i class="feather icon-file-text"></i></a><a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="#"><i class="feather icon-trash text-danger"></i></a>';
+
     }
     private function _format_price($item){
         if(isset($item['variants'][0])){
-            return '<div class="text-end">'.$item['variants'][0]['salePrice'].''.str_replace('USD', '$', $item['currency']).'<br>'
-            .$item['variants'][0]['price'].'₺</div>';
+//            '.$item['variants'][0]['salePrice'].''.str_replace('USD', '$', $item['currency']).'<br>'
+            return '<div class="text-end">'.$item['variants'][0]['price'].'₺</div>';
         }
     }
     private function _format_name($item){
-        $html = '<div class="demo-inline-spacing">';
+        $html = '<a href="'.route('product.new', ['productId'=>$item['productId']]).'" ><div class="demo-inline-spacing" style="flex-wrap: nowrap;">';
         if($item['variants']){
             foreach ($item['variants'] as $variant){
                 $html .='<div class="mr-1"><img src="'.getProductImageUrl($variant['featuredImage'], 60, 60).'"></div>';
             }
         }
-        return $item['name'].'<hr>'.$html.'</div>';
+        return $html.$item['name'].'</div></a>';
     }
     private function _format_brandId($item){
         $brand = \WebService::brand($item['brandId']);

@@ -210,6 +210,7 @@ class Order extends Controller{
                 $items[] = $item;
             }
         }
+
         $dataTable->setItems($items);
         return $dataTable->toJson();
     }
@@ -246,11 +247,13 @@ class Order extends Controller{
            return _OrderUserAvatar($item);
        }
     }
-    private function _format_orderId($item){
-        //$html = $item['orderId'];
+
+    private function _format_orderId($item)
+    {
         $html = $item['orderId'];
         return $html;
     }
+
     private function _format_createdAt($item){
         //$html = $item['orderId'];
         $html = _HumanDate($item['createdAt']);
@@ -300,9 +303,11 @@ class Order extends Controller{
         $dataTable->setRecordsTotal(100);
         $dataTable->setRecordsFiltered(90);
         $dataTable->setCols([
+
             'checkBox'=>['title'=>'', 'className'=>'checkbox', 'orderable'=>''],
             'orderId'=>['title'=>'No', 'className'=>'', 'orderable'=>''],
             'createdAt'=>['title'=>'Tarihi', 'className'=>'', 'orderable'=>''],
+
             'firstName'=>['title'=>'Müşteri', 'className'=>'', 'orderable'=>''],
             'paymentStatusId'=>['title'=>'Ödemesi', 'className'=>'', 'orderable'=>''],
             'orderStatusId'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],

@@ -93,7 +93,7 @@ class WebService{
         request()->session()->put('user', $user);
         request()->session()->put('SADMINTOKEN', self::SADMINTOKEN());
     }
-/* products */
+    /* products */
     public static function get_endpoint($endpoint, $data=[]){
         $response = self::GET($endpoint, $data);
         if($response['data'] ){
@@ -104,7 +104,9 @@ class WebService{
     public static function products($filter){
         $filter['page'] = max(1, (int)(isset($filter['page'])?$filter['page']:1));
         $filter['offset'] = max(25, (int)(isset($filter['offset'])?$filter['offset']:25));
-        $filter['text'] = (isset($filter['text'])?$filter['text']:'');
+        $filter['start'] = max(0, (int)(isset($filter['start'])?$filter['start']:0));
+//        $filter['text'] = (isset($filter['text'])?$filter['text']:'');
+
         $response = self::GET('products', $filter);
         if($response['data'] ){
             return $response['data'];
@@ -134,7 +136,7 @@ class WebService{
         }
         return [];
     }
-/* orders */
+    /* orders */
     public static function orders($page=1, $offset=50, $params=[]){
         $page = max(1, (int)$page);
         $params['page'] = $page;
@@ -278,7 +280,7 @@ class WebService{
         }
         return [];
     }
-/* orderstatus*/
+    /* orderstatus*/
     public static function orderStatus($orderStatusId){
         $response = self::GET('orders/order-status/'.$orderStatusId, []);
         if($response['data'] ){
@@ -385,7 +387,7 @@ class WebService{
         return [];
     }
     /*user*/
-/* customer */
+    /* customer */
     public static function users($page=1, $offset=50, $filter=[]){
         $params['page'] = max(1, (int)$page);
         $params['offset'] = max(10, (int)$offset);
