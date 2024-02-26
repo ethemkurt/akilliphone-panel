@@ -148,8 +148,8 @@ class Category extends Controller
         } else {
             $childColor = 'secondary';
         }
-        $html .= '<a class="btn waves-effect p-0 ms-1" href="'.route('category.child', $item['categoryId']).'"><i class="feather icon-git-branch text-'.$childColor.'"></i></a>';
-        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-title="'.$item['name'].' Alt Kategorisi Ekle" data-url="'.route('category.edit', ['categoryId'=>'new', 'parentId'=>$item['categoryId']]).'"><i class="feather icon-plus-circle text-info"></i></a>';
+        $html .= '<a class="btn waves-effect p-0 ms-1" href="'.route('category.child', $item['categoryId']).'"><i class="menu-icon tf-icons ti ti-hierarchy text-'.$childColor.'"></i></a>';
+        $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-title="'.$item['name'].' Alt Kategorisi Ekle" data-url="'.route('category.edit', ['categoryId'=>'new', 'parentId'=>$item['categoryId']]).'"><i class="menu-icon tf-icons ti ti-square-rounded-plus text-info"></i></a>';
         $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.$edit.'" title="\''.$item['name'].'\' düzenle"><i class="menu-icon tf-icons ti ti-file-text"></i></a>';
         $html .= '<a class="btn-popup-form btn waves-effect p-0 ms-1" data-url="'.route('category.delete.form', $item['categoryId']).'"><i class="menu-icon tf-icons ti ti-trash"></i></a> ';
 
