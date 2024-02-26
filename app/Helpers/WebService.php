@@ -10,6 +10,14 @@ class WebService{
     const AUTH_URL = 'http://212.22.69.229:44302/api/Authenticate';
     protected $userName = '';
     protected $userPassword = '';
+
+    /*public static function WEBSERVICE_URL($service){
+        $ports = [
+            'brand'=>'6001',
+            'category'=>'6003',
+            'user'=>'44302',
+        ];
+    }*/
     public static function checkUser($username, $password)
     {
         $result = [
