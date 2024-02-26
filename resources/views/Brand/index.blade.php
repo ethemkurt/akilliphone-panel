@@ -2,7 +2,7 @@
 @extends('layouts/contentLayoutMaster')
 @section('nav-buttons')
 
-    <x-button-popup-form :title="'Yeni Kategori Ekle'" :text="'Yeni Kategori'" :url="route('brand.edit', 'new')" />
+    <x-button-popup-form :title="'Yeni Marka Ekle'" :text="'Yeni Marka'" :url="route('brand.edit', 'new')" />
 
 @endsection
 @if($brand)
@@ -10,7 +10,7 @@
 {{$brand['name']}} <a class="btn waves-effect p-0 ms-1" href="{{ route('brand.child', $brand['parentId']?$brand['parentId']:'parent') }}"><i class="feather  icon-corner-down-left"></i></a>
     @endsection
 @else
-    @section('title', 'Kategori Yönetimi')
+    @section('title', 'Marka Yönetimi')
 @endif
 
 @section('page-style')
