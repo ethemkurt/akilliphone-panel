@@ -99,9 +99,10 @@ Route::group(['prefix'=>'user','as'=>'user.', 'middleware' => ['check.token']], 
     Route::get('/get-user-data', [User::class, 'getUserData'])->name('get-user-data');
 });
 Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.token']], function () {
-    Route::get('/', [Product::class, 'index'])->name('index');
+    Route::get('/list', [Product::class, 'index'])->name('index');
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
-    Route::get('/new', [Product::class, 'new'])->name('new');
+    Route::get('/new/{productId}', [Product::class, 'new'])->name('new');
+    Route::post('/new', [Product::class, 'addProduct'])->name('addProduct');
     Route::get('/brand-management-table', [BrandManagement::class, 'dataTable'])->name('brand-management-table');
     Route::post('/brand-management-table', [BrandManagement::class, 'save'])->name('brand-save');
     Route::get('/brand-delete/{brandId}', [BrandManagement::class, 'delete'])->name('brand-delete');

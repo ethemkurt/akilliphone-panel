@@ -5,7 +5,7 @@
     $value = isset($value)?$value:'';
 ?>
 <textarea type="text" id="{{ $id }}"  class="form-control" name="{{ $name }}" placeholder="{{ $placeholder }}" >{!! $value !!}</textarea>
-
+@section('editor-script')
 <script>
     function NewcartFileUploadAdapterPlugin( editor ) {
         editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
@@ -126,4 +126,5 @@
     });
     TulparUploader.createUploder();
 </script>
+@endsection
 

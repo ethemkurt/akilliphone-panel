@@ -31,8 +31,6 @@
 <!--/ Layout wrapper -->
 @include('layouts.common.js')
 @include('webservice-js')
-<script src="{{ url('js/akilliphone.js') }}?_v={{ time() }}"></script>
-<script src="{{ url('js/tulpar-uploader.js') }}?_v={{ time() }}"></script>
 @yield('dataTable-script')
 @yield('editor-script')
 @yield('page-script')

@@ -63,6 +63,7 @@
             <div class="tabspec" id="urunfiyat">
                 <div class="col-12">
                     <div class="row equal mb-3">
+
                         <div class="col-md-6">
                             <div class="card full-height mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -78,14 +79,15 @@
                                             </div>
                                         </div>
                                     </div>
-{{--                                                                     <div class="col-12">--}}
-{{--                                                                         <div class="mb-1 row">--}}
-{{--                                                                             <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ana Ürün kodu</label></div>--}}
-{{--                                                                             <div class="col-sm-9">--}}
-{{--                                                                                 <input value="" type="text" class="form-control" name="" placeholder="Ana Ürün kodu">--}}
-{{--                                                                             </div>--}}
-{{--                                                                         </div>--}}
-{{--                                                                     </div>--}}
+
+                                     <div class="col-12">
+                                         <div class="mb-1 row">
+                                             <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ana Ürün kodu</label></div>
+                                             <div class="col-sm-9">
+                                                 <input value="" type="text" class="form-control" name="" placeholder="Ana Ürün kodu">
+                                             </div>
+                                         </div>
+                                     </div>
                                     <div class="col-12">
                                         <div class="mb-1 row">
                                             <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Adı</label></div>
@@ -96,10 +98,50 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-1 row">
-                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Etiketi</label></div>
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Seçenek Etiketi</label></div>
                                             <div class="col-sm-9">
 
                                                 <input value="" type="text" class="form-control" name="" placeholder="Ürün Etiketi">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Seçenek Türü</label></div>
+                                            <div class="col-sm-9">
+
+                                                <select id="" class="select-with-name form-select" data-nametarget="" name="product[brandId]">
+                                                    <option value="">Renk </option>
+                                                    <option value="">Beden  </option>
+                                                    <option value="">Numara </option>
+                                                    <option value="">Malzeme </option>
+
+
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Bölümü</label></div>
+                                            <div class="col-sm-9">
+
+                                                <input value="" type="text" class="form-control" name="" placeholder="Ürün Bölümü">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Tagı Çekme</label></div>
+                                            <div class="col-sm-9">
+
+                                                <input value="" type="text" class="form-control" name="" placeholder="Ürün Tagı Çekme">
 
 
                                             </div>
@@ -112,19 +154,19 @@
                                                 <select id="" class="select-with-name form-select" data-nametarget="" name="product[brandId]">
                                                     <option value="">Marka Seçiniz </option>
 
-                                                    @foreach($brand['items'] as $brands)
-                                                        @if($product!=null)
-                                                            <option value="{{$brands['brandId']}}" {{ $brands['brandId'] ==  $product['brandId']  ? 'selected' : '' }}>
-                                                                {{$brands['name']}}
-                                                            </option>
-                                                        @else
-                                                            <option value="{{$brands['brandId']}}">
-                                                                {{$brands['name']}}
-                                                            </option>
-                                                        @endif
+{{--                                                    @foreach($brand['items'] as $brands)--}}
+{{--                                                        @if($product!=null)--}}
+{{--                                                            <option value="{{$brands['brandId']}}" {{ $brands['brandId'] ==  $product['brandId']  ? 'selected' : '' }}>--}}
+{{--                                                                {{$brands['name']}}--}}
+{{--                                                            </option>--}}
+{{--                                                        @else--}}
+{{--                                                            <option value="{{$brands['brandId']}}">--}}
+{{--                                                                {{$brands['name']}}--}}
+{{--                                                            </option>--}}
+{{--                                                        @endif--}}
 
 
-                                                    @endforeach
+{{--                                                    @endforeach--}}
 
 
                                                 </select>
@@ -252,6 +294,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -319,17 +363,7 @@
                                         <div class="mb-1 row">
                                             <div class="col-sm-3"><label class="col-form-label" for="contact-info">Renk</label></div>
                                             <div class="col-sm-9" style="width: 100%;">
-                                                <select  class="select-with-name form-select" id="renkler" name="renkler" multiple style="height: 150px">
-                                                    <option value="kirmizi">Kırmızı</option>
-                                                    <option value="yesil">Yeşil</option>
-                                                    <option value="mavi">Mavi</option>
-                                                    <option value="sari">Sarı</option>
-                                                    <option value="turuncu">Turuncu</option>
-                                                    <option value="kirmizi">Kırmızı</option>
-                                                    <option value="yesil">Yeşil</option>
-                                                    <option value="mavi">Mavi</option>
-                                                    <option value="sari">Sarı</option>
-                                                    <option value="turuncu">Turuncu</option>
+                                                <select class="select-with-name form-select" id="renkler" name="renkler" multiple style="height: 150px">
                                                     <option value="kirmizi">Kırmızı</option>
                                                     <option value="yesil">Yeşil</option>
                                                     <option value="mavi">Mavi</option>
@@ -368,13 +402,10 @@
                 <div class="col-12">
                     <div class="mb-1 row">
                         <div class="col-sm-3">
-                            <label class="col-form-label" for="code">Resim </label>
+                            <label class="col-form-label" for="description">Açıklama </label>
                         </div>
                         <div class="col-sm-9">
-                            <div class="image-upload small brand" style="background-image: url({{ _CdnImageUrl('', 200,200) }}) ">
-                                <input type="text" name="brand[image]" value="" style="display: none">
-                                <input type="hidden" name="imageFile" value="">
-                            </div>
+                            <x-textarea-editor id="description" name="brand[description]" placeholder="Açıklama" value="{{isset($brand['description'])?$brand['description']:''}}" />
                         </div>
                     </div>
 
