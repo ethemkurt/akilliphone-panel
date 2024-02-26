@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 @section('nav-buttons')
-    @if($routeName=='user.admin')
+    @if($routeName=='user.temsilci')
         <x-button-popup-form :title="'Yeni Personel'" :text="'Yeni Personel'" :url="route('popup', 'User').'?userType=admin'" />
     @endif
 @endsection

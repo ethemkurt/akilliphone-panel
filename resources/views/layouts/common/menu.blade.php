@@ -37,6 +37,10 @@
                     </li>
                 @endforeach
             @endif
+            <li class="menu-item">
+                @yield('nav-buttons')
+
+            </li>
         </ul>
     </div>
 </aside>
