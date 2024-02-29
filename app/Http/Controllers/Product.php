@@ -14,6 +14,15 @@ class Product extends Controller
         $data['trendyol_categories'] = \TrendyolService::getCategories();
         return view('Product.trendyol', $data);
     }
+    public function kategori(Request $request ){
+        $response = \WebService::categories();
+        if(isset( $response['items'])){
+            $data['categories'] = $response['items'];
+        } else {
+            $data['categories'] = [];
+        }
+        return view('Product.kategori', $data);
+    }
     public function index(Request $request ){
         if($request->input('yedekle')){
             return $this->yedekle($request);
