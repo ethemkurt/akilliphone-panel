@@ -8,10 +8,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
 @endsection
 
-
-
 @section('content')
-
     <!-- Advanced Search -->
 <section id="advanced-search-datatable">
     <div class="row">

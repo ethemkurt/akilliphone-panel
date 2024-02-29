@@ -27,3 +27,6 @@ if(is_file( dirname(__FILE__).'/KargoService.php') ){
 if(is_file( dirname(__FILE__).'/CdnService.php') ){
     include_once( dirname(__FILE__).'/CdnService.php' );
 }
+if(is_file( dirname(__FILE__).'/TrendyolService.php') ){
+    include_once( dirname(__FILE__).'/TrendyolService.php' );
+}
