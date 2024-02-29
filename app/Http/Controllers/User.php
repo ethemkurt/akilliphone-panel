@@ -174,7 +174,7 @@ class User extends Controller
         return '';
     }
     private function _format_status($row){
-        return '<span class="badge rounded-pill badge-light-'.\ActivePassive::color($row['active']).'" text-capitalized="">'.\ActivePassive::__($row['active']).'</span>';
+        return '<span class="badge badge-dot bg-'.\ActivePassive::color($row['active']).' d-none d-md-inline-block me-2" text-capitalized=""></span>';
     }
     public function getUserData(Request $request){
         $data = \WebService::user( $request->input('userId'));
