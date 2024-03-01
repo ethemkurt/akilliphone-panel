@@ -28,6 +28,8 @@ class WebService{
         ];
         try{
             $token = self::TOKEN($username, $password);
+
+
             if($token){
                 $tokenData = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
                 if($tokenData){
@@ -41,6 +43,7 @@ class WebService{
                         if($role=='SuperAdmin' || $role=='Admin' || $role=='Temsilci'){
                             $userId = $tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
                             $user = self::getUser($userId, $token);
+
                             if($user && isset($user['data'])){
                                 $user = $user['data'];
                                 $user['jwtToken'] = $token;
@@ -75,6 +78,7 @@ class WebService{
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
         ])->get(self::AUTH_URL.'/user', ['userId'=>$userId]);
+
         return self::standartResponse($response, self::AUTH_URL.'/user') ;
     }
     public static function isLogged(){
@@ -98,8 +102,10 @@ class WebService{
     public static function login($user, $tokenData)
     {
         request()->session()->put('jwtToken', $user['jwtToken']);
+
         request()->session()->put('user', $user);
         request()->session()->put('SADMINTOKEN', self::SADMINTOKEN());
+
     }
     /* products */
     public static function get_endpoint($endpoint, $data=[]){
@@ -129,8 +135,9 @@ class WebService{
         return [];
     }
     public static function addProduct( $product){
-        $response = self::POST('products', $product, FORCEADMIN);
 
+        $response = self::POST('products', $product, FORCEADMIN);
+        dd($response);
         if($response ){
             return $response;
         }
