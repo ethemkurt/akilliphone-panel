@@ -16,6 +16,18 @@ class Category extends Controller
         $data['dataTable'] = $this->dataTableParams($categoryId);
         return view('Category.index', $data);
     }
+    public function cetagorySelect(Request $request){
+        $categoryId = $request->input('categoryId');
+        $response = \WebService::category($categoryId);
+
+        if(isset( $response['inverseCategoryId1Navigation'])){
+            $data['categories'] = $response['inverseCategoryId1Navigation'];
+        } else {
+            $data['categories'] = [];
+        }
+
+        return view('Category.cetagorySelect', $data);
+    }
 
     public function edit(Request $request, $categoryId ){
         if($categoryId){

@@ -10,6 +10,19 @@ use Illuminate\Http\Request;
 class Product extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function trendyol(Request $request ){
+        $data['trendyol_categories'] = \TrendyolService::getCategories();
+        return view('Product.trendyol', $data);
+    }
+    public function kategori(Request $request ){
+        $response = \WebService::categories();
+        if(isset( $response['items'])){
+            $data['categories'] = $response['items'];
+        } else {
+            $data['categories'] = [];
+        }
+        return view('Product.kategori', $data);
+    }
     public function index(Request $request ){
         if($request->input('yedekle')){
             return $this->yedekle($request);
@@ -22,15 +35,11 @@ class Product extends Controller
         return view('Product.detail', $data);
     }
     public function new(Request $request,$productId ){
-
         if($productId){
             if($productId=='new'){
                 $data['product'] = \Instance::loadJson('product');
-
             } else{
-
                 $data['product'] = \WebService::product($productId);
-
             }
         } else{
             $data['product'] = [];
@@ -38,8 +47,6 @@ class Product extends Controller
         $data['currency'] = \Instance::loadJson('productControl');
         $data['brand'] = \WebService::brands();
         $data['categories'] = \WebService::categoriess();
-
-
         return view('Product.new', $data);
     }
     public function addProduct(Request $request ){

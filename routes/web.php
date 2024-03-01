@@ -22,6 +22,7 @@ use App\Http\Controllers\AttributeValue;
 use App\Http\Controllers\Option;
 use App\Http\Controllers\OptionValue;
 use App\Http\Controllers\Uploader;
+use App\Http\Controllers\Trendyol;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,8 @@ Route::group(['prefix'=>'user','as'=>'user.', 'middleware' => ['check.token']], 
 });
 Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.token']], function () {
     Route::get('/list', [Product::class, 'index'])->name('index');
+    Route::get('/kategori', [Product::class, 'kategori'])->name('kategori');
+    Route::get('/trendyol', [Product::class, 'trendyol'])->name('trendyol');
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
     Route::get('/new/{productId}', [Product::class, 'new'])->name('new');
     Route::post('/new', [Product::class, 'addProduct'])->name('addProduct');
@@ -110,7 +113,7 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::get('/data-table', [Product::class, 'dataTable'])->name('data-table');
 });
 Route::group(['prefix'=>'product/category','as'=>'category.', 'middleware' => ['check.token']], function () {
-    Route::get('/', [Category::class, 'index'])->name('index');
+    Route::get('/category-select', [Category::class, 'cetagorySelect'])->name('category-select');
     Route::get('/child/{categoryId}', [Category::class, 'index'])->name('child');
     Route::get('/data-table/{categoryId}', [Category::class, 'dataTable'])->name('data-table');
     Route::get('/edit/{categoryId}', [Category::class, 'edit'])->name('edit');
@@ -194,7 +197,12 @@ Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.to
     Route::get('/general/{group}', [Settings::class, 'general'])->name('general-group');
     Route::get('/enum', [Settings::class, 'enum'])->name('enum');
 });
-
+Route::group(['prefix'=>'trendyol','as'=>'trendyol.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Trendyol::class, 'index'])->name('index');
+    Route::get('/category', [Trendyol::class, 'category'])->name('category');
+    Route::get('/general/{group}', [Trendyol::class, 'general'])->name('general-group');
+    Route::get('/enum', [Trendyol::class, 'enum'])->name('enum');
+});
 
 
 
