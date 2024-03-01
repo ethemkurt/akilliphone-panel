@@ -143,7 +143,6 @@
 
                                                 <input value="" type="text" class="form-control" name="" placeholder="Ürün Tagı Çekme">
 
-
                                             </div>
                                         </div>
                                     </div>
@@ -154,19 +153,19 @@
                                                 <select id="" class="select-with-name form-select" data-nametarget="" name="product[brandId]">
                                                     <option value="">Marka Seçiniz </option>
 
-{{--                                                    @foreach($brand['items'] as $brands)--}}
-{{--                                                        @if($product!=null)--}}
-{{--                                                            <option value="{{$brands['brandId']}}" {{ $brands['brandId'] ==  $product['brandId']  ? 'selected' : '' }}>--}}
-{{--                                                                {{$brands['name']}}--}}
-{{--                                                            </option>--}}
-{{--                                                        @else--}}
-{{--                                                            <option value="{{$brands['brandId']}}">--}}
-{{--                                                                {{$brands['name']}}--}}
-{{--                                                            </option>--}}
-{{--                                                        @endif--}}
+                                                    @foreach($brand['items'] as $brands)
+                                                        @if($product!=null)
+                                                            <option value="{{$brands['brandId']}}" {{ $brands['brandId'] ==  $product['brandId']  ? 'selected' : '' }}>
+                                                                {{$brands['name']}}
+                                                            </option>
+                                                        @else
+                                                            <option value="{{$brands['brandId']}}">
+                                                                {{$brands['name']}}
+                                                            </option>
+                                                        @endif
 
 
-{{--                                                    @endforeach--}}
+                                                    @endforeach
 
 
                                                 </select>
@@ -1079,7 +1078,7 @@
                         <i>Sıfırla</i></button>
                 </a>
 
-                <button type="submit" class="btn btn-success btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">
+                <button type="submit" class="btn btn-success "style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">
                     <i>Kaydet</i></button>
 
 

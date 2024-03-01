@@ -53,6 +53,37 @@ class Product extends Controller
         $data['categories'] = \WebService::categoriess();
         return view('Product.new', $data);
     }
+    public function addProduct(Request $request ){
+       $product['slug']="deneme";
+       $product['metaTitle']="deneme";
+       $product['description']="deneme";
+       $product['featuredImage']="deneme";
+       $product['discountRate']=0;
+       $product['code']=0123123;
+       $product['sessionalDiscountStart']="2024-02-29T18:10:43.425Z";
+       $product['sessionalDiscountRate']=0;
+       $product['sessionalDiscountEnd']="2024-02-29T18:10:43.425Z";
+       $product['status']=0;
+       $product['canGiftWrap']=true;
+       $product['giftWrapPrice']=0;
+//       $product['productTypeId']=6;
+       $product['brandId']=6;
+       $product['specialNote']="2asd12";
+        if ($product!=[]){
+            $data['product'] = \WebService::addProduct($product);
+
+
+        }
+
+
+
+
+
+
+
+        return redirect('Product.new');
+    }
+
 
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();
