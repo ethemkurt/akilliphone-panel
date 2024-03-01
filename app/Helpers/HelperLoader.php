@@ -30,3 +30,6 @@ if(is_file( dirname(__FILE__).'/CdnService.php') ){
 if(is_file( dirname(__FILE__).'/TrendyolService.php') ){
     include_once( dirname(__FILE__).'/TrendyolService.php' );
 }
+if(is_file( dirname(__FILE__).'/CiceksepetiService.php') ){
+    include_once( dirname(__FILE__).'/CiceksepetiService.php' );
+}

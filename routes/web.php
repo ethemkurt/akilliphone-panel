@@ -23,6 +23,7 @@ use App\Http\Controllers\Option;
 use App\Http\Controllers\OptionValue;
 use App\Http\Controllers\Uploader;
 use App\Http\Controllers\Trendyol;
+use App\Http\Controllers\Ciceksepeti;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +104,7 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::get('/list', [Product::class, 'index'])->name('index');
     Route::get('/kategori', [Product::class, 'kategori'])->name('kategori');
     Route::get('/trendyol', [Product::class, 'trendyol'])->name('trendyol');
+    Route::get('/ciceksepeti', [Product::class, 'ciceksepeti'])->name('ciceksepeti');
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
     Route::get('/new/{productId}', [Product::class, 'new'])->name('new');
     Route::post('/new', [Product::class, 'addProduct'])->name('addProduct');
@@ -200,8 +202,10 @@ Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.to
 Route::group(['prefix'=>'trendyol','as'=>'trendyol.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Trendyol::class, 'index'])->name('index');
     Route::get('/category', [Trendyol::class, 'category'])->name('category');
-    Route::get('/general/{group}', [Trendyol::class, 'general'])->name('general-group');
-    Route::get('/enum', [Trendyol::class, 'enum'])->name('enum');
+});
+Route::group(['prefix'=>'ciceksepeti','as'=>'ciceksepeti.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Ciceksepeti::class, 'index'])->name('index');
+    Route::get('/category', [Ciceksepeti::class, 'category'])->name('category');
 });
 
 

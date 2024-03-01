@@ -24,13 +24,10 @@
     </div>
   </section>
   <!--/ Advanced Search -->
-
 @endsection
-
 
 @section('vendor-script')
 {{-- vendor files --}}
-
 @endsection
 
 @section('page-script')
