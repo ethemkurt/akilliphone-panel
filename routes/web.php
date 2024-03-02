@@ -115,6 +115,7 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::get('/data-table', [Product::class, 'dataTable'])->name('data-table');
 });
 Route::group(['prefix'=>'product/category','as'=>'category.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [Category::class, 'index'])->name('index');
     Route::get('/category-select', [Category::class, 'cetagorySelect'])->name('category-select');
     Route::get('/child/{categoryId}', [Category::class, 'index'])->name('child');
     Route::get('/data-table/{categoryId}', [Category::class, 'dataTable'])->name('data-table');

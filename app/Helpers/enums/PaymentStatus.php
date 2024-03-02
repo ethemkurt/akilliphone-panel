@@ -2,8 +2,8 @@
 class PaymentStatus extends \Enum{
     const BEKLIYOR = 3;
     const ODENDI = 11;
-    const ODENMEDI = 24;
-    const IADE = 25;
+    const ODENMEDI = 18;
+    const IADE = 19;
 
     static function colors($class=null){
         return[

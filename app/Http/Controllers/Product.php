@@ -168,7 +168,6 @@ class Product extends Controller
     private function _format_status($item){
         if($item['status']){
             return '<span class="badge bg-label-success" text-capitalized="">Aktif</span>';
-
         } else{
             return '<span class="badge bg-label-danger" text-capitalized="">Pasif</span>';
 
