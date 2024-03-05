@@ -24,6 +24,7 @@ use App\Http\Controllers\OptionValue;
 use App\Http\Controllers\Uploader;
 use App\Http\Controllers\Trendyol;
 use App\Http\Controllers\Ciceksepeti;
+use App\Http\Controllers\N11;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +106,7 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::get('/kategori', [Product::class, 'kategori'])->name('kategori');
     Route::get('/trendyol', [Product::class, 'trendyol'])->name('trendyol');
     Route::get('/ciceksepeti', [Product::class, 'ciceksepeti'])->name('ciceksepeti');
+    Route::get('/n11', [Product::class, 'n11'])->name('n11');
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
     Route::get('/new/{productId}', [Product::class, 'new'])->name('new');
     Route::post('/new', [Product::class, 'addProduct'])->name('addProduct');
@@ -207,6 +209,10 @@ Route::group(['prefix'=>'trendyol','as'=>'trendyol.', 'middleware' => ['check.to
 Route::group(['prefix'=>'ciceksepeti','as'=>'ciceksepeti.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Ciceksepeti::class, 'index'])->name('index');
     Route::get('/category', [Ciceksepeti::class, 'category'])->name('category');
+});
+Route::group(['prefix'=>'n11','as'=>'n11.', 'middleware' => ['check.token']], function () {
+    Route::get('/', [N11::class, 'index'])->name('index');
+    Route::get('/category', [N11::class, 'category'])->name('category');
 });
 
 
