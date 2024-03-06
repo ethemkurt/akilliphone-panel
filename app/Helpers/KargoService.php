@@ -24,8 +24,8 @@ class KargoService{
     static public function getFirmaSetting($firma){
         $settings = [
             'aras' =>[
-                'apiname'=>'akilliphone',
-                'apipass'=>'sibel1234',
+                'apiname'=>  env('ARAS_USER'),
+                'apipass'=>  env('ARAS_PASSWORD'),
                 'apicode'=>'',
             ]
         ];
