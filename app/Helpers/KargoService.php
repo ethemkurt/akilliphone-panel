@@ -48,7 +48,7 @@ class ArasKargo{
         $order["invoiceNumber"] = "YOK";
         $orderNumber = _KargoBarkodu($order["orderId"]);
         $params= array(
-            "UserName"              => $setting['apiname'],
+            "UserName"              => $setting['apiname'], 
             "Password"              => $setting['apipass'],
             "TradingWaybillNumber"  => $orderNumber,
             "InvoiceNumber"  		=> $orderNumber,
