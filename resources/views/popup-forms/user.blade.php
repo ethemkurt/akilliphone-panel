@@ -44,7 +44,11 @@
                     <label class="col-form-label" for="name">Kullanıcı Epostası</label>
                 </div>
                 <div class="col-sm-8">
-                    <input readonly type="text" id="email" required class="form-control" name="user[email]" value="{{isset($user['email'])?$user['email']:''}}" placeholder="Kullanıcı Epostası giriniz">
+                    @if(isset($user['email']) && $user['email'])
+                        <div class="form-control">{{isset($user['email'])?$user['email']:''}}</div>
+                    @else
+                        <input type="text" id="email" required class="form-control" name="user[email]" value="{{isset($user['email'])?$user['email']:''}}" placeholder="Kullanıcı Epostası giriniz">
+                    @endif
                 </div>
             </div>
         </div>
