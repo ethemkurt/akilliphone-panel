@@ -61,8 +61,8 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <input type="password" id="password" required class="form-control" name="user[password]" value="{{isset($user['password'])?$user['password']:'nochange'}}" placeholder="Kullanıcı Şifresi giriniz">
-                            <span id="generate-password" class="input-group-text cursor-pointer"><i class="fa fa-lightbulb"></i></span>
-                            <span id="show-password" class="input-group-text cursor-pointer"><i class="fa fa-eye"></i></span>
+                            <span id="generate-password" class="input-group-text cursor-pointer"><i class="fmenu-icon tf-icons ti ti-password"></i></span>
+                            <span id="show-password" class="input-group-text cursor-pointer"><i class="menu-icon tf-icons ti ti-eye"></i></span>
                         </div>
 
                     </div>
