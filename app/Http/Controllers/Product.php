@@ -33,18 +33,9 @@ class Product extends Controller
         $ciceksepeti['deleted']=false;
         $ciceksepeti['deleted']=false;
         $ciceksepeti['oemCode']=null;
-
-
-
-
-
         return view('Product.new');
     }
     public function addCiceksepeti(Request $request,$productId ){
-
-
-
-
         return redirect(route('product.new'));
     }
     public function n11(Request $request ){
@@ -75,6 +66,7 @@ class Product extends Controller
             return $this->yedekle($request);
         }
         $data['dataTable'] = $this->dataTableParams();
+
         return view('Product.index', $data);
     }
     public function detail(Request $request, $productId ){
@@ -288,6 +280,11 @@ class Product extends Controller
             'status'=>['title'=>'Durum', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'action-buttons', 'orderable'=>''],
         ]);
+        $data = \request()->all();
+        $data['brands'] = \WebService::brands();
+        $data['categories'] = \WebService::categories();
+
+        $dataTable->setFiters('Product.datatable-filter',$data );
         return $dataTable;
     }
     private function yedekle(Request $request){

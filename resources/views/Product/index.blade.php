@@ -82,29 +82,6 @@
                 <div class="card">
                     <!--Search Form -->
                     <div class="card-body">
-
-                            <div class="row g-1">
-                                <div class="col-md-3">
-                                    <x-inputs.text-input label="Ada Göre Ara" placeholder="Ada Göre Ara" name="search_name" />
-                                </div>
-                                <div class="col-md-3">
-                                    <x-inputs.text-input label="Sipariş No'ya Göre Ara" placeholder="Sipariş No'ya Göre Ara" name="search_order_no" />
-                                </div>
-                                <div class="col-md-3">
-                                    <x-inputs.text-input label="Fatura No'ya Göre Ara" placeholder="Fatura No'ya Göre Ara" name="search_receipt_no" />
-                                </div>
-                                <div class="col-md-3">
-                                    <x-inputs.text-input label="Ürün Koduna Göre Ara" placeholder="Ürün Koduna Göre Ara" name="search_product_code" />
-                                </div>
-                            </div>
-                            <div class="row g-1 mt-1">
-                                <div class="col-md-3">
-                                    <x-inputs.checkbox-input label="Aktif Ürünler" :checked="'checked'" :id="'search_active_active'" name="search_active" />
-                                </div>
-                                <div class="col-md-3">
-                                    <x-inputs.checkbox-input label="Pasif Ürünler" :id="'search_active_passive'" name="search_active" />
-                                </div>
-                            </div>
                         <x-data-table :dataTable="$dataTable"/>
                     </div>
                 </div>

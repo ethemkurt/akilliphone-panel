@@ -12,6 +12,18 @@ $dt = isset($dataTable)?$dataTable:null;
         .action-buttons{
             text-align: right;
         }
+        div.dataTables_processing {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin-left: 0;
+            margin-top: 1px;
+            text-align: center;
+            padding: 2px;
+            opacity: .80;
+        }
     </style>
     {!!  $dt->filters() !!}
         <div class="card-datatable table-responsive pt-0">
