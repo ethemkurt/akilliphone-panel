@@ -178,9 +178,20 @@ class Product extends Controller
         $filter['offset'] = $request->input('length', 10);
         $filter['start'] = $request->input('start', 0);
         $filter['page'] = ceil($filter['start']/$filter['offset']);
+        $where = $request->input('where', []);
+
+        if(isset($where)){
+            if(isset($where['search_name']) && $where['search_name']){
+                $filter['text'] = $where['search_name'];
+            }
+            if(isset($where['brandId']) && $where['brandId']){
+                $filter['brand'] = $where['brandId'];
+            }
+            if(isset($where['categoryId']) && $where['categoryId']){
+                $filter['cat'] = $where['categoryId'];
+            }
+        }
         $response = \WebService::products($filter);
-
-
         $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
         $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
         $items = [];
