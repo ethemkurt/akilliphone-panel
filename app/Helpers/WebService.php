@@ -136,23 +136,60 @@ class WebService{
         }
         return [];
     }
+    public static function variant($productId){
+        $response = self::GET('variants/'.$productId, []);
+        if($response['data'] ){
+            return $response['data'];
+        }
+        return [];
+    }
     public static function addProduct( $product){
 
         $response = self::POST('products', $product, FORCEADMIN);
+
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function productCategories( $catlist){
+
+        $response = self::POST('product-category', $catlist, FORCEADMIN);
+
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+    public static function addVariants( $variants){
+
+        $response = self::POST('variants', $variants, FORCEADMIN);
         dd($response);
         if($response ){
             return $response;
         }
         return [];
     }
-    public static function variant($variantId){
-        $response = self::GET('variants/'.$variantId, []);
-        if($response['data'] ){
-            return $response['data'];
+    public static function deleteCategories( $catlist){
 
+        $response = self::DELETE('product-category', $catlist, FORCEADMIN);
+
+        if($response ){
+            return $response;
         }
         return [];
     }
+
+    public static function productCategoriesPut( $catlist){
+
+        $response = self::PUT('product-category', $catlist, FORCEADMIN);
+
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
+
     /* orders */
     public static function orders($page=1, $offset=50, $params=[]){
         $page = max(1, (int)$page);
@@ -207,6 +244,7 @@ class WebService{
         }
         return [];
     }
+
     public static function brand($brandId){
         $response = self::GET('brands/'.$brandId, []);
         if($response['data']){
@@ -598,6 +636,14 @@ class WebService{
         }
         return [];
     }
+    public static function optionss(){
+
+        $response = self::GET('options');
+        if($response ){
+            return $response;
+        }
+        return [];
+    }
     public static function option($optionId){
         $response = self::GET('options/'.$optionId, []);
         if($response['data'] ){
@@ -848,4 +894,44 @@ class WebService{
             return UserRole::UYE;
         }
     }
+    public static function productCategory($productId,$productCategories,$data)
+    {
+
+        if ($productCategories != []) {
+            if ($data['productCategories'] == []) {
+                $catlist['productId'] = $productId;
+
+                foreach ($productCategories as $cat) {
+                    $catlist['categoryId'] = $cat;
+                    $addcategories = \WebService::productCategories($catlist);
+
+                }
+
+            } else {
+                $catlist['productId'] = $productId;
+                $control=false;
+                foreach ($productCategories as $inputCat){
+
+                    foreach ($data['productCategories'] as $productCat){
+
+                        if ($productCat['categoryId']==$inputCat){
+                            $control=true;
+
+                        }
+                    }
+
+                    if ($control==false){
+                        $catlist['categoryId'] = $inputCat;
+                        $addcategories = \WebService::productCategories($catlist);
+
+                    }
+                    $control=false;
+                }
+
+            }
+
+
+        }
+    }
+
 }

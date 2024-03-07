@@ -1,6 +1,5 @@
 @if($ciceksepeti_categories['subCategories'])
 <select class="nextselect form-select" data-nexturl="{{ route('ciceksepeti.category') }}">
-    <option>Yeni select</option>
     <option value=""> -- </option>
     @foreach($ciceksepeti_categories['subCategories'] as $ciceksepeti_category)
         <option value="{{ $ciceksepeti_category['id'] }}">{{ $ciceksepeti_category['name'] }}</option>

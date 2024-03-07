@@ -38,5 +38,6 @@
     <!-- Helpers -->
     <script src="{{ _Asset('vendor/js/helpers.js') }}"></script>
     <script src="{{ _Asset('js/config.js') }}"></script>
+
     @include('layouts.common.styles')
 </head>

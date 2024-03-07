@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
 @endsection
 
-
 @section('content')
     <style>
         /* Eklenen CSS */
@@ -43,20 +42,28 @@
 
     </style>
 
-    <!-- Advanced Search -->
+    <?php
+    $currentUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $urlComponents = parse_url($currentUrl);
+    $path = $urlComponents['path'];
+    $segments = explode('/', $path);
+    $productID = end($segments);
+
+
+    ?>
+        <!-- Advanced Search -->
     <section id="advanced-search-datatable">
         <div class="tab">
             <ul>
                 <li><a href="" onclick="openSpec(event, 'urunfiyat')">Ürün / Fiyat Bilgileri</a></li>
                 <li><a href="" onclick="openSpec(event, 'stokkategori')">Stok / Kategori Bilgileri</a></li>
                 <li><a href="" onclick="openSpec(event, 'detay')">Detay / Fotoğraf Bilgileri</a></li>
+                <li><a href="" onclick="openSpec(event, 'digerbilgiler')">Diğer Bilgiler</a></li>
                 <li><a href="" onclick="openSpec(event, 'pazaryerleri')">Pazaryerleri</a></li>
-                <li><a href="">Diğer Bilgiler</a></li>
-
             </ul>
 
         </div>
-    <form action="{{route('product.addProduct')}}" method="post">
+    <form action="{{route('product.addProduct',$productID)}}" method="post">
         @csrf
         <div class="row" >
 
@@ -98,6 +105,22 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Meta Başlık</label></div>
+                                            <div class="col-sm-9">
+                                                <input value="{{$product['metaTitle']?? '' }}" type="text" class="form-control" name="product[metaTitle]" placeholder="Meta Başlık">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Meta Açıklama</label></div>
+                                            <div class="col-sm-9">
+                                                <input value="{{$product['metaDescription']?? '' }}" type="text" class="form-control" name="product[metaDescription]" placeholder="Meta Açıklama">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
                                             <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Seçenek Etiketi</label></div>
                                             <div class="col-sm-9">
 
@@ -112,7 +135,7 @@
                                             <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Seçenek Türü</label></div>
                                             <div class="col-sm-9">
 
-                                                <select id="" class="select-with-name form-select" data-nametarget="" name="product[brandId]">
+                                                <select id="" class="select-with-name form-select" data-nametarget="" name="">
                                                     <option value="">Renk </option>
                                                     <option value="">Beden  </option>
                                                     <option value="">Numara </option>
@@ -194,8 +217,8 @@
                                              </div>
                                              <div class="col-sm-9">
                                                  <div class="image-upload small brand" style="background-image: url({{ _CdnImageUrl($product['featuredImage']?? '' , 200,200) }}) ">
-                                                     <input type="text" name="product[featuredImage]" value="" style="display: none">
-                                                     <input type="hidden" name="imageFile" value="">
+                                                     <input type="text" name="" value="" style="display: none">
+                                                     <input type="hidden" name="featuredImage" value="">
                                                  </div>
                                              </div>
                                          </div>
@@ -230,6 +253,408 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Satış Fiyatı</label></div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="" placeholder="Satış Fiyatı" value="{{$product['variants'][0]['price']?? '' }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Bayi Fiyatı</label></div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="product[price]" placeholder="Bayi Fiyatı">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Alış Fiyatı</label></div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="" placeholder="Alış Fiyatı">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">KDV</label></div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="product[vatRate]" placeholder="KDV % olmadan" value="00.0">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">İndirim Oranı (%)</label></div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="product[discountRate]" placeholder="İndirim Oranı (%)" value="{{$product['discountRate']?? 0 }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Kampanya Fiyatı</label></div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="" placeholder="Kampanya Fiyatı">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">İndirimsiz Fiyat</label></div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="" placeholder="İndirimsiz Fiyat" value="{{$product['variants'][0]['oldPrice']?? '' }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Sepet Limiti</label></div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="" placeholder="Sepet Limiti">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="tabspec" id="stokkategori" style="display: none">
+                <div class="col-12" >
+                    <div class="row equal mb-3">
+
+                                <div class="col-md-12">
+                                    <div class="card full-height mb-4">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <h5 class="card-title m-0">Kategori Seçiniz</h5>
+
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12 category-row">
+                                                    <div class="mb-1 row">
+                                                        <div class="col-sm-3">
+                                                            <label class="col-form-label" for="code">Kategori Seçiniz</label>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group main-category-select">
+                                                                <select class="form-select" data-nexturl="{{ route('product.catlist') }}">
+                                                                    <option value=""> -- </option>
+                                                                    @foreach($categories as $category)
+                                                                        <option value="{{ $category['categoryId'] }}">{{ $category['name'] }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                <button class="btn btn-success waves-effect select-categories" type="button"><i class="tf-icons ti ti-plus" style="color: #FFFFFF"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="mb-1 row">
+                                                        <div class="col-sm-3">
+                                                            <label class="col-form-label" for="code">Seçilen Kategoriler</label>
+                                                        </div>
+
+                                                        <div id="selected-categories" class="col-sm-9 row">
+                                                            @if(isset($product['productCategories']))
+                                                                @if($product['productCategories']!=[])
+                                                                    @foreach($product['productCategories'] as $catlist)
+                                                                        <div class="col-sm-4 mb-1">
+                                                                            <input id="{{$catlist['categoryId']}}" name="productCategories[]" type="hidden" value="{{$catlist['categoryId']}}">
+                                                                            <div class="input-group input-group-merge">
+                                                                                <input type="text" disabled class="form-control"  value="{{$catlist['category']['name']}}">
+                                                                                <button class="btn btn-danger" type="button">
+                                                                                    <i class="tf-icons ti ti-minus" style="color: #FFFFFF">
+
+                                                                                    </i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    @endforeach
+
+                                                                @endif
+
+                                                            @endif
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                        <div class="col-md-12" >
+                            <div class="card full-height mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title m-0">Stok Bilgisi</h5>
+
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Renk</label></div>
+                                            <div class="col-sm-9" style="width: 100%;">
+                                                <select class="select-with-name form-select" id="renkler" name="variant[name]" multiple style="height: 150px">
+
+                                                    @foreach($colors as $color)
+
+                                                        <option value="{{$color['code']}}">{{$color['value']}}</option>
+                                                    @endforeach
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <select id="dynamicSelect">
+                                        <!-- Dinamik olarak eklenen renk seçenekleri buraya eklenecek -->
+                                    </select>
+
+                                    <h6 class="m-0">
+                                        <a href=" javascript:void(0)"><button type="button" class="btn btn-danger" id="renkbtn">
+                                                <i class="feather icon-plus"></i></button>
+                                        </a></h6>
+                                    <table id="renkTablosu">
+                                        <thead>
+                                        <tr>
+                                            <th>Renk</th>
+                                            <th>Resim</th>
+                                            <th>Miktar</th>
+                                            <th>Barkod</th>
+                                            <th>Yayınlansın</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @if(isset($product['variants']))
+                                            @if($product['variants']!=[])
+                                                @foreach($product['variants'] as $variant)
+
+                                                    <tr>
+                                                        <td>{{$code = explode('-', $variant['code'])[1]}} - {{$variant['name']}}</td>
+                                                        <td> <div class="image-upload small brand" style="background-image: url({{ _CdnImageUrl($variant["featuredImage"]?? "" , 200,200) }}); width:100px;height:100px;">
+                                                            <input type="text" name="" value="" style="display: none">
+                                                            <input type="hidden" name="imageFile" value="">
+                                                        </div></td>
+
+                                                    <td> <input type="text" class="form-control" style="width: 200px"></td>
+                                                    <td> <input type="text" class="form-control" style="width: 200px"></td>
+
+                                                    <td> <input type="checkbox"></td>
+                                                    </tr>
+                                                @endforeach
+
+                                            @endif
+
+
+                                        @endif
+
+
+
+                                        </tbody>
+                                    </table>
+                                    <a href=" javascript:void(0)" ><button type="button" class="btn btn-success"style="margin-top: 10px">
+                                            <i>Kaydet</i></button>
+                                    </a>
+
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tabspec" id="detay" style="display: none">
+
+                <div class="col-md-12">
+                    <div class="card full-height mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title m-0">Açıklama </h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="col-sm-12">
+                                <x-textarea-editor id="description" name="product[description]" placeholder="Açıklama" value="{{isset($product['description'])?$product['description']:''}}" />
+                            </div>
+                            <div id="froala"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card full-height mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title m-0">Fotoğraflar </h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                @if(isset($product['variants'] ))
+                                    @foreach($product['variants'] as $variant)
+
+                                        <div class="col-sm-2">
+                                            <div class="image-upload small brand" style="background-image: url({{ _CdnImageUrl($variant['featuredImage']?? '' , 200,200) }}) ">
+                                                <input type="text" name="" value="" style="display: none">
+                                                <input type="hidden" name="imageFile" value="">
+                                            </div>
+                                        </div>
+
+                                    @endforeach
+                                @endif
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+</div>
+            <div class="tabspec" id="digerbilgiler" style="display: none">
+                <div class="col-12">
+                    <div class="row equal mb-3">
+
+                        <div class="col-md-6">
+                            <div class="card full-height mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title m-0">Diğer Özellikler</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Sipariş Notu</label></div>
+                                            <div class="col-sm-9">
+
+                                                <input value="" type="text" class="form-control" name="" placeholder="Sipariş Notu" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Etiketi</label></div>
+                                            <div class="col-sm-9">
+
+                                                <input value="" type="text" class="form-control" name="" placeholder="Ürün Etiketi" >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Tipi</label></div>
+                                            <div class="col-sm-9">
+                                                <select id="" class="select-with-name form-select" data-nametarget="" name="">
+                                                    <option value="">Genel Ürün </option>
+                                                    <option value="">Bayiye Özel Ürün  </option>
+                                                    <option value="">Müşteriye Özel Ürün </option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Durumu</label></div>
+                                            <div class="col-sm-9">
+                                                <select id="" class="select-with-name form-select" data-nametarget="" name="">
+                                                    <option value="">Orjinal </option>
+                                                    <option value="">A++ </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Seçenek Türü</label></div>
+                                            <div class="col-sm-9">
+
+                                                <select id="" class="select-with-name form-select" data-nametarget="" name="">
+                                                    <option value="">Renk </option>
+                                                    <option value="">Beden  </option>
+                                                    <option value="">Numara </option>
+                                                    <option value="">Malzeme </option>
+
+
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Bölümü</label></div>
+                                            <div class="col-sm-9">
+
+                                                <input value="" type="text" class="form-control" name="" placeholder="Ürün Bölümü">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Tagı Çekme</label></div>
+                                            <div class="col-sm-9">
+
+                                                <input value="" type="text" class="form-control" name="" placeholder="Ürün Tagı Çekme">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ürün Birimi</label></div>
+                                            <div class="col-sm-9">
+                                                <select id="" class="select-with-name form-select" data-nametarget="" name="">
+                                                    <option value="">Adet</option>
+                                                    <option value="">Kg</option>
+                                                    <option value="">Metre</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-1 row">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label" for="code">Ürün Ana Fotoğrafı </label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="image-upload small brand" style="background-image: url({{ _CdnImageUrl($product['featuredImage']?? '' , 200,200) }}) ">
+                                                    <input type="text" name="" value="" style="display: none">
+                                                    <input type="hidden" name="imageFile" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card full-height mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title m-0">Fiyat Bilgileri </h5>
+                                </div>
+                                <div class="card-body">
+
                                     <div class="col-12">
                                         <div class="mb-1 row">
                                             <div class="col-sm-3"><label class="col-form-label" for="contact-info">Satış Fiyatı</label></div>
@@ -298,119 +723,15 @@
                     </div>
                 </div>
             </div>
-            <div class="tabspec" id="stokkategori" style="display: none">
-                <div class="col-12" >
-                    <div class="row equal mb-3">
-                        <div class="col-md-6" >
-                            <div class="card full-height mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title m-0">Kategori Bilgileri</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="col-12">
-                                        <div class="mb-1 row">
-                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ana Kategori</label></div>
-                                            <div class="col-sm-9">
-                                                <select id="mainCategory" class="select-with-name form-select" data-nametarget="" name="" >
 
-                                                        <option value="">Anakategori Seçiniz</option>
-                                                        <?php foreach ($categories as $item) : ?>
-                                                            <?php if ($item['parentId'] === null) : ?>
-                                                        <option value="<?= $item['categoryId'] ?>"><?= $item['name'] ?></option>
-                                                        <?php endif; ?>
-                                                        <?php endforeach; ?>
-
-                                                </select>
+        </div>
+        <input type="text" id="variantname" name="variants[name]" value="" style="display: none">
+        <input type="text" id="variantcode" name="variants[code]" value="" style="display: none">
 
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12" id="altkategori">
-                                        <div class="mb-1 row">
-                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Alt Kategori</label></div>
-                                            <div class="col-sm-9">
-                                                <select name="subCategory" id="subCategory" style="display: none;"class="select-with-name form-select" data-nametarget="" >
 
-                                                        <?php foreach ($categories as $item) : ?>
-                                                        <?php if ($item['parentId'] !== null) : ?>
-                                                    <option class="subCategory" value="<?= $item['categoryId'] ?>" data-parent="<?= $item['parentId'] ?>"><?= $item['name'] ?></option>
-                                                    <?php endif; ?>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h6 class="m-0">
-                                       <button type="button" class="btn btn-danger" onclick="addSubcategory()">
-                                                <i class="feather icon-plus"></i></button>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6" >
-                            <div class="card full-height mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title m-0">Stok Bilgisi</h5>
-
-                                </div>
-                                <div class="card-body">
-
-                                    <div class="col-12">
-                                        <div class="mb-1 row">
-                                            <div class="col-sm-3"><label class="col-form-label" for="contact-info">Renk</label></div>
-                                            <div class="col-sm-9" style="width: 100%;">
-                                                <select class="select-with-name form-select" id="renkler" name="renkler" multiple style="height: 150px">
-                                                    <option value="kirmizi">Kırmızı</option>
-                                                    <option value="yesil">Yeşil</option>
-                                                    <option value="mavi">Mavi</option>
-                                                    <option value="sari">Sarı</option>
-                                                    <option value="turuncu">Turuncu</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <h6 class="m-0">
-                                        <a href=" javascript:void(0)"><button type="button" class="btn btn-danger" id="renkbtn">
-                                                <i class="feather icon-plus"></i></button>
-                                        </a></h6>
-                                    <table id="renkTablosu">
-                                        <thead>
-                                        <tr>
-                                            <th>Renk</th>
-                                            <th>Miktar</th>
-                                            <th>Barkod</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                    <a href=" javascript:void(0)" ><button type="button" class="btn btn-success btn-popup-form"style="margin-top: 10px">
-                                            <i>Kaydet</i></button>
-                                    </a>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tabspec" id="detay" style="display: none">
-                <div class="col-12">
-                    <div class="mb-1 row">
-                        <div class="col-sm-3">
-                            <label class="col-form-label" for="description">Açıklama </label>
-                        </div>
-                        <div class="col-sm-9">
-                            <x-textarea-editor id="description" name="brand[description]" placeholder="Açıklama" value="{{isset($brand['description'])?$brand['description']:''}}" />
-                        </div>
-                    </div>
-
-                    <div id="froala"></div>
-                </div>
-            </div>
+{{--        <form action="{{route('product.ciceksepeti')}}" method="post">--}}
+{{--            @csrf--}}
             <div class="tabspec" id="pazaryerleri" style="display: none">
                 <div class="col-12" >
                     <div class="row equal mb-3">
@@ -489,12 +810,7 @@
                                                     <i class="fa fa-times"></i> <i>  GG'den Sil</i></button></a>
 
 
-
-
                                         </div>
-
-
-
 
                                     </div>
 
@@ -695,102 +1011,122 @@
                                     </div>
 
                                 </div>
-                                <div class="card-body pazaryeri" id="ciceksepeti" style="display: none">
-                                    <div class="col-12">
-                                        <div class="card-header d-flex justify-content-between align-items-center">
-                                            <h5 class="card-title m-0">Çiçeksepeti Ayarları</h5>
+{{--                                <div class="card-body pazaryeri" id="ciceksepeti" style="display: none">--}}
+{{--                                    <div class="col-12">--}}
+{{--                                        <div class="card-header d-flex justify-content-between align-items-center">--}}
+{{--                                            <h5 class="card-title m-0">Çiçeksepeti Ayarları</h5>--}}
 
-                                        </div>
-                                        <hr>
-
-
-                                        <div class="col-12">
-                                            <div class="mb-1 row">
-                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti Ürün Adı : </label></div>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" name="" placeholder="Çiçeksepeti Ürün Adı">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="mb-1 row">
-                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti Komisyon % : </label></div>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" name="" placeholder="Çiçeksepeti Komisyon %">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="mb-1 row">
-                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti Fiyatı : </label></div>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" name="" placeholder="Çiçeksepeti Fiyatı">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="mb-1 row">
-                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti İndirim Etiket Tutarı : </label></div>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" name="" placeholder="Çiçeksepeti İndirim Etiket Tutarı">
-                                                </div>
-                                            </div>
-                                        </div>
+{{--                                        </div>--}}
+{{--                                        <hr>--}}
 
 
-                                        <div class="col-12">
-                                            <div class="mb-1 row">
-                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti'nde Yayınlansın </label></div>
-                                                <div class="col-sm-4">
+
+{{--                                        <div class="col-12">--}}
+{{--                                            <div class="mb-1 row">--}}
+{{--                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti Ürün Adı : </label></div>--}}
+{{--                                                <div class="col-sm-4">--}}
+{{--                                                    <input type="text" class="form-control" name="ciceksepeti[productName]" placeholder="Çiçeksepeti Ürün Adı">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[productId]"  style="display: none" value="{{$variants['productId']}}">--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[variantId]"  style="display: none" value="{{$variants['variantId']}}">--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[variantOptionId]"  style="display: none" value="{{$variants['variantOptions'][0]['variantOptionId']}}">--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[discountPrice]"  style="display: none" value="">--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[listingPrice]"  style="display: none" value="">--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[tax]"  style="display: none" value="{{$variants['vatRate']}}">--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[marketplaceMinimumPrice]"  style="display: none" value="0.00">--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[minimumCompetitorPrice]"  style="display: none" value="0.00">--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[marketplacePriceDropRate]"  style="display: none" value="0.00">--}}
+{{--                                        <input type="text" class="form-control" name="ciceksepeti[catalogId]"  style="display: none" value="" id="catalogid">--}}
+
+{{--                                        <div class="col-12">--}}
+{{--                                            <div class="mb-1 row">--}}
+{{--                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Kritik stok : </label></div>--}}
+{{--                                                <div class="col-sm-4">--}}
+{{--                                                    <input type="text" class="form-control" name="ciceksepeti[criticalStockCount]" placeholder="Stok alt limiti " value="">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
+{{--                                        <div class="col-12">--}}
+{{--                                            <div class="mb-1 row">--}}
+{{--                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti Komisyon % : </label></div>--}}
+{{--                                                <div class="col-sm-4">--}}
+{{--                                                    <input type="text" class="form-control" name="ciceksepeti[commission]" placeholder="0.00">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
+{{--                                        <div class="col-12">--}}
+{{--                                            <div class="mb-1 row">--}}
+{{--                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti Fiyatı : </label></div>--}}
+{{--                                                <div class="col-sm-4">--}}
+{{--                                                    <input type="text" class="form-control" name="ciceksepeti[productPrice]" value="" placeholder="Çiçeksepeti Fiyatı">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-12">--}}
+{{--                                            <div class="mb-1 row">--}}
+{{--                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti İndirim Etiket Tutarı : </label></div>--}}
+{{--                                                <div class="col-sm-4">--}}
+{{--                                                    <input type="text" class="form-control" name="" placeholder="Çiçeksepeti İndirim Etiket Tutarı">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
 
-                                                    <select id="" class="select-with-name form-select" data-nametarget="" name="">
-                                                        <option value="">Evet </option>
-                                                        <option value="">Hayır </option>
+{{--                                        <div class="col-12">--}}
+{{--                                            <div class="mb-1 row">--}}
+{{--                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti'nde Yayınlansın </label></div>--}}
+{{--                                                <div class="col-sm-4">--}}
 
 
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <hr>
-
-                                        <div class="col-12">
-                                            <div class="mb-1 row">
-                                                <div class="col-sm-2"><label class="col-form-label" for="contact-info" style="font-size: 1rem">Çiçeksepeti Kategorisi </label></div>
-                                                <div class="col-sm-4">
+{{--                                                    <select id="" class="select-with-name form-select" data-nametarget="" name="">--}}
+{{--                                                        <option value="">Evet </option>--}}
+{{--                                                        <option value="">Hayır </option>--}}
 
 
-                                                    <select id="" class="select-with-name form-select" data-nametarget="" name="">
-                                                        <option></option>
-                                                        <option value="368">Çicek</option>
-                                                        <option value="403">Yenilebilir Çicek</option>
-                                                        <option value="522">Hediye</option>
+{{--                                                    </select>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
+{{--                                        <hr>--}}
+
+{{--                                        <div class="col-12">--}}
+{{--                                            <div class="mb-1 row">--}}
+{{--                                                <div class="col-sm-3">--}}
+{{--                                                    <label class="col-form-label" for="code">Kategori</label>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-sm-9">--}}
+{{--                                                    <select class="nextselect form-select 1" data-nexturl="{{ route('ciceksepeti.category') }}">--}}
+{{--                                                        <option value=""> -- </option>--}}
+{{--                                                        @foreach($ciceksepeti_categories as $ciceksepeti_category)--}}
+{{--                                                            <option value="{{ $ciceksepeti_category['id'] }}">{{ $ciceksepeti_category['name'] }}</option>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </select>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-12" style="margin-top: 20px;">--}}
+
+{{--                                            <a href=" javascript:void(0)" ><button type="button" class="btn btn-info btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">--}}
+{{--                                                    <i>Çiçeksepeti Bilgilerini Kaydet</i></button>--}}
+{{--                                            </a>--}}
+{{--                                            <a href=" javascript:void(0)" ><button type="submit" class="btn btn-success"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">--}}
+{{--                                                    <i>Çiçeksepeti'nde Yayınla</i></button>--}}
+{{--                                            </a>--}}
+{{--                                            <a href=" javascript:void(0)" ><button type="button" class="btn btn-warning btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">--}}
+{{--                                                    <i>Çiçeksepeti'nde Güncelle</i></button>--}}
+{{--                                            </a>--}}
 
 
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12" style="margin-top: 20px;">
+{{--                                        </div>--}}
 
-                                            <a href=" javascript:void(0)" ><button type="button" class="btn btn-info btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">
-                                                    <i>Çiçeksepeti Bilgilerini Kaydet</i></button>
-                                            </a>
-                                            <a href=" javascript:void(0)" ><button type="button" class="btn btn-success btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">
-                                                    <i>Çiçeksepeti'nde Yayınla</i></button>
-                                            </a>
-                                            <a href=" javascript:void(0)" ><button type="button" class="btn btn-warning btn-popup-form"style="margin-top: 10px;margin-left: 10px;background-color: #58c9f3">
-                                                    <i>Çiçeksepeti'nde Güncelle</i></button>
-                                            </a>
+{{--                                    </div>--}}
 
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
+{{--                                </div>--}}
 
 
                                 <div class="card-body pazaryeri" id="n11" style="display: none">
@@ -1070,7 +1406,6 @@
                 </div>
             </div>
 
-        </div>
         <div class="row">
             <div class="col-12" style="margin-top: 20px;">
 
@@ -1086,9 +1421,9 @@
 
             </div>
         </div>
+        </form>
 
 
-    </form>
     </section>
     <!--/ Advanced Search -->
 
@@ -1102,30 +1437,51 @@
 
 @section('page-script')
     {{-- Page js files --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
 
         TulparUploader.createUploder();
 
     </script>
+
     <script>
         document.getElementById('renkbtn').addEventListener('click', function () {
+            var variantname = document.getElementById('variantname');
+            var variantcode = document.getElementById('variantcode');
             var selectedOptions = document.getElementById('renkler').selectedOptions;
             var renkTablosuBody = document.getElementById('renkTablosu').getElementsByTagName('tbody')[0];
+            var dynamicSelect = document.getElementById('dynamicSelect');
 
-            // Renk listesini tabloya ekle
+            // Renk listesini tabloya ve dinamik seçim kutusuna ekle
             for (var i = 0; i < selectedOptions.length; i++) {
-                var renk = selectedOptions[i].value;
+                var renk = selectedOptions[i].value + " - " + selectedOptions[i].text;
 
                 var row = renkTablosuBody.insertRow();
                 var cellRenk = row.insertCell(0);
-                var cellBarkod = row.insertCell(1);
+                var cellResim = row.insertCell(1);
                 var cellMiktar = row.insertCell(2);
+                var cellBarkod = row.insertCell(3);
+                var cellYayınlansın = row.insertCell(4);
 
                 cellRenk.innerHTML = renk;
+                variantname.value = selectedOptions[i].text;
+                variantcode.value = selectedOptions[i].value;
 
-                cellMiktar.innerHTML = '<input type="text" class="form-control"  style="width: 100px">';
-                cellBarkod.innerHTML = '<input type="text" class="form-control" style="width: 50px">';
+                cellResim.innerHTML = '<div class="image-upload small brand" style="background-image: url({{ _CdnImageUrl($product["featuredImage"]?? "" , 200,200) }}); width:100px;height:100px;">' +
+                    '<input type="text"  value="" style="display: none">' +
+                    '<input type="hidden" name="variants[images]['+selectedOptions[i].value+']" value="">' +
+                    '<input type="file" onchange="TulparUploader.loadImageFile(event, this)">' +
+                    '</div>';
 
+                cellMiktar.innerHTML = '<input type="text" class="form-control" style="width: 200px">';
+                cellBarkod.innerHTML = '<input type="text" class="form-control" style="width: 200px">';
+                cellYayınlansın.innerHTML = '<input type="checkbox">';
+
+                // Dinamik seçim kutusuna seçilen renkleri ekle
+                var option = document.createElement("option");
+                option.text = selectedOptions[i].text;
+                option.value = selectedOptions[i].value;
+                dynamicSelect.add(option);
             }
         });
     </script>
@@ -1236,6 +1592,126 @@
         }
 
 
+    </script>
+    <script>
+
+        $('body').on('change', '.main-category-select select', function(){
+            $(this).parents('.category-row').nextAll('.category-row').remove();
+
+            $.ajax( {
+                url: '{{ route('category.category-select') }}?categoryId=' + $(this).val(),
+                target:$(this).parents('.category-row')[0],
+            } )
+                .done(function(select) {
+                    $(this.target).after(select)
+                })
+                .fail(function() {
+                    //alert( "error" );
+                });
+        });
+        $('body').on('click', '.select-categories', function(){
+            $('.main-category-select option:selected').each(function() {
+                if(!$('body').find('#selected-'+$(this).val()).length){
+                    $('#selected-categories').append( get_selected_category($(this)) );
+                }
+            });
+        });
+        function get_selected_category(el){
+            console.log(el.text(), el.val(), el.html());
+            let id = 'selected-' + el.val();
+            let value = el.val();
+            let text = el.text();
+            let html = `<div class="col-sm-4 mb-1"><input id="${id}" name="productCategories[]" type="hidden" value="${value}"><div class="input-group input-group-merge"><input type="text" disabled class="form-control"  value="${text}"><button class="btn btn-danger" type="button"><i class="tf-icons ti ti-minus" style="color: #FFFFFF"></i></button></div></div>`;
+            return html;
+        }
+    </script>
+    <script>
+        $('body').on('change', '.nextselect', function(){
+            $(this).nextAll().remove();
+            $.ajax( {
+                url:$(this).data('nexturl')+ '?categoryId=' + $(this).val(),
+                target:$(this)[0],
+            } )
+                .done(function(select) {
+                    console.log(this);
+                    $(this.target).after(select)
+                })
+                .fail(function() {
+                    alert( "error" );
+                });
+        })
+    </script>
+    <script>
+        $('body').on('change', '.nextselect', function(){
+            // Belirtilen sınıfa sahip tüm select elementlerini seç
+            var selects = $(".nextselect");
+
+
+            // En sonuncu select elementini seç
+            var lastSelect = selects.last();
+            $("#catalogid").val(lastSelect.val());
+            // Seçili olan select elementinin values'ını ekrana yaz
+            console.log("Values: " + lastSelect.val());
+
+
+
+        });
+    </script>
+
+    <script>
+        // Etkinlik dinleyicisi ekleme
+        document.addEventListener('change', function (event) {
+            var target = event.target;
+
+            // Eğer değişiklik olan element bir select ise
+            if (target.tagName.toLowerCase() === 'select' && target.classList.contains('form-select') && target.classList.contains('spec-value')) {
+                // Seçili olan option elementlerini kontrol etme
+                var options = target.querySelectorAll('option');
+                var selectedOptions = [];
+
+                options.forEach(function (option) {
+                    if (option.selected) {
+                        selectedOptions.push({
+                            name: target.getAttribute('name'),
+                            value: option.value,
+                            text: option.textContent
+                        });
+                    }
+                });
+
+                // Sonuçları yazdırma veya istediğiniz başka bir işlemi gerçekleştirme
+                console.log(selectedOptions);
+            }
+        });
+
+    </script>
+
+
+    <script>
+
+        var selectInfoArray = [];
+        $('body').on('change', '.form-select.spec-value', function() {
+            // Tüm form-select spec-value elementlerini seç
+            var selectElements = document.querySelectorAll('.form-select.spec-value');
+
+            // Her bir select elementi için bilgileri topla
+            selectElements.forEach(function (selectElement) {
+                var option = selectElement.querySelector('option:selected');
+
+                var selectInfo = {
+                    attributeId: selectElement.getAttribute('name'),
+                    attributeName: option.getAttribute('value'),
+                    attributeValueId: option.getAttribute('data-value-id'),
+                    attributeValueName: option.textContent
+                };
+
+                // Oluşturulan bilgileri diziye ekle
+                selectInfoArray.push(selectInfo);
+            });
+
+            // Oluşturulan JSON'u göster
+            console.log(JSON.stringify(selectInfoArray, null, 2));
+        }
     </script>
 
 @endsection
