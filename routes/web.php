@@ -37,14 +37,7 @@ use App\Http\Controllers\N11;
 |
 */
 
-/*
-Route::get('html/{module?}/{action?}', function (string $module = 'home',string $action = null) {
-    if($action == null ) return view('content.'.$module);
-    return view('content.'.$module.'.'.$action);
-});
-*/
 Route::get('/popup/{method}', [Popup::class, 'index'])->name('popup')->middleware(['check.token']);
-
 Route::get('/', [Home::class, 'notlogged']);
 Route::get('/login', [Auth::class, 'login'])->name('login')->middleware(['non.registered']);
 Route::post('/check-user', [Auth::class, 'checkUser'])->name('check-user')->middleware(['non.registered']);
@@ -219,6 +212,3 @@ Route::group(['prefix'=>'n11','as'=>'n11.', 'middleware' => ['check.token']], fu
     Route::get('/', [N11::class, 'index'])->name('index');
     Route::get('/category', [N11::class, 'category'])->name('category');
 });
-
-
-

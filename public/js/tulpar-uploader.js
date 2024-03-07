@@ -17,7 +17,7 @@ const TulparUploader = {
 .image-upload {
     width: 100%;
     height: 220px;
-    border: 1px solid;
+    border: 1px solid #cdcdcd;
     position: relative;
     background-size: contain;
     background-repeat: no-repeat;
