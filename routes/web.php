@@ -106,14 +106,10 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::get('/kategori', [Product::class, 'kategori'])->name('kategori');
     Route::get('/category', [Product::class, 'category'])->name('category');
     Route::get('/catlist', [Product::class, 'category'])->name('catlist');
-
     Route::get('/trendyol', [Product::class, 'trendyol'])->name('trendyol');
-<<<<<<< HEAD
     Route::post('/ciceksepeti', [Product::class, 'ciceksepeti'])->name('ciceksepeti');
-=======
     Route::get('/ciceksepeti', [Product::class, 'ciceksepeti'])->name('ciceksepeti');
     Route::get('/n11', [Product::class, 'n11'])->name('n11');
->>>>>>> b7faddc53821574fe285e3ba111ea42eb3845383
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
     Route::get('/new/{productId}', [Product::class, 'new'])->name('new');
     Route::post('/new/{productId}', [Product::class, 'addProduct'])->name('addProduct');
