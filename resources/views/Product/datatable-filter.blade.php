@@ -25,10 +25,22 @@
     </div>
 </div>
 <div class="row g-1 mt-1">
-    <div class="col-md-3">
-        <x-inputs.checkbox-input class="datatable-filter" label="Aktif Ürünler" :checked="'checked'" :id="'search_active_active'" name="search_active" />
+    <div class="col-md-2">
+        <x-inputs.checkbox-input class="datatable-filter" label="Aktif" :checked="'checked'" :id="'search_active_active'" name="search_active" />
     </div>
-    <div class="col-md-3">
-        <x-inputs.checkbox-input class="datatable-filter" label="Pasif Ürünler" :id="'search_active_passive'" name="search_active" />
+    <div class="col-md-2">
+        <x-inputs.checkbox-input class="datatable-filter" label="Pasif" :id="'search_active_passive'" name="search_active" />
+    </div>
+    <div class="col-md-2">
+        <x-inputs.checkbox-input class="datatable-filter" label="Stoksuz" :id="'nonstock'" name="search_nonstock" />
+    </div>
+    <div class="col-md-2">
+        <x-inputs.checkbox-input class="datatable-filter" label="Kategorisiz" :id="'noncategories'" name="search_noncategories" />
+    </div>
+    <div class="col-md-2">
+        <x-inputs.checkbox-input class="datatable-filter" label="Markasız" :id="'nonbrands'" name="search_nonbrands" />
+    </div>
+    <div class="col-md-2">
+        <x-inputs.checkbox-input class="datatable-filter" label="Varyantsız" :id="'nonvariants'" name="search_nonvariants" />
     </div>
 </div>

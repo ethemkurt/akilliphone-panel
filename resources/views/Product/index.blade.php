@@ -20,7 +20,7 @@
                         <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
                             <div>
                                 <h6 class="mb-2">Mağaza Satışı</h6>
-                                <h4 class="mb-2">99.99 TL</h4>
+                                <h4 class="mb-2">--.-- TL</h4>
                                 <p class="mb-0">
                                     <span class="text-muted me-2">5k sipariş</span><span class="badge bg-label-success">+5.7%</span>
                                 </p>
@@ -35,7 +35,7 @@
                         <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
                             <div>
                                 <h6 class="mb-2">Website Satış</h6>
-                                <h4 class="mb-2">99.99 TL</h4>
+                                <h4 class="mb-2">--.-- TL</h4>
                                 <p class="mb-0">
                                     <span class="text-muted me-2">21k sipariş</span><span class="badge bg-label-success">+12.4%</span>
                                 </p>
@@ -50,7 +50,7 @@
                         <div class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
                             <div>
                                 <h6 class="mb-2">Pazaryerleri</h6>
-                                <h4 class="mb-2">99.99 TL</h4>
+                                <h4 class="mb-2">--.-- TL</h4>
                                 <p class="mb-0 text-muted">6k sipariş</p>
                             </div>
                             <span class="avatar p-2 me-sm-4">
@@ -62,7 +62,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <h6 class="mb-2">Dropshipping</h6>
-                                <h4 class="mb-2">99.99</h4>
+                                <h4 class="mb-2">--.--</h4>
                                 <p class="mb-0">
                                     <span class="text-muted me-2">150 sipariş</span><span class="badge bg-label-danger">-3.5%</span>
                                 </p>
