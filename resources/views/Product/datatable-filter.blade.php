@@ -1,4 +1,3 @@
-filtre
 <div class="row g-1">
     <div class="col-md-3">
         <x-inputs.text-input class="datatable-filter" label="Ada Göre Ara" placeholder="Ada Göre Ara" name="search_name" />
