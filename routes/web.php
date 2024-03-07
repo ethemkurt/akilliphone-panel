@@ -103,11 +103,14 @@ Route::group(['prefix'=>'user','as'=>'user.', 'middleware' => ['check.token']], 
 Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.token']], function () {
     Route::get('/list', [Product::class, 'index'])->name('index');
     Route::get('/kategori', [Product::class, 'kategori'])->name('kategori');
+    Route::get('/category', [Product::class, 'category'])->name('category');
+    Route::get('/catlist', [Product::class, 'category'])->name('catlist');
+
     Route::get('/trendyol', [Product::class, 'trendyol'])->name('trendyol');
-    Route::get('/ciceksepeti', [Product::class, 'ciceksepeti'])->name('ciceksepeti');
+    Route::post('/ciceksepeti', [Product::class, 'ciceksepeti'])->name('ciceksepeti');
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
     Route::get('/new/{productId}', [Product::class, 'new'])->name('new');
-    Route::post('/new', [Product::class, 'addProduct'])->name('addProduct');
+    Route::post('/new/{productId}', [Product::class, 'addProduct'])->name('addProduct');
     Route::get('/brand-management-table', [BrandManagement::class, 'dataTable'])->name('brand-management-table');
     Route::post('/brand-management-table', [BrandManagement::class, 'save'])->name('brand-save');
     Route::get('/brand-delete/{brandId}', [BrandManagement::class, 'delete'])->name('brand-delete');
@@ -203,6 +206,8 @@ Route::group(['prefix'=>'settings','as'=>'settings.', 'middleware' => ['check.to
 Route::group(['prefix'=>'trendyol','as'=>'trendyol.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Trendyol::class, 'index'])->name('index');
     Route::get('/category', [Trendyol::class, 'category'])->name('category');
+    Route::get('/catlist', [Trendyol::class, 'category'])->name('catlist');
+
 });
 Route::group(['prefix'=>'ciceksepeti','as'=>'ciceksepeti.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Ciceksepeti::class, 'index'])->name('index');

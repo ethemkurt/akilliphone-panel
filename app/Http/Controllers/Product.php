@@ -15,8 +15,37 @@ class Product extends Controller
         return view('Product.trendyol', $data);
     }
     public function ciceksepeti(Request $request ){
-        $data['ciceksepeti_categories'] = \CiceksepetiService::getCategories();
-        return view('Product.ciceksepeti', $data);
+
+        $ciceksepeti=$request->input('ciceksepeti');
+        $ciceksepeti['productId']=(int)$ciceksepeti['productId'];
+        $ciceksepeti['productImage']="";
+        $ciceksepeti['variantId']=(int)$ciceksepeti['variantId'];
+        $ciceksepeti['variantOptionId']=(int)$ciceksepeti['variantOptionId'];
+        $ciceksepeti['tax']=(int)$ciceksepeti['tax'];
+        $ciceksepeti['productPrice']=(double)$ciceksepeti['productPrice'];
+        $ciceksepeti['marketplaceMinimumPrice']=(double)$ciceksepeti['marketplaceMinimumPrice'];
+        $ciceksepeti['minimumCompetitorPrice']=(double)$ciceksepeti['minimumCompetitorPrice'];
+        $ciceksepeti['marketplacePriceDropRate']=(double)$ciceksepeti['marketplacePriceDropRate'];
+        $ciceksepeti['criticalStockCount']=(int)$ciceksepeti['criticalStockCount'];
+        $ciceksepeti['commission']=(double)$ciceksepeti['commission'];
+        $ciceksepeti['shouldMultipleNamesBeOptions']=false;
+        $ciceksepeti['published']=false;
+        $ciceksepeti['deleted']=false;
+        $ciceksepeti['deleted']=false;
+        $ciceksepeti['oemCode']=null;
+
+
+
+
+
+        return view('Product.new');
+    }
+    public function addCiceksepeti(Request $request,$productId ){
+
+
+
+
+        return redirect(route('product.new'));
     }
     public function kategori(Request $request ){
         $response = \WebService::categories();
@@ -27,6 +56,14 @@ class Product extends Controller
         }
         return view('Product.kategori', $data);
     }
+
+    public function category(Request $request ){
+        $data['categoryId'] = $request->input('categoryId', 0);
+        $data['trendyol_categories'] = \WebService::category($data['categoryId'] );
+
+        return view('Trendyol.category', $data);
+    }
+
     public function index(Request $request ){
         if($request->input('yedekle')){
             return $this->yedekle($request);
@@ -39,50 +76,103 @@ class Product extends Controller
         return view('Product.detail', $data);
     }
     public function new(Request $request,$productId ){
+        $data['ciceksepeti_categories'] = \CiceksepetiService::getCategories();
+
+        $params = $request->input('where', []);
+        $offset = $request->input('length', 10);
+        $start = $request->input('start', 0);
+        $page = ($start/$offset)+1;
+        $response = \WebService::options($page, $offset, $params);
+
         if($productId){
             if($productId=='new'){
                 $data['product'] = \Instance::loadJson('product');
             } else{
                 $data['product'] = \WebService::product($productId);
+
+                $data['variants'] = \WebService::variant($data['product']['variants'][0]['variantId']);
             }
         } else{
             $data['product'] = [];
         }
         $data['currency'] = \Instance::loadJson('productControl');
+        $data['options'] = \WebService::options($page, $offset, $params);
+        $data['colors'] =$data['options']['data'][0]['optionValues'];
+
         $data['brand'] = \WebService::brands();
         $data['categories'] = \WebService::categoriess();
+        $data['categories'] = array_filter($data['categories'], function ($category) {
+            return $category['parentId'] === null;
+        });
+
         return view('Product.new', $data);
     }
-    public function addProduct(Request $request ){
-       $product['slug']="deneme";
-       $product['metaTitle']="deneme";
-       $product['description']="deneme";
-       $product['featuredImage']="deneme";
-       $product['discountRate']=0;
-       $product['code']=0123123;
-       $product['sessionalDiscountStart']="2024-02-29T18:10:43.425Z";
-       $product['sessionalDiscountRate']=0;
-       $product['sessionalDiscountEnd']="2024-02-29T18:10:43.425Z";
-       $product['status']=0;
-       $product['canGiftWrap']=true;
-       $product['giftWrapPrice']=0;
-//       $product['productTypeId']=6;
-       $product['brandId']=6;
-       $product['specialNote']="2asd12";
-        if ($product!=[]){
+    public function addProduct(Request $request,$productId ){
+        $catlist = [];
+        $productCategories = $request->input('productCategories', []);
+        if ($productId!="new") {
+            $data['product'] = \WebService::product($productId);
+            $productCategory = \WebService::productCategory($productId,$productCategories,$data['product']);
+
+        }
+        else{
+
+            dd($request->input('variants', []));
+
+            $data=[];
+            $catlist=[];
+            $product = $request->input('product', []);
+            $product['slug'] = $formattedString = strtolower(str_replace(' ', '_', $product['name']));
+            if ($product['metaTitle']==null) {
+                $product['metaTitle'] = $product['name'];
+            }
+            $product['status']=0;
+            if($imageFile = $request->input('featuredImage')){
+                $product['featuredImage'] = \CdnService::saveToCdn($imageFile);
+            }
             $data['product'] = \WebService::addProduct($product);
 
 
+
+
+            if ($data['product']['errors']==[]){
+                $catlist['productId'] =$data['product']['data']['productId'];
+                $productCategories = $request->input('productCategories', []);
+
+
+                foreach ($productCategories as $cat){
+                    $catlist['categoryId'] =(int)$cat;
+                    $data['productCategories'] = \WebService::productCategories($catlist);
+                }
+
+                $variants = $request->input('variants', []);
+                $variants['productId']=$data['product']['data']['productId'];
+                $variants['featuredImage'] = \CdnService::saveToCdn($imageFile);
+                $variants['oldPrice'] = 0.0;
+                $variants['price'] = $product['price'];
+                $variants['vatRate'] = (double)$product['vatRate'];
+                $variants['status'] = 0;
+                $variants['slug']=$product['slug'];
+                $data['denemea'] = \WebService::addVariants($variants);
+
+                dd($variants);
+
+
+                $deneme = \WebService::product($data['product']['data']['productId']);
+
+
+            }
+
+
+            else{
+                $html = implode(', ', $data['product']['errors']);
+                $request->session()->flash('flash-error', [$html, 'Ürün Eklenemedi' ]);
+            }
+
         }
-
-
-
-
-
-
-
-        return redirect('Product.new');
+//        return redirect(Route('product.new'));
     }
+
 
 
     public function dataTable(Request $request){
