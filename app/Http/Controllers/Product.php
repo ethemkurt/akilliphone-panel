@@ -47,6 +47,11 @@ class Product extends Controller
 
         return redirect(route('product.new'));
     }
+    public function n11(Request $request ){
+        $data['n11_categories'] = \N11Service::getCategories();
+
+        return view('Product.n11', $data);
+    }
     public function kategori(Request $request ){
         $response = \WebService::categories();
         if(isset( $response['items'])){
@@ -54,6 +59,7 @@ class Product extends Controller
         } else {
             $data['categories'] = [];
         }
+
         return view('Product.kategori', $data);
     }
 

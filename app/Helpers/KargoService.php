@@ -24,8 +24,8 @@ class KargoService{
     static public function getFirmaSetting($firma){
         $settings = [
             'aras' =>[
-                'apiname'=>'akilliphone',
-                'apipass'=>'sibel1234',
+                'apiname'=>  env('ARAS_USER'),
+                'apipass'=>  env('ARAS_PASSWORD'),
                 'apicode'=>'',
             ]
         ];
@@ -48,8 +48,8 @@ class ArasKargo{
         $order["invoiceNumber"] = "YOK";
         $orderNumber = _KargoBarkodu($order["orderId"]);
         $params= array(
-            "UserName"              => $setting['apiname'],//"akilliphone",
-            "Password"              => $setting['apipass'],//"sibel1234",
+            "UserName"              => $setting['apiname'],
+            "Password"              => $setting['apipass'],
             "TradingWaybillNumber"  => $orderNumber,
             "InvoiceNumber"  		=> $orderNumber,
             "ReceiverName"			=> html_entity_decode($order['shippingAddress']['firstname'] .' '.$order['shippingAddress']['lastname'], ENT_COMPAT, "UTF-8"),

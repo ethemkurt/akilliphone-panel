@@ -7,12 +7,9 @@ use Firebase\JWT\Key;
 
 class CiceksepetiService{
     const WEBSERVICE_URL = 'https://apis.ciceksepeti.com/api/v1/';
-    const supplierid = '1500027227';
-    const apikey = 'HucyXPrnLa5VXbcEy77hG1eKqhK4jL5Q8dPHT0hw';
-
     static function getCategories($categoryId=null){
         $response =  Http::withHeaders([
-            'x-api-key' => self::apikey,
+            'x-api-key' => env('CICEKSEPETI_APIKEY'),
         ])->get(self::WEBSERVICE_URL.'Categories');
         $data = json_decode($response, true);
         if(empty($data)) return [];
@@ -31,7 +28,7 @@ class CiceksepetiService{
     }
     static function getCategorySpecs($categoryId){
         $response = Http::withHeaders([
-            'x-api-key' => self::apikey,
+            'x-api-key' => env('CICEKSEPETI_APIKEY'),
         ])->get(self::WEBSERVICE_URL.'Categories/'.$categoryId.'/attributes');
         $data = json_decode($response, true);
 

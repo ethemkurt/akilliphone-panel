@@ -7,9 +7,6 @@ use Firebase\JWT\Key;
 
 class TrendyolService{
     const WEBSERVICE_URL = 'https://api.trendyol.com/sapigw/';
-    const supplierid = '108498';
-    const username = 'OtttIGZPJFwCqonagh2v';
-    const password = '8D5OhXAwAE1JxU1uJNIq';
 
     static function getCategories($categoryId=null){
         $response = \Http::get(self::WEBSERVICE_URL.'product-categories');
