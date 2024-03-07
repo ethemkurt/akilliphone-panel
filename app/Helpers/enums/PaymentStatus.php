@@ -4,31 +4,21 @@ class PaymentStatus extends \Enum{
     const ODENDI = 11;
     const ODENMEDI = 18;
     const IADE = 19;
-
-    static function colors($class=null){
-        return[
-            self::ODENMEDI=>'danger',
-            self::ODENDI=>'info',
-            self::BEKLIYOR=>'warning',
-            self::IADE=>'info',
-        ];
-    }
+    static function colors($class=null){ return []; }
     static function color($const){
         $items = self::colors();
         if(isset($items[$const])){
             return $items[$const];
         }
-        return '';
+        return "success";
     }
     static function __($const){
         $items = [
-            self::BEKLIYOR=>__('enum.BEKLIYOR'),
-            self::ODENDI=>__('enum.ODENDI'),
-            self::ODENMEDI=>__('enum.ODENMEDI'),
-            self::IADE=>__('enum.IADE'),
+            self::BEKLIYOR=>'Bekliyor',
+            self::ODENDI=>'Ödendi',
+            self::ODENMEDI=>'Ödenmedi',
+            self::IADE=>'İade',
         ];
         return isset($items[$const])?$items[$const]:$const;
     }
-
 }
-

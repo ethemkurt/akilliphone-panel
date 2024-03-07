@@ -49,7 +49,7 @@ Route::get('/', [Home::class, 'notlogged']);
 Route::get('/login', [Auth::class, 'login'])->name('login')->middleware(['non.registered']);
 Route::post('/check-user', [Auth::class, 'checkUser'])->name('check-user')->middleware(['non.registered']);
 Route::get('/logout', [Auth::class, 'logout'])->name('logout');
-Route::get('/enum', [\Enum::class, 'loadConst']);
+Route::get('/enum', [\Enum::class, 'loadConst'])->name('enum');
 Route::get('/tasarim', [Home::class, 'tasarim']);
 
 Route::group(['prefix'=>'upload','as'=>'upload.', 'middleware' => ['check.token']], function () {

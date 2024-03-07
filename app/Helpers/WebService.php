@@ -112,6 +112,8 @@ class WebService{
         $response = self::GET($endpoint, $data);
         if($response['data'] ){
             return $response['data'];
+        } else{
+            dd($response);
         }
         return [];
     }

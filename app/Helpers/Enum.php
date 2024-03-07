@@ -158,35 +158,47 @@ class Enum
     {
         if ($endpoint === null) $endpoint = request()->input('e');
         if ($endpoint) {
-            $response = Webservice::get_endpoint($endpoint);
-echo "class OrderStatus extends \Enum{<br>";
-echo "class OrderStatus extends \Enum{<br>";
-            if ($response) {
-                foreach ($response as $item) {
-                    $item['name'] = str_replace(['ğ', 'ü', 'ş', 'ı', 'ö', 'ç', 'Ğ', 'Ü', 'Ş', 'İ', 'Ö', 'Ç'], ['G', 'U', 'S', 'I', 'O', 'C', 'G', 'U', 'S', 'I', 'O', 'C'], $item['name']);
-                    $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''], $item['name']);
-                    echo "const " . strtoupper($item['name']) . " = " . current($item) . ";<br>";
-                }
-                echo <<<HEREA
-    static function colors($class=null){
+            $class = request()->input('c');
+            if($class){
+                $response = Webservice::get_endpoint($endpoint);
+                echo htmlspecialchars('<?php')."<br>class $class extends \Enum{<br>";
+                if ($response) {
+                    foreach ($response as $item) {
+                        $item['name'] = str_replace(['ğ', 'ü', 'ş', 'ı', 'ö', 'ç', 'Ğ', 'Ü', 'Ş', 'İ', 'Ö', 'Ç'], ['G', 'U', 'S', 'I', 'O', 'C', 'G', 'U', 'S', 'I', 'O', 'C'], $item['name']);
+                        $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''], $item['name']);
+                        echo "const " . strtoupper($item['name']) . " = " . current($item) . ";<br>";
+                    }
+                    echo <<<HEREA
+    static function colors(\$class=null){
         return [];
-    }
-    static function color($const){
-        $items = self::colors();
-        if(isset($items[$const])){
-            return $items[$const];
-        }
-        return \'success\';
-    }
+    }<br>
+    static function color(\$const){<br>
+        \$items = self::colors();<br>
+        if(isset(\$items[\$const])){<br>
+            return \$items[\$const];<br>
+        }<br>
+        return "success";<br>
+    }<br>
+    static function __(\$const){<br>\$items = [<br>
     HEREA;
-                foreach ($response as $item) {
-                    $name = $item['name'];
-                    $item['name'] = str_replace(['ğ', 'ü', 'ş', 'ı', 'ö', 'ç', 'Ğ', 'Ü', 'Ş', 'İ', 'Ö', 'Ç'], ['G', 'U', 'S', 'I', 'O', 'C', 'G', 'U', 'S', 'I', 'O', 'C'], $item['name']);
-                    $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''], $item['name']);
-                    echo "self::" . strtoupper($item['name']) . "=>'" . $name . "',<br>";
+                    foreach ($response as $item) {
+                        $name = $item['name'];
+                        $item['name'] = str_replace(['ğ', 'ü', 'ş', 'ı', 'ö', 'ç', 'Ğ', 'Ü', 'Ş', 'İ', 'Ö', 'Ç'], ['G', 'U', 'S', 'I', 'O', 'C', 'G', 'U', 'S', 'I', 'O', 'C'], $item['name']);
+                        $item['name'] = str_replace([' ', "'", '"', '-', '(', ')', '/'], [''], $item['name']);
+                        echo "self::" . strtoupper($item['name']) . "=>'" . $name . "',<br>";
+                    }
                 }
+                echo "];<br> return isset(\$items[\$const])?\$items[\$const]:\$const;<br>}";
+                echo "<br>}";
+
             }
-            echo "}";
+        } else {
+            $url = route('enum',['c'=>'PaymentType', 'e'=>'orders/payment-type']);
+            echo '<a href="'.$url.'" target="_blank">'.$url.'</a><br>';
+            $url = route('enum',['c'=>'PaymentStatus', 'e'=>'orders/payment-status']);
+            echo '<a href="'.$url.'" target="_blank">'.$url.'</a><br>';
+            $url = route('enum',['c'=>'OrderStatus', 'e'=>'orders/order-status']);
+            echo '<a href="'.$url.'" target="_blank">'.$url.'</a><br>';
         }
     }
 }
