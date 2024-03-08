@@ -178,6 +178,7 @@ class Product extends Controller
         $filter['offset'] = $request->input('length', 10);
         $filter['start'] = $request->input('start', 0);
         $filter['page'] = ceil($filter['start']/$filter['offset']);
+        $filter['active'] = 'all';
         $where = $request->input('where', []);
 
         if(isset($where)){
@@ -189,6 +190,15 @@ class Product extends Controller
             }
             if(isset($where['categoryId']) && $where['categoryId']){
                 $filter['cat'] = $where['categoryId'];
+            }
+            if(isset($where['active']) && $where['active']=='on'){
+                $filter['active'] = 'active';
+            }
+            if(isset($where['passive']) && $where['passive']=='on' ){
+                $filter['active'] = 'passive';
+            }
+            if(isset($where['active']) && $where['active']=='on' && isset($where['passive']) && $where['passive']=='on' ){
+                $filter['active'] = 'all';
             }
         }
         $response = \WebService::products($filter);

@@ -109,7 +109,13 @@ $dt = isset($dataTable)?$dataTable:null;
                                     if($('.datatable-filter').length){
                                         $('.datatable-filter').each(function(){
                                             if (typeof $(this).attr('name') !== "undefined") {
-                                                d['where'][$(this).attr('name')] = $(this).val();
+                                                if($(this).attr('type')=='checkbox'){
+                                                    if($(this).is(':checked')){
+                                                        d['where'][$(this).attr('name')] = $(this).val();
+                                                    }
+                                                } else{
+                                                    d['where'][$(this).attr('name')] = $(this).val();
+                                                }
                                             }
                                         });
                                     }

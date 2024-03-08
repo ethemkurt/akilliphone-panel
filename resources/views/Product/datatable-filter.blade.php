@@ -23,10 +23,10 @@
 </div>
 <div class="row g-1 mt-1">
     <div class="col-md-2">
-        <x-inputs.checkbox-input class="datatable-filter" label="Aktif" :checked="'checked'" :id="'search_active_active'" name="search_active" />
+        <x-inputs.checkbox-input class="datatable-filter" label="Aktif" :checked="'checked'" :id="'active'" name="active" />
     </div>
     <div class="col-md-2">
-        <x-inputs.checkbox-input class="datatable-filter" label="Pasif" :id="'search_active_passive'" name="search_active" />
+        <x-inputs.checkbox-input class="datatable-filter" label="Pasif" :id="'passive'" name="passive" />
     </div>
     <div class="col-md-2">
         <x-inputs.checkbox-input class="datatable-filter" label="Stoksuz" :id="'nonstock'" name="search_nonstock" />
