@@ -25,7 +25,9 @@
 <script src="{{ _Asset('vendor/libs/validation/jquery.validate.min.js') }}"></script>
 <script src="{{ _Asset('vendor/libs/cleavejs/cleave.js') }}"></script>
 <script src="{{ _Asset('vendor/libs/cleavejs/cleave-phone.js') }}"></script>
-<script src="{{ _Asset('vendor/libs/select2/select2.js') }}"></script>
+{{--<script src="{{ _Asset('vendor/libs/select2/select2.js') }}"></script>--}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- endbuild -->
 
 <!-- Vendors JS -->

@@ -93,6 +93,7 @@ class OrderStatus extends Controller
         $dataTable->setCols([
             'orderNumber'=>['title'=>'Sıra', 'className'=>'sort-order', 'orderable'=>''],
             'orderStatusId'=>['title'=>'Id', 'className'=>'', 'orderable'=>''],
+            'code'=>['title'=>'Kod', 'className'=>'', 'orderable'=>''],
             'name'=>['title'=>'Adı', 'className'=>'', 'orderable'=>''],
             'action'=>['title'=>'Adı', 'className'=>'action-buttons', 'orderable'=>''],
         ]);

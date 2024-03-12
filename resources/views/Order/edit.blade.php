@@ -185,24 +185,24 @@
                                 <div class="card full-height mb-4">
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <h5 class="card-title m-0">Teslimat Bilgileri</h5>
-                                        <input value="{{ $order['shippingAddress']['customerId'] }}" type="hidden" name="order[shippingAddress][customerId]">
-                                        <input value="{{ $order['shippingAddress']['countryId'] }}" type="hidden" name="order[shippingAddress][countryId]" value="2">
-                                        <input value="{{ $order['shippingAddress']['cityId'] }}" type="hidden" name="order[shippingAddress][cityId]">
-                                        <input value="{{ $order['shippingAddress']['districtId'] }}" type="hidden" name="order[shippingAddress][districtId]">
-                                        <input value="{{ $order['shippingAddress']['firstname'] }}" type="hidden" name="order[shippingAddress][firstName]">
-                                        <input value="{{ $order['shippingAddress']['lastname'] }}" type="hidden" name="order[shippingAddress][lastName]">
-                                        <input value="" type="hidden" name="order[shippingAddress][name]">
-                                        <input value="{{ $order['shippingAddress']['description'] }}" type="hidden" name="order[shippingAddress][description]">
-                                        <input value="{{ $order['shippingAddress']['addressLine1'] }}" type="hidden" name="order[shippingAddress][addressLine1]">
-                                        <input value="{{ $order['shippingAddress']['addressLine2'] }}" type="hidden" name="order[shippingAddress][addressLine2]">
+                                        <input value="{{ $order['shippingAddress']['countryId'] }}" type="hidden" name="order[shippingAddress][countryId]" value="1">
                                         <input value="{{ $order['shippingAddress']['country'] }}" type="hidden" name="order[shippingAddress][country]">
-                                        <input value="{{ $order['shippingAddress']['city'] }}" type="hidden" name="order[shippingAddress][city]">
-                                        <input value="{{ $order['shippingAddress']['district'] }}" type="hidden" name="order[shippingAddress][district]">
-                                        <input value="{{ $order['shippingAddress']['zipCode'] }}" type="hidden" name="order[shippingAddress][zipCode]">
-                                        <input value="{{ $order['shippingAddress']['latitude'] }}" type="hidden" name="order[shippingAddress][latitude]">
-                                        <input value="{{ $order['shippingAddress']['longitude'] }}" type="hidden" name="order[shippingAddress][longitude]">
-                                        <input value="{{ $order['shippingAddress']['placeId'] }}" type="hidden" name="order[shippingAddress][placeId]">
-                                        <input value="{{ $order['shippingAddress']['phone'] }}" type="hidden" name="order[shippingAddress][phone]">
+{{--                                        <input value="{{ $order['shippingAddress']['customerId'] }}" type="hidden" name="order[shippingAddress][customerId]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['cityId'] }}" type="hidden" name="order[shippingAddress][cityId]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['districtId'] }}" type="hidden" name="order[shippingAddress][districtId]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['firstname'] }}" type="hidden" name="order[shippingAddress][firstname]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['lastname'] }}" type="hidden" name="order[shippingAddress][lastname]">--}}
+{{--                                        <input value="" type="hidden" name="order[shippingAddress][name]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['description'] }}" type="hidden" name="order[shippingAddress][description]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['addressLine1'] }}" type="hidden" name="order[shippingAddress][addressLine1]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['addressLine2'] }}" type="hidden" name="order[shippingAddress][addressLine2]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['city'] }}" type="hidden" name="order[shippingAddress][city]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['district'] }}" type="hidden" name="order[shippingAddress][district]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['zipCode'] }}" type="hidden" name="order[shippingAddress][zipCode]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['latitude'] }}" type="hidden" name="order[shippingAddress][latitude]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['longitude'] }}" type="hidden" name="order[shippingAddress][longitude]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['placeId'] }}" type="hidden" name="order[shippingAddress][placeId]">--}}
+{{--                                        <input value="{{ $order['shippingAddress']['phone'] }}" type="hidden" name="order[shippingAddress][phone]">--}}
 
                                     </div>
                                     <div class="card-body">
@@ -210,7 +210,7 @@
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ad</label></div>
                                                 <div class="col-sm-9">
-                                                    <input value="{{ $order['shippingAddress']['firstname'] }}" type="text" class="form-control" name="order[shippingAddress][firstName]" placeholder="Ad">
+                                                    <input value="{{ $order['shippingAddress']['firstname'] }}" type="text" class="form-control" name="order[shippingAddress][firstname]" placeholder="Ad">
                                                 </div>
                                             </div>
                                         </div>
@@ -218,7 +218,7 @@
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Soyad</label></div>
                                                 <div class="col-sm-9">
-                                                    <input value="{{ $order['shippingAddress']['lastname'] }}" type="text" class="form-control" name="order[shippingAddress][lastName]" placeholder="Soyad">
+                                                    <input value="{{ $order['shippingAddress']['lastname'] }}" type="text" class="form-control" name="order[shippingAddress][lastname]" placeholder="Soyad">
                                                 </div>
                                             </div>
                                         </div>
@@ -238,7 +238,7 @@
                                                         <option value=""> -- </option>
                                                         @if($cities['data'])
                                                             @foreach($cities['data'] as $city)
-                                                                @if($city['countryId']==2)
+                                                                @if($city['countryId']==1)
                                                                     <option value="{{ $city['cityId'] }}" @if($order['shippingAddress']['cityId']==$city['cityId']) selected @endif>{{ $city['name'] }}</option>
                                                                 @endif
                                                             @endforeach
@@ -274,44 +274,53 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        @if($order['orderId']=='new')
+                                        <div class="col-12">
+                                            <div class="mb-1 row">
+                                                <div class="col-sm-3"><label class="col-form-label" for="contact-info"></label></div>
+                                                <div class="col-sm-9">
+                                                    <input class="form-check-input" name="same-address" type="checkbox" value="1" id="copy-address" > Fatura İçin Kullan
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="card full-height mb-4">
+                                <div class="card full-height mb-4" >
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <h5 class="card-title m-0">Fatura Bilgileri</h5>
-                                        <input value="{{ $order['billingAddress']['customerId'] }}" type="hidden" name="order[billingAddress][customerId]">
-                                        <input value="{{ $order['billingAddress']['countryId'] }}" type="hidden" name="order[billingAddress][countryId]" value="2">
-                                        <input value="{{ $order['billingAddress']['cityId'] }}" type="hidden" name="order[billingAddress][cityId]">
-                                        <input value="{{ $order['billingAddress']['districtId'] }}" type="hidden" name="order[billingAddress][districtId]">
-                                        <input value="{{ $order['billingAddress']['firstname'] }}" type="hidden" name="order[billingAddress][firstName]">
-                                        <input value="{{ $order['billingAddress']['lastname'] }}" type="hidden" name="order[billingAddress][lastName]">
-                                        <input value="" type="hidden" name="order[billingAddress][name]">
-                                        <input value="{{ $order['billingAddress']['description'] }}" type="hidden" name="order[billingAddress][description]">
-                                        <input value="{{ $order['billingAddress']['addressLine1'] }}" type="hidden" name="order[billingAddress][addressLine1]">
-                                        <input value="{{ $order['billingAddress']['addressLine2'] }}" type="hidden" name="order[billingAddress][addressLine2]">
-                                        <input value="{{ $order['billingAddress']['country'] }}" type="hidden" name="order[billingAddress][country]">
-                                        <input value="{{ $order['billingAddress']['city'] }}" type="hidden" name="order[billingAddress][city]">
-                                        <input value="{{ $order['billingAddress']['district'] }}" type="hidden" name="order[billingAddress][district]">
-                                        <input value="{{ $order['billingAddress']['zipCode'] }}" type="hidden" name="order[billingAddress][zipCode]">
-                                        <input value="{{ $order['billingAddress']['latitude'] }}" type="hidden" name="order[billingAddress][latitude]">
-                                        <input value="{{ $order['billingAddress']['longitude'] }}" type="hidden" name="order[billingAddress][longitude]">
-                                        <input value="{{ $order['billingAddress']['placeId'] }}" type="hidden" name="order[billingAddress][placeId]">
-                                        <input value="{{ $order['billingAddress']['phone'] }}" type="hidden" name="order[billingAddress][phone]">
-                                        <input value="{{ $order['billingAddress']['company'] }}" type="hidden" name="order[billingAddress][company]">
-                                        <input value="{{ $order['billingAddress']['taxOffice'] }}" type="hidden" name="order[billingAddress][taxOffice]">
-                                        <input value="{{ $order['billingAddress']['taxNumber'] }}" type="hidden" name="order[billingAddress][taxNumber]">
-                                        <input value="{{ $order['billingAddress']['invoiceType'] }}" type="hidden" name="order[billingAddress][invoiceType]">
+                                        <input value="{{ $order['billingAddress']['countryId'] }}" type="hidden" name="order[billingAddress][countryId]">
+                                        <input value="{{ $order['billingAddress']['country'] }}" type="hidden" name="order[billingAddress][country]" >
+{{--                                        <input value="{{ $order['billingAddress']['customerId'] }}" type="hidden" name="order[billingAddress][customerId]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['cityId'] }}" type="hidden" name="order[billingAddress][cityId]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['districtId'] }}" type="hidden" name="order[billingAddress][districtId]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['firstname'] }}" type="hidden" name="order[billingAddress][firstname]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['lastname'] }}" type="hidden" name="order[billingAddress][lastname]">--}}
+{{--                                        <input value="" type="hidden" name="order[billingAddress][name]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['description'] }}" type="hidden" name="order[billingAddress][description]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['addressLine1'] }}" type="hidden" name="order[billingAddress][addressLine1]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['addressLine2'] }}" type="hidden" name="order[billingAddress][addressLine2]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['city'] }}" type="hidden" name="order[billingAddress][city]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['district'] }}" type="hidden" name="order[billingAddress][district]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['zipCode'] }}" type="hidden" name="order[billingAddress][zipCode]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['latitude'] }}" type="hidden" name="order[billingAddress][latitude]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['longitude'] }}" type="hidden" name="order[billingAddress][longitude]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['placeId'] }}" type="hidden" name="order[billingAddress][placeId]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['phone'] }}" type="hidden" name="order[billingAddress][phone]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['company'] }}" type="hidden" name="order[billingAddress][company]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['taxOffice'] }}" type="hidden" name="order[billingAddress][taxOffice]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['taxNumber'] }}" type="hidden" name="order[billingAddress][taxNumber]">--}}
+{{--                                        <input value="{{ $order['billingAddress']['invoiceType'] }}" type="hidden" name="order[billingAddress][invoiceType]">--}}
 
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" id="card-billing">
                                         <div class="col-12">
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Ad</label></div>
                                                 <div class="col-sm-9">
-                                                    <input value="{{ $order['billingAddress']['firstname'] }}" type="text" class="form-control" name="order[billingAddress][firstName]" placeholder="Ad">
+                                                    <input value="{{ $order['billingAddress']['firstname'] }}" type="text" class="form-control" name="order[billingAddress][firstname]" placeholder="Ad">
                                                 </div>
                                             </div>
                                         </div>
@@ -319,7 +328,7 @@
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Soyad</label></div>
                                                 <div class="col-sm-9">
-                                                    <input value="{{ $order['billingAddress']['lastname'] }}" type="text" class="form-control" name="order[billingAddress][lastName]" placeholder="Soyad">
+                                                    <input value="{{ $order['billingAddress']['lastname'] }}" type="text" class="form-control" name="order[billingAddress][lastname]" placeholder="Soyad">
                                                 </div>
                                             </div>
                                         </div>
@@ -340,7 +349,7 @@
                                                         <option value=""> -- </option>
                                                         @if($cities['data'])
                                                             @foreach($cities['data'] as $city)
-                                                                @if($city['countryId']==2)
+                                                                @if($city['countryId']==1)
                                                                     <option value="{{ $city['cityId'] }}" @if($order['billingAddress']['cityId']==$city['cityId']) selected @endif>{{ $city['name'] }}</option>
                                                                 @endif
                                                             @endforeach
@@ -372,11 +381,12 @@
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Adres</label></div>
                                                 <div class="col-sm-9">
-                                                  <textarea name="order[billingAddress][addressLine1]" class="form-control">{{ $order['billingAddress']['addressLine1'] }}</textarea>
+                                                    <textarea name="order[billingAddress][addressLine1]" class="form-control">{{ $order['billingAddress']['addressLine1'] }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
+                                    </div>
+                                    <div class="card-body">
                                         <div class="col-12">
                                             <div class="mb-1 row">
                                                 <div class="col-sm-3"><label class="col-form-label" for="contact-info">Fatura Tipi</label></div>
@@ -589,7 +599,6 @@
     });
     $('#shippingAddress-cityId').change();
     $('#shippingAddress-districtId').val('{{ $order['shippingAddress']['districtId'] }}');
-
     $('#billingAddress-cityId').on('change', function(){
         $('#billingAddress-districtId').val('');
         $('.district-option').hide();
@@ -613,11 +622,11 @@
                 $('input[name="order[customer][lastName]"]').val(response.data.lastName);
                 $('input[name="order[customer][telefon]"]').val(response.data.telefon);
                 $('input[name="order[customer][email]"]').val(response.data.email);
-                $('input[name="order[shippingAddress][firstName]"]').val(response.data.firstName);
-                $('input[name="order[shippingAddress][lastName]"]').val(response.data.lastName);
+                $('input[name="order[shippingAddress][firstname]"]').val(response.data.firstName);
+                $('input[name="order[shippingAddress][lastname]"]').val(response.data.lastName);
                 $('input[name="order[shippingAddress][phone]"]').val(response.data.telefon);
-                $('input[name="order[billingAddress][firstName]"]').val(response.data.firstName);
-                $('input[name="order[billingAddress][lastName]"]').val(response.data.lastName);
+                $('input[name="order[billingAddress][firstname]"]').val(response.data.firstName);
+                $('input[name="order[billingAddress][lastname]"]').val(response.data.lastName);
                 $('input[name="order[billingAddress][phone]"]').val(response.data.telefon);
                 $('#poupForm').modal('hide');
             }  else {
@@ -628,6 +637,15 @@
             console.log(jqXHR.responseText);
         })
         return false;
+    });
+    @if($order['orderId']=='new')
+    $('#copy-address').on('click', function () {
+        if($(this).is(':checked')){
+            $('#card-billing').hide();
+        } else {
+            $('#card-billing').show();
+        }
     })
+    @endif
 </script>
 @endsection

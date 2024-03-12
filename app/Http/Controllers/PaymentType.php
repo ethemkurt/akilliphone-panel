@@ -88,6 +88,7 @@ class PaymentType extends Controller{
         $dataTable->setCols([
             'orderNumber'=>['title'=>'Sıra', 'className'=>'sort-order', 'orderable'=>''],
             'paymentTypeId'=>['title'=>'Id', 'className'=>'', 'orderable'=>''],
+            'code'=>['title'=>'Kod', 'className'=>'', 'orderable'=>''],
             'name'=>['title'=>'Adı', 'className'=>'', 'orderable'=>''],
             'action'=>['title'=>'', 'className'=>'action-buttons', 'orderable'=>''],
         ]);

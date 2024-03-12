@@ -42,15 +42,24 @@ class Order extends Controller{
             }
             $order['orderProducts'] = $orderProducts;
         }
-        if(isset($order['shippingAddress'])){
-            if(empty($order['shippingAddress']['addressLine2']))$order['shippingAddress']['addressLine2']="";
-        }
-        if(isset($order['billingAddress'])){
-            if(empty($order['billingAddress']['addressLine2']))$order['billingAddress']['addressLine2']="";
+        if($request->input('same-address')){
+            if(isset($order['shippingAddress'])){
+                if(empty($order['shippingAddress']['addressLine2']))$order['shippingAddress']['addressLine2']="";
+            }
+            $order['billingAddress'] = $order['shippingAddress'];
+        } else{
+            if(isset($order['shippingAddress'])){
+                if(empty($order['shippingAddress']['addressLine2']))$order['shippingAddress']['addressLine2']="";
+            }
+            if(isset($order['billingAddress'])){
+                if(empty($order['billingAddress']['addressLine2']))$order['billingAddress']['addressLine2']="";
+            }
+
         }
         if($orderId=='new'){
             unset($order['orderId']);
             $response = \WebService::newOrder($order);
+            dd(json_encode($order), $response);
             $order['orderId'] = 'new';
         } else {
             $response = \WebService::editOrder($orderId, $order);
