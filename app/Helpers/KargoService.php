@@ -10,7 +10,6 @@ class KargoService{
         } else {
             $result = [];
         }
-        dd($result);
         return $result;
     }
     static public function firmayaGoreKargola($firma, $order){

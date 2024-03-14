@@ -19,4 +19,13 @@ class N11 extends Controller
         $data['n11_categories'] = \N11Service::getCategories($data['categoryId'] );
         return view('N11.category', $data);
     }
+    public function productSpecs(Request $request){
+        if($productId = $request->input('productId')){
+            $data = [];
+            $message = 'Ürün trendyol özellikleri';
+            $html = view('Product.tabs.pazaryerleri.n11', $data)->render();
+            return _ReturnSucces($message, $html);
+        }
+    }
+
 }
