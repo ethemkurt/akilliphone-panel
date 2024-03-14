@@ -159,5 +159,5 @@ function _OrderUserAvatar($order){
     return _UserAvatar($firstname, $lastname, $email, $url);
 }
 function _UserAvatar($firstname, $lastname, $email, $url){
-    return '<div class="d-flex justify-content-start align-items-center order-name text-nowrap"><div class="avatar-wrapper"><div class="avatar me-2"><span class="avatar-initial rounded-circle  bg-label-dark">'.mb_substr($firstname,0,1).mb_substr($lastname,0,1).'</span></div></div><div class="d-flex flex-column"><h6 class="m-0"><a href="'.$url.'" class="text-body">'.$firstname.' '.$lastname.'</a></h6><small class="text-muted">'.$email.'</small></div></div>';
+    return '<div class="d-flex justify-content-start align-items-center order-name text-nowrap"><div class="avatar-wrapper"><div class="avatar me-2"><span class="avatar-initial rounded-circle  bg-label-dark">'.mb_substr($firstname,0,1).mb_substr($lastname,0,1).'</span></div></div><div class="d-flex flex-column"><h6 class="m-0"><a class="text-body" target="_blank" href="'.$url.'">'.$firstname.' '.$lastname.'</a></h6><small class="text-muted">'.$email.'</small></div></div>';
 }
