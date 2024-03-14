@@ -339,12 +339,11 @@ class Order extends Controller{
             'checkBox'=>['title'=>'', 'className'=>'checkbox', 'orderable'=>''],
             'orderId'=>['title'=>'No', 'className'=>'', 'orderable'=>''],
             'createdAt'=>['title'=>'Tarihi', 'className'=>'', 'orderable'=>''],
-
             'firstName'=>['title'=>'Müşteri', 'className'=>'', 'orderable'=>''],
             'paymentStatusId'=>['title'=>'Ödemesi', 'className'=>'', 'orderable'=>''],
             'orderStatusId'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
             'paymentTypeId'=>['title'=>'Ödeme Tipi', 'className'=>'', 'orderable'=>''],
-            //'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
+            'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
         $dataTable->setFiters('Order.datatable-filter', \request()->all());
