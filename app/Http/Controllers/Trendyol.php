@@ -19,4 +19,12 @@ class Trendyol extends Controller
         $data['trendyol_categories'] = \TrendyolService::getCategories($data['categoryId'] );
         return view('Trendyol.category', $data);
     }
+    public function productSpecs(Request $request){
+        if($productId = $request->input('productId')){
+            $data = [];
+            $message = 'Ürün trendyol özellikleri';
+            $html = view('Product.tabs.pazaryerleri.trendyol', $data)->render();
+            return _ReturnSucces($message, $html);
+        }
+    }
 }

@@ -159,7 +159,7 @@ var Akilliphone = {
             e.preventDefault();
             let orderId = $(this).data('orderid');
             let orderStatusId = $(this).parents('.input-group').find('.select-order-status-id').val();
-            Akilliphone.popupByUrl('popup/changeOrderState?orderId='+orderId+'&orderStatusId='+orderStatusId, 'GET', {});
+            Akilliphone.popupByUrl('order/changeOrderState?orderId='+orderId+'&orderStatusId='+orderStatusId, 'GET', {});
         });
     },
     _confirmPopupEvent: function(){

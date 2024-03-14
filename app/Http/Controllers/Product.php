@@ -10,6 +10,24 @@ use Illuminate\Http\Request;
 class Product extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function test(Request $request ){
+        $params = $request->input('where', []);
+        $offset = $request->input('length', 10);
+        $start = $request->input('start', 0);
+        $page = ($start/$offset)+1;
+
+        $data['product'] = \Instance::loadJson('product');
+        $data['brand'] = \WebService::brands();
+        $data['categories'] = \WebService::categoriess();
+        $data['currency'] = \Instance::loadJson('productControl');
+        $data['options'] = \WebService::options($page, $offset, $params);
+        $data['colors'] =$data['options']['data'][0]['optionValues'];
+
+        $data['categories'] = array_filter($data['categories'], function ($category) {
+            return $category['parentId'] === null;
+        });
+        return view('Product.test', $data);
+    }
     public function trendyol(Request $request ){
         $data['trendyol_categories'] = \TrendyolService::getCategories();
         return view('Product.trendyol', $data);

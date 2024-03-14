@@ -59,7 +59,7 @@ class Order extends Controller{
         if($orderId=='new'){
             unset($order['orderId']);
             $response = \WebService::newOrder($order);
-            dd(json_encode($order), $response);
+            //dd(json_encode($order), $response);
             $order['orderId'] = 'new';
         } else {
             $response = \WebService::editOrder($orderId, $order);
@@ -181,6 +181,29 @@ class Order extends Controller{
         }
         return ['status'=>1, 'message'=>'m', 'html'=>$html];
     }
+    public function changeOrderState(Request $request ){
+        $orderId = $request->input('orderId');
+        $orderStatusId = $request->input('orderStatusId');
+        if($orderId){
+            $order = \WebService::order($orderId);
+            if($order && isset($order['orderStatusId'])){
+                $order['orderStatusId'] = $orderStatusId;
+                $result = \KargoService::siparisDurumunaGoreKargola($order);
+                if($result){
+                    $order['shippingTrackingNumber'] = $result['message'];
+                }
+                $response = \WebService::editOrder($orderId, $order);
+                if($response && isset($response['data']['orderStatusId']) ){
+                    if($result){
+                        return _ReturnSucces('', '<i class="fa fa-check text-success"></i> '.$result['html']);
+                    }
+                    return _ReturnSucces('', '<i class="fa fa-check text-success"></i> <strong>'.$order['orderCustomer']['firstName'].' '.$order['orderCustomer']['lastName'].'</strong> Sipariş Durumu Güncellendi');
+                }
+            }
+        }
+        return _ReturnSucces('', '<i class="fa fa-times text-danger"></i> Sipariş Durumu Güncellenemedi');
+    }
+
     public function dataTable(Request $request){
         $dataTable = $this->dataTableParams();
         $offset = $request->input('length', 10);
@@ -226,11 +249,11 @@ class Order extends Controller{
     private function _format_checkBox($item) {
         return '<input type="checkbox" class="form-check-input">';
     }
+    /*
     private function _format_orderStatusId($item) {
         return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\OrderStatus::color($item['orderStatusId']).'" style="white-space: nowrap;">'.\OrderStatus::__($item['orderStatusId']).'</h6>';
 
-    }
-    /*
+    }*/
     private function _format_orderStatusId($item) {
         //return '<h6 class="mb-0 align-items-center d-flex w-px-100 text-'.\OrderStatus::color($item['orderStatusId']).'"><i class="ti ti-circle-filled fs-tiny me-2"></i>'.\OrderStatus::__($item['orderStatusId']).'</h6>';
 
@@ -241,10 +264,10 @@ class Order extends Controller{
         }
         return '<div class="input-group">
                 <select class="form-select tiny select-order-status-id" aria-describedby="basic-addon-search1">'.$options.'</select>
-                <button class="input-group-text btn-change-order-state" data-orderid="'.$item['orderId'].'" id="basic-addon-search1"><i class="fa fa-check"></i>
+                <button class="input-group-text btn-change-order-state" data-orderid="'.$item['orderId'].'" id="basic-addon-search1"><i class="menu-icon tf-icons ti ti-check"></i>
                 </button>
             </div>';
-    } */
+    }
     private function _format_orderTotal($item){
         return  _FormatPrice($item['orderTotal']);
     }
@@ -316,12 +339,11 @@ class Order extends Controller{
             'checkBox'=>['title'=>'', 'className'=>'checkbox', 'orderable'=>''],
             'orderId'=>['title'=>'No', 'className'=>'', 'orderable'=>''],
             'createdAt'=>['title'=>'Tarihi', 'className'=>'', 'orderable'=>''],
-
             'firstName'=>['title'=>'Müşteri', 'className'=>'', 'orderable'=>''],
             'paymentStatusId'=>['title'=>'Ödemesi', 'className'=>'', 'orderable'=>''],
             'orderStatusId'=>['title'=>'Durumu', 'className'=>'', 'orderable'=>''],
             'paymentTypeId'=>['title'=>'Ödeme Tipi', 'className'=>'', 'orderable'=>''],
-            //'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
+            'orderTotal'=>['title'=>'Toplam', 'className'=>'', 'orderable'=>''],
             'actions'=>['title'=>'', 'className'=>'', 'orderable'=>''],
         ]);
         $dataTable->setFiters('Order.datatable-filter', \request()->all());

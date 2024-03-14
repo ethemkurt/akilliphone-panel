@@ -67,6 +67,7 @@ Route::group(['prefix'=>'order','as'=>'order.', 'middleware' => ['check.token']]
     Route::get('/find-product-form', [Order::class, 'findProductForm'])->name('find-product-form');
     Route::get('/find-product-select2', [Order::class, 'findProductSelect2'])->name('find-product-select2');
     Route::post('/add-product-to-order', [Order::class, 'addProductToOrder'])->name('add-product-to-order');
+    Route::get('/changeOrderState', [Order::class, 'changeOrderState'])->name('change-orderstate');
     Route::get('/order-status', [OrderStatus::class, 'index'])->name('order-status');
     Route::get('/order-status/delete/{orderStatusId}', [OrderStatus::class, 'delete'])->name('order-status-delete');
     Route::post('/order-status', [OrderStatus::class, 'save'])->name('order-status-save');
@@ -95,6 +96,7 @@ Route::group(['prefix'=>'user','as'=>'user.', 'middleware' => ['check.token']], 
     Route::get('/get-user-data', [User::class, 'getUserData'])->name('get-user-data');
 });
 Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.token']], function () {
+    Route::get('/test', [Product::class, 'test'])->name('test');
     Route::get('/list', [Product::class, 'index'])->name('index');
     Route::get('/kategori', [Product::class, 'kategori'])->name('kategori');
     Route::get('/category', [Product::class, 'category'])->name('category');
@@ -202,13 +204,16 @@ Route::group(['prefix'=>'trendyol','as'=>'trendyol.', 'middleware' => ['check.to
     Route::get('/', [Trendyol::class, 'index'])->name('index');
     Route::get('/category', [Trendyol::class, 'category'])->name('category');
     Route::get('/catlist', [Trendyol::class, 'category'])->name('catlist');
+    Route::get('/product-specs', [Trendyol::class, 'productSpecs'])->name('product-specs');
 
 });
 Route::group(['prefix'=>'ciceksepeti','as'=>'ciceksepeti.', 'middleware' => ['check.token']], function () {
     Route::get('/', [Ciceksepeti::class, 'index'])->name('index');
     Route::get('/category', [Ciceksepeti::class, 'category'])->name('category');
+    Route::get('/product-specs', [Ciceksepeti::class, 'productSpecs'])->name('product-specs');
 });
 Route::group(['prefix'=>'n11','as'=>'n11.', 'middleware' => ['check.token']], function () {
     Route::get('/', [N11::class, 'index'])->name('index');
     Route::get('/category', [N11::class, 'category'])->name('category');
+    Route::get('/product-specs', [N11::class, 'productSpecs'])->name('product-specs');
 });

@@ -19,4 +19,13 @@ class Ciceksepeti extends Controller
         $data['ciceksepeti_categories'] = \CiceksepetiService::getCategories($data['categoryId'] );
         return view('Ciceksepeti.category', $data);
     }
+    public function productSpecs(Request $request){
+        if($productId = $request->input('productId')){
+            $data = [];
+            $message = 'Ürün trendyol özellikleri';
+            $html = view('Product.tabs.pazaryerleri.ciceksepeti', $data)->render();
+            return _ReturnSucces($message, $html);
+        }
+    }
+
 }

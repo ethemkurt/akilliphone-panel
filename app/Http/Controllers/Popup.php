@@ -62,28 +62,7 @@ class Popup extends Controller
         return _ReturnSucces('', $html);
     }
 
-    public function changeOrderState(Request $request ){
-        $orderId = $request->input('orderId');
-        $orderStatusId = $request->input('orderStatusId');
-        if($orderId){
-            $order = \WebService::order($orderId);
-            if($order && isset($order['orderStatusId'])){
-                $order['orderStatusId'] = $orderStatusId;
-                $result = \KargoService::siparisDurumunaGoreKargola($order);
-                if($result){
-                    $order['shippingTrackingNumber'] = $result['message'];
-                }
-                $response = \WebService::editOrder($orderId, $order);
-                if($response && isset($response['data']['orderStatusId']) ){
-                    if($result){
-                        return _ReturnSucces('', '<i class="fa fa-check text-success"></i> '.$result['html']);
-                    }
-                    return _ReturnSucces('', '<i class="fa fa-check text-success"></i> <strong>'.$order['orderCustomer']['firstName'].' '.$order['orderCustomer']['lastName'].'</strong> Sipariş Durumu Güncellendi');
-                }
-            }
-        }
-        return _ReturnSucces('', '<i class="fa fa-times text-danger"></i> Sipariş Durumu Güncellenemedi');
-    }
+
     public function OrderStatus(Request $request ){
         $orderStatusId = $request->input('orderStatusId');
         $data['orderStatus'] = [];

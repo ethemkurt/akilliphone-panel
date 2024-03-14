@@ -10,7 +10,6 @@ class KargoService{
         } else {
             $result = [];
         }
-        dd($result);
         return $result;
     }
     static public function firmayaGoreKargola($firma, $order){
@@ -37,8 +36,7 @@ class KargoService{
 }
 class ArasKargo{
     static function kayitAc($order){
-        //die(json_encode($order, JSON_PRETTY_PRINT));
-        //dd($order);
+
         $setting = KargoService::getFirmaSetting('aras');
         ini_set("soap.wsdl_cache_enabled", false);
         $client = new SoapClient("https://customerws.araskargo.com.tr/arascargoservice.asmx?WSDL");
@@ -75,7 +73,6 @@ class ArasKargo{
         $send['userName'] = $setting['apiname'];
         $send['password'] = $setting['apipass'];
         $response = $client->SetOrder($send);
-
         $result = json_decode(json_encode($response, JSON_UNESCAPED_UNICODE), 1);
         if(!isset($result['SetOrderResult'])){
             return _ReturnError('Başarısız', 'Araskargo hata', ['Aras Kargo: Webservis iletişimi hatalı']);
