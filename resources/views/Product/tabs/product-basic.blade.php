@@ -1,3 +1,6 @@
+
+<form action="{{route('product.addProduct',$productID)}}" method="post" id="productBasicForm">
+    @csrf
 <div id="product-basic" class="content">
     <div class="row equal mb-3">
 
@@ -252,6 +255,8 @@
                     </div>
                 </div>
             </div>
+        <button type="submit"> kaydet </button>
 
     </div>
-</div>
+ </div>
+</form>

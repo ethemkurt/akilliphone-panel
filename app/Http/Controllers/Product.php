@@ -124,69 +124,24 @@ class Product extends Controller
         return view('Product.new', $data);
     }
     public function addProduct(Request $request,$productId ){
-        $catlist = [];
-        $productCategories = $request->input('productCategories', []);
-        if ($productId!="new") {
-            $data['product'] = \WebService::product($productId);
-            $productCategory = \WebService::productCategory($productId,$productCategories,$data['product']);
 
+        $product = $request->input('product', []);
+        $product['slug'] = $formattedString = strtolower(str_replace(' ', '_', $product['name']));
+        if ($product['metaTitle']==null) {
+            $product['metaTitle'] = $product['name'];
         }
-        else{
-
-            dd($request->input('variants', []));
-
-            $data=[];
-            $catlist=[];
-            $product = $request->input('product', []);
-            $product['slug'] = $formattedString = strtolower(str_replace(' ', '_', $product['name']));
-            if ($product['metaTitle']==null) {
-                $product['metaTitle'] = $product['name'];
-            }
-            $product['status']=0;
-            if($imageFile = $request->input('featuredImage')){
-                $product['featuredImage'] = \CdnService::saveToCdn($imageFile);
-            }
-            $data['product'] = \WebService::addProduct($product);
-
-
-
-
-            if ($data['product']['errors']==[]){
-                $catlist['productId'] =$data['product']['data']['productId'];
-                $productCategories = $request->input('productCategories', []);
-
-
-                foreach ($productCategories as $cat){
-                    $catlist['categoryId'] =(int)$cat;
-                    $data['productCategories'] = \WebService::productCategories($catlist);
-                }
-
-                $variants = $request->input('variants', []);
-                $variants['productId']=$data['product']['data']['productId'];
-                $variants['featuredImage'] = \CdnService::saveToCdn($imageFile);
-                $variants['oldPrice'] = 0.0;
-                $variants['price'] = $product['price'];
-                $variants['vatRate'] = (double)$product['vatRate'];
-                $variants['status'] = 0;
-                $variants['slug']=$product['slug'];
-                $data['denemea'] = \WebService::addVariants($variants);
-
-                dd($variants);
-
-
-                $deneme = \WebService::product($data['product']['data']['productId']);
-
-
-            }
-
-
-            else{
-                $html = implode(', ', $data['product']['errors']);
-                $request->session()->flash('flash-error', [$html, 'Ürün Eklenemedi' ]);
-            }
-
+        if($imageFile = $request->input('featuredImage')){
+            $product['featuredImage'] = \CdnService::saveToCdn($imageFile);
         }
-//        return redirect(Route('product.new'));
+        $response = \WebService::addProduct($product);
+
+        if(isset($response['data'])&& $response['data']){
+            $productId=$response['data']['productId'];
+            return _ReturnSucces("Ürün Başarıyla Oluşturuldu.",$productId);
+        }
+        return _ReturnError("Ürün Oluşturulamadı");
+
+
     }
 
 

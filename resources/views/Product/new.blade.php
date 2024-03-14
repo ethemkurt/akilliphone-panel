@@ -14,6 +14,15 @@
     </a>
 @endsection
 @section('content')
+    <?php
+    $currentUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $urlComponents = parse_url($currentUrl);
+    $path = $urlComponents['path'];
+    $segments = explode('/', $path);
+    $productID = end($segments);
+
+
+    ?>
     <section >
         <div class="row">
             <!-- Default Wizard -->
@@ -52,6 +61,7 @@
                 $sira = 1;
                 ?>
                 @if($forms)
+
                     <div class="bs-stepper wizard-numbered mt-2">
                         <div class="bs-stepper-header">
                             @foreach($forms as $form)
@@ -71,16 +81,16 @@
                             @endforeach
                         </div>
                         <div class="bs-stepper-content">
-                            <form onSubmit="return false">
+
                                 <!-- Account Details -->
                                 @foreach($forms as $form)
                                     @include('Product.tabs.'.$form['file'])
                                 @endforeach
-                            </form>
+
                         </div>
                     </div>
                 @endif
-
+                <input type="text" value="" id="productControl">
             </div>
             <!-- /Default Wizard -->
         </div>
@@ -91,6 +101,9 @@
 @endsection
 
 @section('page-script')
+    <script>
+        TulparUploader.createUploder();
+    </script>
     <script src="{{ _Asset('vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
     <script src="{{ _Asset('vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
     <script src="{{ _Asset('vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
@@ -108,4 +121,32 @@
                 });
         });
     </script>
+    <script>
+
+        // Form submit olduğunda bu fonksiyon çalışacak
+        $('#productBasicForm').submit(function(event) {
+            // Formun normal submit işlemini engelliyoruz
+            event.preventDefault();
+
+            $.ajax({
+                url: $(this).attr('action'),
+                method: $(this).attr('method'),
+                data: $(this).serialize()
+            }).done(function (response) {
+                console.log(response);
+                if (response.status) {
+                $('#productControl').val(response.html);
+
+                } else {
+                    //$('body .ajax-form-result').html(response.errors);
+                }
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText);
+            });
+            return false;
+        });
+
+
+    </script>
+
 @endsection
