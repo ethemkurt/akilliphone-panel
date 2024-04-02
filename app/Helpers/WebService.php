@@ -131,6 +131,7 @@ class WebService{
     }
     public static function product($productId){
         $response = self::GET('products/'.$productId, []);
+
         if($response['data'] ){
             return $response['data'];
         }
@@ -152,7 +153,7 @@ class WebService{
         }
         return [];
     }
-    public static function productCategories( $catlist){
+    public static function addProductCategories( $catlist){
 
         $response = self::POST('product-category', $catlist, FORCEADMIN);
 
@@ -164,7 +165,7 @@ class WebService{
     public static function addVariants( $variants){
 
         $response = self::POST('variants', $variants, FORCEADMIN);
-        dd($response);
+
         if($response ){
             return $response;
         }

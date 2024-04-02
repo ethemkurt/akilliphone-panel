@@ -106,8 +106,11 @@ Route::group(['prefix'=>'product','as'=>'product.', 'middleware' => ['check.toke
     Route::get('/ciceksepeti', [Product::class, 'ciceksepeti'])->name('ciceksepeti');
     Route::get('/n11', [Product::class, 'n11'])->name('n11');
     Route::get('/detail/{productd}', [Product::class, 'detail'])->name('detail');
+    Route::get('/variant/{variantId}', [Product::class, 'variant'])->name('variants');
     Route::get('/new/{productId}', [Product::class, 'new'])->name('new');
     Route::post('/new/{productId}', [Product::class, 'addProduct'])->name('addProduct');
+    Route::post('/addCategories', [Product::class, 'addCategories'])->name('addCategories');
+    Route::post('/addStock', [Product::class, 'addStock'])->name('addStock');
     Route::get('/brand-management-table', [BrandManagement::class, 'dataTable'])->name('brand-management-table');
     Route::post('/brand-management-table', [BrandManagement::class, 'save'])->name('brand-save');
     Route::get('/brand-delete/{brandId}', [BrandManagement::class, 'delete'])->name('brand-delete');

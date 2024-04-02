@@ -255,8 +255,10 @@
                     </div>
                 </div>
             </div>
-        <button type="submit"> kaydet </button>
-
+        <button type="submit" class="btn btn-primary">
+            <i data-feather="save"></i>
+            <span class="align-middle">Kaydet</span>
+        </button>
     </div>
  </div>
 </form>

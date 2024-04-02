@@ -113,6 +113,7 @@ class Product extends Controller
         }
         $data['currency'] = \Instance::loadJson('productControl');
         $data['options'] = \WebService::options($page, $offset, $params);
+
         $data['colors'] =$data['options']['data'][0]['optionValues'];
 
         $data['brand'] = \WebService::brands();
@@ -124,7 +125,6 @@ class Product extends Controller
         return view('Product.new', $data);
     }
     public function addProduct(Request $request,$productId ){
-
         $product = $request->input('product', []);
         $product['slug'] = $formattedString = strtolower(str_replace(' ', '_', $product['name']));
         if ($product['metaTitle']==null) {
@@ -140,9 +140,99 @@ class Product extends Controller
             return _ReturnSucces("Ürün Başarıyla Oluşturuldu.",$productId);
         }
         return _ReturnError("Ürün Oluşturulamadı");
+    }
 
+    public function addCategories(Request $request){
+        $response = \WebService::variant(20480);
+        dd($response);
+
+
+
+
+        $productCategories = $request->input('productCategories', []);
+        $productId= $request->input('productId', []);
+        $body=[];
+        $response=null;
+        if ($productCategories){
+            foreach ($productCategories as $cat){
+                $body['categoryId']=$cat;
+                $body['productId']=$productId;
+                $response = \WebService::addProductCategories($body);
+            }
+        }
+        if(isset($response['errors'])&& $response['errors']==[]){
+
+            return _ReturnSucces("Ürün Kategorileri Eklendi.",$productId);
+        }
+        return _ReturnError("Ürün Oluşturulamadı");
+    }
+    public function addStock(Request $request){
+
+        $variants = $request->input('variants', []);
+
+        $body=[];
+        $productId=$request->input('productId', []);
+
+        $product = \WebService::product(10494);
+        $response=[];
+        foreach ($variants as $variant){
+
+            $variant["productId"]=10494;
+            $variant["name"]=$product['name'];
+            $variant["code"]=$product['code']."-".$variant["variantOptions"][0]["optionValueId"];
+            $variant["slug"]=$product['slug'];
+            $variant["description"]=$product['description'];
+            $variant["metaTitle"]=$product['metaTitle'];
+            $variant["metaDescription"]=$product['metaDescription'];
+            if($imageFile = $variant['variantImages']['image']){
+                $variant['featuredImage'] = \CdnService::saveToCdn($imageFile);
+
+            }
+            $variant["variantOptions"][0]["optionId"]=1;
+            $variant["variantOptions"][0]["optionValueId"]=intval($variant["variantOptions"][0]["optionValueId"]);
+            $variant["variantOptions"][0]["stock"]=intval($variant["variantOptions"][0]["stock"]);
+            unset($variant["variantImages"]);
+
+            $response = \WebService::addVariants($variant);
+
+        }
+        $product = \WebService::product(10494);
+        $variantt = \WebService::variant(20485);
+        dd($product);
+        if(isset($response['errors'])&& $response['errors']==[]){
+
+            return _ReturnSucces("Ürün Stokları Eklendi.",$product);
+        }
+        return _ReturnError("Ürün Oluşturulamadı");
 
     }
+    public function variant($productId ){
+
+        $response = \WebService::product(10494);
+        $variantIds=[];
+        $optionIds=[];
+
+        if($response !=[]){
+
+                foreach($response['variants'] as $variants){
+
+                    if (!empty($variants['variantOptions']) ) {
+                        if (isset($variants['variantOptions'])){
+                        $newOption = ['optionValueId' => $variants['variantOptions'][0]['optionValueId'],'variantOptionId' => $variants['variantOptions'][0]['variantOptionId']];
+                        $optionIds[] = $newOption;
+                        }
+
+                }
+
+
+                }
+
+                return _ReturnSucces("Ürün Başarıyla Oluşturuldu.",$optionIds);
+        }
+        return _ReturnError("Ürün Oluşturulamadı");
+    }
+
+
 
 
 
@@ -175,6 +265,7 @@ class Product extends Controller
             }
         }
         $response = \WebService::products($filter);
+
         $dataTable->setRecordsTotal(isset($response['totalCount'])?$response['totalCount']:0);
         $dataTable->setRecordsFiltered(isset($response['totalCount'])?$response['totalCount']:0);
         $items = [];
