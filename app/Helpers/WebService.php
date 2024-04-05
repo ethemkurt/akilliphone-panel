@@ -797,7 +797,7 @@ class WebService{
         ])->delete(self::WEBSERVICE_URL.$service, $data);
         return self::standartResponse($response, self::WEBSERVICE_URL.$service);
     }
-    private static function static($endpoint){
+     static function static($endpoint){
         $json_path = public_path().'/jsons/'.$endpoint.'.json';
         if(is_file($json_path)){
             $json = file_get_contents($json_path);

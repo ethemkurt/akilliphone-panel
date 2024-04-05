@@ -102,9 +102,9 @@
                         </div>
                     </div>
                     <h6 class="m-0">
-                        <a href=" javascript:void(0)"><button type="button" class="btn btn-danger" id="renkbtn">
-                                <i class="feather icon-plus"></i></button>
-                        </a></h6>
+                      <button type="button" class="btn btn-danger" id="renkbtn">
+                          <i class="tf-icons ti ti-plus"></i></button>
+                      </h6>
                     <table id="renkTablosu">
                         <thead>
                         <tr>

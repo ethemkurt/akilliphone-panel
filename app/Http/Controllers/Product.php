@@ -133,6 +133,7 @@ class Product extends Controller
         if($imageFile = $request->input('featuredImage')){
             $product['featuredImage'] = \CdnService::saveToCdn($imageFile);
         }
+        dd($product);
         $response = \WebService::addProduct($product);
 
         if(isset($response['data'])&& $response['data']){
@@ -168,6 +169,8 @@ class Product extends Controller
     }
     public function addStock(Request $request){
 
+
+
         $variants = $request->input('variants', []);
 
         $body=[];
@@ -198,7 +201,7 @@ class Product extends Controller
         }
         $product = \WebService::product(10494);
         $variantt = \WebService::variant(20485);
-        dd($product);
+
         if(isset($response['errors'])&& $response['errors']==[]){
 
             return _ReturnSucces("Ürün Stokları Eklendi.",$product);
@@ -206,20 +209,29 @@ class Product extends Controller
         return _ReturnError("Ürün Oluşturulamadı");
 
     }
-    public function variant($productId ){
+    public function variant($productId){
+        $colorsJson = \WebService::static('options/colors', []);
+        $colors=$colorsJson['data'][0]['optionValues'];
 
         $response = \WebService::product(10494);
         $variantIds=[];
         $optionIds=[];
-
         if($response !=[]){
 
                 foreach($response['variants'] as $variants){
 
                     if (!empty($variants['variantOptions']) ) {
                         if (isset($variants['variantOptions'])){
-                        $newOption = ['optionValueId' => $variants['variantOptions'][0]['optionValueId'],'variantOptionId' => $variants['variantOptions'][0]['variantOptionId']];
-                        $optionIds[] = $newOption;
+
+                            foreach ($colors as $color) {
+
+                                if ($color['optionValueId']==$variants['variantOptions'][0]['optionValueId']){
+
+                                    $newOption = ['optionValueId' => $variants['variantOptions'][0]['optionValueId'],'variantOptionId' => $variants['variantOptions'][0]['variantOptionId'],'colorName'=>$color['value']];
+                                    $optionIds[] = $newOption;
+                                }
+
+                            }
                         }
 
                 }

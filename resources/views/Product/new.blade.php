@@ -418,38 +418,39 @@
         });
     </script>
     <script>
-
-
         var counter = 1;
-            var select = document.querySelector("#select1");
-            console.log(select);
-            $.ajax({
-                url: "{{route('product.variants',$productID)}}",
-                method: "GET",
-                data: $(this).serialize()
-            }).done(function (response) {
-                if (response.status) {
-                    var variants = response.html;
+        var select = document.querySelector("#select1");
+        document.addEventListener('DOMContentLoaded', function() {
 
-                    for (var i = 0; i < variants.length; i++) {
-                        // Her döngü adımında yeni bir option elementi oluştur
-                        var optionElement = document.createElement("option");
-                        optionElement.value = variants[i]["variantOptionId"];
-                        optionElement.text = variants[i]["optionValueId"];
-                        select.appendChild(optionElement);
+            var button = document.getElementById('3'); // id'si 3 olan düğmeyi seç
+            button.addEventListener('click', function() {
+
+                $.ajax({
+                    url: "{{route('product.variants',$productID)}}",
+                    method: "GET",
+                    data: $(this).serialize()
+                }).done(function (response) {
+                    if (response.status) {
+                        var variants = response.html;
+                        for (var i = 0; i < variants.length; i++) {
+
+                            var optionElement = document.createElement("option");
+                            optionElement.value = variants[i]["variantOptionId"]+'-'+variants[i]["optionValueId"];
+                            optionElement.text = variants[i]["colorName"];
+                            select.appendChild(optionElement);
+                        }
+
+                        select.setAttribute("name", "options["+counter+"][variantOptionId]");
+
+                    } else {
+
                     }
+                }).fail(function (jqXHR, textStatus, errorThrown) {
 
-                    select.setAttribute("name", "options["+counter+"][variantOptionId]");
-
-                } else {
-
-                }
-            }).fail(function (jqXHR, textStatus, errorThrown) {
+                });
 
             });
-
-
-
+        });
 
 
         function addSelect() {
@@ -469,6 +470,11 @@
 
             container.appendChild(newDiv);
         }
+
+
+
+
+
 
     </script>
 @endsection
